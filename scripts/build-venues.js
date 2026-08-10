@@ -30,7 +30,7 @@ out center tags;
 // Mossley (all inside the bbox) off the Saddleworth map.
 const VILLAGES = [
   ['Uppermill', 53.5468, -2.0066, 1.4], ['Delph', 53.5685, -2.0195, 1.2],
-  ['Dobcross', 53.5594, -2.0146, 0.9], ['Diggle', 53.5695, -1.9975, 1.3],
+  ['Dobcross', 53.5564, -2.0130, 0.9], ['Diggle', 53.5695, -1.9975, 1.3],
   ['Greenfield', 53.5365, -1.9920, 1.5], ['Grasscroft', 53.5352, -2.0117, 0.85],
   ['Lydgate', 53.5409, -2.0378, 0.8], ['Scouthead', 53.5477, -2.0532, 1.0],
   ['Denshaw', 53.5860, -2.0440, 2.3], ['Friezland', 53.5322, -2.0035, 0.55],

@@ -272,18 +272,19 @@ async function handleVenuesList() {
   if (!store) return noStore();
   const [venues, ratings, claims] = await Promise.all(
     [store.list('venues'), store.list('ratings'), store.list('claims')]);
-  const agg = {};
+  const agg = {}, eAgg = {};
   for (const r of ratings) {
-    const a = (agg[r.venueId] = agg[r.venueId] || { sum: 0, count: 0 });
-    a.sum += r.stars; a.count++;
+    const bucket = r.eventId
+      ? (eAgg[r.eventId] = eAgg[r.eventId] || { sum: 0, count: 0 })
+      : (agg[r.venueId] = agg[r.venueId] || { sum: 0, count: 0 });
+    bucket.sum += r.stars; bucket.count++;
   }
-  const out = {};
-  for (const [k, a] of Object.entries(agg)) {
-    out[k] = { avg: Math.round((a.sum / a.count) * 10) / 10, count: a.count };
-  }
+  const roll = (src) => Object.fromEntries(Object.entries(src).map(([k, a]) =>
+    [k, { avg: Math.round((a.sum / a.count) * 10) / 10, count: a.count }]));
   return json(200, {
     venues: venues.filter((v) => v.status === 'approved').map(publicVenue),
-    ratings: out,
+    ratings: roll(agg),
+    eventRatings: roll(eAgg),
     claimed: claims.map((c) => c.id),
   });
 }
@@ -340,12 +341,14 @@ async function handleRate(body) {
   if (!store) return noStore();
   const venueId = str(body && body.venueId, 80);
   const client = str(body && body.client, 64);
+  const eventId = str(body && body.eventId, 120);
   const stars = Number(body && body.stars);
   if (!venueId || client.length < 8) return json(400, { error: 'Bad request.' });
   if (!(stars >= 1 && stars <= 5)) return json(400, { error: 'Stars must be 1–5.' });
   const hash = crypto.createHash('sha256').update(client).digest('hex').slice(0, 16);
   await store.upsert('ratings', {
-    id: `${venueId}-${hash}`, venueId, stars: Math.round(stars),
+    id: eventId ? `e-${eventId}-${hash}` : `${venueId}-${hash}`,
+    venueId, ...(eventId ? { eventId } : {}), stars: Math.round(stars),
     updated: new Date().toISOString(),
   });
   return json(200, { ok: true });

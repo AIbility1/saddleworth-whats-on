@@ -360,7 +360,7 @@
     }
     s += label(53.5432, -2.0195, 'Uppermill', 22);
     s += label(53.5715, -2.0245, 'Delph', 19);
-    s += label(53.5622, -2.0245, 'Dobcross', 17);
+    s += label(53.5586, -2.013, 'Dobcross', 17);
     s += label(53.5738, -1.9905, 'Diggle', 18);
     s += label(53.5352, -1.9878, 'Greenfield', 18);
     s += label(53.5326, -2.0158, 'Grasscroft', 15);

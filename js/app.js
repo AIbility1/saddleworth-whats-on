@@ -66,6 +66,7 @@
 
   // ---- community state ----
   let ratings = {};            // venueId → {avg, count}, from the API
+  let eventRatings = {};       // eventId → {avg, count}
   let claimed = new Set();     // venues verified & locked to their code holder
   let placing = null;          // callback waiting for a map tap (placing a new pin)
   let cid = localStorage.getItem('swo-cid');
@@ -403,15 +404,27 @@
         ? `<p class="none">No guided events listed — this one's self-service, any day you fancy.</p>`
         : `<p class="none">Nothing listed between ${fmtShort(t0)} and ${fmtShort(t1)} — widen the dates, or nudge them to list something.</p>`;
     } else {
+      const rated = new Set();   // one rating row per event, not per repeat
       for (const inst of insts.slice(0, 40)) {
         const past = inst.date < today && !inst.ongoing;
         const end = inst.ev.end && inst.ev.start !== inst.ev.end ? ` → ${fmtShort(parseISO(inst.ev.end))}` : '';
+        let rateRow = '';
+        if (!rated.has(inst.ev.id)) {
+          rated.add(inst.ev.id);
+          const er = eventRatings[inst.ev.id];
+          const mineE = +localStorage.getItem('rated:' + inst.ev.id) || 0;
+          rateRow = `<div class="rate-row sm"><span class="stars">${[1, 2, 3, 4, 5].map((i) =>
+            `<button data-star="${i}" data-event="${esc(inst.ev.id)}" class="${i <= mineE ? 'on' : ''}"
+               aria-label="Rate this event ${i}/5" title="Rate ${i}/5">★</button>`).join('')}</span>
+            <span class="avg">${er ? `${er.avg.toFixed(1)} · ${er.count}` : 'Rate it'}</span></div>`;
+        }
         hh += `<div class="vevt${past ? ' past' : ''}">
           <div class="d">${inst.ongoing ? 'ongoing' : fmtShort(inst.date)}${end}${inst.ev.recurrence ? ' · ' + (inst.ev.recurrence.freq === 'weekly' ? 'weekly' : 'monthly') : ''}</div>
           <div class="t">${CATS[inst.ev.category].emoji} ${esc(inst.ev.title)}${inst.ev.demo ? '<span class="demo-tag">example</span>' : ''}</div>
           ${inst.ev.time ? `<div class="x">${esc(inst.ev.time)}</div>` : ''}
           ${inst.ev.description ? `<div class="x">${esc(inst.ev.description)}</div>` : ''}
-          ${inst.ev.offer ? `<span class="offer">${esc(inst.ev.offer)}</span>` : ''}${inst.ev.voucher ? `<span class="vouch">🎟 ${esc(inst.ev.voucher)}</span>` : ''}</div>`;
+          ${inst.ev.offer ? `<span class="offer">${esc(inst.ev.offer)}</span>` : ''}${inst.ev.voucher ? `<span class="vouch">🎟 ${esc(inst.ev.voucher)}</span>` : ''}
+          ${rateRow}</div>`;
       }
     }
     if (!['walk', 'sight', 'spot'].includes(v.kind)) {
@@ -429,7 +442,7 @@
     const mg = panel.querySelector('[data-manage]');
     if (mg) mg.onclick = () => openManage(v);
     for (const b of panel.querySelectorAll('[data-star]')) {
-      b.onclick = () => rate(v, +b.dataset.star);
+      b.onclick = () => rate(v, +b.dataset.star, b.dataset.event);
     }
     if (fly) {
       flyTo(v.lat, v.lng);
@@ -578,6 +591,7 @@
         venues.set(v.id, { tags: [], links: {}, type: v.type || 'Local business', community: true, ...v });
       }
       ratings = vn.ratings || {};
+      eventRatings = vn.eventRatings || {};
       claimed = new Set(vn.claimed || []);
       for (const e of (ev.events || [])) {
         if (!venues.has(e.venueId)) continue;
@@ -587,10 +601,10 @@
     } catch { /* static-only hosting (no API) — the map still works */ }
   }
 
-  async function rate(v, stars) {
+  async function rate(v, stars, eventId) {
     try {
-      await api('rate', { venueId: v.id, stars, client: cid });
-      localStorage.setItem('rated:' + v.id, stars);
+      await api('rate', { venueId: v.id, stars, client: cid, ...(eventId ? { eventId } : {}) });
+      localStorage.setItem('rated:' + (eventId || v.id), stars);
       await loadCommunity();
       renderVenue(v.id, false);
     } catch (e) { alert(e.message); }
