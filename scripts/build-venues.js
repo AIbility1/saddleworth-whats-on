@@ -72,6 +72,13 @@ const slug = (name) => name.toLowerCase()
   .replace(/&/g, 'and').replace(/[''`’]/g, '')
   .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 
+// Venues OSM still lists but which have closed for good (local knowledge) —
+// excluded from every bake. Slug per the slug() rules below.
+const CLOSED = new Set([
+  'bank',              // The Bank, Delph — gone
+  'royal-oak',         // The Royal Oak (Th'Heights), Delph — gone
+]);
+
 // nearest anchor whose circle contains the point — null means "not Saddleworth"
 function anchorVillage(lat, lng) {
   let best = null, bd = 1e9;
@@ -127,7 +134,7 @@ async function main() {
     if (!village) continue;
     const kind = kindOf(t);
     const id = slug(t.name);
-    if (!id) continue;
+    if (!id || CLOSED.has(id)) continue;
     const addr = [t['addr:housenumber'], t['addr:street']].filter(Boolean).join(' ');
     const v = {
       id,

@@ -123,16 +123,6 @@
    "address": "Delph"
   },
   {
-   "id": "bank",
-   "name": "The Bank",
-   "type": "Pub",
-   "kind": "pub",
-   "village": "Delph",
-   "lat": 53.5675,
-   "lng": -2.0237,
-   "address": "King Street, Delph"
-  },
-  {
    "id": "bulls-head",
    "name": "The Bulls Head",
    "type": "Pub",

@@ -61,6 +61,7 @@
   let events = [];
   let lo = 0, hi = 30;         // window, days relative to today
   let activeKinds = new Set(Object.keys(KINDG));
+  let activeCats = new Set(Object.keys(CATS));
   let query = '';
   let selected = null;
 
@@ -302,10 +303,12 @@
 
   const matchText = (inst) => {
     if (!query) return true;
-    const t = `${inst.ev.title} ${inst.ev.description || ''} ${inst.venue.name} ${inst.venue.village}`.toLowerCase();
+    const v = inst.venue;
+    const t = `${inst.ev.title} ${inst.ev.description || ''} ${v.name} ${v.village} ${v.type || ''} ${(v.tags || []).join(' ')}`.toLowerCase();
     return t.includes(query);
   };
-  const visible = (inst) => activeKinds.has(kindGroup(inst.venue.kind)) && matchText(inst);
+  const visible = (inst) => activeKinds.has(kindGroup(inst.venue.kind)) &&
+    activeCats.has(inst.ev.category) && matchText(inst);
 
   // ================= rendering =================
   function render() {
@@ -327,7 +330,8 @@
       const has = insts && insts.length;
       const [x, y] = project(v.lat, v.lng);
       const sel = selected === v.id ? ' sel' : '';
-      const dim = query && !has && !`${v.name} ${v.village} ${v.type}`.toLowerCase().includes(query) ? ' dim' : '';
+      const dim = query && !has &&
+        !`${v.name} ${v.village} ${v.type} ${(v.tags || []).join(' ')}`.toLowerCase().includes(query) ? ' dim' : '';
       mh += `<button class="pin${has ? ' has' : ''}${sel}${dim}" style="left:${x}px;top:${y}px;--pc:${KINDG[g].c}"
                data-v="${v.id}" title="${esc(v.name)}"
                aria-label="${esc(v.name)}${has ? `: ${insts.length} listing${insts.length > 1 ? 's' : ''}` : ''}">
@@ -581,6 +585,23 @@
     for (const c of $('chips').children) c.setAttribute('aria-pressed', activeKinds.has(c.dataset.c));
     render();
   });
+  $('cat-chips').innerHTML = Object.entries(CATS).map(([k, c]) =>
+    `<button class="chip" style="--pc:${GROUPS[c.group]}" data-c="${k}" aria-pressed="true">
+       <i></i>${c.emoji} ${c.label}</button>`).join('');
+  $('cat-chips').addEventListener('click', (e) => {
+    const b = e.target.closest('.chip');
+    if (!b) return;
+    const k = b.dataset.c;
+    if (activeCats.has(k) && activeCats.size === Object.keys(CATS).length) {
+      activeCats = new Set([k]);            // first click: focus just this one
+    } else if (activeCats.has(k)) {
+      activeCats.delete(k);
+      if (!activeCats.size) activeCats = new Set(Object.keys(CATS));
+    } else activeCats.add(k);
+    for (const c of $('cat-chips').children) c.setAttribute('aria-pressed', activeCats.has(c.dataset.c));
+    render();
+  });
+
   let qT;
   $('q').addEventListener('input', (e) => {
     clearTimeout(qT);

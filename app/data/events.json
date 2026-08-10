@@ -238,23 +238,6 @@
   },
   "customVenues": [
     {
-      "id": "royal-oak-heights",
-      "name": "The Royal Oak (Th'Heights)",
-      "type": "Moorland pub",
-      "kind": "pub",
-      "village": "Delph",
-      "lat": 53.5745,
-      "lng": -2.0339,
-      "address": "Broad Lane, Heights, Delph, OL3 5TX",
-      "blurb": "A candle-lit pub alone on the hillside above Delph, reached up a steep lane — worth every step for the view and the stew.",
-      "tags": [
-        "Remote & cosy",
-        "Home-cooked food",
-        "Big views"
-      ],
-      "links": {}
-    },
-    {
       "id": "diggle-hotel",
       "name": "The Diggle Hotel",
       "type": "Pub & kitchen",
