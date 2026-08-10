@@ -33,7 +33,8 @@
   // and a coral badge appears when it has events in the chosen dates
   const KINDG = {
     pub:  { label: 'Pubs & bars',    emoji: '🍻', c: '#eb6834', kinds: ['pub'] },
-    food: { label: 'Food & coffee',  emoji: '☕', c: '#2a78d6', kinds: ['restaurant', 'takeaway', 'cafe'] },
+    food: { label: 'Food',           emoji: '🍽️', c: '#2a78d6', kinds: ['restaurant', 'takeaway'] },
+    cafe: { label: 'Cafés',          emoji: '☕', c: '#8d6748', kinds: ['cafe'] },
     comm: { label: 'Halls & clubs',  emoji: '🎭', c: '#1baf7a', kinds: ['hall', 'attraction', 'club', 'sport', 'spot'] },
     out:  { label: 'Walks & sights', emoji: '🥾', c: '#35784b', kinds: ['walk', 'sight'] },
   };
@@ -65,12 +66,22 @@
 
   // ---- community state ----
   let ratings = {};            // venueId → {avg, count}, from the API
+  let claimed = new Set();     // venues verified & locked to their code holder
   let placing = null;          // callback waiting for a map tap (placing a new pin)
   let cid = localStorage.getItem('swo-cid');
   if (!cid) {
     cid = crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(36).slice(2);
     localStorage.setItem('swo-cid', cid);
   }
+  // the anonymous owner hash the server files our submissions under, so this
+  // browser can recognise (and edit) its own listings
+  let myOwner = '';
+  (async () => {
+    try {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('owner:' + cid));
+      myOwner = [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('').slice(0, 16);
+    } catch { }
+  })();
   async function api(path, body, code) {
     const opt = body === undefined ? {} : {
       method: 'POST',
@@ -94,11 +105,19 @@
   // While a gesture is in flight the drawing moves as a cheap GPU transform
   // (no vector re-render per frame); 160ms after the last movement the
   // viewBox commits and the ink re-renders crisp at the new scale.
+  // The svg element is oversized by PAD×viewport on every edge, so a gesture
+  // can travel half a screen in any direction before hitting unpainted map —
+  // and the painted layer stays bounded (4× viewport), which keeps the GPU
+  // from re-rasterising the whole drawing mid-drag.
+  const PAD = 0.5;
   let committed = null, commitT = 0;
   function commitView() {
+    const vw = innerWidth, vh = innerHeight;
     committed = { x: view.x, y: view.y, s: view.s };
+    basemap.style.transformOrigin = `${PAD * vw}px ${PAD * vh}px`; // local point under screen (0,0)
     basemap.setAttribute('viewBox',
-      `${(-view.x / view.s).toFixed(2)} ${(-view.y / view.s).toFixed(2)} ${(innerWidth / view.s).toFixed(2)} ${(innerHeight / view.s).toFixed(2)}`);
+      `${((-PAD * vw - view.x) / view.s).toFixed(2)} ${((-PAD * vh - view.y) / view.s).toFixed(2)} ` +
+      `${((1 + 2 * PAD) * vw / view.s).toFixed(2)} ${((1 + 2 * PAD) * vh / view.s).toFixed(2)}`);
     basemap.style.transform = 'none';
     basemap.classList.toggle('lz', view.s < fitS * 1.7);
     basemap.classList.toggle('hz', view.s > fitS * 3.2);
@@ -347,7 +366,8 @@
     hh += `<button class="close" aria-label="Close">✕</button></div><div class="body">`;
     hh += `<h2>${esc(v.name)}</h2><div class="meta">
       <span class="mchip kind" style="--pc:${groupC}">${esc(v.type)}</span>
-      <span class="mchip">📍 ${esc(v.village)}</span></div>`;
+      <span class="mchip">📍 ${esc(v.village)}</span>
+      ${claimed.has(v.id) ? '<span class="mchip" style="color:var(--green);font-weight:600">✓ Verified</span>' : ''}</div>`;
     if (v.walk) {
       hh += `<div class="meta"><span class="mchip kind" style="--pc:${WALK_C}">🥾 ${esc(v.walk.km)} km</span>
         <span class="mchip">⏱ ${esc(v.walk.time)}</span><span class="mchip">${esc(v.walk.grade)}</span></div>`;
@@ -362,6 +382,12 @@
     if (v.blurb) hh += `<p class="blurb">${esc(v.blurb)}</p>`;
     if (v.tags && v.tags.length) hh += `<div class="meta">${v.tags.map((t) => `<span class="mchip">${esc(t)}</span>`).join('')}</div>`;
     if (v.address) hh += `<p class="addr">${esc(v.address)}</p>`;
+    if (v.hours) {
+      const DAYN = { Mo: 'Mon', Tu: 'Tue', We: 'Wed', Th: 'Thu', Fr: 'Fri', Sa: 'Sat', Su: 'Sun', PH: 'bank hols' };
+      const pretty = esc(v.hours).replace(/\b(Mo|Tu|We|Th|Fr|Sa|Su|PH)\b/g, (m) => DAYN[m] || m)
+        .replace(/\boff\b/g, 'closed').split(/;\s*/).join('<br>');
+      hh += `<p class="hours">${pretty}</p>`;
+    }
     const L = v.links || {};
     const links = [];
     if (v.menu) links.push(`<a href="#" data-menu="1">📖 Menu</a>`);
@@ -389,7 +415,7 @@
       }
     }
     if (!['walk', 'sight', 'spot'].includes(v.kind)) {
-      hh += `<button class="claim" data-manage>📣 Run ${esc(v.name)}? Add your events, offers &amp; vouchers — free</button>`;
+      hh += `<button class="claim" data-manage>＋ Add an event or offer here — free, no sign-up</button>`;
     }
     hh += `</div>`;
 
@@ -552,6 +578,7 @@
         venues.set(v.id, { tags: [], links: {}, type: v.type || 'Local business', community: true, ...v });
       }
       ratings = vn.ratings || {};
+      claimed = new Set(vn.claimed || []);
       for (const e of (ev.events || [])) {
         if (!venues.has(e.venueId)) continue;
         events.push({ ...e, business: e.venueId, _venueId: e.venueId, community: true });
@@ -584,32 +611,18 @@
                     ['fri', 'Friday'], ['sat', 'Saturday'], ['sun', 'Sunday']];
   const daySelect = (id) => `<select id="${id}">${DAY_OPTS.map(([v2, l]) => `<option value="${v2}">${l}</option>`).join('')}</select>`;
 
-  // ---- venue self-service: add / edit / delete events ----
+  // ---- open community listings: anyone can add / edit / delete their own.
+  // A venue that has claimed its pin is "verified": its listings need its code.
   function openManage(v) {
-    const saved = localStorage.getItem('code:' + v.id) || '';
-    if (!saved) {
-      openForm(`<h2>${esc(v.name)}</h2>
-        <p class="fsub">Add events, offers and voucher codes — free, and live straight away.</p>
-        <label>Your venue code</label><input id="f-code" placeholder="XXXX-XXXX" autocomplete="off">
-        <p class="fsub">No code yet? Message the Facebook page or email
-          <a href="mailto:hello@aibility.co.uk?subject=${encodeURIComponent('Venue code for ' + v.name)}">hello@aibility.co.uk</a>
-          — it's free and takes a minute.</p>
-        <button class="btn-p" id="f-unlock">Unlock my listings</button>
-        <p class="err" id="f-err"></p>`);
-      $('f-unlock').onclick = async () => {
-        const code = $('f-code').value.trim();
-        $('f-err').textContent = '';
-        try {
-          await api('verify', { venueId: v.id }, code);
-          localStorage.setItem('code:' + v.id, code);
-          openManage(v);
-        } catch (e2) { $('f-err').textContent = e2.message; }
-      };
-      return;
-    }
-
+    const isClaimed = claimed.has(v.id);
     openForm(`<h2>${esc(v.name)}</h2>
-      <p class="fsub">Your listings appear on the map straight away. Fields marked * are required.</p>
+      ${isClaimed
+        ? `<p class="fsub">✓ This venue manages its own listings. Enter its code to add or change them.</p>
+           <label>Venue code</label><input id="f-vcode" placeholder="XXXX-XXXX" autocomplete="off"
+             value="${esc(localStorage.getItem('code:' + v.id) || '')}">`
+        : `<p class="fsub">Anyone can add what's on here — landlords, bands, quiz hosts, regulars.
+           Listings go live straight away; you can edit or delete the ones added from this
+           device. Fields marked * are required.</p>`}
       <label>What's happening? *</label><input id="f-title" maxlength="80" placeholder="e.g. Quiz Night, 2-for-1 Pizza, Live Music">
       <label>Type *</label><select id="f-cat">${Object.entries(CATS).map(([k, c]) =>
         `<option value="${k}">${c.emoji} ${c.label}</option>`).join('')}</select>
@@ -632,8 +645,7 @@
       <input type="hidden" id="f-id">
       <button class="btn-p" id="f-save">Publish listing</button>
       <p class="err" id="f-err"></p><p class="okmsg" id="f-ok"></p>
-      <div class="mine"><b style="font-size:12px">Your live listings</b><div id="f-mine"></div></div>
-      <button class="btn-s" id="f-forget">Forget my code on this device</button>`);
+      <div class="mine"><b style="font-size:12px">Listings you've added here</b><div id="f-mine"></div></div>`);
 
     $('f-when').onchange = () => {
       const w = $('f-when').value;
@@ -641,10 +653,14 @@
       $('f-weekly').style.display = w === 'weekly' ? '' : 'none';
       $('f-monthly').style.display = w === 'monthly' ? '' : 'none';
     };
-    $('f-forget').onclick = () => { localStorage.removeItem('code:' + v.id); closeForm(); };
-
+    const vcode = () => {
+      const el = document.getElementById('f-vcode');
+      if (el && el.value.trim()) localStorage.setItem('code:' + v.id, el.value.trim());
+      return el ? el.value.trim() : undefined;
+    };
     const refreshMine = () => {
-      const mine = events.filter((e2) => e2.community && e2._venueId === v.id);
+      const mine = events.filter((e2) => e2.community && e2._venueId === v.id &&
+        (isClaimed || e2.owner === myOwner));
       $('f-mine').innerHTML = mine.length ? mine.map((e2) => `<div class="me"><span>${esc(e2.title)}${
         e2.recurrence ? ' · ' + (e2.recurrence.freq === 'weekly' ? 'weekly' : 'monthly') : e2.start ? ' · ' + e2.start : ''
       }</span><span><button data-edit="${e2.id}">Edit</button> <button data-del="${e2.id}">Delete</button></span></div>`).join('')
@@ -652,7 +668,7 @@
       for (const b of $('f-mine').querySelectorAll('[data-del]')) {
         b.onclick = async () => {
           try {
-            await api('events/delete', { venueId: v.id, id: b.dataset.del }, saved);
+            await api('events/delete', { venueId: v.id, id: b.dataset.del, client: cid }, vcode());
             await loadCommunity(); refreshMine();
           } catch (e3) { $('f-err').textContent = e3.message; }
         };
@@ -691,7 +707,7 @@
       else if (w === 'weekly') { event.recurrence = { freq: 'weekly', day: $('f-day').value, until: $('f-until').value || undefined }; }
       else { event.recurrence = { freq: 'monthly', week: +$('f-week').value, day: $('f-mday').value }; }
       try {
-        await api('events/submit', { venueId: v.id, event }, saved);
+        await api('events/submit', { venueId: v.id, client: cid, event }, vcode());
         await loadCommunity();
         refreshMine();
         $('f-id').value = ''; $('f-title').value = ''; $('f-desc').value = '';
@@ -767,12 +783,24 @@
           <span style="color:var(--muted)">${esc(v2.blurb || '')}<br>${esc(v2.email)} · code ${esc(v2.code)}</span></span>
           <span>${v2.status === 'pending' ? `<button data-ap="${v2.id}">Approve</button>` : ''}
           <button data-rj="${v2.id}">Remove</button></span></div>`).join('');
-        $('a-list').innerHTML = rows || '<p class="fsub">No submissions yet.</p>';
+        const evRows = events.filter((e2) => e2.community).map((e2) => `<div class="me">
+          <span>${esc(e2.title)} <span style="color:var(--muted)">@ ${esc((venues.get(e2._venueId) || {}).name || e2._venueId)}</span></span>
+          <button data-ed="${e2.id}" data-ev="${e2._venueId}">Remove</button></div>`).join('');
+        $('a-list').innerHTML = `
+          <b style="font-size:12px">Business submissions</b>
+          ${rows || '<p class="fsub">None yet.</p>'}
+          <b style="font-size:12px;display:block;margin-top:14px">Community events</b>
+          ${evRows || '<p class="fsub">None yet.</p>'}
+          <b style="font-size:12px;display:block;margin-top:14px">Verify a venue (lock its listings to its code)</b>
+          <label>Venue id (e.g. church-inn)</label><input id="a-claim-id">
+          <div class="row2"><button class="btn-s" id="a-claim">Verify & get code</button>
+          <button class="btn-s" id="a-unclaim">Un-verify</button></div>
+          <p class="fsub" style="margin-top:6px">Verified now: ${[...claimed].map(esc).join(', ') || 'none'}</p>`;
         for (const b of $('a-list').querySelectorAll('[data-ap]')) {
           b.onclick = async () => {
             const res = await api('moderate', { action: 'approve', id: b.dataset.ap }, code);
             await loadCommunity();
-            alert(`Approved. Send their code ${res.code} to ${res.email}`);
+            alert(`Approved. Contact: ${res.email}. Their code (if you later verify them): ${res.code}`);
             $('a-load').onclick();
           };
         }
@@ -783,8 +811,73 @@
             $('a-load').onclick();
           };
         }
+        for (const b of $('a-list').querySelectorAll('[data-ed]')) {
+          b.onclick = async () => {
+            await api('events/delete', { venueId: b.dataset.ev, id: b.dataset.ed }, code);
+            await loadCommunity();
+            $('a-load').onclick();
+          };
+        }
+        $('a-claim').onclick = async () => {
+          const res = await api('claim', { id: $('a-claim-id').value.trim() }, code);
+          await loadCommunity();
+          alert('Verified. Their code: ' + res.code);
+          $('a-load').onclick();
+        };
+        $('a-unclaim').onclick = async () => {
+          await api('claim', { id: $('a-claim-id').value.trim(), action: 'unclaim' }, code);
+          await loadCommunity();
+          $('a-load').onclick();
+        };
       } catch (e2) { $('a-err').textContent = e2.message; }
     };
+  }
+
+  // ---- structured data for search engines (venues + upcoming events) ----
+  function injectSchema() {
+    const old = document.getElementById('ld-json');
+    if (old) old.remove();
+    const TYPES = { pub: 'BarOrPub', cafe: 'CafeOrCoffeeShop', restaurant: 'Restaurant',
+      takeaway: 'Restaurant', hall: 'CivicStructure', attraction: 'TouristAttraction',
+      club: 'Organization', sport: 'SportsActivityLocation' };
+    const blocks = [{
+      '@context': 'https://schema.org', '@type': 'WebSite',
+      name: "Saddleworth What's On", alternateName: 'Saddleworth Live',
+      url: 'https://www.saddleworthlive.co.uk/',
+    }];
+    for (const v of venues.values()) {
+      if (['walk', 'sight', 'spot'].includes(v.kind)) continue;
+      const b = {
+        '@context': 'https://schema.org', '@type': TYPES[v.kind] || 'LocalBusiness',
+        name: v.name,
+        address: v.address || `${v.village}, Saddleworth, Oldham`,
+        geo: { '@type': 'GeoCoordinates', latitude: v.lat, longitude: v.lng },
+      };
+      if (v.links && v.links.website) b.url = v.links.website;
+      if (v.hours) b.openingHours = v.hours;
+      const rt = ratings[v.id];
+      if (rt) b.aggregateRating = { '@type': 'AggregateRating', ratingValue: rt.avg, ratingCount: rt.count };
+      blocks.push(b);
+    }
+    for (const e of events.filter((x) => x.start).slice(0, 80)) {
+      const ven = venues.get(e._venueId);
+      blocks.push({
+        '@context': 'https://schema.org', '@type': 'Event',
+        name: e.title, startDate: e.start, ...(e.end ? { endDate: e.end } : {}),
+        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+        location: {
+          '@type': 'Place', name: ven ? ven.name : 'Saddleworth',
+          address: (ven && ven.address) || 'Saddleworth, Oldham',
+          ...(ven ? { geo: { '@type': 'GeoCoordinates', latitude: ven.lat, longitude: ven.lng } } : {}),
+        },
+        ...(e.description ? { description: e.description } : {}),
+      });
+    }
+    const s = document.createElement('script');
+    s.type = 'application/ld+json';
+    s.id = 'ld-json';
+    s.textContent = JSON.stringify(blocks);
+    document.head.appendChild(s);
   }
 
   // ================= boot =================
@@ -820,7 +913,7 @@
       }
       events = data.events.filter((ev) => venues.has(ev._venueId));
       MapArt.build($('basemap'), project, W, H, geo);
-      loadCommunity();
+      loadCommunity().then(injectSchema);
       $('add-biz').onclick = (e) => { e.preventDefault(); openAddBusiness(); };
       if (location.hash === '#admin') openAdmin();
       // dotted footpath trails for the walks, drawn onto the basemap

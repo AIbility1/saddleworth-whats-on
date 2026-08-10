@@ -229,6 +229,11 @@
         "Acoustic sessions",
         "Sunday lunch"
       ]
+    },
+    "muse": {
+      "tags": [
+        "2-for-£15 cocktails Sun–Thu"
+      ]
     }
   },
   "customVenues": [
@@ -1239,6 +1244,522 @@
       "time": "12:00–16:00",
       "description": "Steins, brezn and the Jäger Maestros oompah band in the Civic Hall. 2026 date expected early October — confirm nearer the time.",
       "source": "https://www.theoldhamtimes.co.uk/news/26093812.saddleworth-oktoberfest-returning-uppermill-3rd-year/"
+    },
+    {
+      "id": "hare-disco",
+      "business": "hare-and-hounds",
+      "title": "Saturday Night Disco",
+      "category": "music",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sat"
+      },
+      "description": "The High Street corner pub turns the music up every Saturday night.",
+      "source": "local knowledge"
+    },
+    {
+      "id": "albion-dj",
+      "business": "albion-tap",
+      "title": "Friday DJ Night",
+      "category": "music",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "fri"
+      },
+      "description": "A DJ in the tap room every Friday.",
+      "source": "local knowledge"
+    },
+    {
+      "id": "albion-live",
+      "business": "albion-tap",
+      "title": "Sunday Live Music",
+      "category": "music",
+      "time": "Afternoon/evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sun"
+      },
+      "description": "Live acts round off the weekend at the Albion Tap every Sunday.",
+      "source": "local knowledge"
+    },
+    {
+      "id": "farrars-quiz",
+      "business": "farrars-arms",
+      "title": "Quiz Night",
+      "category": "quiz",
+      "time": "20:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "mon"
+      },
+      "description": "The Monday quiz at the Farrars.",
+      "source": "https://www.thefarrarsarms.co.uk/"
+    },
+    {
+      "id": "farrars-pizza",
+      "business": "farrars-arms",
+      "title": "Pizza Night",
+      "category": "offer",
+      "time": "All day",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "tue"
+      },
+      "offer": "2 pizzas £15",
+      "description": "Tuesday is pizza night.",
+      "source": "https://www.thefarrarsarms.co.uk/"
+    },
+    {
+      "id": "farrars-burger",
+      "business": "farrars-arms",
+      "title": "Burger Night",
+      "category": "offer",
+      "time": "From 16:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "wed"
+      },
+      "offer": "Burgers £12",
+      "description": "Wednesday burgers at the Farrars.",
+      "source": "https://www.thefarrarsarms.co.uk/"
+    },
+    {
+      "id": "farrars-music",
+      "business": "farrars-arms",
+      "title": "Live Music",
+      "category": "music",
+      "time": "20:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "thu"
+      },
+      "description": "Live acts every Thursday night.",
+      "source": "https://www.thefarrarsarms.co.uk/"
+    },
+    {
+      "id": "farrars-music-fri",
+      "business": "farrars-arms",
+      "title": "Last-Friday Live Music",
+      "category": "music",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "monthly",
+        "week": -1,
+        "day": "fri"
+      },
+      "description": "An extra live-music night on the last Friday of every month.",
+      "source": "https://www.thefarrarsarms.co.uk/"
+    },
+    {
+      "id": "muse-thursday-club",
+      "business": "muse",
+      "title": "Thursday Club — 50% Off Food",
+      "category": "offer",
+      "time": "16:00–20:30",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "thu"
+      },
+      "offer": "Half-price food",
+      "description": "Half price across the food menu every Thursday — booking advised, parties up to 8.",
+      "source": "https://www.museuppermill.com/"
+    },
+    {
+      "id": "muse-burger",
+      "business": "muse",
+      "title": "Burger Night",
+      "category": "offer",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "wed"
+      },
+      "offer": "Burger + side £12",
+      "description": "£1 from every burger goes to the Darby Rimmer MND Foundation.",
+      "source": "https://www.museuppermill.com/"
+    },
+    {
+      "id": "muse-dj",
+      "business": "muse",
+      "title": "Sunday DJ",
+      "category": "music",
+      "time": "From 13:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sun"
+      },
+      "description": "A DJ alongside the Sunday menu.",
+      "source": "https://www.museuppermill.com/"
+    },
+    {
+      "id": "muse-brunch-dark",
+      "business": "muse",
+      "title": "Brunch After Dark — Bottomless",
+      "category": "food",
+      "time": "19:00–21:00",
+      "recurrence": {
+        "freq": "monthly",
+        "week": -1,
+        "day": "fri"
+      },
+      "offer": "£45pp · 3 courses",
+      "description": "The bottomless one, last Friday of the month.",
+      "source": "https://www.museuppermill.com/"
+    },
+    {
+      "id": "waggon-moo-mondays",
+      "business": "waggon-inn",
+      "title": "Moo Mondays — Steak Night",
+      "category": "offer",
+      "time": "12:00–15:00 & 17:00–20:15",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "mon"
+      },
+      "offer": "2 steaks + sides + drinks from £39",
+      "description": "Two steaks, two sides, two sauces and two drinks — rump £39, sirloin £49, fillet £59.",
+      "source": "https://www.thewaggoninn.co.uk/menus/moo-mondays/"
+    },
+    {
+      "id": "whitelion-steak",
+      "business": "white-lion",
+      "title": "Steak Night",
+      "category": "offer",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "mon"
+      },
+      "offer": "2 steaks + wine £38.95",
+      "description": "Two ribeye or sirloin steaks with a bottle of house wine (or two pints).",
+      "source": "https://whiteliondelph.co.uk/"
+    },
+    {
+      "id": "whitelion-gyros",
+      "business": "white-lion",
+      "title": "Greek Gyros Night",
+      "category": "offer",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "tue"
+      },
+      "description": "Tuesday goes Greek at the White Lion.",
+      "source": "https://whiteliondelph.co.uk/"
+    },
+    {
+      "id": "whitelion-pie",
+      "business": "white-lion",
+      "title": "Pie Night",
+      "category": "offer",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "wed"
+      },
+      "description": "Midweek pies in the heart of Delph.",
+      "source": "https://whiteliondelph.co.uk/"
+    },
+    {
+      "id": "whitelion-curry",
+      "business": "white-lion",
+      "title": "Curry Night",
+      "category": "offer",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "thu"
+      },
+      "offer": "2 starters + 2 mains £20",
+      "description": "Thursday curry club.",
+      "source": "https://whiteliondelph.co.uk/"
+    },
+    {
+      "id": "whitelion-fish",
+      "business": "white-lion",
+      "title": "Fish Friday",
+      "category": "offer",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "fri"
+      },
+      "offer": "2 for £20",
+      "description": "Fish and chips Friday, two for twenty.",
+      "source": "https://whiteliondelph.co.uk/"
+    },
+    {
+      "id": "delphband-quiz",
+      "business": "delph-band-club",
+      "title": "SpeedQuizzing Night",
+      "category": "quiz",
+      "time": "20:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "thu"
+      },
+      "offer": "£2 a player",
+      "description": "App-based quiz, teams up to six — check their socials to confirm.",
+      "source": "https://www.speedquizzing.com/pub-quiz/delph-band-club-oldham-13899/"
+    },
+    {
+      "id": "swan-quiz",
+      "business": "swan",
+      "title": "Quiz Night",
+      "category": "quiz",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "thu"
+      },
+      "description": "The famous Top House Thursday quiz — free sausages have been known to circulate.",
+      "source": "https://camra.org.uk/pubs/swan-inn-top-house-dobcross-153258"
+    },
+    {
+      "id": "gate-quiz",
+      "business": "gate-inn",
+      "title": "Quiz Night",
+      "category": "quiz",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "thu"
+      },
+      "description": "Thursday quiz up at the Gate.",
+      "source": "https://www.useyourlocal.com/pubs/gate-inn-oldham-65729/"
+    },
+    {
+      "id": "gate-music",
+      "business": "gate-inn",
+      "title": "Saturday Live Entertainment",
+      "category": "music",
+      "time": "From 21:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sat"
+      },
+      "description": "Live acts every Saturday night.",
+      "source": "https://www.useyourlocal.com/pubs/gate-inn-oldham-65729/"
+    },
+    {
+      "id": "gate-pizza-fri",
+      "business": "gate-inn",
+      "title": "Pizza Oven Night",
+      "category": "food",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "fri"
+      },
+      "description": "Wood-fired pizzas from the outdoor oven (Fridays and Saturdays).",
+      "source": "https://camra.org.uk/ROB/535"
+    },
+    {
+      "id": "gate-pizza-sat",
+      "business": "gate-inn",
+      "title": "Pizza Oven Night",
+      "category": "food",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sat"
+      },
+      "description": "Wood-fired pizzas from the outdoor oven (Fridays and Saturdays).",
+      "source": "https://camra.org.uk/ROB/535"
+    },
+    {
+      "id": "railway-chess",
+      "business": "railway-inn",
+      "title": "Chess Club",
+      "category": "quiz",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "mon"
+      },
+      "description": "Boards out on Monday nights — all standards welcome.",
+      "source": "https://camra.org.uk/pubs/railway-inn-greenfield-153224"
+    },
+    {
+      "id": "railway-pool",
+      "business": "railway-inn",
+      "title": "Free Pool Tuesday",
+      "category": "offer",
+      "time": "All day",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "tue"
+      },
+      "offer": "Free pool",
+      "description": "The table’s free all day Tuesday.",
+      "source": "https://camra.org.uk/pubs/railway-inn-greenfield-153224"
+    },
+    {
+      "id": "railway-music-thu",
+      "business": "railway-inn",
+      "title": "Live Music",
+      "category": "music",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "thu"
+      },
+      "description": "Live acts by the station every Thursday.",
+      "source": "https://camra.org.uk/pubs/railway-inn-greenfield-153224"
+    },
+    {
+      "id": "railway-jam",
+      "business": "railway-inn",
+      "title": "Unplugged Jam Night",
+      "category": "music",
+      "time": "19:30",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "fri"
+      },
+      "description": "The Friday acoustic jam — all players welcome, bring an instrument.",
+      "source": "https://camra.org.uk/pubs/railway-inn-greenfield-153224"
+    },
+    {
+      "id": "railway-music-sun",
+      "business": "railway-inn",
+      "title": "Sunday Sessions",
+      "category": "music",
+      "time": "Afternoon & evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sun"
+      },
+      "description": "Live music rounds off every weekend.",
+      "source": "https://camra.org.uk/pubs/railway-inn-greenfield-153224"
+    },
+    {
+      "id": "kw4-quiz",
+      "business": "king-william-iv",
+      "title": "Quiz Night",
+      "category": "quiz",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "mon"
+      },
+      "offer": "Cash prizes · free supper",
+      "description": "Monday quiz with cash prizes and a free supper thrown in.",
+      "source": "https://camra.org.uk/pubs/king-william-iv-greenfield-153185"
+    },
+    {
+      "id": "clarence-steak",
+      "business": "clarence",
+      "title": "Steak Night",
+      "category": "offer",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "thu"
+      },
+      "offer": "2 steaks + wine from £40",
+      "description": "Two steaks and a bottle of house wine (not run in December).",
+      "source": "https://www.the-clarence.co.uk/"
+    },
+    {
+      "id": "clarence-beers",
+      "business": "clarence",
+      "title": "Friday Beer Deal",
+      "category": "offer",
+      "time": "16:00–20:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "fri"
+      },
+      "offer": "3 draught beers £15",
+      "description": "Three draught beers for £15 to start the weekend.",
+      "source": "https://www.the-clarence.co.uk/"
+    },
+    {
+      "id": "rg-pie",
+      "business": "royal-george",
+      "title": "Pie Night",
+      "category": "offer",
+      "time": "All day",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "mon"
+      },
+      "offer": "Pie + free drink",
+      "description": "A pie and your first drink on the house.",
+      "source": "https://www.royalgeorgesaddleworth.co.uk/"
+    },
+    {
+      "id": "rg-chippy",
+      "business": "royal-george",
+      "title": "Chippy Tuesday",
+      "category": "offer",
+      "time": "All day",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "tue"
+      },
+      "offer": "Fish & chips + free drink",
+      "description": "Large fish and chips with a free drink.",
+      "source": "https://www.royalgeorgesaddleworth.co.uk/"
+    },
+    {
+      "id": "rg-wine",
+      "business": "royal-george",
+      "title": "Wine Wednesday",
+      "category": "offer",
+      "time": "All day",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "wed"
+      },
+      "offer": "Rest of the bottle free",
+      "description": "Buy two large glasses and keep the rest of the bottle.",
+      "source": "https://www.royalgeorgesaddleworth.co.uk/"
+    },
+    {
+      "id": "rg-burger",
+      "business": "royal-george",
+      "title": "Burger Night",
+      "category": "offer",
+      "time": "All day",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "thu"
+      },
+      "offer": "Burger + free drink",
+      "description": "Thursday burgers with a drink included.",
+      "source": "https://www.royalgeorgesaddleworth.co.uk/"
+    },
+    {
+      "id": "rg-carvery",
+      "business": "royal-george",
+      "title": "Sunday Carvery",
+      "category": "food",
+      "time": "12:00 onwards",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sun"
+      },
+      "offer": "Bottomless gravy & Yorkshires",
+      "description": "The George’s Sunday carvery — go large for £3.95.",
+      "source": "https://www.royalgeorgesaddleworth.co.uk/"
+    },
+    {
+      "id": "oldoriginal-tapas",
+      "business": "old-original-inn",
+      "title": "Tapas Night",
+      "category": "offer",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "thu"
+      },
+      "offer": "5 dishes £20",
+      "description": "Five tapas dishes for twenty quid (also Saturday afternoons) — worth confirming with the pub.",
+      "source": "https://www.useyourlocal.com/pubs/old-original-oldham-65775/"
     }
   ]
 }

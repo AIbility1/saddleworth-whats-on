@@ -32,7 +32,7 @@ const VILLAGES = [
   ['Uppermill', 53.5468, -2.0066, 1.4], ['Delph', 53.5685, -2.0195, 1.2],
   ['Dobcross', 53.5594, -2.0146, 0.9], ['Diggle', 53.5695, -1.9975, 1.3],
   ['Greenfield', 53.5365, -1.9920, 1.5], ['Grasscroft', 53.5352, -2.0117, 0.85],
-  ['Lydgate', 53.5409, -2.0378, 0.8], ['Scouthead', 53.5477, -2.0532, 0.8],
+  ['Lydgate', 53.5409, -2.0378, 0.8], ['Scouthead', 53.5477, -2.0532, 1.0],
   ['Denshaw', 53.5860, -2.0440, 2.3], ['Friezland', 53.5322, -2.0035, 0.55],
   ['Springhead', 53.5410, -2.0700, 0.7], ['Grotton', 53.5430, -2.0600, 0.8],
   ['Austerlands', 53.5520, -2.0680, 0.8], ['Strinesdale', 53.5583, -2.0562, 0.35],
@@ -140,6 +140,7 @@ async function main() {
     };
     const full = [addr, v.village, t['addr:postcode']].filter(Boolean).join(', ');
     if (full) v.address = full;
+    if (t.opening_hours) v.hours = t.opening_hours.slice(0, 200);
     const links = {};
     const site = t.website || t['contact:website'];
     if (site) links.website = site;

@@ -25,6 +25,7 @@ const ROUTES = {
   'POST /api/events/delete': (body, code) => core.handleEventDelete(body, code),
   'POST /api/venues/submit': (body) => core.handleVenueSubmit(body),
   'POST /api/moderate': (body, code) => core.handleModerate(body, code),
+  'POST /api/claim': (body, code) => core.handleClaim(body, code),
   'POST /api/rate': (body) => core.handleRate(body),
 };
 

@@ -1,16 +1,18 @@
 /* core.js — shared logic for the community API (events, venues, ratings).
    Used by the Azure Functions in api/ and by scripts/dev-server.js locally.
 
-   Auth model:
-   - Each venue has a short access code derived as HMAC(VENUE_CODE_SECRET,
-     venueId) — no accounts. Hand the code to the venue once
-     (scripts/venue-codes.js prints them); the server recomputes it to check.
-     Event ids must start with their venue id, so venues can't touch each
-     other's listings.
+   Auth model (deliberately open — the community runs it):
+   - ANYONE can add an event to any venue. Each event remembers an anonymous
+     owner hash derived from the submitting browser's random client id, so
+     the person who added a listing can edit or delete it, and nobody else
+     can (except the admin). No accounts, no codes.
    - New business submissions are public but land in a moderation queue;
-     nothing shows on the map until approved with the ADMIN_CODE.
-   - Ratings are anonymous, one per browser per venue (the client sends a
-     random id it keeps in localStorage; re-rating replaces the old vote).
+     nothing shows on the map until approved with the ADMIN_CODE. The admin
+     code (sent as x-venue-code header) can also delete any event.
+   - Ratings are anonymous, one per browser per venue (re-rating replaces
+     the old vote).
+   - Venue codes (HMAC of venueId) still exist in venueCode()/verify for a
+     future "verified venue" tier, but nothing requires them today.
 
    Storage: Cosmos DB when COSMOS_CONNECTION is set (production); otherwise
    JSON files under .local-data/ (development). In Azure with no Cosmos the
@@ -48,6 +50,8 @@ function codeOk(venueId, code) {
   return safeEq(got, want);
 }
 const adminOk = (code) => !!code && safeEq(String(code), ADMIN);
+const ownerHash = (client) =>
+  crypto.createHash('sha256').update('owner:' + client).digest('hex').slice(0, 16);
 
 // ---------- storage ----------
 class FileStore {
@@ -74,7 +78,7 @@ class FileStore {
     return keep.length !== all.length;
   }
 }
-const colPk = (col) => (col === 'venues' ? 'id' : 'venueId');
+const colPk = (col) => (col === 'venues' || col === 'claims' ? 'id' : 'venueId');
 
 class CosmosStore {
   constructor() {
@@ -212,29 +216,62 @@ async function handleVerify(body, code) {
   if (!codeOk(venueId, code)) return json(401, { error: 'That code is not right for this venue.' });
   return json(200, { ok: true });
 }
+const isClaimed = async (store, venueId) =>
+  (await store.list('claims')).some((c) => c.id === venueId);
+
 async function handleEventUpsert(body, code) {
   const venueId = str(body && body.venueId, 80);
-  if (!codeOk(venueId, code)) return json(401, { error: 'That code is not right for this venue.' });
+  const client = str(body && body.client, 64);
+  if (!venueId || client.length < 8) return json(400, { error: 'Bad request.' });
+  if (str(body.website2, 50)) return json(400, { error: 'Rejected.' }); // honeypot
   const store = getStore();
   if (!store) return noStore();
+  // a claimed (verified) venue is locked to its code holder
+  if (await isClaimed(store, venueId)) {
+    if (!codeOk(venueId, code) && !adminOk(code)) {
+      return json(401, { error: 'This venue manages its own listings — its code is needed.' });
+    }
+  }
   const v = validateEvent(venueId, body.event);
   if (v.error) return json(400, { error: v.error });
+  const owner = ownerHash(client);
+  if (body.event && body.event.id) {
+    const existing = (await store.list('events')).find((e) => e.id === v.event.id);
+    if (existing && existing.owner !== owner && !adminOk(code) && !codeOk(venueId, code)) {
+      return json(403, { error: 'Only the person who added a listing can change it.' });
+    }
+    v.event.owner = existing ? existing.owner : owner;
+  } else {
+    v.event.owner = owner;
+  }
   await store.upsert('events', v.event);
   return json(200, { ok: true, event: v.event });
 }
 async function handleEventDelete(body, code) {
   const venueId = str(body && body.venueId, 80);
-  if (!codeOk(venueId, code)) return json(401, { error: 'That code is not right for this venue.' });
+  const client = str(body && body.client, 64);
+  const id = str(body && body.id, 120);
   const store = getStore();
   if (!store) return noStore();
-  const removed = await store.remove('events', str(body.id, 120), venueId);
+  if (!adminOk(code) && !codeOk(venueId, code)) {
+    if (await isClaimed(store, venueId)) {
+      return json(401, { error: 'This venue manages its own listings — its code is needed.' });
+    }
+    const existing = (await store.list('events')).find((e) => e.id === id);
+    if (!existing) return json(404, { error: 'Listing not found.' });
+    if (existing.owner !== ownerHash(client)) {
+      return json(403, { error: 'Only the person who added a listing can remove it.' });
+    }
+  }
+  const removed = await store.remove('events', id, venueId);
   return json(removed ? 200 : 404, removed ? { ok: true } : { error: 'Listing not found.' });
 }
 
 async function handleVenuesList() {
   const store = getStore();
   if (!store) return noStore();
-  const [venues, ratings] = await Promise.all([store.list('venues'), store.list('ratings')]);
+  const [venues, ratings, claims] = await Promise.all(
+    [store.list('venues'), store.list('ratings'), store.list('claims')]);
   const agg = {};
   for (const r of ratings) {
     const a = (agg[r.venueId] = agg[r.venueId] || { sum: 0, count: 0 });
@@ -247,6 +284,7 @@ async function handleVenuesList() {
   return json(200, {
     venues: venues.filter((v) => v.status === 'approved').map(publicVenue),
     ratings: out,
+    claimed: claims.map((c) => c.id),
   });
 }
 async function handleVenueSubmit(body) {
@@ -282,6 +320,21 @@ async function handleModerate(body, code) {
   }
   return json(400, { error: 'Unknown action.' });
 }
+// verify/lock a venue: once claimed, its listings need its code (any venue id,
+// baked or community). Returns the code to hand to the business.
+async function handleClaim(body, code) {
+  if (!adminOk(code)) return json(401, { error: 'Wrong admin code.' });
+  const store = getStore();
+  if (!store) return noStore();
+  const id = str(body && body.id, 120);
+  if (!id) return json(400, { error: 'Which venue?' });
+  if (str(body.action, 20) === 'unclaim') {
+    await store.remove('claims', id, id);
+    return json(200, { ok: true });
+  }
+  await store.upsert('claims', { id, claimed: new Date().toISOString() });
+  return json(200, { ok: true, code: venueCode(id) });
+}
 async function handleRate(body) {
   const store = getStore();
   if (!store) return noStore();
@@ -301,5 +354,5 @@ async function handleRate(body) {
 module.exports = {
   venueCode, codeOk,
   handleEventsList, handleVerify, handleEventUpsert, handleEventDelete,
-  handleVenuesList, handleVenueSubmit, handleModerate, handleRate,
+  handleVenuesList, handleVenueSubmit, handleModerate, handleClaim, handleRate,
 };

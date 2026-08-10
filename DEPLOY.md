@@ -54,14 +54,16 @@ the API returns a polite 503 and the site runs on the editorial data alone.
    | `VENUE_CODE_SECRET` | a long random string — venue codes derive from it |
    | `ADMIN_CODE`        | your moderation password                          |
 
-4. Print the real venue codes to hand out (run locally):
+4. Moderation: open the live site with `#admin` on the URL and enter
+   `ADMIN_CODE` — approve/remove business submissions, remove any community
+   event, and **verify a venue** (lock its listings to its code) when a
+   business gets in touch. Verifying shows the code to send them; you can also
+   print codes locally:
    `VENUE_CODE_SECRET=<the same secret> node scripts/venue-codes.js <venue-id>`
-5. Moderation: open the live site with `#admin` on the URL, enter `ADMIN_CODE`,
-   approve or remove submissions. Approving shows the venue's code and contact
-   email so you can send it to them.
 
-> Changing `VENUE_CODE_SECRET` later invalidates every venue code at once
-> (events already published stay). That's the kill switch if codes leak.
+> Events are open — anyone can post, authors manage their own, `#admin` is the
+> backstop. Changing `VENUE_CODE_SECRET` later invalidates every venue code at
+> once. That's the kill switch if codes leak.
 
 ## 4. Custom domain — saddleworthlive.co.uk
 

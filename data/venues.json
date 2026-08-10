@@ -72,7 +72,8 @@
    "village": "Delph",
    "lat": 53.5675,
    "lng": -2.02329,
-   "address": "Delph"
+   "address": "Delph",
+   "hours": "Tu-Fr 09:00-15:00; Su 09:00-14:00"
   },
   {
    "id": "delph-band-club",
@@ -240,6 +241,7 @@
    "lat": 53.60367,
    "lng": -2.03554,
    "address": "Denshaw, OL3 5UN",
+   "hours": "We-Th 12:00-17:30; Fr 12:00-21:30; Sa 10:00-21:30; Su 10:00-20:30",
    "links": {
     "website": "https://www.ramsheaddenshaw.co.uk/",
     "phone": "+44 1457 874802"
@@ -404,6 +406,7 @@
    "lat": 53.53534,
    "lng": -2.00483,
    "address": "134 Chew Valley Road, Friezland, OL3 7DD",
+   "hours": "Su 12:00-19:00; We,Th 17:00-20:00; Fr,Sa 12:00-20:00",
    "tags": [
     "Outdoor seating"
    ]
@@ -417,6 +420,7 @@
    "lat": 53.5325,
    "lng": -1.99928,
    "address": "180 Chew Valley Road, Friezland, OL3 7DD",
+   "hours": "Mo-Su 12:00-18:00+",
    "links": {
     "website": "https://www.the-clarence.co.uk/",
     "phone": "+441457 820200"
@@ -461,6 +465,7 @@
    "lat": 53.53648,
    "lng": -2.00942,
    "address": "2A Greenbridge Lane, Grasscroft, OL3 7JR",
+   "hours": "We-Su 16:30-22:00; Mo 16:30-21:00",
    "links": {
     "phone": "+44 1457 870901"
    }
@@ -474,6 +479,7 @@
    "lat": 53.5389,
    "lng": -2.01195,
    "address": "Chew Valley Road, Grasscroft, OL3 7AE",
+   "hours": "Mo-Su 11:00-23:00",
    "links": {
     "website": "https://www.kingfisherpubsaddleworth.co.uk/"
    }
@@ -486,7 +492,8 @@
    "village": "Grasscroft",
    "lat": 53.53673,
    "lng": -2.00885,
-   "address": "64 Chew Valley Road, Grasscroft"
+   "address": "64 Chew Valley Road, Grasscroft",
+   "hours": "We-Fr 07:30-14:30; Sa 08:30-15:30; Su 07:30-14:00"
   },
   {
    "id": "platform-13",
@@ -523,6 +530,7 @@
    "lat": 53.5379,
    "lng": -2.00941,
    "address": "Grasscroft",
+   "hours": "Mo off; Tu off; We off; Th-Su 15:00 - 21:00",
    "links": {
     "website": "https://www.saddleworthpizza.com/",
     "phone": "+44 1457820344"
@@ -560,6 +568,7 @@
    "lat": 53.53754,
    "lng": -2.01032,
    "address": "29 Chew Valley Road, Grasscroft, OL3 7AF",
+   "hours": "Mo-Tu 15:00-21:00; We 12:00-21:00; Th 15:00-23:00; Fr-Sa 12:00-23:00; Su 12:00-21:00",
    "tags": [
     "Food served",
     "Dog friendly"
@@ -600,6 +609,7 @@
    "lat": 53.52952,
    "lng": -2.0249,
    "address": "193 Manchester Road, Greenfield, OL3 7HX",
+   "hours": "Mo-Sa 12:00-23:00; Su 12:00-22:30",
    "links": {
     "website": "https://www.royalgeorgesaddleworth.co.uk/",
     "phone": "+44 1457 837851"
@@ -692,6 +702,19 @@
    "address": "Wood Brook Road, Scouthead"
   },
   {
+   "id": "old-original-inn",
+   "name": "The Old Original Inn",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Scouthead",
+   "lat": 53.55375,
+   "lng": -2.04334,
+   "address": "Thurston Clough Road, Scouthead, OL4 3RX",
+   "links": {
+    "website": "http://www.theoldoriginal.co.uk/"
+   }
+  },
+  {
    "id": "three-crowns",
    "name": "The Three Crowns",
    "type": "Pub",
@@ -780,6 +803,7 @@
    "lat": 53.5381,
    "lng": -2.07298,
    "address": "73 High Street, Springhead, OL4 3BN",
+   "hours": "Mo-Th 17:00-23:00; Fr-Sa 17:00-00:00; Su 15:00-22:00",
    "links": {
     "website": "https://www.leesspicelounge.co.uk",
     "phone": "+44 161 620 8922;+44 161 628 6090"
@@ -794,6 +818,7 @@
    "lat": 53.53795,
    "lng": -2.07296,
    "address": "54 High Street, Springhead, OL4 5AA",
+   "hours": "Mo-Th 16:30-23:00; Fr-Sa 16:00-00:00; Su 16:00-23:00",
    "links": {
     "website": "https://leestandoori.co.uk",
     "phone": "+44 161 627 0371"
@@ -838,6 +863,7 @@
    "lat": 53.53811,
    "lng": -2.07321,
    "address": "69-71 High Street, Springhead, OL4 3BN",
+   "hours": "We-Mo 16:45-23:00",
    "links": {
     "website": "https://paachbaii.co.uk"
    }
@@ -1068,6 +1094,7 @@
    "lat": 53.5489,
    "lng": -2.00652,
    "address": "Wade Row, Uppermill, OL3 6BA",
+   "hours": "Sa,Su 09:00-17:00; Mo-Fr 09:30-16:30",
    "links": {
     "website": "https://grandpagreenes.co.uk/bistro",
     "phone": "+441457872547"
@@ -1141,6 +1168,7 @@
    "lat": 53.54738,
    "lng": -2.00642,
    "address": "High Street, Uppermill, OL3 6HA",
+   "hours": "Mo-Fr 07:30-17:00; Sa 09:00-17:00; Su 09:00-16:00",
    "links": {
     "website": "https://www.meetatourplace.com/"
    },
@@ -1157,6 +1185,7 @@
    "lat": 53.54769,
    "lng": -2.00386,
    "address": "Lee Street, Uppermill",
+   "hours": "Mo-Sa 09:00-16:00; Su 10:00-16:00",
    "links": {
     "website": "https://rec-room.co.uk/"
    },
@@ -1186,6 +1215,7 @@
    "lat": 53.5469,
    "lng": -2.00764,
    "address": "Uppermill",
+   "hours": "Mo-Su 13:00-16:00",
    "links": {
     "website": "https://www.saddleworthmuseum.co.uk/"
    }
@@ -1317,6 +1347,7 @@
    "lat": 53.55309,
    "lng": -1.98864,
    "address": "Uppermill",
+   "hours": "Mo-Su 11:00-23:00",
    "tags": [
     "Food served",
     "Outdoor seating"
@@ -1331,6 +1362,7 @@
    "lat": 53.54673,
    "lng": -2.00706,
    "address": "High Street, Uppermill, OL3 6HR",
+   "hours": "We-Fr 12:00-23:00; Sa-Su 10:00-23:00",
    "links": {
     "website": "https://www.thewaggoninn.co.uk/"
    },

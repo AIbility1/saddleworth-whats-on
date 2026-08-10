@@ -14,16 +14,23 @@ community data**.
 
 ## How the community layer works
 
-- Every business's card has *"Run this place? Add your events"*. A venue
-  unlocks it with its **venue code** (derived from `VENUE_CODE_SECRET` —
-  `scripts/venue-codes.js` prints them; hand one to a venue once, e.g. by
-  Facebook message). Their listings go live immediately and they can edit or
-  delete them.
+- **Anyone can add an event** to any venue — no codes, no sign-up. Listings go
+  live immediately. Each listing quietly remembers which browser added it, so
+  its author can edit or delete it and nobody else can.
+- **Verified venues (the later tier):** when a business gets in touch, open
+  `#admin` → *Verify a venue* → enter its id. From then on that venue's
+  listings are locked to its **venue code** (shown on verify; also printable
+  with `scripts/venue-codes.js`) — hand the code to the landlord and only they
+  can add or change things there. Un-verify reverses it.
 - *"Add a missing business"* (left panel) is open to everyone but lands in a
-  **moderation queue** — open the site with `#admin` to approve or remove.
-  Approval reveals the new venue's code and contact email so you can send it.
+  **moderation queue** — approve or remove it in `#admin`; nothing shows until
+  approved.
 - **Ratings** are anonymous 1–5 stars, one per browser per venue; re-rating
   replaces the old vote. No review text, so nothing to moderate.
+- `#admin` also lists every community event with a remove button, as the
+  backstop if something silly gets posted.
+- **Opening hours** come from OpenStreetMap where tagged (`hours` on baked
+  venues) and render on the venue card.
 
 ## Refreshing the baked data
 
