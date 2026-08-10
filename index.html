@@ -40,7 +40,8 @@
   #stage.dragging { cursor: grabbing; }
   /* the drawing zooms via its viewBox (always-crisp vectors); only the marker
      layer is CSS-transformed, and pins counter-scale so they stay screen-size */
-  #basemap { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  #basemap { position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+             overflow: visible; transform-origin: 0 0; will-change: transform; }
   #basemap.lz #bld-layer { display: none; }   /* footprints are specks at far zoom */
   #basemap.hz #glyph-layer { display: none; } /* giant sheep have no place on a street map */
   #world { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; }

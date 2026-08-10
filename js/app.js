@@ -91,6 +91,18 @@
   const basemap = $('basemap');
   let view = { x: 0, y: 0, s: 1 }, fitS = 1;
 
+  // While a gesture is in flight the drawing moves as a cheap GPU transform
+  // (no vector re-render per frame); 160ms after the last movement the
+  // viewBox commits and the ink re-renders crisp at the new scale.
+  let committed = null, commitT = 0;
+  function commitView() {
+    committed = { x: view.x, y: view.y, s: view.s };
+    basemap.setAttribute('viewBox',
+      `${(-view.x / view.s).toFixed(2)} ${(-view.y / view.s).toFixed(2)} ${(innerWidth / view.s).toFixed(2)} ${(innerHeight / view.s).toFixed(2)}`);
+    basemap.style.transform = 'none';
+    basemap.classList.toggle('lz', view.s < fitS * 1.7);
+    basemap.classList.toggle('hz', view.s > fitS * 3.2);
+  }
   function applyView() {
     const vw = innerWidth, vh = innerHeight;
     const ws = W * view.s, hs = H * view.s, pad = 70;
@@ -98,11 +110,14 @@
     view.y = hs <= vh ? (vh - hs) / 2 : Math.min(pad, Math.max(vh - hs - pad, view.y));
     world.style.transform = `translate(${view.x}px, ${view.y}px) scale(${view.s})`;
     markersEl.style.setProperty('--inv', 1 / view.s);
-    // the drawing itself zooms via viewBox, so ink stays crisp at any scale
-    basemap.setAttribute('viewBox',
-      `${(-view.x / view.s).toFixed(2)} ${(-view.y / view.s).toFixed(2)} ${(vw / view.s).toFixed(2)} ${(vh / view.s).toFixed(2)}`);
-    basemap.classList.toggle('lz', view.s < fitS * 1.7);
-    basemap.classList.toggle('hz', view.s > fitS * 3.2);
+    if (!committed) commitView();
+    else {
+      const a = view.s / committed.s;
+      basemap.style.transform =
+        `translate(${(view.x - a * committed.x).toFixed(2)}px, ${(view.y - a * committed.y).toFixed(2)}px) scale(${a.toFixed(4)})`;
+    }
+    clearTimeout(commitT);
+    commitT = setTimeout(commitView, 160);
   }
   function fit() {
     fitS = Math.min(innerWidth / W, innerHeight / H);
