@@ -122,6 +122,7 @@
     basemap.style.transform = 'none';
     basemap.classList.toggle('lz', view.s < fitS * 1.7);
     basemap.classList.toggle('hz', view.s > fitS * 3.2);
+    basemap.classList.toggle('xz', view.s > fitS * 9);
   }
   function applyView() {
     const vw = innerWidth, vh = innerHeight;
@@ -145,7 +146,7 @@
     applyView();
   }
   function zoomAt(cx, cy, f) {
-    const ns = Math.min(fitS * 22, Math.max(fitS * 0.9, view.s * f));
+    const ns = Math.min(fitS * 48, Math.max(fitS * 0.9, view.s * f));
     view.x = cx - ((cx - view.x) / view.s) * ns;
     view.y = cy - ((cy - view.y) / view.s) * ns;
     view.s = ns;

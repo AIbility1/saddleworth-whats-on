@@ -345,6 +345,7 @@
     s += `</g>`; // end glyph-layer
 
     // ================= labels =================
+    s += `<g id="label-layer">`;
     function label(la, ln, text, size, rot) {
       const [x, y] = P(la, ln);
       return `<text x="${r1(x)}" y="${r1(y)}" transform="rotate(${rot || 0} ${r1(x)} ${r1(y)})"
@@ -376,6 +377,7 @@
     s += label(53.5405, -2.1195, 'to Oldham', 13, -4);
     s += label(53.5878, -1.9645, 'to Huddersfield', 13, -28);
     s += label(53.5268, -1.9985, 'to Mossley', 13, 10);
+    s += `</g>`; // end label-layer
 
     // ================= moving things =================
     s += `<g class="moving">

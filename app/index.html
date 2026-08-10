@@ -50,6 +50,9 @@
              display: block; will-change: transform; }
   #basemap.lz #bld-layer { display: none; }   /* footprints are specks at far zoom */
   #basemap.hz #glyph-layer { display: none; } /* giant sheep have no place on a street map */
+  #basemap.xz #label-layer { display: none; } /* street zoom: labels would fill the screen */
+  #bld-layer path { vector-effect: non-scaling-stroke; }  /* hairline ink at any zoom */
+  #basemap .route { vector-effect: non-scaling-stroke; }
   #world { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; }
   #markers { position: absolute; inset: 0; pointer-events: none; }
 
