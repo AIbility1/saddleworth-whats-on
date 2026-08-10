@@ -123,6 +123,7 @@
     basemap.classList.toggle('lz', view.s < fitS * 1.7);
     basemap.classList.toggle('hz', view.s > fitS * 3.2);
     basemap.classList.toggle('xz', view.s > fitS * 9);
+    syncZoomBar();
   }
   function applyView() {
     const vw = innerWidth, vh = innerHeight;
@@ -218,6 +219,23 @@
 
   $('z-in').onclick = () => zoomAt(innerWidth / 2, innerHeight / 2, 1.45);
   $('z-out').onclick = () => zoomAt(innerWidth / 2, innerHeight / 2, 1 / 1.45);
+
+  // the zoom bar maps 0–1000 onto the zoom range logarithmically, and stays
+  // in sync with wheel/pinch/button zooming
+  const zbar = $('z-bar');
+  let zbarBusy = false;
+  function syncZoomBar() {
+    if (zbarBusy || !fitS) return;
+    const lo2 = fitS * 0.9, hi2 = fitS * 48;
+    zbar.value = Math.round(1000 * Math.log(view.s / lo2) / Math.log(hi2 / lo2));
+  }
+  zbar.addEventListener('input', () => {
+    const lo2 = fitS * 0.9, hi2 = fitS * 48;
+    const target = lo2 * Math.pow(hi2 / lo2, +zbar.value / 1000);
+    zbarBusy = true;
+    zoomAt(innerWidth / 2, innerHeight / 2, target / view.s);
+    zbarBusy = false;
+  });
 
   function flyTo(lat, lng) {
     const [wx, wy] = project(lat, lng);
@@ -428,9 +446,7 @@
           ${rateRow}</div>`;
       }
     }
-    if (!['walk', 'sight', 'spot'].includes(v.kind)) {
-      hh += `<button class="claim" data-manage>＋ Add an event or offer here — free, no sign-up</button>`;
-    }
+    hh += `<button class="claim" data-manage>＋ Add an event or offer here — free, no sign-up</button>`;
     hh += `</div>`;
 
     const panel = $('venue');
@@ -595,6 +611,15 @@
       eventRatings = vn.eventRatings || {};
       claimed = new Set(vn.claimed || []);
       for (const e of (ev.events || [])) {
+        // community walks & outdoor events carry their own map spot
+        if (e.spot && !venues.has(e.venueId)) {
+          venues.set(e.venueId, {
+            id: e.venueId, name: e.spot.name,
+            type: e.spot.kind === 'walk' ? 'Organised walk' : 'Out & about',
+            kind: e.spot.kind || 'spot', village: 'Saddleworth',
+            lat: e.spot.lat, lng: e.spot.lng, tags: [], links: {}, community: true,
+          });
+        }
         if (!venues.has(e.venueId)) continue;
         events.push({ ...e, business: e.venueId, _venueId: e.venueId, community: true });
       }
@@ -781,6 +806,79 @@
     };
   }
 
+  // ---- one-off walks & outdoor events, pinned to a point on the map ----
+  function openAddSpot(draft) {
+    const b = draft || {};
+    openForm(`<h2>Add a walk or outdoor event</h2>
+      <p class="fsub">Organising a group walk, a fun run, carols on the green? Pin it to the map —
+        free, live straight away, no sign-up.</p>
+      <div class="row2"><div><label>What is it? *</label><select id="s-kind">
+        <option value="walk"${b.kind !== 'spot' ? ' selected' : ''}>🥾 A walk</option>
+        <option value="spot"${b.kind === 'spot' ? ' selected' : ''}>📍 Outdoor event</option></select></div>
+      <div><label>Meeting point / start *</label><input id="s-name" maxlength="60"
+        placeholder="e.g. Dovestone car park" value="${esc(b.name || '')}"></div></div>
+      <label>Where does it start? *</label>
+      <button class="btn-s" id="s-place">${b.lat ? '📍 Pin placed — tap to move it' : '📍 Tap to place the pin on the map'}</button>
+      <label>What's it called? *</label><input id="f-title" maxlength="80"
+        placeholder="e.g. Sunday Social Walk to the Obelisk" value="${esc(b.title || '')}">
+      <label>When *</label><select id="f-when">
+        <option value="once"${b.when !== 'weekly' && b.when !== 'monthly' ? ' selected' : ''}>A date (or a date range)</option>
+        <option value="weekly"${b.when === 'weekly' ? ' selected' : ''}>Every week</option>
+        <option value="monthly"${b.when === 'monthly' ? ' selected' : ''}>Every month</option></select>
+      <div id="f-once" class="row2"><div><label>Date *</label><input type="date" id="f-start" value="${esc(b.start || '')}"></div>
+        <div><label>Last day (optional)</label><input type="date" id="f-end" value="${esc(b.end || '')}"></div></div>
+      <div id="f-weekly" class="row2" style="display:none"><div><label>Day *</label>${daySelect('f-day')}</div>
+        <div><label>Until (optional)</label><input type="date" id="f-until"></div></div>
+      <div id="f-monthly" class="row2" style="display:none"><div><label>Which week *</label>
+        <select id="f-week"><option value="1">First</option><option value="2">Second</option>
+        <option value="3">Third</option><option value="4">Fourth</option><option value="-1">Last</option></select></div>
+        <div><label>Day *</label>${daySelect('f-mday')}</div></div>
+      <label>Time</label><input id="f-time" maxlength="40" placeholder="e.g. Meet 10:00" value="${esc(b.time || '')}">
+      <label>Description</label><textarea id="f-desc" maxlength="500"
+        placeholder="Route, distance, who it's for, what to bring.">${esc(b.description || '')}</textarea>
+      <label>Cost (if any)</label><input id="f-offer" maxlength="60" placeholder="e.g. Free · bring boots" value="${esc(b.offer || '')}">
+      <button class="btn-p" id="s-save">Put it on the map</button>
+      <p class="err" id="f-err"></p>`);
+    const whenToggle = () => {
+      const w = $('f-when').value;
+      $('f-once').style.display = w === 'once' ? '' : 'none';
+      $('f-weekly').style.display = w === 'weekly' ? '' : 'none';
+      $('f-monthly').style.display = w === 'monthly' ? '' : 'none';
+    };
+    $('f-when').onchange = whenToggle;
+    whenToggle();
+    const grab = () => ({
+      kind: $('s-kind').value, name: $('s-name').value, title: $('f-title').value,
+      when: $('f-when').value, start: $('f-start').value, end: $('f-end').value,
+      time: $('f-time').value, description: $('f-desc').value, offer: $('f-offer').value,
+      lat: b.lat, lng: b.lng,
+    });
+    $('s-place').onclick = () => {
+      const cur = grab();
+      closeForm();
+      document.body.classList.add('placing');
+      placing = (lat, lng) => { cur.lat = lat; cur.lng = lng; openAddSpot(cur); };
+    };
+    $('s-save').onclick = async () => {
+      $('f-err').textContent = '';
+      const g = grab();
+      const event = { title: g.title, category: 'community', time: g.time,
+                      description: g.description, offer: g.offer };
+      if (g.when === 'once') { event.start = g.start; event.end = g.end || undefined; }
+      else if (g.when === 'weekly') { event.recurrence = { freq: 'weekly', day: $('f-day').value, until: $('f-until').value || undefined }; }
+      else { event.recurrence = { freq: 'monthly', week: +$('f-week').value, day: $('f-mday').value }; }
+      try {
+        await api('events/submit', { spot: { name: g.name, kind: g.kind, lat: g.lat, lng: g.lng }, client: cid, event });
+        await loadCommunity();
+        openForm(`<h2>It's on the map 🥾</h2>
+          <p class="fsub">Your ${g.kind === 'walk' ? 'walk' : 'event'} is live. You can edit or delete it
+          any time from its pin on this device.</p>
+          <button class="btn-p" id="s-done">Back to the map</button>`);
+        $('s-done').onclick = closeForm;
+      } catch (e2) { $('f-err').textContent = e2.message; }
+    };
+  }
+
   // ---- moderation (open the site with #admin) ----
   function openAdmin() {
     openForm(`<h2>Moderation</h2>
@@ -911,6 +1009,7 @@
         if (ex.blurb) v.blurb = ex.blurb;
         if (ex.menu) v.menu = ex.menu;
         if (ex.photo) v.photo = ex.photo;
+        if (ex.hours) v.hours = ex.hours;
         if (ex.tags) v.tags = [...new Set([...ex.tags, ...v.tags])];
         v.links = { ...(ex.links || {}), ...v.links };   // OSM's own links win
       }
@@ -930,6 +1029,7 @@
       MapArt.build($('basemap'), project, W, H, geo);
       loadCommunity().then(injectSchema);
       $('add-biz').onclick = (e) => { e.preventDefault(); openAddBusiness(); };
+      $('add-walk').onclick = (e) => { e.preventDefault(); openAddSpot(); };
       if (location.hash === '#admin') openAdmin();
       // dotted footpath trails for the walks, drawn onto the basemap
       let rh = '<g id="routes">';

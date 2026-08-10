@@ -220,8 +220,23 @@ const isClaimed = async (store, venueId) =>
   (await store.list('claims')).some((c) => c.id === venueId);
 
 async function handleEventUpsert(body, code) {
-  const venueId = str(body && body.venueId, 80);
+  let venueId = str(body && body.venueId, 80);
   const client = str(body && body.client, 64);
+  // one-off walks & outdoor events: a "spot" pins the event to a point on the
+  // map instead of an existing venue
+  let spotOut = null;
+  const spot = body && body.spot;
+  if (!venueId && spot && typeof spot === 'object') {
+    const name = str(spot.name, 60);
+    const lat = Number(spot.lat), lng = Number(spot.lng);
+    if (name.length < 2) return json(400, { error: 'Name the meeting point or start.' });
+    if (!(lat > LAT_BOT && lat < LAT_TOP && lng > LNG_L && lng < LNG_R)) {
+      return json(400, { error: 'Tap the map to place the pin first.' });
+    }
+    spotOut = { name, lat: Math.round(lat * 1e5) / 1e5, lng: Math.round(lng * 1e5) / 1e5,
+                kind: spot.kind === 'walk' ? 'walk' : 'spot' };
+    venueId = 's-' + slug(name) + '-' + crypto.randomUUID().slice(0, 6);
+  }
   if (!venueId || client.length < 8) return json(400, { error: 'Bad request.' });
   if (str(body.website2, 50)) return json(400, { error: 'Rejected.' }); // honeypot
   const store = getStore();
@@ -234,6 +249,7 @@ async function handleEventUpsert(body, code) {
   }
   const v = validateEvent(venueId, body.event);
   if (v.error) return json(400, { error: v.error });
+  if (spotOut) v.event.spot = spotOut;
   const owner = ownerHash(client);
   if (body.event && body.event.id) {
     const existing = (await store.list('events')).find((e) => e.id === v.event.id);
@@ -241,6 +257,7 @@ async function handleEventUpsert(body, code) {
       return json(403, { error: 'Only the person who added a listing can change it.' });
     }
     v.event.owner = existing ? existing.owner : owner;
+    if (existing && existing.spot && !v.event.spot) v.event.spot = existing.spot;
   } else {
     v.event.owner = owner;
   }

@@ -361,14 +361,26 @@
   #credit a:hover { color: var(--accent); }
   body.placing #credit { display: none; }
 
-  /* ---- zoom buttons ---- */
+  /* ---- zoom control: buttons + a vertical zoom bar ---- */
   #zoomctl { position: fixed; right: 14px; bottom: 44px; z-index: 15; display: flex;
-             flex-direction: column; border-radius: var(--r-md); overflow: hidden;
-             box-shadow: var(--shadow); border: 1px solid var(--hairline); }
-  #zoomctl button { width: 36px; height: 34px; border: 0; background: var(--surface);
+             flex-direction: column; align-items: center; border-radius: var(--r-md);
+             box-shadow: var(--shadow); border: 1px solid var(--hairline);
+             background: var(--surface); padding: 2px; }
+  #zoomctl button { width: 32px; height: 30px; border: 0; background: none; border-radius: 8px;
                     font-size: 17px; cursor: pointer; color: var(--ink-soft); }
-  #zoomctl button:first-child { border-bottom: 1px solid var(--line); }
   #zoomctl button:hover { background: var(--surface-2); color: var(--ink); }
+  #z-bar { -webkit-appearance: none; appearance: none; writing-mode: vertical-lr; direction: rtl;
+           width: 20px; height: 112px; background: transparent; cursor: pointer; margin: 4px 0; }
+  #z-bar::-webkit-slider-runnable-track { width: 4px; height: 100%;
+           background: var(--surface-3); border-radius: 2px; }
+  #z-bar::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px;
+           border-radius: 50%; background: #fff; border: 0.5px solid var(--line);
+           box-shadow: 0 2px 6px rgba(0,0,0,0.25); margin-left: -6px; }
+  #z-bar::-moz-range-track { width: 4px; background: var(--surface-3); border-radius: 2px; }
+  #z-bar::-moz-range-thumb { width: 15px; height: 15px; border-radius: 50%; background: #fff;
+           border: 0.5px solid var(--line); box-shadow: 0 2px 6px rgba(0,0,0,0.25); }
+  #z-bar:focus-visible { outline: none; }
+  #z-bar:focus-visible::-webkit-slider-thumb { outline: 2px solid var(--accent); outline-offset: 2px; }
 
   /* ---- mobile toggle ---- */
   #side-toggle { display: none; position: fixed; top: 12px; left: 12px; z-index: 40;
@@ -440,7 +452,8 @@ offers venues publish themselves. It needs JavaScript to draw the map.</p></nosc
   <div id="list" role="list"></div>
   <div class="foot">
     <b>Know what's on?</b> Tap a pin and add it, free ·
-    <a href="#" id="add-biz">add a missing business</a>
+    <a href="#" id="add-walk">➕ add a walk or event</a> ·
+    <a href="#" id="add-biz">add a business</a>
   </div>
 </aside>
 
@@ -476,6 +489,7 @@ offers venues publish themselves. It needs JavaScript to draw the map.</p></nosc
 
 <div id="zoomctl">
   <button id="z-in" aria-label="Zoom in">+</button>
+  <input id="z-bar" type="range" min="0" max="1000" value="0" aria-label="Zoom level">
   <button id="z-out" aria-label="Zoom out">−</button>
 </div>
 
