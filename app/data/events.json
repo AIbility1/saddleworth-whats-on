@@ -9,7 +9,8 @@
         "Dog friendly",
         "Open fires",
         "Views over the valley"
-      ]
+      ],
+      "hours": "Mo-Su 12:00-22:00"
     },
     "cross-keys": {
       "type": "Pub",
@@ -19,7 +20,8 @@
         "Walkers welcome",
         "Real ale",
         "Dog friendly"
-      ]
+      ],
+      "hours": "Mo from 15:00; Tu-Su from 12:00"
     },
     "waggon-inn": {
       "type": "Pub & kitchen",
@@ -28,7 +30,8 @@
         "Live music",
         "Sunday roasts",
         "Cask ale"
-      ]
+      ],
+      "hours": "Mo 12:00-23:00; Tu off; We-Th 12:00-23:00; Fr-Su 10:00-23:00"
     },
     "commie": {
       "type": "Pub",
@@ -37,7 +40,8 @@
         "Open mic",
         "Beer garden",
         "Pool table"
-      ]
+      ],
+      "hours": "Mo-We 10:00-20:00; Th-Sa 10:00-21:00; Su 10:00-20:00"
     },
     "hare-and-hounds": {
       "type": "Pub",
@@ -46,7 +50,8 @@
         "Real ale",
         "Sports on TV",
         "Dog friendly"
-      ]
+      ],
+      "hours": "Mo-Th 12:00-24:00; Fr-Sa 12:00-00:30; Su 12:00-23:30"
     },
     "saddleworth-museum": {
       "type": "Museum",
@@ -58,7 +63,8 @@
       ],
       "links": {
         "website": "https://www.saddleworthmuseum.co.uk"
-      }
+      },
+      "hours": "Mo-Su 13:00-16:00"
     },
     "uppermill-civic-hall": {
       "type": "Community hall",
@@ -79,7 +85,8 @@
       ],
       "links": {
         "website": "https://www.theoldbellinn.co.uk"
-      }
+      },
+      "hours": "Mo-Th 12:00-20:00; Fr-Sa 12:00-21:00; Su 12:00-19:00 (restaurant)"
     },
     "white-lion": {
       "type": "Pub",
@@ -88,7 +95,8 @@
         "Quiz night",
         "Cask ale",
         "Village local"
-      ]
+      ],
+      "hours": "Mo-Fr 12:00-24:00; Sa 09:00-01:00; Su 09:00-23:00"
     },
     "millgate-arts-centre": {
       "type": "Theatre",
@@ -106,7 +114,8 @@
         "Historic square",
         "Real ale",
         "Whit Friday favourite"
-      ]
+      ],
+      "hours": "Mo off; Tu-We 12:00-23:30; Th-Sa 12:00-24:00; Su 12:00-22:00"
     },
     "navigation-inn": {
       "type": "Pub",
@@ -115,7 +124,8 @@
         "Canalside",
         "Towpath seating",
         "Real ale"
-      ]
+      ],
+      "hours": "Mo 17:00-22:00; Tu-Su 12:00-22:00"
     },
     "grandpa-greenes": {
       "type": "Ice cream & café",
@@ -125,7 +135,8 @@
         "Award-winning ice cream",
         "Family friendly",
         "Dog friendly"
-      ]
+      ],
+      "hours": "Mo-Fr 10:00-16:00; Sa-Su 09:30-17:00"
     },
     "railway-inn": {
       "type": "Pub",
@@ -134,7 +145,8 @@
         "By the station",
         "Live music",
         "Real ale"
-      ]
+      ],
+      "hours": "Mo-We 12:00-00:30; Th-Sa 12:00-01:00; Su 12:00-00:30"
     },
     "king-william-iv": {
       "type": "Pub",
@@ -143,7 +155,8 @@
         "Beer garden",
         "Curry night",
         "Near Dovestone"
-      ]
+      ],
+      "hours": "Mo-Th 12:00-24:00; Fr-Sa 12:00-01:00; Su 12:00-24:00"
     },
     "boarshurst-band-club": {
       "type": "Brass band club",
@@ -174,7 +187,8 @@
       ],
       "links": {
         "website": "https://www.thewhitehart.co.uk"
-      }
+      },
+      "hours": "Bar: Mo-Tu 16:00-23:00; We-Sa 12:00-24:00; Su 12:00-23:00"
     },
     "rams-head-inn": {
       "type": "Restaurant",
@@ -183,7 +197,8 @@
         "Fine dining",
         "Farm shop",
         "Moorland setting"
-      ]
+      ],
+      "hours": "Mo-Tu off; We-Th 12:00-17:30; Fr 12:00-21:30; Sa 10:00-21:30; Su 10:00-20:30"
     },
     "printers-arms": {
       "type": "Pub",
@@ -192,7 +207,8 @@
         "Steak night",
         "Cask ale",
         "Village local"
-      ]
+      ],
+      "hours": "Mo-Su 12:00-20:00"
     },
     "saddleworth-golf-club": {
       "type": "Golf club",
@@ -228,11 +244,46 @@
         "Terrace",
         "Acoustic sessions",
         "Sunday lunch"
-      ]
+      ],
+      "hours": "Mo-Sa 12:00-20:00; Su 12:00-19:00 (food)"
     },
     "muse": {
       "tags": [
         "2-for-£15 cocktails Sun–Thu"
+      ],
+      "hours": "Mo off; Tu-Th 12:00-20:15; Fr-Sa 12:00-20:45; Su 12:00-18:45"
+    },
+    "granby-arms": {
+      "hours": "Mo-Su 13:00-01:00"
+    },
+    "albion-tap": {
+      "hours": "Mo-We 16:00-21:00; Th 15:00-23:00; Fr 14:00-24:00; Sa 13:00-24:00; Su 12:00-22:30"
+    },
+    "swan-inn": {
+      "hours": "Mo-Fr 15:00-23:00; Sa-Su 13:00-23:00"
+    },
+    "gate-inn": {
+      "hours": "Mo off; Tu-Th 17:00-23:00; Fr-Sa 12:00-24:00; Su 12:00-22:00"
+    },
+    "clarence": {
+      "hours": "Mo-Su from 12:00 (food to 20:00, Su to 19:00)"
+    },
+    "royal-george": {
+      "hours": "Mo-Sa 12:00-23:00; Su 12:00-22:30"
+    },
+    "kingfisher": {
+      "hours": "Mo-Su 11:00-23:00"
+    },
+    "old-original-inn": {
+      "hours": "Mo-Fr 16:00-23:30; Sa 13:00-23:30; Su 13:00-22:30"
+    },
+    "roebuck-inn": {
+      "hours": "Mo-Su from 12:00 (food last orders 19:30-20:30)"
+    },
+    "dinnerstone": {
+      "blurb": "Closed at the start of 2026 after twenty years, and taken over by the team behind Muse and the Farrars Arms — expected to reopen. Watch this space.",
+      "tags": [
+        "Reopening under new ownership"
       ]
     }
   },
@@ -246,13 +297,14 @@
       "lat": 53.57,
       "lng": -1.9967,
       "address": "Station Houses, Diggle, OL3 5JZ",
-      "blurb": "Stone free-house in the fold of the hills by the Standedge Tunnel end — pies, pints and trains rumbling under the moor.",
+      "blurb": "Stone free-house in the fold of the hills by the Standedge Tunnel end — freshly refurbished and reopened in July 2026. The bar is pouring; the kitchen (and the pies) return soon.",
       "tags": [
+        "Reopened July 2026",
         "Near Standedge Tunnel",
-        "Home-made pies",
         "Family friendly"
       ],
-      "links": {}
+      "links": {},
+      "hours": "Mo-Tu from 15:00; We off; Th from 15:00; Fr-Su from 12:00 (bar)"
     },
     {
       "id": "rspb-dove-stone",
