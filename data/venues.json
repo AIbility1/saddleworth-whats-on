@@ -1,0 +1,1390 @@
+{
+ "source": "OpenStreetMap (ODbL) — baked by scripts/build-venues.js",
+ "venues": [
+  {
+   "id": "holy-trinity-parish-hall",
+   "name": "Holy Trinity Parish Hall",
+   "type": "Community hall",
+   "kind": "hall",
+   "village": "Austerlands",
+   "lat": 53.55087,
+   "lng": -2.07444,
+   "address": "Austerlands"
+  },
+  {
+   "id": "new-taste",
+   "name": "New Taste",
+   "type": "Takeaway · chinese",
+   "kind": "takeaway",
+   "village": "Austerlands",
+   "lat": 53.54977,
+   "lng": -2.07419,
+   "address": "489A Huddersfield Road, Austerlands, OL4 2JG"
+  },
+  {
+   "id": "sweet-and-smooth",
+   "name": "Sweet & Smooth",
+   "type": "Restaurant · dessert",
+   "kind": "restaurant",
+   "village": "Austerlands",
+   "lat": 53.54996,
+   "lng": -2.07272,
+   "address": "503 Huddersfield Road, Austerlands, OL4 2JG"
+  },
+  {
+   "id": "village-manor-bakery-eat-in",
+   "name": "Village Manor Bakery Eat-In",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Austerlands",
+   "lat": 53.54995,
+   "lng": -2.07297,
+   "address": "499 Huddersfield Road, Austerlands, OL4 2JG",
+   "links": {
+    "website": "https://www.villagemanorbakery.co.uk/cafe"
+   }
+  },
+  {
+   "id": "waterhead-sports-and-social-club",
+   "name": "Waterhead Sports and Social Club",
+   "type": "Sports club",
+   "kind": "sport",
+   "village": "Austerlands",
+   "lat": 53.55116,
+   "lng": -2.07844,
+   "address": "Austerlands"
+  },
+  {
+   "id": "waterhead-tandoori",
+   "name": "Waterhead Tandoori",
+   "type": "Restaurant · indian",
+   "kind": "restaurant",
+   "village": "Austerlands",
+   "lat": 53.54977,
+   "lng": -2.07409,
+   "address": "491 Huddersfield Road, Austerlands, OL4 2JG"
+  },
+  {
+   "id": "crumbles",
+   "name": "Crumbles",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Delph",
+   "lat": 53.5675,
+   "lng": -2.02329,
+   "address": "Delph"
+  },
+  {
+   "id": "delph-band-club",
+   "name": "Delph Band Club",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Delph",
+   "lat": 53.56806,
+   "lng": -2.02319,
+   "address": "Lawton Square, Delph, OL3 5DT",
+   "links": {
+    "website": "https://www.delphband.co.uk/",
+    "phone": "+44 1457 874465"
+   }
+  },
+  {
+   "id": "delph-fish-and-chip-shop",
+   "name": "Delph Fish & Chip Shop",
+   "type": "Takeaway · fish and chips",
+   "kind": "takeaway",
+   "village": "Delph",
+   "lat": 53.5681,
+   "lng": -2.02407,
+   "address": "25 King Street, Delph"
+  },
+  {
+   "id": "millgate-arts-centre",
+   "name": "Millgate Arts Centre",
+   "type": "Arts centre",
+   "kind": "hall",
+   "village": "Delph",
+   "lat": 53.56682,
+   "lng": -2.02313,
+   "address": "Delph",
+   "links": {
+    "website": "https://millgateartscentre.co.uk/"
+   }
+  },
+  {
+   "id": "old-bell-inn",
+   "name": "Old Bell Inn",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Delph",
+   "lat": 53.56433,
+   "lng": -2.01947,
+   "address": "Delph"
+  },
+  {
+   "id": "bank",
+   "name": "The Bank",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Delph",
+   "lat": 53.5675,
+   "lng": -2.0237,
+   "address": "King Street, Delph"
+  },
+  {
+   "id": "bulls-head",
+   "name": "The Bulls Head",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Delph",
+   "lat": 53.56713,
+   "lng": -2.02319,
+   "address": "Delph"
+  },
+  {
+   "id": "swan-inn",
+   "name": "The Swan Inn",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Delph",
+   "lat": 53.56782,
+   "lng": -2.02399,
+   "address": "Delph"
+  },
+  {
+   "id": "white-lion",
+   "name": "The White Lion",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Delph",
+   "lat": 53.56909,
+   "lng": -2.0236,
+   "address": "Delph, OL3 5HX"
+  },
+  {
+   "id": "black-ladd",
+   "name": "Black Ladd",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Denshaw",
+   "lat": 53.57705,
+   "lng": -2.06321,
+   "address": "Denshaw"
+  },
+  {
+   "id": "clough-manor",
+   "name": "Clough Manor",
+   "type": "Inn & rooms",
+   "kind": "restaurant",
+   "village": "Denshaw",
+   "lat": 53.59761,
+   "lng": -2.05037,
+   "address": "Denshaw"
+  },
+  {
+   "id": "junction-inn",
+   "name": "Junction Inn",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Denshaw",
+   "lat": 53.59231,
+   "lng": -2.04019,
+   "address": "Denshaw, OL3 5SL"
+  },
+  {
+   "id": "little-owl-farm-shop",
+   "name": "Little Owl Farm Shop",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Denshaw",
+   "lat": 53.57338,
+   "lng": -2.0569,
+   "address": "Denshaw"
+  },
+  {
+   "id": "oddfellows",
+   "name": "Oddfellows",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Denshaw",
+   "lat": 53.59178,
+   "lng": -2.03955,
+   "address": "5 Huddersfield Road, Denshaw"
+  },
+  {
+   "id": "pitch-and-putt",
+   "name": "Pitch and Putt",
+   "type": "Golf club",
+   "kind": "sport",
+   "village": "Denshaw",
+   "lat": 53.57159,
+   "lng": -2.05484,
+   "address": "Denshaw"
+  },
+  {
+   "id": "printers-arms",
+   "name": "Printers Arms",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Denshaw",
+   "lat": 53.58968,
+   "lng": -2.04253,
+   "address": "Denshaw"
+  },
+  {
+   "id": "rams-head-inn",
+   "name": "Rams Head Inn",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Denshaw",
+   "lat": 53.60367,
+   "lng": -2.03554,
+   "address": "Denshaw, OL3 5UN",
+   "links": {
+    "website": "https://www.ramsheaddenshaw.co.uk/",
+    "phone": "+44 1457 874802"
+   },
+   "tags": [
+    "Outdoor seating"
+   ]
+  },
+  {
+   "id": "kings-arms",
+   "name": "The Kings Arms",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Denshaw",
+   "lat": 53.57304,
+   "lng": -2.05707,
+   "address": "Denshaw"
+  },
+  {
+   "id": "diggle-band-club",
+   "name": "Diggle Band Club",
+   "type": "Sports club",
+   "kind": "sport",
+   "village": "Diggle",
+   "lat": 53.56879,
+   "lng": -1.9969,
+   "address": "Diggle"
+  },
+  {
+   "id": "diggle-chippy",
+   "name": "Diggle Chippy",
+   "type": "Takeaway · fish and chips",
+   "kind": "takeaway",
+   "village": "Diggle",
+   "lat": 53.56468,
+   "lng": -1.99994,
+   "address": "Diggle"
+  },
+  {
+   "id": "diggle-lock",
+   "name": "Diggle Lock",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Diggle",
+   "lat": 53.56696,
+   "lng": -1.99596,
+   "address": "Diggle",
+   "links": {
+    "website": "https://www.digglelock.co.uk/"
+   }
+  },
+  {
+   "id": "grandpa-greenes",
+   "name": "Grandpa Greene's",
+   "type": "Ice cream & café",
+   "kind": "cafe",
+   "village": "Diggle",
+   "lat": 53.56488,
+   "lng": -1.99681,
+   "address": "Diggle",
+   "tags": [
+    "Outdoor seating"
+   ]
+  },
+  {
+   "id": "saddleworth-hotel",
+   "name": "Saddleworth Hotel",
+   "type": "Inn & rooms",
+   "kind": "restaurant",
+   "village": "Diggle",
+   "lat": 53.5781,
+   "lng": -2.00134,
+   "address": "Diggle"
+  },
+  {
+   "id": "gate-inn",
+   "name": "The Gate Inn",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Diggle",
+   "lat": 53.56492,
+   "lng": -2.00014,
+   "address": "Diggle",
+   "links": {
+    "website": "https://thegateinn.co.uk/"
+   }
+  },
+  {
+   "id": "fresca",
+   "name": "Fresca",
+   "type": "Restaurant · italian",
+   "kind": "restaurant",
+   "village": "Dobcross",
+   "lat": 53.56272,
+   "lng": -2.02129,
+   "address": "Dobcross"
+  },
+  {
+   "id": "limekiln-cafe",
+   "name": "Limekiln Cafe",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Dobcross",
+   "lat": 53.5539,
+   "lng": -2.00837,
+   "address": "Dobcross",
+   "links": {
+    "website": "https://www.thelimekilncafe.com/"
+   }
+  },
+  {
+   "id": "navigation-inn",
+   "name": "The Navigation Inn",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Dobcross",
+   "lat": 53.55728,
+   "lng": -2.00645,
+   "address": "Dobcross",
+   "links": {
+    "website": "https://thenavigationdobcross.com/"
+   },
+   "tags": [
+    "Food served"
+   ]
+  },
+  {
+   "id": "swan",
+   "name": "The Swan",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Dobcross",
+   "lat": 53.55638,
+   "lng": -2.01302,
+   "address": "Dobcross",
+   "links": {
+    "website": "http://www.swaninndobcross.com/"
+   },
+   "tags": [
+    "Food served"
+   ]
+  },
+  {
+   "id": "greenfield-cricket-club",
+   "name": "Greenfield Cricket Club",
+   "type": "Sports club",
+   "kind": "sport",
+   "village": "Friezland",
+   "lat": 53.53429,
+   "lng": -2.00666,
+   "address": "Ladhill Lane, Friezland, OL3 7JW",
+   "links": {
+    "website": "https://greenfieldcc.org.uk/"
+   }
+  },
+  {
+   "id": "king-william-iv",
+   "name": "King William IV",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Friezland",
+   "lat": 53.53534,
+   "lng": -2.00483,
+   "address": "134 Chew Valley Road, Friezland, OL3 7DD",
+   "tags": [
+    "Outdoor seating"
+   ]
+  },
+  {
+   "id": "clarence",
+   "name": "The Clarence",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Friezland",
+   "lat": 53.5325,
+   "lng": -1.99928,
+   "address": "180 Chew Valley Road, Friezland, OL3 7DD",
+   "links": {
+    "website": "https://www.the-clarence.co.uk/",
+    "phone": "+441457 820200"
+   }
+  },
+  {
+   "id": "boarshurst-band-club",
+   "name": "Boarshurst Band Club",
+   "type": "Sports club",
+   "kind": "sport",
+   "village": "Grasscroft",
+   "lat": 53.53605,
+   "lng": -2.00938,
+   "address": "Greenbridge Lane, Grasscroft, OL3 7EW"
+  },
+  {
+   "id": "frenches-marina",
+   "name": "Frenches Marina",
+   "type": "Marina",
+   "kind": "sport",
+   "village": "Grasscroft",
+   "lat": 53.53927,
+   "lng": -2.01134,
+   "address": "Grasscroft"
+  },
+  {
+   "id": "friezland-church-hall",
+   "name": "Friezland Church Hall",
+   "type": "Community hall",
+   "kind": "hall",
+   "village": "Grasscroft",
+   "lat": 53.53597,
+   "lng": -2.02236,
+   "address": "Grasscroft"
+  },
+  {
+   "id": "golden-house",
+   "name": "Golden House",
+   "type": "Takeaway · chinese",
+   "kind": "takeaway",
+   "village": "Grasscroft",
+   "lat": 53.53648,
+   "lng": -2.00942,
+   "address": "2A Greenbridge Lane, Grasscroft, OL3 7JR",
+   "links": {
+    "phone": "+44 1457 870901"
+   }
+  },
+  {
+   "id": "kingfisher",
+   "name": "Kingfisher",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Grasscroft",
+   "lat": 53.5389,
+   "lng": -2.01195,
+   "address": "Chew Valley Road, Grasscroft, OL3 7AE",
+   "links": {
+    "website": "https://www.kingfisherpubsaddleworth.co.uk/"
+   }
+  },
+  {
+   "id": "nonnas",
+   "name": "Nonnas",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Grasscroft",
+   "lat": 53.53673,
+   "lng": -2.00885,
+   "address": "64 Chew Valley Road, Grasscroft"
+  },
+  {
+   "id": "platform-13",
+   "name": "Platform 13",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Grasscroft",
+   "lat": 53.53848,
+   "lng": -2.01411,
+   "address": "13 Shaw Hall Bank Road, Grasscroft, OL3 7JZ"
+  },
+  {
+   "id": "railway-inn",
+   "name": "Railway Inn",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Grasscroft",
+   "lat": 53.53851,
+   "lng": -2.01397,
+   "address": "11 Shaw Hall Bank Road, Grasscroft, OL3 7JZ",
+   "links": {
+    "website": "https://therailway-greenfield.co.uk/"
+   },
+   "tags": [
+    "Outdoor seating"
+   ]
+  },
+  {
+   "id": "saddleworth-pizza",
+   "name": "Saddleworth Pizza",
+   "type": "Takeaway · pizza",
+   "kind": "takeaway",
+   "village": "Grasscroft",
+   "lat": 53.5379,
+   "lng": -2.00941,
+   "address": "Grasscroft",
+   "links": {
+    "website": "https://www.saddleworthpizza.com/",
+    "phone": "+44 1457820344"
+   }
+  },
+  {
+   "id": "tame-valley-tennis-and-squash-club",
+   "name": "Tame Valley Tennis and Squash Club",
+   "type": "Sports club",
+   "kind": "sport",
+   "village": "Grasscroft",
+   "lat": 53.53566,
+   "lng": -2.00989,
+   "address": "Grasscroft"
+  },
+  {
+   "id": "farrars-arms",
+   "name": "The Farrars Arms",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Grasscroft",
+   "lat": 53.53788,
+   "lng": -2.02275,
+   "address": "56 Oldham Road, Grasscroft, OL4 4HL",
+   "links": {
+    "website": "https://www.thefarrarsarms.co.uk/"
+   }
+  },
+  {
+   "id": "wellington",
+   "name": "The Wellington",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Grasscroft",
+   "lat": 53.53754,
+   "lng": -2.01032,
+   "address": "29 Chew Valley Road, Grasscroft, OL3 7AF",
+   "tags": [
+    "Food served",
+    "Dog friendly"
+   ]
+  },
+  {
+   "id": "dovestone-sailing-club",
+   "name": "Dovestone Sailing Club",
+   "type": "Sports club",
+   "kind": "sport",
+   "village": "Greenfield",
+   "lat": 53.5259,
+   "lng": -1.9765,
+   "address": "Greenfield",
+   "links": {
+    "website": "https://www.dovestonesc.org.uk/"
+   }
+  },
+  {
+   "id": "dysarts-arms",
+   "name": "Dysarts Arms",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Greenfield",
+   "lat": 53.52756,
+   "lng": -2.02491,
+   "address": "Huddersfield Road, Greenfield, OL5 9BT",
+   "links": {
+    "phone": "+44 1457 832 103"
+   }
+  },
+  {
+   "id": "royal-george",
+   "name": "Royal George",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Greenfield",
+   "lat": 53.52952,
+   "lng": -2.0249,
+   "address": "193 Manchester Road, Greenfield, OL3 7HX",
+   "links": {
+    "website": "https://www.royalgeorgesaddleworth.co.uk/",
+    "phone": "+44 1457 837851"
+   }
+  },
+  {
+   "id": "saddleworth-cricket-bowling-and-tennis-club",
+   "name": "Saddleworth Cricket Bowling & Tennis Club",
+   "type": "Sports club",
+   "kind": "sport",
+   "village": "Greenfield",
+   "lat": 53.53061,
+   "lng": -2.02716,
+   "address": "Greenfield",
+   "links": {
+    "website": "https://www.saddleworthcbtc.co.uk/"
+   }
+  },
+  {
+   "id": "grotton-residents-association",
+   "name": "Grotton residents Association",
+   "type": "Sports club",
+   "kind": "sport",
+   "village": "Grotton",
+   "lat": 53.53684,
+   "lng": -2.05493,
+   "address": "Grotton"
+  },
+  {
+   "id": "peels-arms",
+   "name": "Peels Arms",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Grotton",
+   "lat": 53.54332,
+   "lng": -2.06129,
+   "address": "143 Den Lane, Grotton"
+  },
+  {
+   "id": "springhead-liberal-club",
+   "name": "Springhead Liberal Club",
+   "type": "Sports club",
+   "kind": "sport",
+   "village": "Grotton",
+   "lat": 53.53734,
+   "lng": -2.0601,
+   "address": "Grotton"
+  },
+  {
+   "id": "parish-hall",
+   "name": "The Parish Hall",
+   "type": "Community hall",
+   "kind": "hall",
+   "village": "Lydgate",
+   "lat": 53.5357,
+   "lng": -2.04133,
+   "address": "Lydgate"
+  },
+  {
+   "id": "white-hart",
+   "name": "The White Hart",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Lydgate",
+   "lat": 53.53616,
+   "lng": -2.041,
+   "address": "Lydgate",
+   "links": {
+    "website": "https://www.thewhitehart.co.uk/"
+   }
+  },
+  {
+   "id": "austerlands-cricket-club",
+   "name": "Austerlands Cricket Club",
+   "type": "Sports club",
+   "kind": "sport",
+   "village": "Scouthead",
+   "lat": 53.5486,
+   "lng": -2.06074,
+   "address": "Scouthead"
+  },
+  {
+   "id": "spinners-arms",
+   "name": "Spinners Arms",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Scouthead",
+   "lat": 53.54481,
+   "lng": -2.05339,
+   "address": "Wood Brook Road, Scouthead"
+  },
+  {
+   "id": "three-crowns",
+   "name": "The Three Crowns",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Scouthead",
+   "lat": 53.54721,
+   "lng": -2.05512,
+   "address": "995 Huddersfield Road, Scouthead"
+  },
+  {
+   "id": "angel-inn",
+   "name": "Angel Inn",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Springhead",
+   "lat": 53.53825,
+   "lng": -2.07411,
+   "address": "2 Nicholson Street, Springhead, OL4 3BW"
+  },
+  {
+   "id": "chapter-one",
+   "name": "Chapter One",
+   "type": "Restaurant",
+   "kind": "restaurant",
+   "village": "Springhead",
+   "lat": 53.53778,
+   "lng": -2.07159,
+   "address": "92 High Street, Springhead, OL4 5AA"
+  },
+  {
+   "id": "dele-coffe-house",
+   "name": "Dele Coffe House",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Springhead",
+   "lat": 53.53793,
+   "lng": -2.0716,
+   "address": "93 High Street, Springhead, OL4 4LY"
+  },
+  {
+   "id": "frydays",
+   "name": "Frydays",
+   "type": "Takeaway · fish and chips",
+   "kind": "takeaway",
+   "village": "Springhead",
+   "lat": 53.53788,
+   "lng": -2.06579,
+   "address": "81 Oldham Road, Springhead, OL4 4PH"
+  },
+  {
+   "id": "growing-hub-cafe",
+   "name": "Growing hub cafe",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Springhead",
+   "lat": 53.54489,
+   "lng": -2.06932,
+   "address": "Springhead"
+  },
+  {
+   "id": "la-bella",
+   "name": "La Bella",
+   "type": "Restaurant · italian",
+   "kind": "restaurant",
+   "village": "Springhead",
+   "lat": 53.53809,
+   "lng": -2.07378,
+   "address": "57-59 High Street, Springhead, OL4 3BN"
+  },
+  {
+   "id": "lees-reform-club",
+   "name": "Lees Reform Club",
+   "type": "Club",
+   "kind": "club",
+   "village": "Springhead",
+   "lat": 53.53818,
+   "lng": -2.07142,
+   "address": "5 Benyon Street, Springhead, OL4 4LX"
+  },
+  {
+   "id": "lees-spice-lounge",
+   "name": "Lees Spice Lounge",
+   "type": "Restaurant · indian",
+   "kind": "restaurant",
+   "village": "Springhead",
+   "lat": 53.5381,
+   "lng": -2.07298,
+   "address": "73 High Street, Springhead, OL4 3BN",
+   "links": {
+    "website": "https://www.leesspicelounge.co.uk",
+    "phone": "+44 161 620 8922;+44 161 628 6090"
+   }
+  },
+  {
+   "id": "lees-tandoori",
+   "name": "Lees Tandoori",
+   "type": "Takeaway · indian",
+   "kind": "takeaway",
+   "village": "Springhead",
+   "lat": 53.53795,
+   "lng": -2.07296,
+   "address": "54 High Street, Springhead, OL4 5AA",
+   "links": {
+    "website": "https://leestandoori.co.uk",
+    "phone": "+44 161 627 0371"
+   }
+  },
+  {
+   "id": "lucky-fortune",
+   "name": "Lucky Fortune",
+   "type": "Takeaway · chinese",
+   "kind": "takeaway",
+   "village": "Springhead",
+   "lat": 53.53787,
+   "lng": -2.07142,
+   "address": "97A High Street, Springhead, OL4 4LY"
+  },
+  {
+   "id": "masuma-express",
+   "name": "Masuma Express",
+   "type": "Takeaway",
+   "kind": "takeaway",
+   "village": "Springhead",
+   "lat": 53.53784,
+   "lng": -2.07181,
+   "address": "86 High Street, Springhead, OL4 5AA"
+  },
+  {
+   "id": "milan-bar",
+   "name": "Milan Bar",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Springhead",
+   "lat": 53.53841,
+   "lng": -2.07206,
+   "address": "13 Elliot Street, Springhead, OL4 3DY"
+  },
+  {
+   "id": "paach-baii",
+   "name": "Paach Baii",
+   "type": "Restaurant · indian",
+   "kind": "restaurant",
+   "village": "Springhead",
+   "lat": 53.53811,
+   "lng": -2.07321,
+   "address": "69-71 High Street, Springhead, OL4 3BN",
+   "links": {
+    "website": "https://paachbaii.co.uk"
+   }
+  },
+  {
+   "id": "red-lion",
+   "name": "Red Lion",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Springhead",
+   "lat": 53.53756,
+   "lng": -2.07061,
+   "address": "109 High Street, Springhead, OL4 4LY"
+  },
+  {
+   "id": "red-square-vodka-bar",
+   "name": "Red Square Vodka Bar",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Springhead",
+   "lat": 53.53812,
+   "lng": -2.07215,
+   "address": "2 Elliot Street, Springhead, OL4 3DY"
+  },
+  {
+   "id": "royal-british-legion-lees-and-district",
+   "name": "Royal British Legion - Lees & District",
+   "type": "Club",
+   "kind": "club",
+   "village": "Springhead",
+   "lat": 53.53775,
+   "lng": -2.073,
+   "address": "1 Princess Street, Springhead, OL4 5AG"
+  },
+  {
+   "id": "saint-john-the-baptist-church-hall",
+   "name": "Saint John the Baptist Church Hall",
+   "type": "Community hall",
+   "kind": "hall",
+   "village": "Springhead",
+   "lat": 53.54265,
+   "lng": -2.06805,
+   "address": "Springhead"
+  },
+  {
+   "id": "selwyns-english-fish-and-chips",
+   "name": "Selwyn's English Fish & Chips",
+   "type": "Takeaway · fish and chips",
+   "kind": "takeaway",
+   "village": "Springhead",
+   "lat": 53.5381,
+   "lng": -2.07353,
+   "address": "61 High Street, Springhead, OL4 3BN",
+   "links": {
+    "facebook": "https://www.facebook.com/selwynsfishandchips",
+    "phone": "+44 161 652 2499"
+   }
+  },
+  {
+   "id": "springhead-community-centre",
+   "name": "Springhead Community Centre",
+   "type": "Community hall",
+   "kind": "hall",
+   "village": "Springhead",
+   "lat": 53.53915,
+   "lng": -2.06492,
+   "address": "Ashes Lane, Springhead, OL4 4PF"
+  },
+  {
+   "id": "sub-space",
+   "name": "Sub Space",
+   "type": "Gallery",
+   "kind": "attraction",
+   "village": "Springhead",
+   "lat": 53.5381,
+   "lng": -2.07345,
+   "address": "63 High Street, Springhead, OL4 3BN"
+  },
+  {
+   "id": "front-house",
+   "name": "The Front House",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Springhead",
+   "lat": 53.53774,
+   "lng": -2.06765,
+   "address": "31-33 Oldham Road, Springhead, OL4 4PH"
+  },
+  {
+   "id": "grapes",
+   "name": "The Grapes",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Springhead",
+   "lat": 53.54182,
+   "lng": -2.06853,
+   "address": "Springhead"
+  },
+  {
+   "id": "village-pantry",
+   "name": "The Village Pantry",
+   "type": "Takeaway · sandwich",
+   "kind": "takeaway",
+   "village": "Springhead",
+   "lat": 53.53776,
+   "lng": -2.07189,
+   "address": "1A Stamford Street, Springhead, OL4 5AB"
+  },
+  {
+   "id": "village-tea-room",
+   "name": "The Village Tea Room",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Springhead",
+   "lat": 53.53756,
+   "lng": -2.07106,
+   "address": "Thomas Street, Springhead, OL4 5BT"
+  },
+  {
+   "id": "village-pizza",
+   "name": "Village Pizza",
+   "type": "Takeaway · pizza",
+   "kind": "takeaway",
+   "village": "Springhead",
+   "lat": 53.5381,
+   "lng": -2.07287,
+   "address": "75 High Street, Springhead, OL4 3BN"
+  },
+  {
+   "id": "42-high-st",
+   "name": "42 High St",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Uppermill",
+   "lat": 53.5471,
+   "lng": -2.00677,
+   "address": "42 High Street, Uppermill, OL3 6HA",
+   "links": {
+    "website": "https://42high.co.uk/",
+    "phone": "+44 1457 371850"
+   }
+  },
+  {
+   "id": "albion-tap",
+   "name": "Albion Tap",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Uppermill",
+   "lat": 53.54823,
+   "lng": -2.00536,
+   "address": "Uppermill"
+  },
+  {
+   "id": "cafe-muse",
+   "name": "Cafe Muse",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Uppermill",
+   "lat": 53.54682,
+   "lng": -2.00734,
+   "address": "23 High Street, Uppermill",
+   "tags": [
+    "Outdoor seating"
+   ]
+  },
+  {
+   "id": "caffe-grande-abaco",
+   "name": "Caffe Grande Abaco",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Uppermill",
+   "lat": 53.54856,
+   "lng": -2.00576,
+   "address": "73 High Street, Uppermill, OL3 6AP",
+   "links": {
+    "website": "https://caffegrandeabaco.com/"
+   }
+  },
+  {
+   "id": "dinnerstone",
+   "name": "Dinnerstone",
+   "type": "Restaurant",
+   "kind": "restaurant",
+   "village": "Uppermill",
+   "lat": 53.54933,
+   "lng": -2.00558,
+   "address": "Uppermill",
+   "links": {
+    "website": "https://www.dinnerstone.co.uk/"
+   }
+  },
+  {
+   "id": "golden-dragon",
+   "name": "Golden Dragon",
+   "type": "Takeaway · fish and chips",
+   "kind": "takeaway",
+   "village": "Uppermill",
+   "lat": 53.54876,
+   "lng": -2.0055,
+   "address": "77 High Street, Uppermill, OL3 6AP"
+  },
+  {
+   "id": "granby-arms",
+   "name": "Granby Arms",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Uppermill",
+   "lat": 53.54657,
+   "lng": -2.00724,
+   "address": "28 High Street, Uppermill"
+  },
+  {
+   "id": "greenes-bistro-and-parlour",
+   "name": "Greene's Bistro & Parlour",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Uppermill",
+   "lat": 53.5489,
+   "lng": -2.00652,
+   "address": "Wade Row, Uppermill, OL3 6BA",
+   "links": {
+    "website": "https://grandpagreenes.co.uk/bistro",
+    "phone": "+441457872547"
+   }
+  },
+  {
+   "id": "hare-and-hounds",
+   "name": "Hare and Hounds",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Uppermill",
+   "lat": 53.54794,
+   "lng": -2.00569,
+   "address": "68 High Street, Uppermill, OL3 6AW"
+  },
+  {
+   "id": "hei-hei",
+   "name": "Hei Hei",
+   "type": "Takeaway · chinese",
+   "kind": "takeaway",
+   "village": "Uppermill",
+   "lat": 53.54645,
+   "lng": -2.0074,
+   "address": "26 High Street, Uppermill",
+   "links": {
+    "website": "https://www.heiheieaterie.co.uk/"
+   }
+  },
+  {
+   "id": "kobe-coffee",
+   "name": "Kobe Coffee",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Uppermill",
+   "lat": 53.54691,
+   "lng": -2.00695,
+   "address": "36 High Street, Uppermill, OL3 6HR",
+   "links": {
+    "website": "https://www.kobecoffee.co.uk/"
+   }
+  },
+  {
+   "id": "muse",
+   "name": "Muse",
+   "type": "Restaurant",
+   "kind": "restaurant",
+   "village": "Uppermill",
+   "lat": 53.54681,
+   "lng": -2.00736,
+   "address": "Uppermill",
+   "links": {
+    "website": "https://www.museuppermill.com/"
+   }
+  },
+  {
+   "id": "muse-annex",
+   "name": "Muse Annex",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Uppermill",
+   "lat": 53.54696,
+   "lng": -2.00728,
+   "address": "Uppermill"
+  },
+  {
+   "id": "our-place",
+   "name": "Our Place",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Uppermill",
+   "lat": 53.54738,
+   "lng": -2.00642,
+   "address": "High Street, Uppermill, OL3 6HA",
+   "links": {
+    "website": "https://www.meetatourplace.com/"
+   },
+   "tags": [
+    "Outdoor seating"
+   ]
+  },
+  {
+   "id": "reclamation-room",
+   "name": "Reclamation Room",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Uppermill",
+   "lat": 53.54769,
+   "lng": -2.00386,
+   "address": "Lee Street, Uppermill",
+   "links": {
+    "website": "https://rec-room.co.uk/"
+   },
+   "tags": [
+    "Outdoor seating"
+   ]
+  },
+  {
+   "id": "saddleworth-golf-club",
+   "name": "Saddleworth Golf Club",
+   "type": "Golf club",
+   "kind": "sport",
+   "village": "Uppermill",
+   "lat": 53.54881,
+   "lng": -2.01788,
+   "address": "Uppermill",
+   "links": {
+    "website": "https://www.saddleworthgolfclub.org.uk/"
+   }
+  },
+  {
+   "id": "saddleworth-museum",
+   "name": "Saddleworth Museum",
+   "type": "Museum",
+   "kind": "attraction",
+   "village": "Uppermill",
+   "lat": 53.5469,
+   "lng": -2.00764,
+   "address": "Uppermill",
+   "links": {
+    "website": "https://www.saddleworthmuseum.co.uk/"
+   }
+  },
+  {
+   "id": "saddleworth-pool-and-leisure-centre",
+   "name": "Saddleworth Pool and Leisure Centre",
+   "type": "Sports club",
+   "kind": "sport",
+   "village": "Uppermill",
+   "lat": 53.54504,
+   "lng": -2.00313,
+   "address": "Station Road, Uppermill, OL3 6HQ",
+   "links": {
+    "website": "https://oclactive.co.uk/leisure_centres/saddleworth/"
+   }
+  },
+  {
+   "id": "saints-cafe",
+   "name": "Saints Cafe",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Uppermill",
+   "lat": 53.54837,
+   "lng": -2.00614,
+   "address": "Uppermill",
+   "tags": [
+    "Outdoor seating"
+   ]
+  },
+  {
+   "id": "satellite-centre",
+   "name": "Satellite Centre",
+   "type": "Community hall",
+   "kind": "hall",
+   "village": "Uppermill",
+   "lat": 53.54181,
+   "lng": -2.00755,
+   "address": "Wellington Road, Uppermill",
+   "links": {
+    "website": "https://www.satellitecentre.org.uk/"
+   }
+  },
+  {
+   "id": "shalimar",
+   "name": "Shalimar",
+   "type": "Restaurant · indian",
+   "kind": "restaurant",
+   "village": "Uppermill",
+   "lat": 53.54951,
+   "lng": -2.00544,
+   "address": "Uppermill",
+   "links": {
+    "website": "https://www.shalimaruppermill.co.uk/"
+   }
+  },
+  {
+   "id": "sorella",
+   "name": "Sorella",
+   "type": "Restaurant · italian",
+   "kind": "restaurant",
+   "village": "Uppermill",
+   "lat": 53.54697,
+   "lng": -2.00689,
+   "address": "38 High Street, Uppermill"
+  },
+  {
+   "id": "st-chads-parish-centre",
+   "name": "St Chad's Parish Centre",
+   "type": "Community hall",
+   "kind": "hall",
+   "village": "Uppermill",
+   "lat": 53.5478,
+   "lng": -2.00358,
+   "address": "Uppermill",
+   "links": {
+    "website": "https://www.cofeinsaddleworth.org.uk/st-chad-saddleworth-parish-centre/"
+   }
+  },
+  {
+   "id": "star-and-bean",
+   "name": "Star and Bean",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Uppermill",
+   "lat": 53.54925,
+   "lng": -2.00558,
+   "address": "97 High Street, Uppermill"
+  },
+  {
+   "id": "cake-kitchen",
+   "name": "The Cake Kitchen",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Uppermill",
+   "lat": 53.54733,
+   "lng": -2.00688,
+   "address": "39 High Street, Uppermill",
+   "tags": [
+    "Outdoor seating"
+   ]
+  },
+  {
+   "id": "church-inn",
+   "name": "The Church Inn",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Uppermill",
+   "lat": 53.55375,
+   "lng": -1.99016,
+   "address": "Uppermill"
+  },
+  {
+   "id": "commie",
+   "name": "The Commie",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Uppermill",
+   "lat": 53.54927,
+   "lng": -2.00485,
+   "address": "Uppermill"
+  },
+  {
+   "id": "cross-keys",
+   "name": "The Cross Keys",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Uppermill",
+   "lat": 53.55309,
+   "lng": -1.98864,
+   "address": "Uppermill",
+   "tags": [
+    "Food served",
+    "Outdoor seating"
+   ]
+  },
+  {
+   "id": "waggon-inn",
+   "name": "The Waggon Inn",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Uppermill",
+   "lat": 53.54673,
+   "lng": -2.00706,
+   "address": "High Street, Uppermill, OL3 6HR",
+   "links": {
+    "website": "https://www.thewaggoninn.co.uk/"
+   },
+   "tags": [
+    "Food served",
+    "Outdoor seating"
+   ]
+  },
+  {
+   "id": "uppermill-civic-hall",
+   "name": "Uppermill Civic Hall",
+   "type": "Community hall",
+   "kind": "hall",
+   "village": "Uppermill",
+   "lat": 53.54738,
+   "lng": -2.00449,
+   "address": "Uppermill"
+  },
+  {
+   "id": "uppermill-conservative-club",
+   "name": "Uppermill Conservative Club",
+   "type": "Club",
+   "kind": "club",
+   "village": "Uppermill",
+   "lat": 53.54865,
+   "lng": -2.00572,
+   "address": "75 High Street, Uppermill, OL3 6AP"
+  },
+  {
+   "id": "uppermill-cricket-and-bowling-club",
+   "name": "Uppermill Cricket and Bowling Club",
+   "type": "Sports club",
+   "kind": "sport",
+   "village": "Uppermill",
+   "lat": 53.54563,
+   "lng": -2.00397,
+   "address": "Uppermill",
+   "links": {
+    "website": "https://www.ucbc.club/",
+    "phone": "+44 1457 873396"
+   }
+  },
+  {
+   "id": "veloce",
+   "name": "Veloce",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Uppermill",
+   "lat": 53.54874,
+   "lng": -2.00506,
+   "address": "84 High Street, Uppermill",
+   "links": {
+    "website": "https://velocecoffee.co.uk/"
+   }
+  },
+  {
+   "id": "wilberrys",
+   "name": "Wilberrys",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Uppermill",
+   "lat": 53.54885,
+   "lng": -2.00543,
+   "address": "83 High Street, Uppermill, OL3 6AP"
+  }
+ ]
+}
