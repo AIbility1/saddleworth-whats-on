@@ -27,8 +27,17 @@
   };
   const KIND_EMOJI = { pub: '🍻', cafe: '☕', restaurant: '🍽️', takeaway: '🍟',
                        hall: '🎭', attraction: '🏛️', club: '🎺', sport: '🎾',
-                       walk: '🥾', spot: '📍' };
+                       walk: '🥾', sight: '⛰️', spot: '📍' };
   const WALK_C = '#35784b';
+  // directory-first: pins are coloured by what the venue IS (4 groups),
+  // and a coral badge appears when it has events in the chosen dates
+  const KINDG = {
+    pub:  { label: 'Pubs & bars',    emoji: '🍻', c: '#eb6834', kinds: ['pub'] },
+    food: { label: 'Food & coffee',  emoji: '☕', c: '#2a78d6', kinds: ['restaurant', 'takeaway', 'cafe'] },
+    comm: { label: 'Halls & clubs',  emoji: '🎭', c: '#1baf7a', kinds: ['hall', 'attraction', 'club', 'sport', 'spot'] },
+    out:  { label: 'Walks & sights', emoji: '🥾', c: '#35784b', kinds: ['walk', 'sight'] },
+  };
+  const kindGroup = (k) => Object.keys(KINDG).find((g) => KINDG[g].kinds.includes(k)) || 'comm';
   const DOW = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 };
   const DAY = 86400000, LIST_CAP = 400;
 
@@ -50,9 +59,29 @@
   let venues = new Map();      // id → venue (incl. pseudo-venues for one-off spots)
   let events = [];
   let lo = 0, hi = 30;         // window, days relative to today
-  let activeCats = new Set(Object.keys(CATS));
+  let activeKinds = new Set(Object.keys(KINDG));
   let query = '';
   let selected = null;
+
+  // ---- community state ----
+  let ratings = {};            // venueId → {avg, count}, from the API
+  let placing = null;          // callback waiting for a map tap (placing a new pin)
+  let cid = localStorage.getItem('swo-cid');
+  if (!cid) {
+    cid = crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(36).slice(2);
+    localStorage.setItem('swo-cid', cid);
+  }
+  async function api(path, body, code) {
+    const opt = body === undefined ? {} : {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...(code ? { 'x-venue-code': code } : {}) },
+      body: JSON.stringify(body),
+    };
+    const r = await fetch('api/' + path, opt);
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(j.error || 'The server had a problem (' + r.status + ').');
+    return j;
+  }
 
   const $ = (id) => document.getElementById(id);
   const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -81,7 +110,7 @@
     applyView();
   }
   function zoomAt(cx, cy, f) {
-    const ns = Math.min(fitS * 8, Math.max(fitS * 0.9, view.s * f));
+    const ns = Math.min(fitS * 22, Math.max(fitS * 0.9, view.s * f));
     view.x = cx - ((cx - view.x) / view.s) * ns;
     view.y = cy - ((cy - view.y) / view.s) * ns;
     view.s = ns;
@@ -125,6 +154,20 @@
     }
   });
   const endPtr = (e) => {
+    // a still press while placing a new business pin drops the pin there
+    if (e.type === 'pointerup' && ptrs.size === 1 && placing && !dragged) {
+      const wx = (e.clientX - view.x) / view.s, wy = (e.clientY - view.y) / view.s;
+      const lat = LAT_TOP - (wy / H) * (LAT_TOP - LAT_BOT);
+      const lng = LNG_L + (wx / W) * (LNG_R - LNG_L);
+      const cb = placing;
+      placing = null;
+      document.body.classList.remove('placing');
+      ptrs.delete(e.pointerId);
+      downPin = null;
+      stage.classList.remove('dragging');
+      cb(lat, lng);
+      return;
+    }
     // a press that never really moved is a tap — open the pin it started on
     if (e.type === 'pointerup' && ptrs.size === 1 && downPin && !dragged) {
       renderVenue(downPin.dataset.v, true);
@@ -208,7 +251,7 @@
     const t = `${inst.ev.title} ${inst.ev.description || ''} ${inst.venue.name} ${inst.venue.village}`.toLowerCase();
     return t.includes(query);
   };
-  const visible = (inst) => activeCats.has(inst.ev.category) && matchText(inst);
+  const visible = (inst) => activeKinds.has(kindGroup(inst.venue.kind)) && matchText(inst);
 
   // ================= rendering =================
   function render() {
@@ -224,25 +267,17 @@
     }
     let mh = '';
     for (const v of venues.values()) {
+      const g = kindGroup(v.kind);
+      if (!activeKinds.has(g)) continue;
       const insts = byVenue.get(v.id);
+      const has = insts && insts.length;
       const [x, y] = project(v.lat, v.lng);
       const sel = selected === v.id ? ' sel' : '';
-      if (v.kind === 'walk') {
-        const dim = query && !insts && !`${v.name} ${v.village} walk`.toLowerCase().includes(query) ? ' dim' : '';
-        mh += `<button class="pin walk${sel}${dim}" style="left:${x}px;top:${y}px;--pc:${WALK_C}"
-                 data-v="${v.id}" title="${esc(v.name)}" aria-label="Walk: ${esc(v.name)}">
-                 <span class="bub">🥾${insts && insts.length > 1 ? `<i class="cnt">${insts.length}</i>` : ''}</span></button>`;
-      } else if (insts && insts.length) {
-        const lead = insts.find((i) => i.date >= today) || insts[insts.length - 1];
-        const cat = CATS[lead.ev.category];
-        mh += `<button class="pin${sel}" style="left:${x}px;top:${y}px;--pc:${GROUPS[cat.group]}"
-                 data-v="${v.id}" title="${esc(v.name)}" aria-label="${esc(v.name)}: ${insts.length} listing${insts.length > 1 ? 's' : ''}">
-                 <span class="bub">${cat.emoji}${insts.length > 1 ? `<i class="cnt">${insts.length}</i>` : ''}</span></button>`;
-      } else {
-        const dim = query && !`${v.name} ${v.village}`.toLowerCase().includes(query) ? ' dim' : '';
-        mh += `<button class="pin quiet${sel}${dim}" style="left:${x}px;top:${y}px" data-v="${v.id}"
-                 title="${esc(v.name)}" aria-label="${esc(v.name)} (nothing listed in this window)"><span class="bub">${KIND_EMOJI[v.kind] || ''}</span></button>`;
-      }
+      const dim = query && !has && !`${v.name} ${v.village} ${v.type}`.toLowerCase().includes(query) ? ' dim' : '';
+      mh += `<button class="pin${has ? ' has' : ''}${sel}${dim}" style="left:${x}px;top:${y}px;--pc:${KINDG[g].c}"
+               data-v="${v.id}" title="${esc(v.name)}"
+               aria-label="${esc(v.name)}${has ? `: ${insts.length} listing${insts.length > 1 ? 's' : ''}` : ''}">
+               <span class="bub">${KIND_EMOJI[v.kind] || '📍'}${has ? `<i class="cnt">${insts.length}</i>` : ''}</span></button>`;
     }
     markersEl.innerHTML = mh;
 
@@ -264,11 +299,12 @@
         <span class="ico">${cat.emoji}</span>
         <span><span class="t">${esc(inst.ev.title)}</span>${inst.ev.demo ? '<span class="demo-tag">example</span>' : ''}<br>
           <span class="w">${esc(inst.venue.name)}${inst.ev.time ? ' · ' + esc(inst.ev.time) : ''}${end}${past ? ' · past' : ''}</span>
-          ${inst.ev.offer ? `<br><span class="offer">${esc(inst.ev.offer)}</span>` : ''}</span></button>`;
+          ${inst.ev.offer ? `<br><span class="offer">${esc(inst.ev.offer)}</span>` : ''}${inst.ev.voucher ? `<span class="vouch">🎟 ${esc(inst.ev.voucher)}</span>` : ''}</span></button>`;
       n++;
     }
     if (shown.length > LIST_CAP) lh += `<p id="more">…and ${shown.length - LIST_CAP} more — narrow the dates to see them all</p>`;
-    if (!shown.length) lh = `<p id="more">Nothing matches — try widening the dates or clearing filters.</p>`;
+    if (!shown.length) lh = `<p id="more">Nothing listed for these dates yet. This map is community-run —
+      venue owners tap their pin and add events, offers and voucher codes, free.</p>`;
     listEl.innerHTML = lh;
 
     const nv = byVenue.size;
@@ -286,9 +322,8 @@
     for (const r of basemap.querySelectorAll('.route')) r.classList.toggle('sel', r.dataset.w === id);
 
     const t0 = addDays(today, lo), t1 = addDays(today, hi);
-    const insts = expand(t0, t1).filter((i) => i.venue.id === id && activeCats.has(i.ev.category));
-    const groupC = v.kind === 'walk' ? WALK_C
-      : insts.length ? GROUPS[CATS[(insts.find((i) => i.date >= today) || insts[0]).ev.category].group] : 'var(--g-none)';
+    const insts = expand(t0, t1).filter((i) => i.venue.id === id);
+    const groupC = KINDG[kindGroup(v.kind)].c;
 
     let hh = `<div class="photo" style="--pc:${groupC}">`;
     if (v.photo) hh += `<img src="${esc(v.photo)}" alt="${esc(v.name)}">`;
@@ -301,6 +336,13 @@
     if (v.walk) {
       hh += `<div class="meta"><span class="mchip kind" style="--pc:${WALK_C}">🥾 ${esc(v.walk.km)} km</span>
         <span class="mchip">⏱ ${esc(v.walk.time)}</span><span class="mchip">${esc(v.walk.grade)}</span></div>`;
+    }
+    if (!['walk', 'sight', 'spot'].includes(v.kind)) {
+      const rt = ratings[v.id];
+      const mine = +localStorage.getItem('rated:' + v.id) || 0;
+      hh += `<div class="rate-row"><span class="stars">${[1, 2, 3, 4, 5].map((i) =>
+        `<button data-star="${i}" class="${i <= mine ? 'on' : ''}" aria-label="Rate ${i} star${i > 1 ? 's' : ''}" title="Rate ${i}/5">★</button>`).join('')}</span>
+        <span class="avg">${rt ? `★ ${rt.avg.toFixed(1)} · ${rt.count} rating${rt.count > 1 ? 's' : ''}` : 'Be the first to rate it'}</span></div>`;
     }
     if (v.blurb) hh += `<p class="blurb">${esc(v.blurb)}</p>`;
     if (v.tags && v.tags.length) hh += `<div class="meta">${v.tags.map((t) => `<span class="mchip">${esc(t)}</span>`).join('')}</div>`;
@@ -328,11 +370,11 @@
           <div class="t">${CATS[inst.ev.category].emoji} ${esc(inst.ev.title)}${inst.ev.demo ? '<span class="demo-tag">example</span>' : ''}</div>
           ${inst.ev.time ? `<div class="x">${esc(inst.ev.time)}</div>` : ''}
           ${inst.ev.description ? `<div class="x">${esc(inst.ev.description)}</div>` : ''}
-          ${inst.ev.offer ? `<span class="offer">${esc(inst.ev.offer)}</span>` : ''}</div>`;
+          ${inst.ev.offer ? `<span class="offer">${esc(inst.ev.offer)}</span>` : ''}${inst.ev.voucher ? `<span class="vouch">🎟 ${esc(inst.ev.voucher)}</span>` : ''}</div>`;
       }
     }
-    if (v.kind !== 'walk' && v.kind !== 'spot' && v.kind !== 'attraction') {
-      hh += `<a class="claim" href="mailto:hello@aibility.co.uk?subject=${encodeURIComponent(`List events for ${v.name} — Saddleworth What's On`)}">📣 Run ${esc(v.name)}? List your events, offers &amp; menu — free</a>`;
+    if (!['walk', 'sight', 'spot'].includes(v.kind)) {
+      hh += `<button class="claim" data-manage>📣 Run ${esc(v.name)}? Add your events, offers &amp; vouchers — free</button>`;
     }
     hh += `</div>`;
 
@@ -343,6 +385,11 @@
     panel.querySelector('.close').onclick = closeVenue;
     const mb = panel.querySelector('[data-menu]');
     if (mb) mb.onclick = (e) => { e.preventDefault(); openMenu(v); };
+    const mg = panel.querySelector('[data-manage]');
+    if (mg) mg.onclick = () => openManage(v);
+    for (const b of panel.querySelectorAll('[data-star]')) {
+      b.onclick = () => rate(v, +b.dataset.star);
+    }
     if (fly) {
       flyTo(v.lat, v.lng);
       if (innerWidth <= 760) document.body.classList.remove('side-open');
@@ -377,7 +424,11 @@
   $('menu-back').addEventListener('click', (e) => { if (e.target.id === 'menu-back') closeMenu(); });
   addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
-    if ($('menu-back').classList.contains('open')) closeMenu();
+    if (document.body.classList.contains('placing')) {
+      placing = null;
+      document.body.classList.remove('placing');
+    } else if ($('form-back').classList.contains('open')) $('form-back').classList.remove('open');
+    else if ($('menu-back').classList.contains('open')) closeMenu();
     else if ($('venue').classList.contains('open')) closeVenue();
   });
 
@@ -443,20 +494,20 @@
   });
 
   // ================= filters =================
-  $('chips').innerHTML = Object.entries(CATS).map(([k, c]) =>
-    `<button class="chip" style="--pc:${GROUPS[c.group]}" data-c="${k}" aria-pressed="true">
-       <i></i>${c.emoji} ${c.label}</button>`).join('');
+  $('chips').innerHTML = Object.entries(KINDG).map(([k, g]) =>
+    `<button class="chip" style="--pc:${g.c}" data-c="${k}" aria-pressed="true">
+       <i></i>${g.emoji} ${g.label}</button>`).join('');
   $('chips').addEventListener('click', (e) => {
     const b = e.target.closest('.chip');
     if (!b) return;
     const k = b.dataset.c;
-    if (activeCats.has(k) && activeCats.size === Object.keys(CATS).length) {
-      activeCats = new Set([k]);            // first click: focus just this one
-    } else if (activeCats.has(k)) {
-      activeCats.delete(k);
-      if (!activeCats.size) activeCats = new Set(Object.keys(CATS));
-    } else activeCats.add(k);
-    for (const c of $('chips').children) c.setAttribute('aria-pressed', activeCats.has(c.dataset.c));
+    if (activeKinds.has(k) && activeKinds.size === Object.keys(KINDG).length) {
+      activeKinds = new Set([k]);           // first click: focus just this one
+    } else if (activeKinds.has(k)) {
+      activeKinds.delete(k);
+      if (!activeKinds.size) activeKinds = new Set(Object.keys(KINDG));
+    } else activeKinds.add(k);
+    for (const c of $('chips').children) c.setAttribute('aria-pressed', activeKinds.has(c.dataset.c));
     render();
   });
   let qT;
@@ -469,6 +520,257 @@
     const open = document.body.classList.toggle('side-open');
     $('side-toggle').setAttribute('aria-expanded', open);
   };
+  $('side-head').addEventListener('click', (e) => {
+    if (e.target.closest('a')) return;
+    const min = document.body.classList.toggle('side-min');
+    $('side-mini').textContent = min ? '▸' : '▾';
+    $('side-mini').setAttribute('aria-label', min ? 'Expand panel' : 'Minimise panel');
+  });
+
+  // ================= community: live events, submissions, ratings =================
+  async function loadCommunity() {
+    try {
+      const [ev, vn] = await Promise.all([api('events'), api('venues')]);
+      for (const [id, v] of [...venues]) if (v.community) venues.delete(id);
+      events = events.filter((e) => !e.community);
+      for (const v of (vn.venues || [])) {
+        venues.set(v.id, { tags: [], links: {}, type: v.type || 'Local business', community: true, ...v });
+      }
+      ratings = vn.ratings || {};
+      for (const e of (ev.events || [])) {
+        if (!venues.has(e.venueId)) continue;
+        events.push({ ...e, business: e.venueId, _venueId: e.venueId, community: true });
+      }
+      render();
+    } catch { /* static-only hosting (no API) — the map still works */ }
+  }
+
+  async function rate(v, stars) {
+    try {
+      await api('rate', { venueId: v.id, stars, client: cid });
+      localStorage.setItem('rated:' + v.id, stars);
+      await loadCommunity();
+      renderVenue(v.id, false);
+    } catch (e) { alert(e.message); }
+  }
+
+  // ---- one shared form overlay ----
+  const formBack = $('form-back'), formEl = $('form');
+  function openForm(html) {
+    formEl.innerHTML = `<button class="close" aria-label="Close">✕</button>` + html;
+    formEl.querySelector('.close').onclick = closeForm;
+    formBack.classList.add('open');
+    formEl.scrollTop = 0;
+  }
+  function closeForm() { formBack.classList.remove('open'); }
+  formBack.addEventListener('click', (e) => { if (e.target === formBack) closeForm(); });
+
+  const DAY_OPTS = [['mon', 'Monday'], ['tue', 'Tuesday'], ['wed', 'Wednesday'], ['thu', 'Thursday'],
+                    ['fri', 'Friday'], ['sat', 'Saturday'], ['sun', 'Sunday']];
+  const daySelect = (id) => `<select id="${id}">${DAY_OPTS.map(([v2, l]) => `<option value="${v2}">${l}</option>`).join('')}</select>`;
+
+  // ---- venue self-service: add / edit / delete events ----
+  function openManage(v) {
+    const saved = localStorage.getItem('code:' + v.id) || '';
+    if (!saved) {
+      openForm(`<h2>${esc(v.name)}</h2>
+        <p class="fsub">Add events, offers and voucher codes — free, and live straight away.</p>
+        <label>Your venue code</label><input id="f-code" placeholder="XXXX-XXXX" autocomplete="off">
+        <p class="fsub">No code yet? Message the Facebook page or email
+          <a href="mailto:hello@aibility.co.uk?subject=${encodeURIComponent('Venue code for ' + v.name)}">hello@aibility.co.uk</a>
+          — it's free and takes a minute.</p>
+        <button class="btn-p" id="f-unlock">Unlock my listings</button>
+        <p class="err" id="f-err"></p>`);
+      $('f-unlock').onclick = async () => {
+        const code = $('f-code').value.trim();
+        $('f-err').textContent = '';
+        try {
+          await api('verify', { venueId: v.id }, code);
+          localStorage.setItem('code:' + v.id, code);
+          openManage(v);
+        } catch (e2) { $('f-err').textContent = e2.message; }
+      };
+      return;
+    }
+
+    openForm(`<h2>${esc(v.name)}</h2>
+      <p class="fsub">Your listings appear on the map straight away. Fields marked * are required.</p>
+      <label>What's happening? *</label><input id="f-title" maxlength="80" placeholder="e.g. Quiz Night, 2-for-1 Pizza, Live Music">
+      <label>Type *</label><select id="f-cat">${Object.entries(CATS).map(([k, c]) =>
+        `<option value="${k}">${c.emoji} ${c.label}</option>`).join('')}</select>
+      <label>When *</label><select id="f-when">
+        <option value="once">A date (or a date range)</option>
+        <option value="weekly">Every week</option>
+        <option value="monthly">Every month</option></select>
+      <div id="f-once" class="row2"><div><label>Date *</label><input type="date" id="f-start"></div>
+        <div><label>Last day (optional)</label><input type="date" id="f-end"></div></div>
+      <div id="f-weekly" class="row2" style="display:none"><div><label>Day *</label>${daySelect('f-day')}</div>
+        <div><label>Until (optional)</label><input type="date" id="f-until"></div></div>
+      <div id="f-monthly" class="row2" style="display:none"><div><label>Which week *</label>
+        <select id="f-week"><option value="1">First</option><option value="2">Second</option>
+        <option value="3">Third</option><option value="4">Fourth</option><option value="-1">Last</option></select></div>
+        <div><label>Day *</label>${daySelect('f-mday')}</div></div>
+      <label>Time (as you'd say it)</label><input id="f-time" maxlength="40" placeholder="e.g. 20:00 · or 12–4pm">
+      <label>Description</label><textarea id="f-desc" maxlength="500" placeholder="A sentence or two."></textarea>
+      <div class="row2"><div><label>Price / offer</label><input id="f-offer" maxlength="60" placeholder="e.g. 2 courses £18"></div>
+        <div><label>Voucher code</label><input id="f-voucher" maxlength="24" placeholder="e.g. SADD10"></div></div>
+      <input type="hidden" id="f-id">
+      <button class="btn-p" id="f-save">Publish listing</button>
+      <p class="err" id="f-err"></p><p class="okmsg" id="f-ok"></p>
+      <div class="mine"><b style="font-size:12px">Your live listings</b><div id="f-mine"></div></div>
+      <button class="btn-s" id="f-forget">Forget my code on this device</button>`);
+
+    $('f-when').onchange = () => {
+      const w = $('f-when').value;
+      $('f-once').style.display = w === 'once' ? '' : 'none';
+      $('f-weekly').style.display = w === 'weekly' ? '' : 'none';
+      $('f-monthly').style.display = w === 'monthly' ? '' : 'none';
+    };
+    $('f-forget').onclick = () => { localStorage.removeItem('code:' + v.id); closeForm(); };
+
+    const refreshMine = () => {
+      const mine = events.filter((e2) => e2.community && e2._venueId === v.id);
+      $('f-mine').innerHTML = mine.length ? mine.map((e2) => `<div class="me"><span>${esc(e2.title)}${
+        e2.recurrence ? ' · ' + (e2.recurrence.freq === 'weekly' ? 'weekly' : 'monthly') : e2.start ? ' · ' + e2.start : ''
+      }</span><span><button data-edit="${e2.id}">Edit</button> <button data-del="${e2.id}">Delete</button></span></div>`).join('')
+        : `<p class="fsub" style="margin-top:6px">Nothing yet — your first listing is one form away.</p>`;
+      for (const b of $('f-mine').querySelectorAll('[data-del]')) {
+        b.onclick = async () => {
+          try {
+            await api('events/delete', { venueId: v.id, id: b.dataset.del }, saved);
+            await loadCommunity(); refreshMine();
+          } catch (e3) { $('f-err').textContent = e3.message; }
+        };
+      }
+      for (const b of $('f-mine').querySelectorAll('[data-edit]')) {
+        b.onclick = () => {
+          const e2 = events.find((x) => x.id === b.dataset.edit);
+          if (!e2) return;
+          $('f-id').value = e2.id; $('f-title').value = e2.title; $('f-cat').value = e2.category;
+          $('f-time').value = e2.time || ''; $('f-desc').value = e2.description || '';
+          $('f-offer').value = e2.offer || ''; $('f-voucher').value = e2.voucher || '';
+          if (e2.recurrence && e2.recurrence.freq === 'weekly') {
+            $('f-when').value = 'weekly'; $('f-day').value = e2.recurrence.day; $('f-until').value = e2.recurrence.until || '';
+          } else if (e2.recurrence) {
+            $('f-when').value = 'monthly'; $('f-week').value = e2.recurrence.week; $('f-mday').value = e2.recurrence.day;
+          } else {
+            $('f-when').value = 'once'; $('f-start').value = e2.start || ''; $('f-end').value = e2.end || '';
+          }
+          $('f-when').onchange();
+          $('f-ok').textContent = 'Editing "' + e2.title + '" — publish to save changes.';
+        };
+      }
+    };
+    refreshMine();
+
+    $('f-save').onclick = async () => {
+      $('f-err').textContent = ''; $('f-ok').textContent = '';
+      const w = $('f-when').value;
+      const event = {
+        id: $('f-id').value || undefined,
+        title: $('f-title').value, category: $('f-cat').value,
+        time: $('f-time').value, description: $('f-desc').value,
+        offer: $('f-offer').value, voucher: $('f-voucher').value,
+      };
+      if (w === 'once') { event.start = $('f-start').value; event.end = $('f-end').value || undefined; }
+      else if (w === 'weekly') { event.recurrence = { freq: 'weekly', day: $('f-day').value, until: $('f-until').value || undefined }; }
+      else { event.recurrence = { freq: 'monthly', week: +$('f-week').value, day: $('f-mday').value }; }
+      try {
+        await api('events/submit', { venueId: v.id, event }, saved);
+        await loadCommunity();
+        refreshMine();
+        $('f-id').value = ''; $('f-title').value = ''; $('f-desc').value = '';
+        $('f-offer').value = ''; $('f-voucher').value = ''; $('f-time').value = '';
+        $('f-ok').textContent = 'Published — it\'s live on the map.';
+      } catch (e2) { $('f-err').textContent = e2.message; }
+    };
+  }
+
+  // ---- anyone can propose a missing business (moderated) ----
+  function openAddBusiness(draft) {
+    const b = draft || {};
+    const KIND_OPTS = [['pub', '🍻 Pub or bar'], ['cafe', '☕ Café or ice cream'], ['restaurant', '🍽️ Restaurant'],
+      ['takeaway', '🍟 Takeaway'], ['hall', '🎭 Hall, theatre or venue'], ['attraction', '🏛️ Attraction'],
+      ['club', '🎺 Club'], ['sport', '🎾 Sports club']];
+    const VILLAGES = ['Uppermill', 'Delph', 'Dobcross', 'Diggle', 'Greenfield', 'Grasscroft', 'Lydgate',
+      'Scouthead', 'Denshaw', 'Friezland', 'Springhead', 'Grotton', 'Austerlands', 'Strinesdale'];
+    openForm(`<h2>Add a business or place</h2>
+      <p class="fsub">Free listing, open to everyone. We check new places before they appear — usually the same day.</p>
+      <label>Name *</label><input id="b-name" maxlength="60" value="${esc(b.name || '')}">
+      <div class="row2"><div><label>What is it? *</label><select id="b-kind">${KIND_OPTS.map(([k, l]) =>
+        `<option value="${k}"${b.kind === k ? ' selected' : ''}>${l}</option>`).join('')}</select></div>
+      <div><label>Village *</label><select id="b-village">${VILLAGES.map((x) =>
+        `<option${b.village === x ? ' selected' : ''}>${x}</option>`).join('')}</select></div></div>
+      <label>Address</label><input id="b-addr" maxlength="120" value="${esc(b.address || '')}">
+      <label>A sentence about it</label><textarea id="b-blurb" maxlength="300">${esc(b.blurb || '')}</textarea>
+      <div class="row2"><div><label>Website</label><input id="b-web" maxlength="200" placeholder="https://…" value="${esc(b.website || '')}"></div>
+      <div><label>Contact email * (never shown)</label><input id="b-email" maxlength="120" value="${esc(b.email || '')}"></div></div>
+      <input id="b-web2" class="hidden-field" tabindex="-1" autocomplete="off">
+      <label>Where is it? *</label>
+      <button class="btn-s" id="b-place">${b.lat ? '📍 Pin placed — tap to move it' : '📍 Tap to place the pin on the map'}</button>
+      <button class="btn-p" id="b-save">Submit for approval</button>
+      <p class="err" id="b-err"></p>`);
+
+    const grab = () => ({
+      name: $('b-name').value, kind: $('b-kind').value, village: $('b-village').value,
+      address: $('b-addr').value, blurb: $('b-blurb').value, website: $('b-web').value,
+      email: $('b-email').value, website2: $('b-web2').value, lat: b.lat, lng: b.lng,
+    });
+    $('b-place').onclick = () => {
+      const cur = grab();
+      closeForm();
+      document.body.classList.add('placing');
+      placing = (lat, lng) => { cur.lat = lat; cur.lng = lng; openAddBusiness(cur); };
+    };
+    $('b-save').onclick = async () => {
+      $('b-err').textContent = '';
+      try {
+        await api('venues/submit', grab());
+        openForm(`<h2>Thanks — it's in the queue 🎉</h2>
+          <p class="fsub">We check new places before they appear (usually the same day). Your venue
+          code for adding events will arrive by email once it's approved.</p>
+          <button class="btn-p" id="b-done">Back to the map</button>`);
+        $('b-done').onclick = closeForm;
+      } catch (e2) { $('b-err').textContent = e2.message; }
+    };
+  }
+
+  // ---- moderation (open the site with #admin) ----
+  function openAdmin() {
+    openForm(`<h2>Moderation</h2>
+      <label>Admin code</label><input id="a-code" type="password" value="${esc(localStorage.getItem('swo-admin') || '')}">
+      <button class="btn-p" id="a-load">Load submissions</button>
+      <p class="err" id="a-err"></p><div class="mine" id="a-list"></div>`);
+    $('a-load').onclick = async () => {
+      const code = $('a-code').value.trim();
+      $('a-err').textContent = '';
+      try {
+        const r = await api('moderate', { action: 'list' }, code);
+        localStorage.setItem('swo-admin', code);
+        const rows = (r.venues || []).map((v2) => `<div class="me"><span><b>${esc(v2.name)}</b>
+          (${esc(v2.kind)}, ${esc(v2.village)}) · ${esc(v2.status)}<br>
+          <span style="color:var(--muted)">${esc(v2.blurb || '')}<br>${esc(v2.email)} · code ${esc(v2.code)}</span></span>
+          <span>${v2.status === 'pending' ? `<button data-ap="${v2.id}">Approve</button>` : ''}
+          <button data-rj="${v2.id}">Remove</button></span></div>`).join('');
+        $('a-list').innerHTML = rows || '<p class="fsub">No submissions yet.</p>';
+        for (const b of $('a-list').querySelectorAll('[data-ap]')) {
+          b.onclick = async () => {
+            const res = await api('moderate', { action: 'approve', id: b.dataset.ap }, code);
+            await loadCommunity();
+            alert(`Approved. Send their code ${res.code} to ${res.email}`);
+            $('a-load').onclick();
+          };
+        }
+        for (const b of $('a-list').querySelectorAll('[data-rj]')) {
+          b.onclick = async () => {
+            await api('moderate', { action: 'reject', id: b.dataset.rj }, code);
+            await loadCommunity();
+            $('a-load').onclick();
+          };
+        }
+      } catch (e2) { $('a-err').textContent = e2.message; }
+    };
+  }
 
   // ================= boot =================
   Promise.all([
@@ -503,6 +805,9 @@
       }
       events = data.events.filter((ev) => venues.has(ev._venueId));
       MapArt.build($('basemap'), project, W, H, geo);
+      loadCommunity();
+      $('add-biz').onclick = (e) => { e.preventDefault(); openAddBusiness(); };
+      if (location.hash === '#admin') openAdmin();
       // dotted footpath trails for the walks, drawn onto the basemap
       let rh = '<g id="routes">';
       for (const v of venues.values()) {

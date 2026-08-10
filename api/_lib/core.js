@@ -1,0 +1,305 @@
+/* core.js — shared logic for the community API (events, venues, ratings).
+   Used by the Azure Functions in api/ and by scripts/dev-server.js locally.
+
+   Auth model:
+   - Each venue has a short access code derived as HMAC(VENUE_CODE_SECRET,
+     venueId) — no accounts. Hand the code to the venue once
+     (scripts/venue-codes.js prints them); the server recomputes it to check.
+     Event ids must start with their venue id, so venues can't touch each
+     other's listings.
+   - New business submissions are public but land in a moderation queue;
+     nothing shows on the map until approved with the ADMIN_CODE.
+   - Ratings are anonymous, one per browser per venue (the client sends a
+     random id it keeps in localStorage; re-rating replaces the old vote).
+
+   Storage: Cosmos DB when COSMOS_CONNECTION is set (production); otherwise
+   JSON files under .local-data/ (development). In Azure with no Cosmos the
+   API refuses politely rather than losing data. */
+
+'use strict';
+const crypto = require('crypto');
+const fs = require('fs');
+const path = require('path');
+
+const CATS = ['offer', 'food', 'music', 'quiz', 'market', 'community'];
+const DOWS = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+const KINDS = ['pub', 'cafe', 'restaurant', 'takeaway', 'hall', 'attraction', 'club', 'sport'];
+const SECRET = process.env.VENUE_CODE_SECRET || 'dev-secret-change-me';
+const ADMIN = process.env.ADMIN_CODE || 'dev-admin';
+// the illustrated map's bounds — a submitted pin must land on the drawing
+const LAT_TOP = 53.612, LAT_BOT = 53.506, LNG_L = -2.135, LNG_R = -1.9106;
+
+// ---------- codes ----------
+function venueCode(venueId) {
+  const h = crypto.createHmac('sha256', SECRET).update(String(venueId)).digest();
+  const alpha = 'ABCDEFGHJKMNPQRSTVWXYZ23456789'; // no 0/O, 1/I/L confusion
+  let out = '';
+  for (let i = 0; i < 8; i++) out += alpha[h[i] % alpha.length];
+  return out.slice(0, 4) + '-' + out.slice(4);
+}
+function safeEq(a, b) {
+  const A = Buffer.from(String(a)), B = Buffer.from(String(b));
+  return A.length === B.length && crypto.timingSafeEqual(A, B);
+}
+function codeOk(venueId, code) {
+  if (!venueId || !code) return false;
+  const want = venueCode(venueId).replace('-', '');
+  const got = String(code).toUpperCase().replace(/[^A-Z0-9]/g, '');
+  return safeEq(got, want);
+}
+const adminOk = (code) => !!code && safeEq(String(code), ADMIN);
+
+// ---------- storage ----------
+class FileStore {
+  constructor(dir) { this.dir = dir; }
+  _file(col) { return path.join(this.dir, col + '.json'); }
+  _read(col) {
+    try { return JSON.parse(fs.readFileSync(this._file(col), 'utf8')); }
+    catch { return []; }
+  }
+  _write(col, all) {
+    fs.mkdirSync(this.dir, { recursive: true });
+    fs.writeFileSync(this._file(col), JSON.stringify(all, null, 1));
+  }
+  async list(col) { return this._read(col); }
+  async upsert(col, item) {
+    const all = this._read(col).filter((e) => e.id !== item.id);
+    all.push(item);
+    this._write(col, all);
+  }
+  async remove(col, id, pk) {
+    const all = this._read(col);
+    const keep = all.filter((e) => !(e.id === id && (pk === undefined || e[colPk(col)] === pk)));
+    this._write(col, keep);
+    return keep.length !== all.length;
+  }
+}
+const colPk = (col) => (col === 'venues' ? 'id' : 'venueId');
+
+class CosmosStore {
+  constructor() {
+    const { CosmosClient } = require('@azure/cosmos');
+    this.client = new CosmosClient(process.env.COSMOS_CONNECTION);
+    this.containers = new Map();
+  }
+  async container(col) {
+    if (!this.containers.has(col)) {
+      this.containers.set(col, (async () => {
+        const { database } = await this.client.databases.createIfNotExists({ id: 'whatson' });
+        const { container } = await database.containers.createIfNotExists({
+          id: col, partitionKey: { paths: ['/' + colPk(col)] },
+        });
+        return container;
+      })());
+    }
+    return this.containers.get(col);
+  }
+  async list(col) {
+    const c = await this.container(col);
+    const { resources } = await c.items.query('SELECT * FROM c').fetchAll();
+    return resources;
+  }
+  async upsert(col, item) {
+    const c = await this.container(col);
+    await c.items.upsert(item);
+  }
+  async remove(col, id, pk) {
+    const c = await this.container(col);
+    try { await c.item(id, pk === undefined ? id : pk).delete(); return true; }
+    catch (e) { if (e.code === 404) return false; throw e; }
+  }
+}
+
+let _store = null;
+function getStore() {
+  if (_store) return _store;
+  if (process.env.COSMOS_CONNECTION) _store = new CosmosStore();
+  else if (process.env.WEBSITE_INSTANCE_ID) return null; // Azure, no DB configured
+  else _store = new FileStore(path.join(__dirname, '..', '..', '.local-data'));
+  return _store;
+}
+
+// ---------- validation ----------
+const str = (v, max) => (typeof v === 'string' ? v.trim().slice(0, max) : '');
+const isDate = (v) => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v);
+const slug = (name) => name.toLowerCase().replace(/^the\s+/, '').replace(/&/g, 'and')
+  .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 50);
+
+function validateEvent(venueId, input) {
+  const e = input || {};
+  const title = str(e.title, 80);
+  if (!title) return { error: 'A title is required.' };
+  if (!CATS.includes(e.category)) return { error: 'Pick a category.' };
+  const out = { venueId, title, category: e.category, source: 'venue' };
+  const time = str(e.time, 40); if (time) out.time = time;
+  const description = str(e.description, 500); if (description) out.description = description;
+  const offer = str(e.offer, 60); if (offer) out.offer = offer;
+  const voucher = str(e.voucher, 24).toUpperCase().replace(/[^A-Z0-9-]/g, '');
+  if (voucher) out.voucher = voucher;
+
+  const r = e.recurrence;
+  if (r && typeof r === 'object') {
+    if (r.freq === 'weekly') {
+      if (!DOWS.includes(r.day)) return { error: 'Pick a day of the week.' };
+      out.recurrence = { freq: 'weekly', day: r.day };
+      if (isDate(r.until)) out.recurrence.until = r.until;
+      if (isDate(r.from)) out.recurrence.from = r.from;
+    } else if (r.freq === 'monthly') {
+      if (!DOWS.includes(r.day)) return { error: 'Pick a day of the week.' };
+      if (![1, 2, 3, 4, -1].includes(r.week)) return { error: 'Pick which week of the month.' };
+      out.recurrence = { freq: 'monthly', week: r.week, day: r.day };
+    } else return { error: 'Unknown repeat type.' };
+  } else {
+    if (!isDate(e.start)) return { error: 'A date is required.' };
+    out.start = e.start;
+    if (isDate(e.end) && e.end >= e.start) out.end = e.end;
+  }
+
+  if (e.id) {
+    if (typeof e.id !== 'string' || !e.id.startsWith(venueId + '-')) {
+      return { error: 'That listing does not belong to this venue.' };
+    }
+    out.id = e.id;
+  } else {
+    out.id = `${venueId}-${crypto.randomUUID().slice(0, 8)}`;
+  }
+  out.updated = new Date().toISOString();
+  return { event: out };
+}
+
+function validateVenue(input) {
+  const v = input || {};
+  if (str(v.website2, 50)) return { error: 'Rejected.' }; // honeypot field
+  const name = str(v.name, 60);
+  if (name.length < 2) return { error: 'A business name is required.' };
+  if (!KINDS.includes(v.kind)) return { error: 'Pick what kind of place it is.' };
+  const village = str(v.village, 30);
+  if (!village) return { error: 'Which village is it in?' };
+  const email = str(v.email, 120);
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return { error: 'A contact email is needed so we can send you your listings code.' };
+  const lat = Number(v.lat), lng = Number(v.lng);
+  if (!(lat > LAT_BOT && lat < LAT_TOP && lng > LNG_L && lng < LNG_R)) {
+    return { error: 'Tap the map to place your pin first.' };
+  }
+  const out = {
+    id: 'c-' + slug(name) + '-' + crypto.randomUUID().slice(0, 6),
+    name, kind: v.kind, village,
+    lat: Math.round(lat * 1e5) / 1e5, lng: Math.round(lng * 1e5) / 1e5,
+    type: str(v.type, 40) || undefined,
+    address: str(v.address, 120) || undefined,
+    blurb: str(v.blurb, 300) || undefined,
+    email,                                  // kept private — stripped on read
+    status: 'pending',
+    submitted: new Date().toISOString(),
+  };
+  const site = str(v.website, 200);
+  if (/^https?:\/\/\S+$/.test(site)) out.links = { website: site };
+  return { venue: out };
+}
+
+// ---------- handlers (transport-agnostic) ----------
+const json = (status, body) => ({ status, body });
+const noStore = () => json(503, { error: 'Listing storage is not configured yet — email hello@aibility.co.uk.' });
+const publicVenue = ({ email, status, submitted, ...rest }) => rest;
+
+async function handleEventsList() {
+  const store = getStore();
+  if (!store) return noStore();
+  return json(200, { events: await store.list('events') });
+}
+async function handleVerify(body, code) {
+  const venueId = str(body && body.venueId, 80);
+  if (!codeOk(venueId, code)) return json(401, { error: 'That code is not right for this venue.' });
+  return json(200, { ok: true });
+}
+async function handleEventUpsert(body, code) {
+  const venueId = str(body && body.venueId, 80);
+  if (!codeOk(venueId, code)) return json(401, { error: 'That code is not right for this venue.' });
+  const store = getStore();
+  if (!store) return noStore();
+  const v = validateEvent(venueId, body.event);
+  if (v.error) return json(400, { error: v.error });
+  await store.upsert('events', v.event);
+  return json(200, { ok: true, event: v.event });
+}
+async function handleEventDelete(body, code) {
+  const venueId = str(body && body.venueId, 80);
+  if (!codeOk(venueId, code)) return json(401, { error: 'That code is not right for this venue.' });
+  const store = getStore();
+  if (!store) return noStore();
+  const removed = await store.remove('events', str(body.id, 120), venueId);
+  return json(removed ? 200 : 404, removed ? { ok: true } : { error: 'Listing not found.' });
+}
+
+async function handleVenuesList() {
+  const store = getStore();
+  if (!store) return noStore();
+  const [venues, ratings] = await Promise.all([store.list('venues'), store.list('ratings')]);
+  const agg = {};
+  for (const r of ratings) {
+    const a = (agg[r.venueId] = agg[r.venueId] || { sum: 0, count: 0 });
+    a.sum += r.stars; a.count++;
+  }
+  const out = {};
+  for (const [k, a] of Object.entries(agg)) {
+    out[k] = { avg: Math.round((a.sum / a.count) * 10) / 10, count: a.count };
+  }
+  return json(200, {
+    venues: venues.filter((v) => v.status === 'approved').map(publicVenue),
+    ratings: out,
+  });
+}
+async function handleVenueSubmit(body) {
+  const store = getStore();
+  if (!store) return noStore();
+  const v = validateVenue(body);
+  if (v.error) return json(400, { error: v.error });
+  await store.upsert('venues', v.venue);
+  return json(200, { ok: true, id: v.venue.id });
+}
+async function handleModerate(body, code) {
+  if (!adminOk(code)) return json(401, { error: 'Wrong admin code.' });
+  const store = getStore();
+  if (!store) return noStore();
+  const action = str(body && body.action, 20);
+  if (action === 'list') {
+    const venues = await store.list('venues');
+    const withCodes = venues.map((v) => ({ ...v, code: venueCode(v.id) }));
+    return json(200, { venues: withCodes });
+  }
+  const id = str(body && body.id, 120);
+  const all = await store.list('venues');
+  const v = all.find((x) => x.id === id);
+  if (!v) return json(404, { error: 'Not found.' });
+  if (action === 'approve') {
+    v.status = 'approved';
+    await store.upsert('venues', v);
+    return json(200, { ok: true, code: venueCode(v.id), email: v.email });
+  }
+  if (action === 'reject') {
+    await store.remove('venues', id, id);
+    return json(200, { ok: true });
+  }
+  return json(400, { error: 'Unknown action.' });
+}
+async function handleRate(body) {
+  const store = getStore();
+  if (!store) return noStore();
+  const venueId = str(body && body.venueId, 80);
+  const client = str(body && body.client, 64);
+  const stars = Number(body && body.stars);
+  if (!venueId || client.length < 8) return json(400, { error: 'Bad request.' });
+  if (!(stars >= 1 && stars <= 5)) return json(400, { error: 'Stars must be 1–5.' });
+  const hash = crypto.createHash('sha256').update(client).digest('hex').slice(0, 16);
+  await store.upsert('ratings', {
+    id: `${venueId}-${hash}`, venueId, stars: Math.round(stars),
+    updated: new Date().toISOString(),
+  });
+  return json(200, { ok: true });
+}
+
+module.exports = {
+  venueCode, codeOk,
+  handleEventsList, handleVerify, handleEventUpsert, handleEventDelete,
+  handleVenuesList, handleVenueSubmit, handleModerate, handleRate,
+};

@@ -35,7 +35,8 @@ const VILLAGES = [
   ['Lydgate', 53.5409, -2.0378, 0.8], ['Scouthead', 53.5477, -2.0532, 0.8],
   ['Denshaw', 53.5860, -2.0440, 2.3], ['Friezland', 53.5322, -2.0035, 0.55],
   ['Springhead', 53.5410, -2.0700, 0.7], ['Grotton', 53.5430, -2.0600, 0.8],
-  ['Austerlands', 53.5520, -2.0680, 0.8], ['Greenfield', 53.5320, -1.9660, 1.2], // Dovestone
+  ['Austerlands', 53.5520, -2.0680, 0.8], ['Strinesdale', 53.5583, -2.0562, 0.35],
+  ['Greenfield', 53.5320, -1.9660, 1.2], // Dovestone
   ['Greenfield', 53.5306, -2.0272, 0.45], // Well-i-Hole (Saddleworth CC)
 ];
 

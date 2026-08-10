@@ -1,20 +1,29 @@
 # The data
 
-Two layers, deliberately separate:
+Three layers, deliberately separate:
 
-| File | What | Where it comes from |
+| Layer | What | Where it comes from |
 | --- | --- | --- |
 | `data/venues.json` | **The directory** — every pub, café, restaurant, takeaway, hall, museum and sports club in Saddleworth, with real names, coordinates and any contact details | **Baked from OpenStreetMap** by `scripts/build-venues.js` — don't hand-edit |
-| `data/events.json` | **The editorial layer** — events, offers, blurbs, tags, menus, photos | Hand-written; this is the file you edit day-to-day |
-| `data/basemap.json` | The map itself — roads, canal, river, rail, reservoirs, woods, golf course | Baked from OpenStreetMap by `scripts/build-basemap.js` |
+| `data/events.json` | **The editorial layer** — venue blurbs/tags, walks, sights, and hand-curated events (verified real ones, each with a `source` URL) | Hand-written; the file you edit |
+| the **community API** (`api/`) | Day-to-day events, offers and voucher codes added by venues themselves; community-submitted businesses (moderated); star ratings | Cosmos DB in production, `.local-data/` files in dev |
 
 Re-running the bake scripts refreshes geography and the directory (new venues
-appear automatically as OSM learns about them) **without touching editorial**.
+appear automatically as OSM learns about them) **without touching editorial or
+community data**.
 
-> **Demo status:** the venues are real and really there; the events, offers,
-> menus, times and prices are *illustrative examples*, badged as demo listings
-> in the UI. When a venue signs up for real, replace its demo entries with what
-> they actually send us.
+## How the community layer works
+
+- Every business's card has *"Run this place? Add your events"*. A venue
+  unlocks it with its **venue code** (derived from `VENUE_CODE_SECRET` —
+  `scripts/venue-codes.js` prints them; hand one to a venue once, e.g. by
+  Facebook message). Their listings go live immediately and they can edit or
+  delete them.
+- *"Add a missing business"* (left panel) is open to everyone but lands in a
+  **moderation queue** — open the site with `#admin` to approve or remove.
+  Approval reveals the new venue's code and contact email so you can send it.
+- **Ratings** are anonymous 1–5 stars, one per browser per venue; re-rating
+  replaces the old vote. No review text, so nothing to moderate.
 
 ## Refreshing the baked data
 

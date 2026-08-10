@@ -258,11 +258,7 @@
         }
       }
     }
-    // Saddleworth Viaduct & the Standedge Tunnel mouth
-    const [vx, vy] = P(53.5448, -2.0032);
-    s += `<g transform="translate(${r1(vx)},${r1(vy)}) rotate(-24)"><rect x="-26" y="-5" width="52" height="12" fill="${COL.stone}" stroke="${INK}" stroke-width="1.6"/>`;
-    for (let i = -2; i <= 2; i++) s += `<path d="M${i * 10 - 3.5},7 a3.5,4.5 0 0 1 7,0z" fill="${COL.paper}" stroke="${INK}" stroke-width="1.2"/>`;
-    s += `</g>`;
+    // the Standedge Tunnel mouth
     const [tx, ty] = P(53.5735, -1.9955);
     s += `<g transform="translate(${r1(tx)},${r1(ty)})">
             <path d="M-11,4 a11,11 0 0 1 22,0z" fill="#2e2b24" stroke="${INK}" stroke-width="2"/>
@@ -295,21 +291,19 @@
         <rect x="4" y="-9" width="11" height="9" fill="${COL.stone}" stroke="${INK}" stroke-width="1.3"/>
         <path d="M3,-9 L9.5,-14.5 L16,-9z" fill="${COL.slate}" stroke="${INK}" stroke-width="1.3"/></g>`;
     }
-    function mill(la, ln) {
-      const [x, y] = P(la, ln);
-      return `<g transform="translate(${r1(x)},${r1(y)})">
-        <rect x="-9" y="-11" width="18" height="11" fill="${COL.brick}" stroke="${INK}" stroke-width="1.3"/>
-        <path d="M-10,-11 L-1,-16 L8,-11" fill="none" stroke="${INK}" stroke-width="1.3"/>
-        <rect x="10" y="-24" width="4.5" height="24" fill="${COL.brick}" stroke="${INK}" stroke-width="1.3"/>
-        <path d="M12 -26 q3 -3 1.5 -6" fill="none" stroke="#9b968a" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/></g>`;
-    }
     s += church(53.554, -1.9995);
-    s += mill(53.5493, -2.0028);
-    s += mill(53.5405, -1.9968);
     const [ox, oy] = P(53.5455, -1.9868);
     s += `<g transform="translate(${r1(ox)},${r1(oy)})">
       <path d="M-3.5,0 L-1.6,-19 L1.6,-19 L3.5,0z" fill="${COL.stone}" stroke="${INK}" stroke-width="1.4"/>
       <rect x="-5" y="0" width="10" height="3.4" fill="${COL.stone}" stroke="${INK}" stroke-width="1.4"/></g>`;
+    // the Wharmton mast — visible from every village, so it goes on the map
+    const [mx2, my2] = P(53.5398, -2.0072);
+    s += `<g transform="translate(${r1(mx2)},${r1(my2)})">
+      <line x1="0" y1="0" x2="0" y2="-24" stroke="${INK}" stroke-width="1.7"/>
+      <line x1="-4.5" y1="-6" x2="4.5" y2="-6" stroke="${INK}" stroke-width="1.2"/>
+      <line x1="-3.5" y1="-12" x2="3.5" y2="-12" stroke="${INK}" stroke-width="1.2"/>
+      <line x1="-2.5" y1="-18" x2="2.5" y2="-18" stroke="${INK}" stroke-width="1.2"/>
+      <circle cy="-25.5" r="1.7" fill="#c9463d" stroke="${INK}" stroke-width="0.8"/></g>`;
     // a sail on Dovestone
     const [sx2, sy2] = P(53.5312, -1.9638);
     s += `<g transform="translate(${r1(sx2)},${r1(sy2)})">
@@ -374,7 +368,8 @@
     s += label(53.5455, -2.0595, 'Scouthead', 15);
     s += label(53.5888, -2.0505, 'Denshaw', 17);
     s += label(53.5262, -1.9585, 'Dove Stone', 13);
-    s += label(53.5822, -2.0455, 'Castleshaw', 12);
+    s += label(53.589, -2.0125, 'Castleshaw', 12);
+    s += label(53.5372, -2.01, 'Wharmton', 12);
     s += label(53.5772, -1.9885, 'Standedge', 13, -8);
     s += label(53.5487, -1.9835, 'Pots &amp; Pans', 12);
     s += area(53.558, -1.9345, 'SADDLEWORTH  MOOR', -78);

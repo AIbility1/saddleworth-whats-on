@@ -1,9 +1,9 @@
 {
-  "note": "Demo listings. The venue directory (data/venues.json) is baked from OpenStreetMap by scripts/build-venues.js — real places, real coordinates. This file is the editorial layer: events, offers, blurbs, tags and menus. Events, offers, menus, times and prices are illustrative examples, clearly badged as demo listings in the UI. See DATA.md.",
+  "note": "The venue directory (data/venues.json) is baked from OpenStreetMap by scripts/build-venues.js - real places, real coordinates. This file is the editorial layer: venue blurbs/tags, walks and sights, plus any hand-curated events (verified real ones only, with a source URL). Day-to-day events come from venues themselves through the self-service API. See DATA.md.",
   "venueExtras": {
     "church-inn": {
       "type": "Pub & brewery",
-      "blurb": "Hilltop pub beside St Chad's, brewing its own ales in the yard. Home of the Saddleworth Morris Men and the starting point of the Rushcart festival.",
+      "blurb": "Hilltop pub beside St Chad’s, brewing its own ales in the yard. Home of the Saddleworth Morris Men — the Rushcart weekend ends here with dancing and gurning.",
       "tags": [
         "Own-brew ales",
         "Dog friendly",
@@ -28,47 +28,7 @@
         "Live music",
         "Sunday roasts",
         "Cask ale"
-      ],
-      "menu": {
-        "note": "Sample menu for demonstration",
-        "sections": [
-          {
-            "name": "Pub Classics",
-            "items": [
-              {
-                "name": "Hand-battered fish & chips",
-                "desc": "mushy peas, curry sauce on the side",
-                "price": "£14.50"
-              },
-              {
-                "name": "Waggon burger",
-                "desc": "smoked cheddar, burger sauce, skin-on fries",
-                "price": "£13.50"
-              },
-              {
-                "name": "Butternut & sage lasagne",
-                "desc": "garlic bread, dressed leaves",
-                "price": "£12.50"
-              }
-            ]
-          },
-          {
-            "name": "Sunday (till they're gone)",
-            "items": [
-              {
-                "name": "Roast beef & Yorkshire pudding",
-                "desc": "duck-fat roasties, real gravy",
-                "price": "£16"
-              },
-              {
-                "name": "Nut roast",
-                "desc": "all the same trimmings",
-                "price": "£13.50"
-              }
-            ]
-          }
-        ]
-      }
+      ]
     },
     "commie": {
       "type": "Pub",
@@ -119,61 +79,6 @@
       ],
       "links": {
         "website": "https://www.theoldbellinn.co.uk"
-      },
-      "menu": {
-        "note": "Sample menu for demonstration",
-        "sections": [
-          {
-            "name": "Small Plates",
-            "items": [
-              {
-                "name": "Gin-cured salmon",
-                "desc": "cucumber, dill crème fraîche, rye crisp",
-                "price": "£10"
-              },
-              {
-                "name": "Black pudding scotch egg",
-                "desc": "Delph-made, mustard mayo",
-                "price": "£8.50"
-              }
-            ]
-          },
-          {
-            "name": "Mains",
-            "items": [
-              {
-                "name": "Old Bell steak & juniper pie",
-                "desc": "shortcrust, thick-cut chips, jug of gravy",
-                "price": "£17.50"
-              },
-              {
-                "name": "Beer-battered haddock",
-                "desc": "mushy peas, tartare, chips",
-                "price": "£16"
-              },
-              {
-                "name": "Wild mushroom & thyme risotto",
-                "desc": "aged parmesan, truffle oil",
-                "price": "£15"
-              }
-            ]
-          },
-          {
-            "name": "From the Gin Emporium",
-            "items": [
-              {
-                "name": "Gin flight of three",
-                "desc": "picked by the emporium team, paired tonics",
-                "price": "£14"
-              },
-              {
-                "name": "Signature G&T of the week",
-                "desc": "ask what's glowing on the wall",
-                "price": "£8"
-              }
-            ]
-          }
-        ]
       }
     },
     "white-lion": {
@@ -214,63 +119,13 @@
     },
     "grandpa-greenes": {
       "type": "Ice cream & café",
-      "blurb": "Award-winning luxury ice cream served right on the canal towpath — deckchairs, ducks and sundaes with a view of the moors.",
+      "blurb": "Award-winning luxury ice cream served right on the canal towpath — deckchairs, ducks and sundaes with a view of the moors. Closing September 2026 for a complete rebuild of the canalside site; reopening December 2026.",
       "tags": [
-        "Canalside",
+        "Rebuilding late 2026",
         "Award-winning ice cream",
         "Family friendly",
         "Dog friendly"
-      ],
-      "menu": {
-        "note": "Sample menu for demonstration",
-        "sections": [
-          {
-            "name": "Scoops",
-            "items": [
-              {
-                "name": "Single / double / triple",
-                "desc": "twenty-odd flavours churned on site",
-                "price": "£3 / £4.50 / £6"
-              },
-              {
-                "name": "Flavour of the month",
-                "desc": "ask at the hatch — it goes fast",
-                "price": "£3.50"
-              }
-            ]
-          },
-          {
-            "name": "Sundaes on the Towpath",
-            "items": [
-              {
-                "name": "The Standedge",
-                "desc": "chocolate, honeycomb, fudge, a flake like a tunnel",
-                "price": "£7.50"
-              },
-              {
-                "name": "Eton mess of the moors",
-                "desc": "meringue, berries, bilberry ripple",
-                "price": "£7"
-              }
-            ]
-          },
-          {
-            "name": "Warm Things",
-            "items": [
-              {
-                "name": "Proper hot chocolate",
-                "desc": "with or without a scoop dropped in",
-                "price": "£3.80"
-              },
-              {
-                "name": "Barista coffee",
-                "desc": "affogato it for £2 more",
-                "price": "from £2.90"
-              }
-            ]
-          }
-        ]
-      }
+      ]
     },
     "railway-inn": {
       "type": "Pub",
@@ -319,66 +174,6 @@
       ],
       "links": {
         "website": "https://www.thewhitehart.co.uk"
-      },
-      "menu": {
-        "note": "Sample menu for demonstration",
-        "sections": [
-          {
-            "name": "To Start",
-            "items": [
-              {
-                "name": "Saddleworth charcuterie board",
-                "desc": "cured in-house, pickles, toasted sourdough",
-                "price": "£12"
-              },
-              {
-                "name": "Roast cauliflower soup",
-                "desc": "brown butter, hazelnut, chive oil",
-                "price": "£8"
-              },
-              {
-                "name": "Potted Morecambe Bay shrimp",
-                "desc": "mace butter, granary toast",
-                "price": "£11"
-              }
-            ]
-          },
-          {
-            "name": "Mains",
-            "items": [
-              {
-                "name": "Herdwick lamb rump",
-                "desc": "sheep's curd, wild garlic, hispi cabbage",
-                "price": "£26"
-              },
-              {
-                "name": "Fish pie under a cheddar crust",
-                "desc": "smoked haddock, salmon, buttered greens",
-                "price": "£19"
-              },
-              {
-                "name": "Beetroot & lentil wellington",
-                "desc": "horseradish cream, red-wine gravy",
-                "price": "£17"
-              }
-            ]
-          },
-          {
-            "name": "Puddings",
-            "items": [
-              {
-                "name": "Sticky toffee pudding",
-                "desc": "salted caramel, clotted cream",
-                "price": "£8.50"
-              },
-              {
-                "name": "Lancashire cheese slate",
-                "desc": "oat biscuits, quince, celery",
-                "price": "£11"
-              }
-            ]
-          }
-        ]
       }
     },
     "rams-head-inn": {
@@ -388,62 +183,7 @@
         "Fine dining",
         "Farm shop",
         "Moorland setting"
-      ],
-      "menu": {
-        "note": "Sample menu for demonstration",
-        "sections": [
-          {
-            "name": "Starters",
-            "items": [
-              {
-                "name": "Moorland game terrine",
-                "desc": "spiced pear chutney, brioche",
-                "price": "£10.50"
-              },
-              {
-                "name": "Baked queenie scallops",
-                "desc": "garlic & gruyère crumb",
-                "price": "£12"
-              }
-            ]
-          },
-          {
-            "name": "From the Moor & Market",
-            "items": [
-              {
-                "name": "Denshaw beef & ale suet pudding",
-                "desc": "mash, buttered kale, proper gravy",
-                "price": "£18.50"
-              },
-              {
-                "name": "Pan-roast pheasant breast",
-                "desc": "smoked bacon, bread sauce, game jus",
-                "price": "£21"
-              },
-              {
-                "name": "Farm-shop cheese & onion pie",
-                "desc": "mushy peas, hand-cut chips",
-                "price": "£15"
-              }
-            ]
-          },
-          {
-            "name": "Afters",
-            "items": [
-              {
-                "name": "Rhubarb & custard crumble",
-                "desc": "orchard rhubarb, vanilla custard",
-                "price": "£7.50"
-              },
-              {
-                "name": "Farm shop ices",
-                "desc": "three scoops from next door",
-                "price": "£6"
-              }
-            ]
-          }
-        ]
-      }
+      ]
     },
     "printers-arms": {
       "type": "Pub",
@@ -524,47 +264,7 @@
         "Home-made pies",
         "Family friendly"
       ],
-      "links": {},
-      "menu": {
-        "note": "Sample menu for demonstration",
-        "sections": [
-          {
-            "name": "Pies of the Day",
-            "items": [
-              {
-                "name": "Steak & Millstone ale",
-                "desc": "with mash or chips, minted peas",
-                "price": "£13.50"
-              },
-              {
-                "name": "Chicken, ham & leek",
-                "desc": "shortcrust top, seasonal veg",
-                "price": "£13"
-              },
-              {
-                "name": "Cheese, onion & potato",
-                "desc": "the vegetarian classic, done properly",
-                "price": "£12"
-              }
-            ]
-          },
-          {
-            "name": "Not Pies",
-            "items": [
-              {
-                "name": "Diggle lamb hotpot",
-                "desc": "pickled red cabbage, crusty bread",
-                "price": "£14"
-              },
-              {
-                "name": "Ploughman's board",
-                "desc": "Saddleworth cheeses, pork pie, pickles",
-                "price": "£11.50"
-              }
-            ]
-          }
-        ]
-      }
+      "links": {}
     },
     {
       "id": "rspb-dove-stone",
@@ -609,9 +309,9 @@
       "type": "Ancient site",
       "kind": "attraction",
       "village": "Delph",
-      "lat": 53.579,
-      "lng": -2.043,
-      "address": "Dirty Lane, Castleshaw, Delph",
+      "lat": 53.5842,
+      "lng": -2.0048,
+      "address": "Waterworks Road, Castleshaw, Delph",
       "blurb": "Grass-covered earthworks of a Roman fort guarding the pass over Standedge since AD 79, above the Castleshaw reservoirs. Always open, forever quiet.",
       "tags": [
         "Free entry",
@@ -626,8 +326,8 @@
       "type": "Walk",
       "kind": "walk",
       "village": "Greenfield",
-      "lat": 53.5325,
-      "lng": -1.97,
+      "lat": 53.5349,
+      "lng": -1.9697,
       "address": "Start: Dovestone car park, Bank Lane, Greenfield",
       "blurb": "The classic Saddleworth leg-stretcher: a flat, surfaced loop around the water with the gritstone edges towering over you. Pushchair and wheelchair friendly; herons guaranteed, ice cream van likely.",
       "tags": [
@@ -643,36 +343,64 @@
       },
       "route": [
         [
-          53.5325,
-          -1.97
+          53.5349,
+          -1.9697
         ],
         [
-          53.535,
-          -1.9635
+          53.5358,
+          -1.9702
         ],
         [
-          53.5375,
-          -1.9585
+          53.5369,
+          -1.9688
         ],
         [
-          53.534,
-          -1.956
+          53.5374,
+          -1.9689
+        ],
+        [
+          53.5356,
+          -1.9712
+        ],
+        [
+          53.5356,
+          -1.9714
+        ],
+        [
+          53.533,
+          -1.9766
+        ],
+        [
+          53.5318,
+          -1.9806
         ],
         [
           53.529,
-          -1.9585
+          -1.98
         ],
         [
-          53.527,
-          -1.964
+          53.5272,
+          -1.9808
         ],
         [
-          53.5295,
-          -1.969
+          53.5264,
+          -1.979
         ],
         [
-          53.5325,
-          -1.97
+          53.5263,
+          -1.9748
+        ],
+        [
+          53.5267,
+          -1.9744
+        ],
+        [
+          53.5285,
+          -1.976
+        ],
+        [
+          53.5349,
+          -1.9697
         ]
       ]
     },
@@ -804,52 +532,60 @@
       },
       "route": [
         [
-          53.534,
-          -1.993
+          53.5399,
+          -2.0109
         ],
         [
-          53.539,
-          -1.996
+          53.5436,
+          -2.0088
         ],
         [
-          53.541,
-          -2
+          53.5479,
+          -2.0077
         ],
         [
-          53.544,
-          -2.004
+          53.5491,
+          -2.0081
         ],
         [
-          53.5468,
-          -2.0058
+          53.5516,
+          -2.0077
         ],
         [
-          53.55,
-          -2.007
+          53.5544,
+          -2.0088
         ],
         [
-          53.554,
-          -2.009
+          53.5557,
+          -2.0087
         ],
         [
-          53.5576,
-          -2.0107
+          53.557,
+          -2.0044
         ],
         [
-          53.561,
-          -2.006
+          53.5586,
+          -2.001
         ],
         [
-          53.5652,
-          -2.0022
+          53.5606,
+          -1.9987
         ],
         [
-          53.57,
-          -1.999
+          53.5618,
+          -1.998
         ],
         [
-          53.5726,
-          -1.9976
+          53.5637,
+          -1.9978
+        ],
+        [
+          53.5659,
+          -1.9962
+        ],
+        [
+          53.568,
+          -1.9924
         ]
       ]
     },
@@ -906,7 +642,7 @@
       "lat": 53.5685,
       "lng": -2.0195,
       "address": "Start: Delph village centre",
-      "blurb": "Out of Delph and up the Castleshaw valley to the Roman fort above the reservoirs — nineteen centuries of watching the pass, and still the best picnic spot in the north of the parish.",
+      "blurb": "Out of Delph and up the Castleshaw valley to the Roman fort above the reservoirs - nineteen centuries of watching the pass over Standedge, and still the best picnic spot in the north of the parish.",
       "tags": [
         "History",
         "Reservoir views",
@@ -924,28 +660,40 @@
           -2.0195
         ],
         [
-          53.572,
-          -2.029
+          53.5725,
+          -2.0165
+        ],
+        [
+          53.5765,
+          -2.0135
+        ],
+        [
+          53.5805,
+          -2.0115
+        ],
+        [
+          53.5829,
+          -2.0107
+        ],
+        [
+          53.586,
+          -2.006
+        ],
+        [
+          53.5871,
+          -2.0039
+        ],
+        [
+          53.5842,
+          -2.0048
+        ],
+        [
+          53.58,
+          -2.009
         ],
         [
           53.576,
-          -2.037
-        ],
-        [
-          53.579,
-          -2.043
-        ],
-        [
-          53.583,
-          -2.0455
-        ],
-        [
-          53.5795,
-          -2.036
-        ],
-        [
-          53.574,
-          -2.026
+          -2.013
         ],
         [
           53.5685,
@@ -980,20 +728,20 @@
           -1.97
         ],
         [
-          53.529,
-          -1.964
+          53.5295,
+          -1.9645
         ],
         [
-          53.5265,
-          -1.9585
+          53.5268,
+          -1.959
         ],
         [
           53.525,
-          -1.952
+          -1.9535
         ],
         [
-          53.5235,
-          -1.947
+          53.5151,
+          -1.9427
         ]
       ]
     },
@@ -1048,373 +796,138 @@
           -2.0058
         ]
       ]
+    },
+    {
+      "type": "Local sight",
+      "kind": "sight",
+      "address": "",
+      "links": {},
+      "id": "sight-wharmton",
+      "name": "Wharmton & the Mast",
+      "village": "Grasscroft",
+      "lat": 53.5398,
+      "lng": -2.0072,
+      "blurb": "The green whaleback hill that splits the valley in two, topped by the TV mast you can see from every village - the landmark that tells Saddleworth people they are nearly home.",
+      "tags": [
+        "Viewpoint",
+        "Local landmark"
+      ]
+    },
+    {
+      "type": "Local sight",
+      "kind": "sight",
+      "address": "",
+      "links": {},
+      "id": "sight-castleshaw-res",
+      "name": "Castleshaw Reservoirs",
+      "village": "Delph",
+      "lat": 53.585,
+      "lng": -2.0075,
+      "blurb": "Two quiet reservoirs in a fold of the moors between Delph and Standedge, ringed by a gentle waterside path - herons, curlews, and a Roman fort on the shoulder above.",
+      "tags": [
+        "Waterside path",
+        "Birdlife",
+        "Quiet corner"
+      ]
+    },
+    {
+      "type": "Local sight",
+      "kind": "sight",
+      "address": "",
+      "links": {},
+      "id": "sight-pots-pans",
+      "name": "Pots & Pans Obelisk",
+      "village": "Uppermill",
+      "lat": 53.5455,
+      "lng": -1.9868,
+      "blurb": "The war memorial on its gritstone crag above Uppermill - the whole of Saddleworth at your feet, and the weathered rock basins that gave the hill its name.",
+      "tags": [
+        "Viewpoint",
+        "War memorial",
+        "Short steep climb"
+      ]
+    },
+    {
+      "type": "Local sight",
+      "kind": "sight",
+      "address": "",
+      "links": {},
+      "id": "sight-standedge",
+      "name": "Standedge Tunnel Portal",
+      "village": "Diggle",
+      "lat": 53.5726,
+      "lng": -1.9976,
+      "blurb": "The Diggle mouth of the longest, highest, deepest canal tunnel in Britain - three and a quarter miles under the moor to Marsden, dug by hand over seventeen years.",
+      "tags": [
+        "Canal history",
+        "Photo spot"
+      ]
+    },
+    {
+      "type": "Local sight",
+      "kind": "sight",
+      "address": "",
+      "links": {},
+      "id": "sight-viaduct",
+      "name": "Saddleworth Viaduct",
+      "village": "Uppermill",
+      "lat": 53.5448,
+      "lng": -2.0032,
+      "blurb": "Stone arches striding across the Tame since 1849, with the canal threading underneath - best admired from the towpath with an ice cream.",
+      "tags": [
+        "Photo spot",
+        "Canalside"
+      ]
+    },
+    {
+      "type": "Local sight",
+      "kind": "sight",
+      "address": "",
+      "links": {},
+      "id": "sight-alphin",
+      "name": "Alphin Pike & the Indian’s Head",
+      "village": "Greenfield",
+      "lat": 53.525,
+      "lng": -1.962,
+      "blurb": "The dark gritstone edges brooding over Dovestone - Alphin Pike, Wimberry Rocks and the profile locals call the Indian’s Head. Proper moorland: go shod and watered.",
+      "tags": [
+        "Moorland",
+        "Viewpoint",
+        "For the sure-footed"
+      ]
+    },
+    {
+      "type": "Local sight",
+      "kind": "sight",
+      "address": "",
+      "links": {},
+      "id": "sight-st-chads",
+      "name": "St Chad’s Church",
+      "village": "Uppermill",
+      "lat": 53.554,
+      "lng": -1.9995,
+      "blurb": "Saddleworth’s parish church, up on the hillside since 1215 with the Church Inn for a neighbour - the Rushcart ends here every August with hymns and a gurning contest.",
+      "tags": [
+        "History",
+        "Rushcart finale"
+      ]
     }
   ],
   "events": [
     {
-      "id": "church-quiz",
-      "business": "church-inn",
-      "title": "Quiz Night at the Church",
-      "category": "quiz",
-      "time": "21:00",
-      "recurrence": {
-        "freq": "weekly",
-        "day": "thu"
-      },
-      "description": "The hilltop quiz — general knowledge, a picture round and a rollover jackpot. Teams of up to six.",
-      "offer": "Free entry · rollover jackpot",
-      "demo": true
-    },
-    {
-      "id": "waggon-live",
-      "business": "waggon-inn",
-      "title": "Live Music Saturdays",
-      "category": "music",
-      "time": "20:30",
-      "recurrence": {
-        "freq": "weekly",
-        "day": "sat"
-      },
-      "description": "A rotating bill of local bands and singers in the bar every Saturday night.",
-      "demo": true
-    },
-    {
-      "id": "waggon-roast",
-      "business": "waggon-inn",
-      "title": "Sunday Roast",
-      "category": "offer",
-      "time": "12:00–16:00",
-      "recurrence": {
-        "freq": "weekly",
-        "day": "sun"
-      },
-      "description": "Hand-carved roasts with all the trimmings, every Sunday until they run out.",
-      "offer": "2 courses £18",
-      "demo": true
-    },
-    {
-      "id": "crosskeys-folk",
-      "business": "cross-keys",
-      "title": "Folk Night",
-      "category": "music",
-      "time": "20:00",
-      "recurrence": {
-        "freq": "weekly",
-        "day": "wed"
-      },
-      "description": "The legendary Wednesday folk session — singers and players around the fire, everyone welcome to join in.",
-      "demo": true
-    },
-    {
-      "id": "commercial-openmic",
+      "id": "rushcart-2026",
       "business": "commie",
-      "title": "Open Mic Friday",
-      "category": "music",
-      "time": "20:00",
-      "recurrence": {
-        "freq": "weekly",
-        "day": "fri"
-      },
-      "description": "Bring a guitar, a voice or just your ears. Sign up at the bar from 7.",
-      "demo": true
-    },
-    {
-      "id": "hare-caskmonday",
-      "business": "hare-and-hounds",
-      "title": "Cask Ale Monday",
-      "category": "offer",
-      "time": "All day",
-      "recurrence": {
-        "freq": "weekly",
-        "day": "mon"
-      },
-      "description": "Every cask line at a throwback price, all day Monday.",
-      "offer": "Cask pints £3.20",
-      "demo": true
-    },
-    {
-      "id": "swan-quiz",
-      "business": "swan",
-      "title": "Quiz & Chip Night",
-      "category": "quiz",
-      "time": "20:30",
-      "recurrence": {
-        "freq": "weekly",
-        "day": "tue"
-      },
-      "description": "Quiz on the Square with chip muffins at half time.",
-      "offer": "£1 entry · chip muffin included",
-      "demo": true
-    },
-    {
-      "id": "whitelion-quiz",
-      "business": "white-lion",
-      "title": "Delph Village Quiz",
-      "category": "quiz",
-      "time": "21:00",
-      "recurrence": {
-        "freq": "weekly",
-        "day": "sun"
-      },
-      "description": "End the weekend with Delph's noisiest quiz. Winner takes the pot, loser takes the wooden spoon.",
-      "demo": true
-    },
-    {
-      "id": "diggle-pie",
-      "business": "diggle-hotel",
-      "title": "Pie & Pint Wednesday",
-      "category": "offer",
-      "time": "17:00–21:00",
-      "recurrence": {
-        "freq": "weekly",
-        "day": "wed"
-      },
-      "description": "A home-made pie of the day with a pint of anything on the bar.",
-      "offer": "Pie + pint £12.95",
-      "demo": true
-    },
-    {
-      "id": "diggle-quiz",
-      "business": "diggle-hotel",
-      "title": "Diggle Quiz Night",
-      "category": "quiz",
-      "time": "20:00",
-      "recurrence": {
-        "freq": "weekly",
-        "day": "sun"
-      },
-      "description": "The village quiz under the moor — cash prize and a gallon of questions.",
-      "demo": true
-    },
-    {
-      "id": "boarshurst-brass",
-      "business": "boarshurst-band-club",
-      "title": "Sunday Brass Concert",
-      "category": "music",
-      "time": "19:30",
-      "recurrence": {
-        "freq": "weekly",
-        "day": "sun"
-      },
-      "description": "A visiting brass band nearly every Sunday night — one of the North's great small music venues.",
-      "offer": "Tickets on the door",
-      "demo": true
-    },
-    {
-      "id": "kingwilliam-curryquiz",
-      "business": "king-william-iv",
-      "title": "Curry & Quiz Thursday",
-      "category": "quiz",
-      "time": "20:00",
-      "recurrence": {
-        "freq": "weekly",
-        "day": "thu"
-      },
-      "description": "A curry from the kitchen and a quiz from the landlord.",
-      "offer": "Curry + pint £11",
-      "demo": true
-    },
-    {
-      "id": "printers-steak",
-      "business": "printers-arms",
-      "title": "Steak Night Friday",
-      "category": "offer",
-      "time": "17:00–21:00",
-      "recurrence": {
-        "freq": "weekly",
-        "day": "fri"
-      },
-      "description": "Two rump steaks, chips, and all the sauces.",
-      "offer": "2 dine for £30",
-      "demo": true
-    },
-    {
-      "id": "farrars-acoustic",
-      "business": "farrars-arms",
-      "title": "Acoustic Sunday Session",
-      "category": "music",
-      "time": "17:00",
-      "recurrence": {
-        "freq": "weekly",
-        "day": "sun"
-      },
-      "description": "Unplugged sets on the terrace (or by the fire when it rains).",
-      "demo": true
-    },
-    {
-      "id": "oldbell-gin",
-      "business": "old-bell-inn",
-      "title": "Gin Tasting Evening",
-      "category": "food",
-      "time": "19:00",
-      "recurrence": {
-        "freq": "monthly",
-        "week": 1,
-        "day": "fri"
-      },
-      "description": "Six gins from the world-record collection, guided by the gin emporium team, with paired nibbles.",
-      "offer": "£35 per person",
-      "demo": true
-    },
-    {
-      "id": "civic-market",
-      "business": "uppermill-civic-hall",
-      "title": "Uppermill Artisan Market",
-      "category": "market",
-      "time": "10:00–15:00",
-      "recurrence": {
-        "freq": "monthly",
-        "week": 2,
-        "day": "sat"
-      },
-      "description": "Local makers, bakers, cheese, chutney and crafts fill the Civic Hall and spill onto the square.",
-      "demo": true
-    },
-    {
-      "id": "millgate-comedy",
-      "business": "millgate-arts-centre",
-      "title": "Comedy Night at the Millgate",
-      "category": "quiz",
-      "time": "20:00",
-      "recurrence": {
-        "freq": "monthly",
-        "week": -1,
-        "day": "sat"
-      },
-      "description": "Three circuit comics and a compere in Saddleworth's little theatre. Strictly over-18s.",
-      "offer": "Tickets £12",
-      "demo": true
-    },
-    {
-      "id": "whitehart-supper",
-      "business": "white-hart",
-      "title": "Supper Club",
-      "category": "food",
-      "time": "19:30",
-      "recurrence": {
-        "freq": "monthly",
-        "week": -1,
-        "day": "fri"
-      },
-      "description": "A five-course set menu from the kitchen's latest obsessions, served at long shared tables.",
-      "offer": "5 courses £45",
-      "demo": true
-    },
-    {
-      "id": "ramshead-tasting",
-      "business": "rams-head-inn",
-      "title": "Seasonal Tasting Menu",
-      "category": "food",
-      "time": "19:00",
-      "recurrence": {
-        "freq": "monthly",
-        "week": 1,
-        "day": "sat"
-      },
-      "description": "What the moor, the farm shop and the season are giving — seven small courses, once a month.",
-      "demo": true
-    },
-    {
-      "id": "navigation-vinyl",
-      "business": "navigation-inn",
-      "title": "Vinyl Night",
-      "category": "music",
-      "time": "20:00",
-      "recurrence": {
-        "freq": "monthly",
-        "week": 3,
-        "day": "fri"
-      },
-      "description": "Bring a record, play a side. The canalside pub becomes the valley's living room.",
-      "demo": true
-    },
-    {
-      "id": "museum-craft",
-      "business": "saddleworth-museum",
-      "title": "Family Craft Saturday",
+      "title": "Saddleworth Rushcart 2026",
       "category": "community",
-      "time": "11:00–13:00",
-      "recurrence": {
-        "freq": "monthly",
-        "week": 1,
-        "day": "sat"
-      },
-      "description": "Drop-in making table for kids in the gallery — a different Saddleworth theme every month.",
-      "offer": "Free with museum entry",
-      "demo": true
+      "start": "2026-08-22",
+      "end": "2026-08-23",
+      "time": "Sat from 09:45 · Sun from 10:00",
+      "description": "The Saddleworth Morris Men and a record number of visiting sides haul the rushcart around the villages — Saturday’s tour starts at the Commercial, Sunday brings the rushbearing service at St Chad’s then dancing, gurning and the worst-singer contest at the Church Inn and Cross Keys.",
+      "offer": "Free to watch",
+      "source": "https://www.theoldhamtimes.co.uk/news/26416898.saddleworth-rushcart-weekend-2026-details-revealed/"
     },
     {
-      "id": "grandpa-jazz",
-      "business": "grandpa-greenes",
-      "title": "Canalside Jazz & Gelato",
-      "category": "music",
-      "time": "15:00",
-      "recurrence": {
-        "freq": "weekly",
-        "day": "sun",
-        "from": "2026-06-07",
-        "until": "2026-09-06"
-      },
-      "description": "A jazz trio on the towpath, sundaes in the deckchairs, narrowboats drifting past. Summer Sundays only.",
-      "demo": true
-    },
-    {
-      "id": "rushcart-2025",
-      "business": "church-inn",
-      "title": "Saddleworth Rushcart 2025",
-      "category": "community",
-      "start": "2025-08-23",
-      "end": "2025-08-24",
-      "time": "All weekend",
-      "description": "The Saddleworth Morris Men and visiting sides haul the towering rushcart through the villages, with dancing, gurning and a service at St Chad's.",
-      "demo": true
-    },
-    {
-      "id": "victorian-2025",
-      "business": "uppermill-civic-hall",
-      "title": "Uppermill Victorian Christmas Market",
-      "category": "market",
-      "start": "2025-11-29",
-      "end": "2025-11-30",
-      "time": "10:00–18:00",
-      "description": "Stalls, carols, roast chestnuts and a lot of top hats as the High Street turns the clock back.",
-      "demo": true
-    },
-    {
-      "id": "cricket-bonfire-2025",
-      "business": "saddleworth-cricket-bowling-and-tennis-club",
-      "title": "Bonfire & Fireworks 2025",
-      "category": "community",
-      "start": "2025-11-05",
-      "time": "18:30",
-      "description": "The valley's big bonfire under the viaduct, with the fireworks echoing off the hills.",
-      "offer": "Family ticket £12",
-      "demo": true
-    },
-    {
-      "id": "swan-ceilidh-nye",
-      "business": "swan",
-      "title": "New Year's Eve Ceilidh",
-      "category": "music",
-      "start": "2025-12-31",
-      "time": "20:00–01:00",
-      "description": "A caller, a folk band and the whole Square dancing into the new year.",
-      "offer": "Tickets £15 · supper included",
-      "demo": true
-    },
-    {
-      "id": "museum-easter-2026",
-      "business": "saddleworth-museum",
-      "title": "Easter Egg Trail 2026",
-      "category": "community",
-      "start": "2026-04-04",
-      "end": "2026-04-05",
-      "time": "10:00–16:00",
-      "description": "Follow the clues through the galleries and along the canal to claim a chocolate prize.",
-      "demo": true
-    },
-    {
-      "id": "whitfriday-2026",
+      "id": "whit-friday-2026",
       "venue": {
         "name": "Villages across Saddleworth",
         "village": "Saddleworth",
@@ -1424,239 +937,12 @@
       "title": "Whit Friday Brass Band Contests 2026",
       "category": "community",
       "start": "2026-05-29",
-      "time": "From 16:30",
-      "description": "\"The greatest free show on earth\" — dozens of brass bands leap from coach to bandstand in every village until midnight.",
-      "demo": true
+      "time": "Walks in the morning · contests from late afternoon",
+      "description": "“The greatest free show on earth” — morning Whit Walks, then brass bands leaping from coach to bandstand in eleven village contests until late.",
+      "source": "https://saddleworthwhitfriday.co.uk/"
     },
     {
-      "id": "diggle-blues-2026",
-      "business": "diggle-hotel",
-      "title": "Diggle Blues Festival 2026",
-      "category": "music",
-      "start": "2026-06-05",
-      "end": "2026-06-07",
-      "time": "All weekend",
-      "description": "Three days of blues in and around the Diggle Hotel — bar stages, guest acts and a Sunday jam.",
-      "demo": true
-    },
-    {
-      "id": "oldbell-ginday-2026",
-      "business": "old-bell-inn",
-      "title": "World Gin Day Festival",
-      "category": "food",
-      "start": "2026-06-13",
-      "time": "From 12:00",
-      "description": "The gin emporium opens the whole collection with tasting flights and a garden bar.",
-      "offer": "Flights from £12",
-      "demo": true
-    },
-    {
-      "id": "beerwalk-2026",
-      "venue": {
-        "name": "Start: Uppermill Square",
-        "village": "Uppermill",
-        "lat": 53.5464,
-        "lng": -2.0071
-      },
-      "title": "Saddleworth Beer Walk 2026",
-      "category": "community",
-      "start": "2026-06-20",
-      "time": "From 12:00",
-      "description": "The famous fancy-dress charity amble between the villages' pubs — every pint raises money for local causes.",
-      "demo": true
-    },
-    {
-      "id": "whitehart-kidsfree",
-      "business": "white-hart",
-      "title": "Kids Eat Free — Summer Holidays",
-      "category": "offer",
-      "start": "2026-07-20",
-      "end": "2026-09-01",
-      "time": "Mon–Fri, 12:00–17:00",
-      "description": "One free children's meal with every adult main across the school summer holidays.",
-      "offer": "Kids eat free",
-      "demo": true
-    },
-    {
-      "id": "rushcart-2026",
-      "business": "church-inn",
-      "title": "Saddleworth Rushcart 2026",
-      "category": "community",
-      "start": "2026-08-22",
-      "end": "2026-08-23",
-      "time": "All weekend",
-      "description": "Morris sides from across the country haul the rushcart from village to village, ending with dancing and the church service at St Chad's. Starts and finishes at the Church Inn.",
-      "offer": "Free to watch",
-      "demo": true
-    },
-    {
-      "id": "railway-beerfest-2026",
-      "business": "railway-inn",
-      "title": "Bank Holiday Beer & Cider Festival",
-      "category": "food",
-      "start": "2026-08-29",
-      "end": "2026-08-31",
-      "time": "From 12:00 daily",
-      "description": "Twenty guest casks, a cider bar and live music in the yard across the long weekend.",
-      "offer": "Festival glass £3",
-      "demo": true
-    },
-    {
-      "id": "commercial-oktoberfest",
-      "business": "commie",
-      "title": "Uppermill Oktoberfest",
-      "category": "food",
-      "start": "2026-10-02",
-      "end": "2026-10-03",
-      "time": "From 17:00",
-      "description": "Steins, brezn and an oompah band squeezed into the back room.",
-      "offer": "Stein + bratwurst £15",
-      "demo": true
-    },
-    {
-      "id": "civic-halloween",
-      "business": "uppermill-civic-hall",
-      "title": "Halloween Family Trail",
-      "category": "community",
-      "start": "2026-10-31",
-      "time": "16:00–19:00",
-      "description": "A pumpkin trail through the village ending with hot chocolate and prizes at the Civic Hall.",
-      "offer": "Trail sheets £2",
-      "demo": true
-    },
-    {
-      "id": "cricket-bonfire-2026",
-      "business": "saddleworth-cricket-bowling-and-tennis-club",
-      "title": "Bonfire & Fireworks 2026",
-      "category": "community",
-      "start": "2026-11-05",
-      "time": "18:30",
-      "description": "Gates at 5.30, bonfire lit at 6.30, fireworks at 8 — the valley's biggest night out in a bobble hat.",
-      "offer": "Family ticket £12",
-      "demo": true
-    },
-    {
-      "id": "uppermill-lights-2026",
-      "venue": {
-        "name": "Uppermill High Street",
-        "village": "Uppermill",
-        "lat": 53.5467,
-        "lng": -2.0069
-      },
-      "title": "Christmas Lights Switch-On",
-      "category": "community",
-      "start": "2026-11-28",
-      "time": "16:00–19:00",
-      "description": "Carols, a brass band, late-opening shops and the big switch-on outside the museum.",
-      "demo": true
-    },
-    {
-      "id": "delph-xmas-market",
-      "business": "millgate-arts-centre",
-      "title": "Delph Christmas Market",
-      "category": "market",
-      "start": "2026-12-05",
-      "end": "2026-12-06",
-      "time": "10:00–17:00",
-      "description": "Stalls the length of King Street, mulled wine at the Millgate and carols by the brook.",
-      "demo": true
-    },
-    {
-      "id": "victorian-2026",
-      "business": "uppermill-civic-hall",
-      "title": "Uppermill Victorian Christmas Market",
-      "category": "market",
-      "start": "2026-12-12",
-      "end": "2026-12-13",
-      "time": "10:00–18:00",
-      "description": "The High Street's much-loved Victorian weekend — stalls, costumes, chestnuts and carols.",
-      "demo": true
-    },
-    {
-      "id": "oldbell-nye-2026",
-      "business": "old-bell-inn",
-      "title": "New Year's Eve at the Old Bell",
-      "category": "music",
-      "start": "2026-12-31",
-      "time": "19:30–01:00",
-      "description": "A live band, a champagne toast and the gin bar glowing until the small hours.",
-      "offer": "Tickets £25 · buffet included",
-      "demo": true
-    },
-    {
-      "id": "ramshead-burns-2027",
-      "business": "rams-head-inn",
-      "title": "Burns Night Supper",
-      "category": "food",
-      "start": "2027-01-25",
-      "time": "19:00",
-      "description": "Haggis piped to the table, whisky pairings and an address to the immortal memory, high on the moor.",
-      "offer": "4 courses £40",
-      "demo": true
-    },
-    {
-      "id": "pancake-race-2027",
-      "venue": {
-        "name": "Uppermill Square",
-        "village": "Uppermill",
-        "lat": 53.5464,
-        "lng": -2.0071
-      },
-      "title": "Shrove Tuesday Pancake Race",
-      "category": "community",
-      "start": "2027-02-09",
-      "time": "12:00",
-      "description": "Frying pans at dawn — heats for schools, shops and anyone brave enough on the Square.",
-      "demo": true
-    },
-    {
-      "id": "whitehart-valentines-2027",
-      "business": "white-hart",
-      "title": "Valentine's Weekend Menu",
-      "category": "offer",
-      "start": "2027-02-12",
-      "end": "2027-02-14",
-      "time": "Evenings",
-      "description": "A candle-lit set menu for two with a glass of fizz to start.",
-      "offer": "3 courses £55 for two",
-      "demo": true
-    },
-    {
-      "id": "hare-stpatricks-2027",
-      "business": "hare-and-hounds",
-      "title": "St Patrick's Night",
-      "category": "music",
-      "start": "2027-03-17",
-      "time": "From 17:00",
-      "description": "An Irish session band, stout on special and not a green hat spared.",
-      "offer": "Stout £4 a pint",
-      "demo": true
-    },
-    {
-      "id": "museum-easter-2027",
-      "business": "saddleworth-museum",
-      "title": "Easter Egg Trail 2027",
-      "category": "community",
-      "start": "2027-03-27",
-      "end": "2027-03-28",
-      "time": "10:00–16:00",
-      "description": "The annual chocolate hunt through the galleries and along the towpath.",
-      "demo": true
-    },
-    {
-      "id": "threecrowns-beerfest-2027",
-      "business": "three-crowns",
-      "title": "Spring Beer Festival",
-      "category": "food",
-      "start": "2027-04-23",
-      "end": "2027-04-25",
-      "time": "From 12:00 daily",
-      "description": "A marquee of northern micro-brewery casks with the best sunset terrace in Saddleworth.",
-      "offer": "First pint free before 2pm Friday",
-      "demo": true
-    },
-    {
-      "id": "whitfriday-2027",
+      "id": "whit-friday-2027",
       "venue": {
         "name": "Villages across Saddleworth",
         "village": "Saddleworth",
@@ -1666,119 +952,293 @@
       "title": "Whit Friday Brass Band Contests 2027",
       "category": "community",
       "start": "2027-05-21",
-      "time": "From 16:30",
-      "description": "Saddleworth's great day: morning processions of witness, then brass band contests in every village until midnight.",
-      "demo": true
+      "time": "Walks in the morning · contests from late afternoon",
+      "description": "Next year’s great day: Whit Walks in the morning, then the village brass band contests into the night.",
+      "source": "https://en.wikipedia.org/wiki/Whit_Friday"
     },
     {
-      "id": "diggle-blues-2027",
-      "business": "diggle-hotel",
-      "title": "Diggle Blues Festival 2027",
+      "id": "boarshurst-sunday-brass",
+      "business": "boarshurst-band-club",
+      "title": "Sunday Brass Concert",
       "category": "music",
-      "start": "2027-06-04",
-      "end": "2027-06-06",
-      "time": "All weekend",
-      "description": "The blues comes back to Diggle — three days, three stages, one very busy bar.",
-      "demo": true
+      "time": "20:00 (doors from 18:30)",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sun"
+      },
+      "description": "A guest brass band nearly every Sunday, all year round — the only band club in the country still doing it weekly. See the club’s Facebook for who’s playing.",
+      "source": "https://saddind.co.uk/boarshurst-are-keeping-brass-band-traditions-alive/"
     },
     {
-      "id": "beerwalk-2027",
+      "id": "millgate-constable-2026",
+      "business": "millgate-arts-centre",
+      "title": "The Saddleworth Constable — Saddleworth Players",
+      "category": "community",
+      "start": "2026-09-26",
+      "end": "2026-10-04",
+      "time": "Evenings · box office 01457 874644",
+      "description": "The Saddleworth Players open their 2026–27 season.",
+      "source": "https://millgateartscentre.co.uk/saddleworth-players/"
+    },
+    {
+      "id": "millgate-comedy-2026-09",
+      "business": "millgate-arts-centre",
+      "title": "Delph Comedy Night",
+      "category": "quiz",
+      "start": "2026-09-05",
+      "time": "Evening",
+      "description": "Stand-up at the Millgate.",
+      "source": "https://millgateartscentre.co.uk/"
+    },
+    {
+      "id": "millgate-ntlive-2026-10",
+      "business": "millgate-arts-centre",
+      "title": "NT Live: The Misanthrope",
+      "category": "community",
+      "start": "2026-10-16",
+      "time": "Evening",
+      "description": "Screened live from the National Theatre.",
+      "source": "https://millgateartscentre.co.uk/"
+    },
+    {
+      "id": "millgate-willows-2026",
+      "business": "millgate-arts-centre",
+      "title": "The Wind in the Willows",
+      "category": "community",
+      "start": "2026-11-14",
+      "time": "See box office",
+      "description": "Ratty, Mole and Mr Toad come to Delph.",
+      "source": "https://millgateartscentre.co.uk/"
+    },
+    {
+      "id": "millgate-panto-2026",
+      "business": "millgate-arts-centre",
+      "title": "The Pied Piper of Hamelin — panto season",
+      "category": "community",
+      "start": "2026-12-05",
+      "time": "Runs from 5 December",
+      "description": "The Millgate’s festive show. Oh yes it is.",
+      "source": "https://millgateartscentre.co.uk/"
+    },
+    {
+      "id": "millgate-analyst-2027",
+      "business": "millgate-arts-centre",
+      "title": "Accidental Death of an Analyst",
+      "category": "community",
+      "start": "2027-02-06",
+      "time": "Week commencing 6 Feb",
+      "description": "Saddleworth Players, winter production.",
+      "source": "https://millgateartscentre.co.uk/saddleworth-players/"
+    },
+    {
+      "id": "millgate-hayfever-2027",
+      "business": "millgate-arts-centre",
+      "title": "Hay Fever",
+      "category": "community",
+      "start": "2027-04-17",
+      "time": "Week commencing 17 Apr",
+      "description": "Noël Coward’s comedy of appalling manners, by the Saddleworth Players.",
+      "source": "https://millgateartscentre.co.uk/saddleworth-players/"
+    },
+    {
+      "id": "millgate-monster-2027",
+      "business": "millgate-arts-centre",
+      "title": "A Monster Calls",
+      "category": "community",
+      "start": "2027-06-12",
+      "time": "Week commencing 12 Jun",
+      "description": "Patrick Ness’s modern classic on the Millgate stage.",
+      "source": "https://millgateartscentre.co.uk/saddleworth-players/"
+    },
+    {
+      "id": "diggle-blues-2026",
+      "business": "diggle-band-club",
+      "title": "Diggle Blues Festival 2026",
+      "category": "music",
+      "start": "2026-06-19",
+      "end": "2026-06-21",
+      "time": "All weekend · free",
+      "description": "Three free days of blues across Diggle — the Band Club, Wizard’s Hollow and Kilngreen Hall. Back next June.",
+      "source": "https://www.digglebluesfestival.co.uk/"
+    },
+    {
+      "id": "farmers-market",
+      "business": "saddleworth-museum",
+      "title": "Saddleworth Farmers’ Market",
+      "category": "market",
+      "time": "09:00–14:00",
+      "recurrence": {
+        "freq": "monthly",
+        "week": 2,
+        "day": "sun"
+      },
+      "description": "Local produce fills the museum car park on the second Sunday of every month.",
+      "source": "https://www.oldham.gov.uk/info/200278/markets/1209/saddleworth_markets"
+    },
+    {
+      "id": "museum-coffee-morning",
+      "business": "saddleworth-museum",
+      "title": "Museum Coffee Morning",
+      "category": "community",
+      "time": "10:00–12:00",
+      "recurrence": {
+        "freq": "monthly",
+        "week": 2,
+        "day": "wed"
+      },
+      "description": "Coffee, cake and local history, second Wednesday monthly.",
+      "source": "https://www.saddleworthmuseum.co.uk/events/"
+    },
+    {
+      "id": "museum-print-2026",
+      "business": "saddleworth-museum",
+      "title": "Print-Making Workshop (ages 5–8)",
+      "category": "community",
+      "start": "2026-08-12",
+      "time": "Book via the museum",
+      "description": "Summer holiday workshop.",
+      "source": "https://www.saddleworthmuseum.co.uk/events/"
+    },
+    {
+      "id": "museum-pebble-2026",
+      "business": "saddleworth-museum",
+      "title": "Free Family Pebble-Art Workshop",
+      "category": "community",
+      "start": "2026-08-17",
+      "time": "Drop in",
+      "description": "Free making table for families in the summer holidays.",
+      "offer": "Free",
+      "source": "https://www.saddleworthmuseum.co.uk/events/"
+    },
+    {
+      "id": "museum-clay-2026",
+      "business": "saddleworth-museum",
+      "title": "Clay Modelling Workshops (ages 9–12)",
+      "category": "community",
+      "start": "2026-08-19",
+      "end": "2026-08-21",
+      "time": "13:00–15:00",
+      "description": "Three afternoons of clay in the school holidays.",
+      "source": "https://www.saddleworthmuseum.co.uk/events/"
+    },
+    {
+      "id": "crosskeys-folk",
+      "business": "cross-keys",
+      "title": "Cross Keys Folk Night",
+      "category": "music",
+      "time": "Evenings",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "wed"
+      },
+      "description": "The Cross Keys Folk Club — running since 1972 in Buckley’s Kitchen. Singers and players welcome; worth a call to confirm.",
+      "source": "https://saddind.co.uk/glasses-raised-as-cross-keys-inn-marks-unique-record/"
+    },
+    {
+      "id": "church-inn-quiz",
+      "business": "church-inn",
+      "title": "Quiz Night",
+      "category": "quiz",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "thu"
+      },
+      "description": "SpeedQuizzing at the hilltop pub — three rounds and a music round. Best to check with the pub.",
+      "source": "https://pubsintown.co.uk/churchinnuppermill"
+    },
+    {
+      "id": "whitehart-estrella-2026",
+      "business": "white-hart",
+      "title": "Estrella Damm Collaboration Dinner",
+      "category": "food",
+      "start": "2026-08-27",
+      "time": "18:30 for 19:00",
+      "description": "A one-night pairing dinner with the brewery.",
+      "source": "https://www.thewhitehart.co.uk/events/"
+    },
+    {
+      "id": "whitehart-xmas-2026",
+      "business": "white-hart",
+      "title": "Christmas Party Nights",
+      "category": "food",
+      "start": "2026-11-28",
+      "end": "2026-12-19",
+      "time": "From 18:00",
+      "description": "Festive party nights through December.",
+      "source": "https://www.thewhitehart.co.uk/events/"
+    },
+    {
+      "id": "whitehart-nye-2026",
+      "business": "white-hart",
+      "title": "New Year’s Eve Party",
+      "category": "music",
+      "start": "2026-12-31",
+      "time": "From 19:30",
+      "description": "See the year out on the brow of the hill.",
+      "source": "https://www.thewhitehart.co.uk/events/"
+    },
+    {
+      "id": "ucbc-bonfire-2026",
+      "business": "uppermill-cricket-and-bowling-club",
+      "title": "Uppermill Bonfire & Fireworks",
+      "category": "community",
+      "start": "2026-11-01",
+      "time": "Gates ~15:30 · fireworks ~18:00",
+      "description": "Saddleworth’s biggest bonfire night. 2026 date expected to follow the usual first-Sunday pattern — confirm nearer the time.",
+      "source": "https://www.ucbc.club/event-details/uppermill-bonfire-night"
+    },
+    {
+      "id": "santa-dash-2026",
       "venue": {
-        "name": "Start: Uppermill Square",
+        "name": "King George V Playing Fields",
         "village": "Uppermill",
-        "lat": 53.5464,
-        "lng": -2.0071
+        "lat": 53.545,
+        "lng": -2.007
       },
-      "title": "Saddleworth Beer Walk 2027",
+      "title": "Santa Dash & Winter Wonderland",
       "category": "community",
-      "start": "2027-06-19",
+      "start": "2026-12-05",
+      "time": "From 11:30 · dash at 14:00 · lights at 16:00",
+      "description": "Saddleworth Round Table’s big festive day — markets and stage at KGV, thousands in Santa suits running to Greenfield and back, then the lights switch-on, sleigh procession and fireworks. Date follows the usual first-Saturday pattern — confirm nearer the time.",
+      "source": "https://saddind.co.uk/festive-fun-to-fill-uppermill-with-santa-dash-and-winter-wonderland/"
+    },
+    {
+      "id": "beer-cider-fest-2026",
+      "business": "boarshurst-band-club",
+      "title": "Saddleworth Charity Beer & Cider Festival",
+      "category": "food",
+      "start": "2026-07-04",
       "time": "From 12:00",
-      "description": "Fancy dress, good causes and a gentle stagger between the villages' finest cellars.",
-      "demo": true
+      "offer": "£5 incl. first pint",
+      "description": "Annual fundraiser with the Saddleworth Morris Men for the Rushcart and the Royal British Legion. Back next July.",
+      "source": "https://www.beerfestbuddy.com/festivals/saddleworth-charity-beer-and-cider-festival/0541e755-4652-47cd-bc5b-ce24ac601a6b"
     },
     {
-      "id": "golf-twilight",
-      "business": "saddleworth-golf-club",
-      "title": "Twilight Golf",
-      "category": "offer",
-      "start": "2026-06-01",
-      "end": "2026-09-13",
-      "time": "After 16:00",
-      "description": "Nine holes as the sun drops over the valley — no booking needed, clubs to hire.",
-      "offer": "9 holes £15 after 4pm",
-      "demo": true
-    },
-    {
-      "id": "golf-openday-2026",
-      "business": "saddleworth-golf-club",
-      "title": "Golf Open Day",
-      "category": "community",
-      "start": "2026-09-06",
-      "time": "10:00–16:00",
-      "description": "Free taster sessions on the range with the pro, course walks, and membership offers for the season.",
-      "offer": "Free taster lessons",
-      "demo": true
-    },
-    {
-      "id": "sailing-open-2026",
-      "business": "dovestone-sailing-club",
-      "title": "Sailing Open Weekend",
-      "category": "community",
-      "start": "2026-08-15",
-      "end": "2026-08-16",
-      "time": "10:00–16:00",
-      "description": "Have a go in a dinghy with an instructor aboard — buoyancy aids provided, bring a change of clothes and nerve.",
-      "offer": "Taster sails free",
-      "demo": true
-    },
-    {
-      "id": "sailing-pbo-2027",
-      "business": "dovestone-sailing-club",
-      "title": "Push the Boat Out Weekend",
-      "category": "community",
-      "start": "2027-05-15",
-      "end": "2027-05-16",
-      "time": "10:00–16:00",
-      "description": "The RYA's national try-sailing weekend, Dovestone edition — free sails all weekend for all ages.",
-      "demo": true
-    },
-    {
-      "id": "tennis-camp-2026",
-      "business": "saddleworth-cricket-bowling-and-tennis-club",
-      "title": "Junior Tennis Camp",
-      "category": "community",
-      "start": "2026-08-10",
-      "end": "2026-08-14",
-      "time": "09:30–12:30",
-      "description": "A week of coaching games for 6–14s on the Churchill courts. Rackets provided.",
-      "offer": "£40 for the week",
-      "demo": true
-    },
-    {
-      "id": "tennis-free-weekend",
-      "business": "saddleworth-cricket-bowling-and-tennis-club",
-      "title": "Free Courts Weekend",
-      "category": "community",
-      "start": "2026-09-12",
-      "end": "2026-09-13",
-      "time": "All day",
-      "description": "Courts and greens free to everyone all weekend — coaches about on Saturday morning.",
-      "demo": true
-    },
-    {
-      "id": "greenfield-gala-2027",
+      "id": "usmf-2026",
       "venue": {
-        "name": "Greenfield Recreation Ground",
-        "village": "Greenfield",
-        "lat": 53.5405,
-        "lng": -1.9952
+        "name": "Uppermill Methodist Church",
+        "village": "Uppermill",
+        "lat": 53.5472,
+        "lng": -2.0078
       },
-      "title": "Greenfield Gala & Duck Race",
-      "category": "community",
-      "start": "2027-07-10",
-      "time": "12:00–17:00",
-      "description": "Stalls, a dog show, a tug-of-war and two thousand plastic ducks racing down the Chew Brook.",
-      "demo": true
+      "title": "Uppermill Summer Music Festival 2026",
+      "category": "music",
+      "start": "2026-07-04",
+      "end": "2026-07-11",
+      "time": "Recitals through the week",
+      "description": "A week of classical recitals and RNCM young musicians at the Methodist church. Back next July.",
+      "source": "https://usmf.uk/"
+    },
+    {
+      "id": "oktoberfest-2026",
+      "business": "uppermill-civic-hall",
+      "title": "Saddleworth Oktoberfest",
+      "category": "food",
+      "start": "2026-10-03",
+      "time": "12:00–16:00",
+      "description": "Steins, brezn and the Jäger Maestros oompah band in the Civic Hall. 2026 date expected early October — confirm nearer the time.",
+      "source": "https://www.theoldhamtimes.co.uk/news/26093812.saddleworth-oktoberfest-returning-uppermill-3rd-year/"
     }
   ]
 }

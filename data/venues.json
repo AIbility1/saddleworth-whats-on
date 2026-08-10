@@ -967,6 +967,16 @@
    "address": "75 High Street, Springhead, OL4 3BN"
   },
   {
+   "id": "roebuck-inn",
+   "name": "The Roebuck Inn",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Strinesdale",
+   "lat": 53.55827,
+   "lng": -2.05623,
+   "address": "Strinesdale, OL4 3RB"
+  },
+  {
    "id": "42-high-st",
    "name": "42 High St",
    "type": "Café",
