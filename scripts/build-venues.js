@@ -108,7 +108,7 @@ async function main() {
   if (!raw) throw lastErr;
   console.log(`  ${raw.elements.length} elements`);
 
-  const rawDir = path.join(__dirname, '..', 'data', 'raw');
+  const rawDir = path.join(__dirname, '..', 'data-raw');
   fs.mkdirSync(rawDir, { recursive: true });
   fs.writeFileSync(path.join(rawDir, 'overpass-venues.json'), JSON.stringify(raw));
 
@@ -169,7 +169,7 @@ async function main() {
   const venues = [...byId.values()].map((v) => { delete v._tagCount; return v; })
     .sort((a, b) => a.village.localeCompare(b.village) || a.name.localeCompare(b.name));
 
-  const file = path.join(__dirname, '..', 'data', 'venues.json');
+  const file = path.join(__dirname, '..', 'app', 'data', 'venues.json');
   fs.writeFileSync(file, JSON.stringify({ source: 'OpenStreetMap (ODbL) — baked by scripts/build-venues.js', venues }, null, 1));
   console.log(`Wrote data/venues.json — ${venues.length} venues:`);
   let village = '';

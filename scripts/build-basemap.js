@@ -134,7 +134,7 @@ async function main() {
   const raw = await overpass(QUERY);
   console.log(`  ${raw.elements.length} ways`);
 
-  const rawDir = path.join(__dirname, '..', 'data', 'raw');
+  const rawDir = path.join(__dirname, '..', 'data-raw');
   fs.mkdirSync(rawDir, { recursive: true });
   fs.writeFileSync(path.join(rawDir, 'overpass-basemap.json'), JSON.stringify(raw));
 
@@ -214,7 +214,7 @@ async function main() {
     out.bld.push(pts.map(([a, b]) => [R5(a), R5(b)]));
   }
 
-  const file = path.join(__dirname, '..', 'data', 'basemap.json');
+  const file = path.join(__dirname, '..', 'app', 'data', 'basemap.json');
   fs.writeFileSync(file, JSON.stringify(out));
   const kb = (fs.statSync(file).size / 1024).toFixed(0);
   console.log(`Wrote data/basemap.json (${kb} KB):`);

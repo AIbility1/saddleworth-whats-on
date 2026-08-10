@@ -9,7 +9,7 @@ const fs = require('fs');
 const path = require('path');
 const core = require('../api/_lib/core');
 
-const ROOT = path.join(__dirname, '..');
+const ROOT = path.join(__dirname, '..', 'app');
 const PORT = 8130;
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8',

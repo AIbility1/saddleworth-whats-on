@@ -11,8 +11,8 @@ const fs = require('fs');
 const { venueCode } = require('../api/_lib/core');
 
 const only = process.argv[2];
-const baked = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'venues.json'), 'utf8')).venues;
-const editorial = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'events.json'), 'utf8'));
+const baked = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'app', 'data', 'venues.json'), 'utf8')).venues;
+const editorial = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'app', 'data', 'events.json'), 'utf8'));
 const all = baked.concat(editorial.customVenues || []);
 
 if (!process.env.VENUE_CODE_SECRET) {
