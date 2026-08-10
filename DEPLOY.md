@@ -63,11 +63,12 @@ the API returns a polite 503 and the site runs on the editorial data alone.
 > Changing `VENUE_CODE_SECRET` later invalidates every venue code at once
 > (events already published stay). That's the kill switch if codes leak.
 
-## 4. Custom domain (optional)
+## 4. Custom domain — saddleworthlive.co.uk
 
-Static Web App → **Custom domains** → add e.g. `whatson.aibility.co.uk` (or a
-standalone domain like `saddleworthwhatson.co.uk`) and create the CNAME it asks
-for in your DNS.
+Static Web App → **Custom domains** → add `www.saddleworthlive.co.uk` and
+create the CNAME it asks for at the domain registrar; then add the apex
+`saddleworthlive.co.uk` (Azure validates it with a TXT record and serves it
+via an alias/ANAME or their apex support). Free SSL is automatic.
 
 ## 5. Add it to the Labs page
 
