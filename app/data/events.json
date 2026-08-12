@@ -285,6 +285,23 @@
       "tags": [
         "Reopening under new ownership"
       ]
+    },
+    "tame-valley-tennis-and-squash-club": {
+      "village": "Greenfield",
+      "blurb": "Tennis, squash, racketball and pickleball on Greenbridge Lane — pay-and-play courts, coaching, and padel courts arriving from spring 2026.",
+      "tags": [
+        "Pay & play",
+        "Padel from 2026",
+        "Coaching"
+      ]
+    },
+    "uppermill-conservative-club": {
+      "blurb": "The Con Club on the High Street — function room, snooker, and the local Rock Choir’s concert venue of choice.",
+      "tags": [
+        "Function room",
+        "Rock Choir concerts",
+        "Snooker"
+      ]
     }
   },
   "customVenues": [
@@ -951,6 +968,81 @@
         "History",
         "Rushcart finale"
       ]
+    },
+    {
+      "id": "springhead-cricket-club",
+      "name": "Springhead Cricket Club",
+      "type": "Cricket club",
+      "kind": "sport",
+      "village": "Springhead",
+      "lat": 53.5395,
+      "lng": -2.0665,
+      "address": "Mayfield Avenue, Springhead, OL4 4SH",
+      "blurb": "Cricket at Mayfield Avenue since the 1880s, with a friendly clubhouse bar and junior sections.",
+      "tags": [
+        "Cricket",
+        "Clubhouse bar",
+        "Juniors"
+      ],
+      "links": {
+        "website": "https://springhead.play-cricket.com"
+      }
+    },
+    {
+      "id": "delph-dobcross-cc",
+      "name": "Delph & Dobcross Cricket & Bowling Club",
+      "type": "Cricket & bowls club",
+      "kind": "sport",
+      "village": "Delph",
+      "lat": 53.5662,
+      "lng": -2.016,
+      "address": "Huddersfield Road, Delph",
+      "blurb": "Cricket and crown-green bowls at the south end of the village — and the home of Delph’s Party in the Park each September.",
+      "tags": [
+        "Cricket",
+        "Crown green bowls",
+        "Party in the Park"
+      ],
+      "links": {}
+    },
+    {
+      "id": "nurture-saddleworth",
+      "name": "Nurture Saddleworth",
+      "type": "Yoga & movement studio",
+      "kind": "sport",
+      "village": "Uppermill",
+      "lat": 53.5461,
+      "lng": -2.0068,
+      "address": "Top floor, Queen Anne’s Gallery, 64 High Street, Uppermill OL3 6HA",
+      "blurb": "Yoga, pilates, qigong and strength classes in a calm studio above the High Street — mornings and evenings most days.",
+      "tags": [
+        "Yoga",
+        "Pilates",
+        "Drop-in £9"
+      ],
+      "links": {
+        "website": "https://www.nurturesaddleworth.co.uk"
+      },
+      "hours": "Classes Mo-Th mornings & evenings; Su morning — timetable online"
+    },
+    {
+      "id": "dobcross-band-social-club",
+      "name": "Dobcross Band & Social Club",
+      "type": "Band & social club",
+      "kind": "club",
+      "village": "Dobcross",
+      "lat": 53.5605,
+      "lng": -2.0155,
+      "address": "Platt Lane, Dobcross, OL3 5AD",
+      "blurb": "Home of the Dobcross Silver Band, the youth and training bands — and a floodlit crown green where eleven league bowls teams play most evenings in season.",
+      "tags": [
+        "Brass bands",
+        "Crown green bowls",
+        "Floodlit green"
+      ],
+      "links": {
+        "website": "https://www.dobcross.club"
+      }
     }
   ],
   "events": [
@@ -1795,6 +1887,404 @@
       "offer": "5 dishes £20",
       "description": "Five tapas dishes for twenty quid (also Saturday afternoons) — worth confirming with the pub.",
       "source": "https://www.useyourlocal.com/pubs/old-original-oldham-65775/"
+    },
+    {
+      "id": "runners-tue-summer",
+      "business": "cross-keys",
+      "title": "Saddleworth Runners — Club Night",
+      "category": "active",
+      "time": "18:15 for 18:30",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "tue",
+        "until": "2026-09-13"
+      },
+      "description": "Speed sessions, “Night Owl” fell runs and the easy-pace Shuffle, with a social in the Cross Keys kitchen after. The club’s summer base.",
+      "source": "http://www.saddleworth-runners.co.uk/training-runs"
+    },
+    {
+      "id": "runners-tue-winter",
+      "business": "saddleworth-cricket-bowling-and-tennis-club",
+      "title": "Saddleworth Runners — Club Night",
+      "category": "active",
+      "time": "18:15 for 18:30",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "tue",
+        "from": "2026-09-15",
+        "until": "2027-04-13"
+      },
+      "description": "The winter base at Well-i-Hole — head torches on the tracks above the valley.",
+      "source": "http://www.saddleworth-runners.co.uk/training-runs"
+    },
+    {
+      "id": "runners-sun",
+      "business": "brownhill-countryside-centre",
+      "title": "Sunday Morning Trail Run",
+      "category": "active",
+      "time": "10:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sun"
+      },
+      "description": "Saddleworth Runners’ steady two hours on tracks and trails — prospective members welcome.",
+      "source": "http://www.saddleworth-runners.co.uk/training-runs"
+    },
+    {
+      "id": "runners-women",
+      "venue": {
+        "name": "Tesco car park, Greenfield",
+        "village": "Greenfield",
+        "lat": 53.5399,
+        "lng": -1.9918
+      },
+      "title": "Women’s Group Run",
+      "category": "active",
+      "time": "19:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "wed"
+      },
+      "description": "About an hour at a chatty ten-minute-mile pace. First Wednesday of summer months meets at Binn Green, Dovestone instead.",
+      "source": "http://www.saddleworth-runners.co.uk/training-runs"
+    },
+    {
+      "id": "runners-juniors",
+      "business": "saddleworth-pool-and-leisure-centre",
+      "title": "Junior Runners (ages 8–14)",
+      "category": "active",
+      "time": "18:30–19:30",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "mon"
+      },
+      "description": "Saddleworth Runners’ junior training night from the leisure centre car park.",
+      "source": "http://www.saddleworth-runners.co.uk/training-runs"
+    },
+    {
+      "id": "junior-parkrun",
+      "business": "saddleworth-pool-and-leisure-centre",
+      "title": "Uppermill junior parkrun",
+      "category": "active",
+      "time": "09:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sun"
+      },
+      "offer": "Free",
+      "description": "A free, timed 2k along the bridleway for 4–14 year olds, every Sunday. Register once online, then just turn up.",
+      "source": "https://www.parkrun.org.uk/uppermill-juniors/"
+    },
+    {
+      "id": "cricket-uppermill",
+      "business": "uppermill-cricket-and-bowling-club",
+      "title": "Cricket: Uppermill CC",
+      "category": "active",
+      "time": "12:30",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sat",
+        "until": "2026-09-12"
+      },
+      "description": "Greater Manchester Cricket League Saturdays — home fixtures roughly alternate weeks; check the club’s play-cricket page before setting off.",
+      "source": "https://uppermill.play-cricket.com/Matches"
+    },
+    {
+      "id": "cricket-saddleworth",
+      "business": "saddleworth-cricket-bowling-and-tennis-club",
+      "title": "Cricket: Saddleworth CC",
+      "category": "active",
+      "time": "12:30",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sat",
+        "until": "2026-09-12"
+      },
+      "description": "Greater Manchester Cricket League Saturdays — home fixtures roughly alternate weeks; check the club’s play-cricket page before setting off.",
+      "source": "https://www.saddleworthcbtc.co.uk/teams/155499/fixtures-results"
+    },
+    {
+      "id": "cricket-friarmere",
+      "business": "friarmere-cricket-club",
+      "title": "Cricket: Friarmere CC",
+      "category": "active",
+      "time": "12:30",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sat",
+        "until": "2026-09-12"
+      },
+      "description": "Greater Manchester Cricket League Saturdays — home fixtures roughly alternate weeks; check the club’s play-cricket page before setting off. Sundays: 3rd XI at 13:30 and the Friarmere Phoenix women at 10:00.",
+      "source": "https://friarmere.play-cricket.com/Matches"
+    },
+    {
+      "id": "cricket-austerlands",
+      "business": "austerlands-cricket-club",
+      "title": "Cricket: Austerlands CC",
+      "category": "active",
+      "time": "12:30",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sat",
+        "until": "2026-09-12"
+      },
+      "description": "GMCL cricket at nearly a thousand feet — greater manchester cricket league saturdays — home fixtures roughly alternate weeks; check the club’s play-cricket page before setting off.",
+      "source": "https://austerlands.play-cricket.com/Matches"
+    },
+    {
+      "id": "cricket-greenfield",
+      "business": "greenfield-cricket-club",
+      "title": "Cricket: Greenfield CC",
+      "category": "active",
+      "time": "12:30",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sat",
+        "until": "2026-09-12"
+      },
+      "description": "Greater Manchester Cricket League Saturdays — home fixtures roughly alternate weeks; check the club’s play-cricket page before setting off. Five senior sides including a Women’s XI and two T20 teams.",
+      "source": "https://greenfieldcc.org.uk/"
+    },
+    {
+      "id": "cricket-delph-dobcross",
+      "business": "delph-dobcross-cc",
+      "title": "Cricket: Delph & Dobcross CC",
+      "category": "active",
+      "time": "12:30",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sat",
+        "until": "2026-09-12"
+      },
+      "description": "Greater Manchester Cricket League Saturdays — home fixtures roughly alternate weeks; check the club’s play-cricket page before setting off.",
+      "source": "https://www.delphcricket.co.uk/pages/fixtures"
+    },
+    {
+      "id": "cricket-springhead",
+      "business": "springhead-cricket-club",
+      "title": "Cricket: Springhead CC",
+      "category": "active",
+      "time": "12:30",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sat",
+        "until": "2026-09-12"
+      },
+      "description": "Greater Manchester Cricket League Saturdays — home fixtures roughly alternate weeks; check the club’s play-cricket page before setting off.",
+      "source": "https://springhead.play-cricket.com/Matches"
+    },
+    {
+      "id": "cricket-ladies-training",
+      "business": "saddleworth-cricket-bowling-and-tennis-club",
+      "title": "Girls & Ladies Cricket Training",
+      "category": "active",
+      "time": "18:30–20:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "thu",
+        "until": "2026-09-10"
+      },
+      "description": "The girls’ and ladies’ section — GMCL indoor champions — train Thursday evenings in season.",
+      "source": "https://www.saddleworthcbtc.co.uk/"
+    },
+    {
+      "id": "sfc-academy",
+      "venue": {
+        "name": "Saddleworth School astroturf",
+        "village": "Diggle",
+        "lat": 53.5685,
+        "lng": -2.0015
+      },
+      "title": "Saddleworth FC Academy (ages 4–6)",
+      "category": "active",
+      "time": "09:00–10:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sat"
+      },
+      "description": "The play-phase academy that feeds the junior league teams — term-time Saturdays on the school astro.",
+      "source": "https://www.saddleworthfc.org/"
+    },
+    {
+      "id": "bowls-ucbc",
+      "business": "uppermill-cricket-and-bowling-club",
+      "title": "Crown Green Bowls — Newcomers Welcome",
+      "category": "active",
+      "time": "Afternoons",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "fri"
+      },
+      "description": "Fifteen league teams play through the week; Friday afternoons and Sundays are the best time to come and try the green.",
+      "source": "https://www.ucbc.club/crowngreenbowling"
+    },
+    {
+      "id": "nurture-flow",
+      "business": "nurture-saddleworth",
+      "title": "Evening Yoga Flow",
+      "category": "active",
+      "time": "18:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "mon"
+      },
+      "offer": "Drop-in £9",
+      "description": "Monday evening flow in the studio above the High Street — classes most days, timetable online.",
+      "source": "https://www.momoyoga.com/nurturesaddleworth/schedule"
+    },
+    {
+      "id": "nurture-candlelight",
+      "business": "nurture-saddleworth",
+      "title": "Candlelight Yoga",
+      "category": "active",
+      "time": "19:15",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "thu"
+      },
+      "offer": "Drop-in £9",
+      "description": "The soft one: yin by candlelight to close the day.",
+      "source": "https://www.momoyoga.com/nurturesaddleworth/schedule"
+    },
+    {
+      "id": "sasc-squad",
+      "business": "saddleworth-pool-and-leisure-centre",
+      "title": "Saddleworth Swimming Club",
+      "category": "active",
+      "time": "Evenings (Mon & Wed)",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "mon"
+      },
+      "description": "Club squad for 8–16s who can swim 25m — trials via sascadmin@gmail.com.",
+      "source": "https://www.saddleworthswimming.co.uk/"
+    },
+    {
+      "id": "sail-sunday",
+      "business": "dovestone-sailing-club",
+      "title": "Sunday Dinghy Racing",
+      "category": "active",
+      "time": "First start ~12:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sun",
+        "until": "2026-12-20"
+      },
+      "description": "Racing series March to December under the gritstone edges — free spectacle from the reservoir path.",
+      "source": "https://www.dovestonesc.org.uk/racing.php"
+    },
+    {
+      "id": "sail-midweek",
+      "business": "dovestone-sailing-club",
+      "title": "Midweek Evening Racing",
+      "category": "active",
+      "time": "19:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "wed",
+        "until": "2026-09-09"
+      },
+      "description": "The summer Wednesday series — sails against the sunset.",
+      "source": "https://www.dovestonesc.org.uk/racing.php"
+    },
+    {
+      "id": "racketball-social",
+      "business": "tame-valley-tennis-and-squash-club",
+      "title": "Racketball Social Night",
+      "category": "active",
+      "time": "18:00–20:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "tue"
+      },
+      "description": "Beginner-friendly racketball — no racket needed, bar open after.",
+      "source": "https://clubspark.lta.org.uk/TameValleyTennisSquashClub/SquashandRB"
+    },
+    {
+      "id": "golf-pairs-aug26",
+      "business": "saddleworth-golf-club",
+      "title": "Pairs Open (4BBB)",
+      "category": "active",
+      "start": "2026-08-22",
+      "time": "Tee times via the club",
+      "offer": "£50 per pair",
+      "description": "Open competition — visitors welcome on the moorside course.",
+      "source": "https://www.saddleworthgolfclub.org.uk/"
+    },
+    {
+      "id": "golf-ladies-sep26",
+      "business": "saddleworth-golf-club",
+      "title": "Ladies Team Open",
+      "category": "active",
+      "start": "2026-09-28",
+      "time": "Tee times via the club",
+      "offer": "£80 per team of 4",
+      "description": "Teams of four, best views in the borough.",
+      "source": "https://www.saddleworthgolfclub.org.uk/"
+    },
+    {
+      "id": "golf-pairs-oct26",
+      "business": "saddleworth-golf-club",
+      "title": "Autumn Pairs Open",
+      "category": "active",
+      "start": "2026-10-24",
+      "time": "Tee times via the club",
+      "offer": "£50 per pair",
+      "description": "The season’s last open.",
+      "source": "https://www.saddleworthgolfclub.org.uk/"
+    },
+    {
+      "id": "clarion-sat",
+      "business": "caffe-grande-abaco",
+      "title": "Saddleworth Clarion — Saturday Rides",
+      "category": "active",
+      "time": "Morning",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sat"
+      },
+      "description": "The sociable C-group rides (20–50 miles, always a café stop) roll out from the café.",
+      "source": "https://www.saddleworthclarion.com/club-rides"
+    },
+    {
+      "id": "clarion-sun",
+      "business": "caffe-grande-abaco",
+      "title": "Saddleworth Clarion — A & B Rides",
+      "category": "active",
+      "time": "09:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sun"
+      },
+      "description": "The quicker groups — 50 to 160 km, home for lunch-ish.",
+      "source": "https://www.saddleworthclarion.com/club-rides"
+    },
+    {
+      "id": "clarion-beginners",
+      "business": "caffe-grande-abaco",
+      "title": "Beginners’ Social Ride",
+      "category": "active",
+      "time": "Morning",
+      "recurrence": {
+        "freq": "monthly",
+        "week": -1,
+        "day": "sat"
+      },
+      "description": "Ten miles an hour, stays in Saddleworth, nobody dropped. Last Saturday monthly.",
+      "source": "https://www.saddleworthclarion.com/club-rides"
+    },
+    {
+      "id": "rangers-training",
+      "business": "saddleworth-rangers-arlfc",
+      "title": "Rugby League Training",
+      "category": "active",
+      "time": "Evening (Masters 20:00)",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "tue"
+      },
+      "description": "First-team and Masters training at Shaw Hall Bank Road; junior teams U12–U18 run their own nights — check with the club.",
+      "source": "http://www.saddleworthrangers.co.uk/teams"
     }
   ]
 }

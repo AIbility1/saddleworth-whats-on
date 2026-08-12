@@ -371,8 +371,58 @@ async function handleRate(body) {
   return json(200, { ok: true });
 }
 
+// ---- Saddleworth Pool League fixtures (saddleworthpoolleague.co.uk) ----
+// Read-only feed proxied server-side (no CORS, one fetch per half hour) and
+// mapped onto the host pubs' pins. League venues outside the map are skipped.
+const POOL_BASE = 'https://www.saddleworthpoolleague.co.uk/api';
+const POOL_VENUES = {
+  'Hare & Hounds': 'hare-and-hounds',
+  'Top House': 'swan',
+  'Oddfellows': 'oddfellows',
+  'Northgate': 'northgate',
+  'Weavers Arms': 'weavers-arms',
+  'Bridge Inn': 'bridge-inn',
+};
+let poolCache = { at: 0, body: null };
+async function handlePool() {
+  if (poolCache.body && Date.now() - poolCache.at < 30 * 60 * 1000) {
+    return json(200, poolCache.body);
+  }
+  try {
+    const get = async (p) => (await fetch(POOL_BASE + p)).json();
+    const seasons = await get('/seasons');
+    const active = (seasons || []).filter((s) => s.isActive && !s.hidden);
+    const events = [];
+    for (const season of active) {
+      const [teams, fixtures] = await Promise.all([
+        get(`/seasons/${season.id}/teams`), get(`/seasons/${season.id}/fixtures`),
+      ]);
+      const tmap = new Map((teams || []).map((t) => [t.id, t]));
+      for (const f of (fixtures || [])) {
+        if (!f.date) continue;
+        const home = tmap.get(f.homeTeamId), away = tmap.get(f.awayTeamId);
+        const slug2 = home && POOL_VENUES[home.venue];
+        if (!slug2) continue;
+        events.push({
+          id: 'pool-' + f.id, venueId: slug2,
+          title: `🎱 Pool: ${home.name} v ${away ? away.name : 'TBC'}`,
+          category: 'active', start: f.date, time: 'League night',
+          description: `Saddleworth Pool League — ${season.name}${f.week ? ', week ' + f.week : ''}.` +
+            ' Frame-by-frame live scoring on saddleworthpoolleague.co.uk.',
+          source: 'https://www.saddleworthpoolleague.co.uk', pool: true,
+        });
+      }
+    }
+    poolCache = { at: Date.now(), body: { events } };
+    return json(200, poolCache.body);
+  } catch {
+    return json(200, { events: [] }); // the league being unreachable never breaks the map
+  }
+}
+
 module.exports = {
   venueCode, codeOk,
   handleEventsList, handleVerify, handleEventUpsert, handleEventDelete,
   handleVenuesList, handleVenueSubmit, handleModerate, handleClaim, handleRate,
+  handlePool,
 };

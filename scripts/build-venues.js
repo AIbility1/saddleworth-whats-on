@@ -80,6 +80,14 @@ const CLOSED = new Set([
   'uppermill-cricket-club',  // duplicate OSM element of uppermill-cricket-and-bowling-club
 ]);
 
+// Kept regardless of the village circles (fringe pubs that host Saddleworth
+// Pool League teams — their match nights belong on the map).
+const ALWAYS = new Map([
+  ['northgate', 'Moorside'],
+  ['weavers-arms', 'Lees'],
+  ['bridge-inn', 'Lees'],
+]);
+
 // nearest anchor whose circle contains the point — null means "not Saddleworth"
 function anchorVillage(lat, lng) {
   let best = null, bd = 1e9;
@@ -131,10 +139,11 @@ async function main() {
     if (lat == null) continue;
     if (lat < LAT_BOT || lat > LAT_TOP || lng < LNG_L || lng > LNG_R) continue;
 
-    const village = anchorVillage(lat, lng);
+    const preId = slug(t.name);
+    const village = anchorVillage(lat, lng) || ALWAYS.get(preId);
     if (!village) continue;
     const kind = kindOf(t);
-    const id = slug(t.name);
+    const id = preId;
     if (!id || CLOSED.has(id)) continue;
     const addr = [t['addr:housenumber'], t['addr:street']].filter(Boolean).join(' ');
     const v = {

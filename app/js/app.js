@@ -623,7 +623,9 @@
   // ================= community: live events, submissions, ratings =================
   async function loadCommunity() {
     try {
-      const [ev, vn] = await Promise.all([api('events'), api('venues')]);
+      const [ev, vn, pool] = await Promise.all([
+        api('events'), api('venues'), api('pool').catch(() => ({ events: [] })),
+      ]);
       for (const [id, v] of [...venues]) if (v.community) venues.delete(id);
       events = events.filter((e) => !e.community);
       for (const v of (vn.venues || [])) {
@@ -642,6 +644,10 @@
             lat: e.spot.lat, lng: e.spot.lng, tags: [], links: {}, community: true,
           });
         }
+        if (!venues.has(e.venueId)) continue;
+        events.push({ ...e, business: e.venueId, _venueId: e.venueId, community: true });
+      }
+      for (const e of (pool.events || [])) {
         if (!venues.has(e.venueId)) continue;
         events.push({ ...e, business: e.venueId, _venueId: e.venueId, community: true });
       }
@@ -721,7 +727,7 @@
       return el ? el.value.trim() : undefined;
     };
     const refreshMine = () => {
-      const mine = events.filter((e2) => e2.community && e2._venueId === v.id &&
+      const mine = events.filter((e2) => e2.community && !e2.pool && e2._venueId === v.id &&
         (isClaimed || e2.owner === myOwner));
       $('f-mine').innerHTML = mine.length ? mine.map((e2) => `<div class="me"><span>${esc(e2.title)}${
         e2.recurrence ? ' · ' + (e2.recurrence.freq === 'weekly' ? 'weekly' : 'monthly') : e2.start ? ' · ' + e2.start : ''
@@ -918,7 +924,7 @@
           <span style="color:var(--muted)">${esc(v2.blurb || '')}<br>${esc(v2.email)} · code ${esc(v2.code)}</span></span>
           <span>${v2.status === 'pending' ? `<button data-ap="${v2.id}">Approve</button>` : ''}
           <button data-rj="${v2.id}">Remove</button></span></div>`).join('');
-        const evRows = events.filter((e2) => e2.community).map((e2) => `<div class="me">
+        const evRows = events.filter((e2) => e2.community && !e2.pool).map((e2) => `<div class="me">
           <span>${esc(e2.title)} <span style="color:var(--muted)">@ ${esc((venues.get(e2._venueId) || {}).name || e2._venueId)}</span></span>
           <button data-ed="${e2.id}" data-ev="${e2._venueId}">Remove</button></div>`).join('');
         $('a-list').innerHTML = `
@@ -1032,6 +1038,7 @@
         if (ex.menu) v.menu = ex.menu;
         if (ex.photo) v.photo = ex.photo;
         if (ex.hours) v.hours = ex.hours;
+        if (ex.village) v.village = ex.village;
         if (ex.tags) v.tags = [...new Set([...ex.tags, ...v.tags])];
         v.links = { ...(ex.links || {}), ...v.links };   // OSM's own links win
       }
@@ -1066,7 +1073,13 @@
       basemap.insertAdjacentHTML('beforeend', rh + '</g>');
       view.s = Math.min(innerWidth / W, innerHeight / H);
       fit();
-      setWindow(0, 30);
+      // open on the valley spine, a touch closer than full-fit
+      const [hx, hy] = project(53.553, -2.006);
+      view.s = fitS * 1.7;
+      view.x = (innerWidth + 360) / 2 - hx * view.s;
+      view.y = innerHeight * 0.52 - hy * view.s;
+      applyView();
+      setWindow(0, 6);
     })
     .catch((err) => {
       $('count').textContent = 'Could not load events data — ' + err.message;

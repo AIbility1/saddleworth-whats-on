@@ -732,6 +732,26 @@
    "address": "Grotton"
   },
   {
+   "id": "bridge-inn",
+   "name": "The Bridge Inn",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Lees",
+   "lat": 53.54103,
+   "lng": -2.09414,
+   "address": "31, Moorhey Street, Lees"
+  },
+  {
+   "id": "weavers-arms",
+   "name": "Weavers Arms",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Lees",
+   "lat": 53.54727,
+   "lng": -2.08891,
+   "address": "172, Huddersfield Road, Lees"
+  },
+  {
    "id": "parish-hall",
    "name": "The Parish Hall",
    "type": "Community hall",
@@ -752,6 +772,18 @@
    "address": "Lydgate",
    "links": {
     "website": "https://www.thewhitehart.co.uk/"
+   }
+  },
+  {
+   "id": "northgate",
+   "name": "The Northgate",
+   "type": "Pub",
+   "kind": "pub",
+   "village": "Moorside",
+   "lat": 53.56573,
+   "lng": -2.08036,
+   "links": {
+    "website": "https://www.joseph-holt.com/pubs/northgate"
    }
   },
   {
