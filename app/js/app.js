@@ -25,6 +25,7 @@
     market:    { label: 'Markets & fairs',       emoji: '🧺', group: 'comm' },
     community: { label: 'Festivals & community', emoji: '🎪', group: 'comm' },
     active:    { label: 'Sport & fitness',       emoji: '🏃', group: 'out'  },
+    kids:      { label: 'Kids & family',         emoji: '🧒', group: 'comm' },
   };
   const KIND_EMOJI = { pub: '🍻', cafe: '☕', restaurant: '🍽️', takeaway: '🍟',
                        hall: '🎭', attraction: '🏛️', club: '🎺', sport: '🎾',
@@ -149,7 +150,7 @@
     applyView();
   }
   function zoomAt(cx, cy, f) {
-    const ns = Math.min(fitS * 48, Math.max(fitS * 0.9, view.s * f));
+    const ns = Math.min(fitS * 80, Math.max(fitS * 0.9, view.s * f));
     view.x = cx - ((cx - view.x) / view.s) * ns;
     view.y = cy - ((cy - view.y) / view.s) * ns;
     view.s = ns;
@@ -228,11 +229,11 @@
   let zbarBusy = false;
   function syncZoomBar() {
     if (zbarBusy || !fitS) return;
-    const lo2 = fitS * 0.9, hi2 = fitS * 48;
+    const lo2 = fitS * 0.9, hi2 = fitS * 80;
     zbar.value = Math.round(1000 * Math.log(view.s / lo2) / Math.log(hi2 / lo2));
   }
   zbar.addEventListener('input', () => {
-    const lo2 = fitS * 0.9, hi2 = fitS * 48;
+    const lo2 = fitS * 0.9, hi2 = fitS * 80;
     const target = lo2 * Math.pow(hi2 / lo2, +zbar.value / 1000);
     zbarBusy = true;
     zoomAt(innerWidth / 2, innerHeight / 2, target / view.s);
@@ -368,6 +369,7 @@
 
     const nv = byVenue.size;
     $('count').textContent = `${shown.length} listing${shown.length === 1 ? '' : 's'} at ${nv} venue${nv === 1 ? '' : 's'} · ${fmtShort(t0)} – ${fmtShort(t1)}`;
+    syncFilterBtn();
 
     if (selected) renderVenue(selected, false);
   }
@@ -608,6 +610,17 @@
     clearTimeout(qT);
     qT = setTimeout(() => { query = e.target.value.trim().toLowerCase(); render(); }, 120);
   });
+
+  $('filter-btn').onclick = () => {
+    const open = !$('filters').classList.toggle('collapsed');
+    $('filter-btn').classList.toggle('open', open);
+    $('filter-btn').setAttribute('aria-expanded', open);
+  };
+  function syncFilterBtn() {
+    const filtered = activeKinds.size !== Object.keys(KINDG).length ||
+                     activeCats.size !== Object.keys(CATS).length;
+    $('filter-btn').classList.toggle('active', filtered);
+  }
 
   $('side-toggle').onclick = () => {
     const open = document.body.classList.toggle('side-open');

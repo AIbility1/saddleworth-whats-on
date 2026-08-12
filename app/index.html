@@ -107,6 +107,15 @@
                color: var(--ink-soft); border-radius: 999px; padding: 3px 10px;
                font-size: 11px; font-weight: 600; }
   #side .tools { padding: 12px 14px 10px; border-bottom: 1px solid var(--line); }
+  .srow { display: flex; gap: 7px; }
+  #filter-btn { flex: 0 0 auto; border: 0; border-radius: var(--r-sm); padding: 8px 13px;
+                font: inherit; font-size: 12.5px; font-weight: 600; cursor: pointer;
+                background: var(--surface-2); color: var(--ink-soft); position: relative; }
+  #filter-btn:hover { background: var(--surface-3); color: var(--ink); }
+  #filter-btn.open { background: var(--ink); color: #fff; }
+  #filter-btn.active::after { content: ""; position: absolute; top: 6px; right: 6px;
+                width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+  #filters.collapsed { display: none; }
   #q { width: 100%; border: 0; border-radius: var(--r-sm); padding: 8px 11px;
        font: inherit; background: var(--surface-2); color: var(--ink); }
   #q::placeholder { color: var(--muted); }
@@ -400,8 +409,8 @@
     #presets { margin-bottom: 10px; }
     .slider { min-width: 0; }
     #dates { justify-content: space-between; margin-top: 3px; }
-    #credit { display: none; }
-    #zoomctl { bottom: 120px; }
+    #credit { bottom: 130px; }
+    #zoomctl { bottom: 176px; }
     #venue { top: 14px; max-height: calc(100dvh - 155px); }
     #side { max-height: calc(100dvh - 155px); }
   }
@@ -445,11 +454,16 @@ offers venues publish themselves. It needs JavaScript to draw the map.</p></nosc
     <span class="demo-chip">Free listings for local venues</span>
   </div>
   <div class="tools">
-    <input id="q" type="search" placeholder="Search venues, villages, events…" aria-label="Search venues, villages and events">
-    <div class="chips" id="chips" role="group" aria-label="Filter places by type"></div>
-    <div class="chips chips-sub" id="cat-chips" role="group" aria-label="Filter events by type"></div>
-    <p class="legend-note">Every pin is a real place — colour &amp; icon show what it is. A
-      <span style="color:var(--accent);font-weight:700">coral badge</span> means it has events or offers in the dates below.</p>
+    <div class="srow">
+      <input id="q" type="search" placeholder="Search venues, villages, events…" aria-label="Search venues, villages and events">
+      <button id="filter-btn" aria-expanded="false" aria-controls="filters">Filters</button>
+    </div>
+    <div id="filters" class="collapsed">
+      <div class="chips" id="chips" role="group" aria-label="Filter places by type"></div>
+      <div class="chips chips-sub" id="cat-chips" role="group" aria-label="Filter events by type"></div>
+      <p class="legend-note">Every pin is a real place — colour &amp; icon show what it is. A
+        <span style="color:var(--accent);font-weight:700">coral badge</span> means it has events or offers in the dates below.</p>
+    </div>
   </div>
   <p id="count"></p>
   <div id="list" role="list"></div>

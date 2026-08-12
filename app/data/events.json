@@ -1225,7 +1225,7 @@
       "id": "museum-print-2026",
       "business": "saddleworth-museum",
       "title": "Print-Making Workshop (ages 5–8)",
-      "category": "community",
+      "category": "kids",
       "start": "2026-08-12",
       "time": "Book via the museum",
       "description": "Summer holiday workshop.",
@@ -1235,7 +1235,7 @@
       "id": "museum-pebble-2026",
       "business": "saddleworth-museum",
       "title": "Free Family Pebble-Art Workshop",
-      "category": "community",
+      "category": "kids",
       "start": "2026-08-17",
       "time": "Drop in",
       "description": "Free making table for families in the summer holidays.",
@@ -1246,7 +1246,7 @@
       "id": "museum-clay-2026",
       "business": "saddleworth-museum",
       "title": "Clay Modelling Workshops (ages 9–12)",
-      "category": "community",
+      "category": "kids",
       "start": "2026-08-19",
       "end": "2026-08-21",
       "time": "13:00–15:00",
@@ -1952,7 +1952,7 @@
       "id": "runners-juniors",
       "business": "saddleworth-pool-and-leisure-centre",
       "title": "Junior Runners (ages 8–14)",
-      "category": "active",
+      "category": "kids",
       "time": "18:30–19:30",
       "recurrence": {
         "freq": "weekly",
@@ -1965,7 +1965,7 @@
       "id": "junior-parkrun",
       "business": "saddleworth-pool-and-leisure-centre",
       "title": "Uppermill junior parkrun",
-      "category": "active",
+      "category": "kids",
       "time": "09:00",
       "recurrence": {
         "freq": "weekly",
@@ -2096,7 +2096,7 @@
         "lng": -2.0015
       },
       "title": "Saddleworth FC Academy (ages 4–6)",
-      "category": "active",
+      "category": "kids",
       "time": "09:00–10:00",
       "recurrence": {
         "freq": "weekly",
@@ -2150,7 +2150,7 @@
       "id": "sasc-squad",
       "business": "saddleworth-pool-and-leisure-centre",
       "title": "Saddleworth Swimming Club",
-      "category": "active",
+      "category": "kids",
       "time": "Evenings (Mon & Wed)",
       "recurrence": {
         "freq": "weekly",
