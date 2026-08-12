@@ -961,9 +961,9 @@
       "id": "sight-st-chads",
       "name": "St Chad’s Church",
       "village": "Uppermill",
-      "lat": 53.554,
-      "lng": -1.9995,
-      "blurb": "Saddleworth’s parish church, up on the hillside since 1215 with the Church Inn for a neighbour - the Rushcart ends here every August with hymns and a gurning contest.",
+      "lat": 53.55429,
+      "lng": -1.99013,
+      "blurb": "Saddleworth’s parish church, up on the hillside since 1215 — the Rushcart ends here every August with hymns and a gurning contest, and the Church Inn waits a little way down the lane.",
       "tags": [
         "History",
         "Rushcart finale"
@@ -1043,6 +1043,100 @@
       "links": {
         "website": "https://www.dobcross.club"
       }
+    },
+    {
+      "id": "sight-heights-chapel",
+      "name": "Heights Chapel",
+      "type": "Historic chapel",
+      "kind": "sight",
+      "village": "Delph",
+      "lat": 53.57819,
+      "lng": -2.02849,
+      "address": "Broad Lane, Heights, Delph",
+      "blurb": "The lonely 1765 chapel on the hill above Delph — whitewashed, galleried, and one of the finest viewpoints in the parish. Occasional services and concerts.",
+      "tags": [
+        "Georgian chapel",
+        "Viewpoint",
+        "History"
+      ],
+      "links": {}
+    },
+    {
+      "id": "sight-st-annes",
+      "name": "St Anne’s Church, Lydgate",
+      "type": "Church",
+      "kind": "sight",
+      "village": "Lydgate",
+      "lat": 53.53551,
+      "lng": -2.04244,
+      "address": "Stockport Road, Lydgate",
+      "blurb": "Lydgate’s hilltop church of 1788, its tower a landmark for miles across the Tame valley.",
+      "tags": [
+        "History",
+        "Viewpoint"
+      ],
+      "links": {}
+    },
+    {
+      "id": "sight-holy-trinity-dobcross",
+      "name": "Holy Trinity Church, Dobcross",
+      "type": "Church",
+      "kind": "sight",
+      "village": "Dobcross",
+      "lat": 53.55535,
+      "lng": -2.01487,
+      "address": "Woods Lane, Dobcross",
+      "blurb": "The 1787 village church above Dobcross Square, at the heart of the conservation village.",
+      "tags": [
+        "History",
+        "Conservation village"
+      ],
+      "links": {}
+    },
+    {
+      "id": "sight-st-thomas-delph",
+      "name": "St Thomas’ Church, Friarmere",
+      "type": "Church",
+      "kind": "sight",
+      "village": "Delph",
+      "lat": 53.56756,
+      "lng": -2.02445,
+      "address": "Delph",
+      "blurb": "Friarmere’s parish church, rebuilt in 1765 on land the monks of Roche Abbey once farmed.",
+      "tags": [
+        "History"
+      ],
+      "links": {}
+    },
+    {
+      "id": "sight-christ-church-denshaw",
+      "name": "Christ Church, Denshaw",
+      "type": "Church",
+      "kind": "sight",
+      "village": "Denshaw",
+      "lat": 53.59172,
+      "lng": -2.03809,
+      "address": "Huddersfield Road, Denshaw",
+      "blurb": "Denshaw’s 1863 church, spire against the moor at the meeting of the old turnpikes.",
+      "tags": [
+        "History"
+      ],
+      "links": {}
+    },
+    {
+      "id": "sight-st-marys-greenfield",
+      "name": "St Mary’s Church, Greenfield",
+      "type": "Church",
+      "kind": "sight",
+      "village": "Greenfield",
+      "lat": 53.53308,
+      "lng": -1.99794,
+      "address": "Chew Valley Road, Greenfield",
+      "blurb": "Greenfield’s parish church of 1875, gateway to the Chew Valley.",
+      "tags": [
+        "History"
+      ],
+      "links": {}
     }
   ],
   "events": [

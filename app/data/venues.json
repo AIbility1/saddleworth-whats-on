@@ -170,26 +170,6 @@
    "address": "Delph"
   },
   {
-   "id": "black-ladd",
-   "name": "Black Ladd",
-   "type": "Pub",
-   "kind": "pub",
-   "village": "Denshaw",
-   "lat": 53.57705,
-   "lng": -2.06321,
-   "address": "Denshaw"
-  },
-  {
-   "id": "clough-manor",
-   "name": "Clough Manor",
-   "type": "Inn & rooms",
-   "kind": "restaurant",
-   "village": "Denshaw",
-   "lat": 53.59761,
-   "lng": -2.05037,
-   "address": "Denshaw"
-  },
-  {
    "id": "friarmere-cricket-club",
    "name": "Friarmere Cricket Club",
    "type": "Sports club",

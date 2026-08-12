@@ -78,6 +78,8 @@ const CLOSED = new Set([
   'bank',                    // The Bank, Delph — gone
   'royal-oak',               // The Royal Oak (Th'Heights), Delph — gone
   'uppermill-cricket-club',  // duplicate OSM element of uppermill-cricket-and-bowling-club
+  'black-ladd',              // shut (local knowledge)
+  'clough-manor',            // shut (local knowledge)
 ]);
 
 // Kept regardless of the village circles (fringe pubs that host Saddleworth

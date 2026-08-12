@@ -214,18 +214,22 @@
       }
       return out.filter((r) => r.p.length > 1);
     }
-    const longestSurface = (chains) => {
+    // split each chain ONCE and reuse — the barge/train path identity depends
+    // on it (comparing freshly recomputed runs never matches)
+    const canalRuns = geo.canal.map((c) => runs(c));
+    const railRuns = geo.rail.map((c) => runs(c));
+    const longestSurface = (runsList) => {
       let best = null;
-      for (const c of chains) for (const r of runs(c)) {
+      for (const rs of runsList) for (const r of rs) {
         if (!r.t && (!best || r.p.length > best.length)) best = r.p;
       }
       return best;
     };
 
     // the Huddersfield Narrow Canal
-    const bargeRun = longestSurface(geo.canal);
-    for (const c of geo.canal) {
-      for (const r of runs(c)) {
+    const bargeRun = longestSurface(canalRuns);
+    for (const rs of canalRuns) {
+      for (const r of rs) {
         const d = line(pts(r.p));
         if (r.t) {
           s += `<path d="${d}" fill="none" stroke="${COL.waterDeep}" stroke-width="2.4" stroke-dasharray="3 6" stroke-linecap="round" opacity="0.5"/>`;
@@ -246,9 +250,9 @@
     }
 
     // the railway
-    const trainRun = longestSurface(geo.rail);
-    for (const c of geo.rail) {
-      for (const r of runs(c)) {
+    const trainRun = longestSurface(railRuns);
+    for (const rs of railRuns) {
+      for (const r of rs) {
         const d = line(pts(r.p));
         if (r.t) {
           s += `<path d="${d}" fill="none" stroke="${COL.rail}" stroke-width="2" stroke-dasharray="3 6" opacity="0.45"/>`;
@@ -291,7 +295,8 @@
         <rect x="4" y="-9" width="11" height="9" fill="${COL.stone}" stroke="${INK}" stroke-width="1.3"/>
         <path d="M3,-9 L9.5,-14.5 L16,-9z" fill="${COL.slate}" stroke="${INK}" stroke-width="1.3"/></g>`;
     }
-    s += church(53.554, -1.9995);
+    s += church(53.55429, -1.99013);   // St Chad's, from its real building footprint
+    s += church(53.57819, -2.02849);   // Heights Chapel on its hillside
     const [ox, oy] = P(53.5455, -1.9868);
     s += `<g transform="translate(${r1(ox)},${r1(oy)})">
       <path d="M-3.5,0 L-1.6,-19 L1.6,-19 L3.5,0z" fill="${COL.stone}" stroke="${INK}" stroke-width="1.4"/>
