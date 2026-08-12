@@ -302,6 +302,20 @@
         "Rock Choir concerts",
         "Snooker"
       ]
+    },
+    "saddleworth-pool-and-leisure-centre": {
+      "tags": [
+        "Learn-to-swim programme",
+        "25m pool",
+        "Group classes"
+      ]
+    },
+    "delph-band-club": {
+      "blurb": "Home of Delph Band and its thriving youth wing — Tooters, Training Band and Youth Band (contact via delphyouthband.com). Senior band rehearses Monday & Wednesday evenings.",
+      "tags": [
+        "Brass bands",
+        "Youth bands"
+      ]
     }
   },
   "customVenues": [
@@ -1137,6 +1151,150 @@
         "History"
       ],
       "links": {}
+    },
+    {
+      "id": "play2-diggle",
+      "name": "Play2 Diggle",
+      "type": "Soft play centre",
+      "kind": "attraction",
+      "village": "Diggle",
+      "lat": 53.5652,
+      "lng": -2.003,
+      "address": "Robinson Works, Warth Mill, Huddersfield Road, Diggle OL3 5PJ",
+      "blurb": "Saddleworth’s own soft play — baby and toddler zone plus a big frame and ball court for the under-11s. No booking needed.",
+      "tags": [
+        "Soft play",
+        "Under-11s",
+        "Café"
+      ],
+      "links": {
+        "website": "https://www.playoldham.co.uk/",
+        "phone": "01457 237260"
+      }
+    },
+    {
+      "id": "little-village-saddleworth",
+      "name": "Little Village Saddleworth",
+      "type": "Children’s role-play centre",
+      "kind": "attraction",
+      "village": "Delph",
+      "lat": 53.5638,
+      "lng": -2.0215,
+      "address": "Oakdale Mill, Delph New Road, Delph OL3 5BY",
+      "blurb": "An indoor pretend-play village — little shops, jobs and imaginations running wild. Two-hour sessions at 10:00, 13:00 and 16:00; book ahead at weekends.",
+      "tags": [
+        "Role play",
+        "Under-8s heaven",
+        "Parties"
+      ],
+      "links": {
+        "website": "https://www.littlevillagesaddleworth.co.uk/",
+        "phone": "01457 606066"
+      }
+    },
+    {
+      "id": "uppermill-library",
+      "name": "Uppermill Library",
+      "type": "Library",
+      "kind": "hall",
+      "village": "Uppermill",
+      "lat": 53.5462,
+      "lng": -2.0066,
+      "address": "St Chad’s, High Street, Uppermill OL3 6AP",
+      "blurb": "The village library — books, local history and free children’s sessions.",
+      "tags": [
+        "Free",
+        "Children’s sessions"
+      ],
+      "links": {
+        "website": "https://www.oldham.gov.uk/directory_record/15597/uppermill_library",
+        "phone": "01457 872777"
+      },
+      "hours": "Mo-Th 09:00-19:00; Fr 09:00-17:00; Sa 09:30-13:00"
+    },
+    {
+      "id": "uppermill-methodist",
+      "name": "Uppermill Methodist Church",
+      "type": "Church & community centre",
+      "kind": "hall",
+      "village": "Uppermill",
+      "lat": 53.549,
+      "lng": -2.00481,
+      "address": "High Street, Uppermill",
+      "blurb": "A busy community hub — toddler group, the 20th Oldham Scout Group, concerts and the summer music festival.",
+      "tags": [
+        "Toddler group",
+        "Scouts",
+        "Concerts"
+      ],
+      "links": {
+        "website": "https://www.uppermillmethodistchurch.org.uk"
+      }
+    },
+    {
+      "id": "greenfield-methodist",
+      "name": "Greenfield Methodist Church",
+      "type": "Church & community centre",
+      "kind": "hall",
+      "village": "Greenfield",
+      "lat": 53.53615,
+      "lng": -2.00598,
+      "address": "Chew Valley Road, Greenfield OL3 7JJ",
+      "blurb": "Chapel and hall on Chew Valley Road — home of the Jelly Tots baby & toddler group (days via their Facebook page).",
+      "tags": [
+        "Toddler group"
+      ],
+      "links": {}
+    },
+    {
+      "id": "kilngreen-church-hall",
+      "name": "Kilngreen Church Hall",
+      "type": "Church hall",
+      "kind": "hall",
+      "village": "Diggle",
+      "lat": 53.56797,
+      "lng": -1.99072,
+      "address": "Kiln Green, Diggle OL3 5JY",
+      "blurb": "Diggle’s church hall — base of the 4th Oldham Scout Group.",
+      "tags": [
+        "Scouts"
+      ],
+      "links": {}
+    },
+    {
+      "id": "greenfield-primary-school",
+      "name": "Greenfield Primary School (halls)",
+      "type": "School halls",
+      "kind": "hall",
+      "village": "Greenfield",
+      "lat": 53.5385,
+      "lng": -1.9958,
+      "address": "Shaw Street, Greenfield OL3 7AA",
+      "blurb": "Out of hours, home to the Saddleworth Ballet School’s Saturday timetable.",
+      "tags": [
+        "Dance classes"
+      ],
+      "links": {}
+    },
+    {
+      "id": "evade-martial-arts",
+      "name": "Evade Martial Arts",
+      "type": "Martial arts centre",
+      "kind": "sport",
+      "village": "Mossley",
+      "lat": 53.5228,
+      "lng": -2.0262,
+      "address": "Unit E207 Warmco Industrial Estate, Manchester Road, Mossley OL5 9AY",
+      "blurb": "Kickboxing, karate and BJJ just over the Greenfield border — Little Ninjas classes for 4–7s most days.",
+      "tags": [
+        "Little Ninjas 4–7",
+        "Kickboxing",
+        "Karate"
+      ],
+      "links": {
+        "website": "https://evademartialarts.co.uk",
+        "phone": "01457 833987"
+      }
     }
   ],
   "events": [
@@ -1442,19 +1600,14 @@
     },
     {
       "id": "usmf-2026",
-      "venue": {
-        "name": "Uppermill Methodist Church",
-        "village": "Uppermill",
-        "lat": 53.5472,
-        "lng": -2.0078
-      },
       "title": "Uppermill Summer Music Festival 2026",
       "category": "music",
       "start": "2026-07-04",
       "end": "2026-07-11",
       "time": "Recitals through the week",
       "description": "A week of classical recitals and RNCM young musicians at the Methodist church. Back next July.",
-      "source": "https://usmf.uk/"
+      "source": "https://usmf.uk/",
+      "business": "uppermill-methodist"
     },
     {
       "id": "oktoberfest-2026",
@@ -2379,6 +2532,247 @@
       },
       "description": "First-team and Masters training at Shaw Hall Bank Road; junior teams U12–U18 run their own nights — check with the club.",
       "source": "http://www.saddleworthrangers.co.uk/teams"
+    },
+    {
+      "id": "tuesday-tots",
+      "business": "uppermill-methodist",
+      "title": "Tuesday Tots",
+      "category": "kids",
+      "time": "10:00–11:30",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "tue"
+      },
+      "offer": "£4 per adult",
+      "description": "Stay-and-play for babies and toddlers, run jointly with St Chad’s — just turn up.",
+      "source": "https://www.uppermillmethodistchurch.org.uk/copy-of-tiddlers-baby-group"
+    },
+    {
+      "id": "bounce-rhyme",
+      "business": "uppermill-library",
+      "title": "Bounce & Rhyme",
+      "category": "kids",
+      "time": "10:00–10:30 (term time)",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "tue"
+      },
+      "offer": "Free",
+      "description": "Songs, rhymes and stories for under-5s with the library team, then free play.",
+      "source": "https://www.happity.co.uk/schedules/uppermill-library-oldham-uppermill-library-bounce-and-rhyme"
+    },
+    {
+      "id": "hartbeeps",
+      "business": "saddleworth-cricket-bowling-and-tennis-club",
+      "title": "Hartbeeps Baby & Toddler Classes",
+      "category": "kids",
+      "time": "From 09:30 (four classes)",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "fri"
+      },
+      "description": "Musical sensory classes from newborn to pre-school, Friday mornings at the cricket club — book via Hartbeeps.",
+      "source": "https://www.hartbeeps.com/saddleworth-and-tameside/venues/saddleworth-cricket-club"
+    },
+    {
+      "id": "scouts-uppermill",
+      "business": "uppermill-methodist",
+      "title": "Beavers, Cubs & Scouts (20th Oldham)",
+      "category": "kids",
+      "time": "Tuesday evenings",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "tue"
+      },
+      "description": "All three sections of the 20th Oldham Scout Group meet at the Methodist Centre — ages 6 to 14.",
+      "source": "https://www.uppermillmethodistchurch.org.uk/20th-oldham-scout-group"
+    },
+    {
+      "id": "beavers-diggle",
+      "business": "kilngreen-church-hall",
+      "title": "Beavers (4th Oldham)",
+      "category": "kids",
+      "time": "18:00–19:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "tue"
+      },
+      "description": "Diggle’s Beaver colony, ages 6–8. Cubs meet Mondays at Wrigley Mill Methodist hall.",
+      "source": "https://oldhamscouts.co.uk/groups/4th-oldham/"
+    },
+    {
+      "id": "scouts-diggle",
+      "business": "kilngreen-church-hall",
+      "title": "Scouts (4th Oldham)",
+      "category": "kids",
+      "time": "20:00–21:30",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "wed"
+      },
+      "description": "Scout troop for 10½–14s at the Kilngreen hall.",
+      "source": "https://oldhamscouts.co.uk/groups/4th-oldham/"
+    },
+    {
+      "id": "spy-theatre",
+      "business": "millgate-arts-centre",
+      "title": "SPY Youth Theatre",
+      "category": "kids",
+      "time": "19:30–21:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "mon"
+      },
+      "offer": "£5 a session",
+      "description": "The Saddleworth Players’ youth theatre for 14–18s — stagecraft weekly, showcase in spring and a Christmas production.",
+      "source": "https://millgateartscentre.co.uk/spy-theatre/"
+    },
+    {
+      "id": "ballet-saturdays",
+      "business": "greenfield-primary-school",
+      "title": "Saddleworth Ballet School — Saturday Classes",
+      "category": "kids",
+      "time": "From 09:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sat"
+      },
+      "offer": "Classes £6–£10",
+      "description": "Ballet, acro, street and musical theatre from walking age to teens, all day Saturday (plus Tuesday evenings).",
+      "source": "https://www.saddleworthballetschool.com/timetable"
+    },
+    {
+      "id": "mini-kickers",
+      "business": "saddleworth-pool-and-leisure-centre",
+      "title": "Mini Kickers Football (2–5s)",
+      "category": "kids",
+      "time": "10:00–12:00 (two sessions)",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sat"
+      },
+      "offer": "£29/month",
+      "description": "Learn-through-play football for pre-schoolers at the leisure centre.",
+      "source": "https://www.oldhamactive.co.uk/activity/mini-kickers-football-for-under-5s-in-oldham-saddleworth-leisure-centre/"
+    },
+    {
+      "id": "dobcross-youth-band",
+      "business": "dobcross-band-social-club",
+      "title": "Dobcross Youth Band Night",
+      "category": "kids",
+      "time": "From 18:00 (beginners first)",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "tue"
+      },
+      "description": "Beginners, training band then youth band — a hundred young players aged 7–18, Tuesdays and Fridays. Instruments provided for beginners; confirm via their Facebook.",
+      "source": "https://www.bbe.org.uk/band/dobcross-youth-band"
+    },
+    {
+      "id": "dobcross-youth-band-fri",
+      "business": "dobcross-band-social-club",
+      "title": "Dobcross Youth Band Night",
+      "category": "kids",
+      "time": "From 18:00 (beginners first)",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "fri"
+      },
+      "description": "The week’s second youth band night — beginners through to the full youth band.",
+      "source": "https://www.bbe.org.uk/band/dobcross-youth-band"
+    },
+    {
+      "id": "dd-cc-juniors",
+      "business": "delph-dobcross-cc",
+      "title": "Junior Cricket Training",
+      "category": "kids",
+      "time": "18:30",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "fri",
+        "until": "2026-09-11"
+      },
+      "description": "U9s to U13s train Friday nights (U9 6:30–7:30, U11/U13 to 8pm) — years 3–12, boys and girls, just turn up.",
+      "source": "https://www.delphcricket.co.uk/pages/join-our-juniors"
+    },
+    {
+      "id": "ucbc-juniors",
+      "business": "uppermill-cricket-and-bowling-club",
+      "title": "Junior Cricket Training",
+      "category": "kids",
+      "time": "Friday evenings",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "fri",
+        "until": "2026-09-11"
+      },
+      "description": "U9–U17 training at Bell Meadow with ECB Level 2 coaches — times via events@ucbc.club.",
+      "source": "https://www.ucbc.club/junior-cricket"
+    },
+    {
+      "id": "junior-tennis-tue",
+      "business": "saddleworth-cricket-bowling-and-tennis-club",
+      "title": "Junior Tennis Coaching",
+      "category": "kids",
+      "time": "16:00–18:30 (by age group)",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "tue"
+      },
+      "description": "LTA Red (4–7) at 4pm, Orange (8–11) at 4:45, Green/Yellow (12+) at 5:30 — rackets available, non-members welcome.",
+      "source": "https://clubspark.lta.org.uk/SaddleworthCricketBowlingTennisClub/Coaching"
+    },
+    {
+      "id": "tame-valley-camps",
+      "business": "tame-valley-tennis-and-squash-club",
+      "title": "Junior Tennis Summer Camps",
+      "category": "kids",
+      "start": "2026-08-03",
+      "end": "2026-08-28",
+      "time": "Mon–Fri 10:00–14:00",
+      "offer": "£30/day · £125/week",
+      "description": "Weekly holiday camps for 6–17s with the club’s LTA coaches.",
+      "source": "https://www.tamevalley.uk/junior-tennis"
+    },
+    {
+      "id": "sailing-youth",
+      "business": "dovestone-sailing-club",
+      "title": "Youth Sailing Night",
+      "category": "kids",
+      "time": "Friday evenings",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "fri",
+        "until": "2026-09-13"
+      },
+      "description": "The club’s youth group sails Friday nights in season — family membership, parents stay and help rig.",
+      "source": "https://dovestonesc.org.uk/dev/youth/"
+    },
+    {
+      "id": "wow-wednesdays",
+      "business": "st-chads-parish-centre",
+      "title": "WoW — Worship on Wednesdays",
+      "category": "kids",
+      "time": "18:00 (30 min)",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "wed"
+      },
+      "offer": "Free",
+      "description": "A short all-age service with children’s activities at the parish centre.",
+      "source": "https://www.achurchnearyou.com/church/22077/service-and-events/events/827182/"
+    },
+    {
+      "id": "little-voices-camp",
+      "business": "uppermill-civic-hall",
+      "title": "Little Voices “Show in a Week” — Matilda",
+      "category": "kids",
+      "start": "2026-08-11",
+      "end": "2026-08-14",
+      "time": "09:00–15:30",
+      "offer": "£135 for the week",
+      "description": "Singing, acting and a full performance by Friday — ages 5–15, running this week.",
+      "source": "https://littlevoices.org.uk/locations/locations/saddlworth-holme-valley/"
     }
   ]
 }
