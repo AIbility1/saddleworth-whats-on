@@ -556,13 +556,11 @@
   const satOff = dow === 0 ? 0 : 6 - dow;
   const PRESETS = [
     ['Today', 0, 0],
+    ['Tomorrow', 1, 1],
     ['This week', 0, 6],
     ['Weekend', satOff, dow === 0 ? 0 : satOff + 1],
     ['This month', 0, 29],
     ['3 months', 0, 89],
-    ['Year ahead', 0, 365],
-    ['Past year', -365, 0],
-    ['Everything', -365, 365],
   ];
   $('presets').innerHTML = PRESETS.map(([l, a, b]) =>
     `<button data-lo="${a}" data-hi="${b}">${l}</button>`).join('');
