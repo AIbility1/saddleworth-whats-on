@@ -49,11 +49,14 @@
   #basemap { position: absolute; left: -50%; top: -50%; width: 200%; height: 200%;
              display: block; will-change: transform; }
   #basemap.lz #bld-layer { display: none; }   /* footprints are specks at far zoom */
-  #basemap.hz #glyph-layer { display: none; } /* giant sheep have no place on a street map */
+  #basemap.hz #glyph-layer { display: none; } /* symbolic landmarks yield to real footprints */
+  /* fauna stay at every zoom, counter-scaled towards a constant screen size */
+  #fauna-layer .fa { transform-box: fill-box; transform-origin: center; transform: scale(var(--fs, 1)); }
   #basemap.xz #label-layer { display: none; } /* street zoom: labels would fill the screen */
   #bld-layer path { vector-effect: non-scaling-stroke; }  /* hairline ink at any zoom */
   #basemap .route { vector-effect: non-scaling-stroke; }
-  #world { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; }
+  #world { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform;
+           z-index: 5; /* pins ride above the weather overlay (z2) */ }
   #markers { position: absolute; inset: 0; pointer-events: none; }
 
   /* ---- venue pins (counter-scaled so they stay screen-size) ---- */
@@ -442,9 +445,68 @@
   /* ---- map art animation ---- */
   .cloud { animation: drift var(--dur, 160s) linear infinite; }
   @keyframes drift { from { transform: translateX(-260px); } to { transform: translateX(1900px); } }
+
+  /* ---- live weather (Open-Meteo current conditions; #rain #snow #storm #fog to preview) ---- */
+  #weather { position: fixed; inset: 0; pointer-events: none; z-index: 2; overflow: hidden; }
+  #weather .wl { position: absolute; inset: -30% -10% 0 -10%; opacity: 0; transition: opacity 2s; }
+  #weather.rain .r1, #weather.storm .r1 { opacity: 0.55; }
+  #weather.rain .r2, #weather.storm .r2 { opacity: 0.4; }
+  #weather.heavy .r1 { opacity: 0.75; } #weather.heavy .r2 { opacity: 0.6; }
+  #weather.storm .r3, #weather.heavy .r3 { opacity: 0.5; }
+  #weather.snow .s1 { opacity: 1; } #weather.snow .s2 { opacity: 0.75; }
+  #weather.fog .fg { opacity: 0.32; }
+  #weather .r1 { background: repeating-linear-gradient(103deg, transparent 0 21px, rgba(96, 124, 158, 0.5) 21px 22.6px);
+                 animation: rainfall 0.65s linear infinite; }
+  #weather .r2 { background: repeating-linear-gradient(101deg, transparent 0 34px, rgba(96, 124, 158, 0.34) 34px 35.4px);
+                 animation: rainfall 1.05s linear infinite; }
+  #weather .r3 { background: repeating-linear-gradient(105deg, transparent 0 13px, rgba(80, 108, 144, 0.5) 13px 14.8px);
+                 animation: rainfall 0.45s linear infinite; }
+  @keyframes rainfall { from { background-position: 0 0; } to { background-position: -38px 158px; } }
+  #weather.snow .sv { opacity: 0.22; }
+  #weather .sv { background: linear-gradient(rgba(198, 210, 228, 0.9), rgba(212, 220, 234, 0.75)); }
+  #weather .s1 { background-image:
+      radial-gradient(4.2px 4.2px at 22px 34px,   #fff 42%, rgba(150, 172, 200, 0.6) 60%, transparent 72%),
+      radial-gradient(3.4px 3.4px at 128px 156px, #fff 42%, rgba(150, 172, 200, 0.55) 60%, transparent 72%),
+      radial-gradient(4.6px 4.6px at 231px 88px,  #fff 42%, rgba(150, 172, 200, 0.6) 60%, transparent 72%),
+      radial-gradient(3.6px 3.6px at 305px 246px, #fff 42%, rgba(150, 172, 200, 0.5) 60%, transparent 72%),
+      radial-gradient(3.8px 3.8px at 74px 288px,  #fff 42%, rgba(150, 172, 200, 0.55) 60%, transparent 72%),
+      radial-gradient(3.2px 3.2px at 268px 190px, #fff 42%, rgba(150, 172, 200, 0.5) 60%, transparent 72%);
+    background-size: 340px 340px; animation: snowfall1 11s linear infinite; }
+  #weather .s2 { background-image:
+      radial-gradient(2.6px 2.6px at 64px 212px,  #fff 45%, rgba(150, 172, 200, 0.45) 62%, transparent 74%),
+      radial-gradient(2.3px 2.3px at 187px 45px,  #fff 45%, rgba(150, 172, 200, 0.4) 62%, transparent 74%),
+      radial-gradient(2.8px 2.8px at 421px 310px, #fff 45%, rgba(150, 172, 200, 0.45) 62%, transparent 74%),
+      radial-gradient(2.4px 2.4px at 330px 128px, #fff 45%, rgba(150, 172, 200, 0.4) 62%, transparent 74%),
+      radial-gradient(2.2px 2.2px at 112px 402px, #fff 45%, rgba(150, 172, 200, 0.4) 62%, transparent 74%);
+    background-size: 520px 520px; animation: snowfall2 19s linear infinite; }
+  @keyframes snowfall1 { from { background-position: 0 0; } to { background-position: 55px 340px; } }
+  @keyframes snowfall2 { from { background-position: 0 0; } to { background-position: -80px 520px; } }
+  #weather .fg { background:
+      radial-gradient(120% 60% at 30% 30%, rgba(233, 236, 238, 0.9), transparent 70%),
+      radial-gradient(110% 55% at 75% 65%, rgba(226, 230, 233, 0.85), transparent 72%);
+    animation: fogdrift 46s ease-in-out infinite alternate; }
+  @keyframes fogdrift { from { transform: translateX(-4%); } to { transform: translateX(4%); } }
+  #weather .zap { background: #fff; transition: none; }
+  #weather .zap.on { animation: lightning 0.85s ease-out 1; }
+  @keyframes lightning { 0% { opacity: 0; } 6% { opacity: 0.5; } 14% { opacity: 0.06; }
+    22% { opacity: 0.38; } 60% { opacity: 0.02; } 100% { opacity: 0; } }
+  /* thunderclouds ride the top of the sky during storms, bolts strike beneath */
+  #weather .sky { inset: 0; }
+  #weather.storm .sky { opacity: 1; }
+  #weather .scloud { position: absolute; top: -2%; animation: skyDrift var(--dur, 40s) ease-in-out infinite alternate;
+                     filter: drop-shadow(0 6px 14px rgba(40, 46, 60, 0.35)); }
+  #weather .scloud svg { width: 100%; height: auto; overflow: visible; }
+  #weather .scloud .cb { fill: #565d6c; stroke: #383e4c; stroke-width: 3; stroke-linejoin: round; }
+  #weather .scloud .bolt { fill: #ffe86b; stroke: #c9a92c; stroke-width: 2; stroke-linejoin: round; opacity: 0; }
+  #weather .scloud.strike .bolt { animation: boltflick 0.9s linear 1; }
+  @keyframes boltflick { 0% { opacity: 0; } 5% { opacity: 1; } 13% { opacity: 0.15; }
+    20% { opacity: 1; } 34% { opacity: 0.6; } 45% { opacity: 0; } 100% { opacity: 0; } }
+  @keyframes skyDrift { from { transform: translateX(0); } to { transform: translateX(var(--amp, 4vw)); } }
+
   @media (prefers-reduced-motion: reduce) {
     .cloud { animation: none; }
     #basemap .moving { display: none; }
+    #weather .wl { animation: none; }
   }
 </style>
 </head>
@@ -456,6 +518,22 @@ Dobcross, Diggle, Greenfield, Grasscroft, Lydgate, Scouthead and Denshaw — wit
 offers venues publish themselves. It needs JavaScript to draw the map.</p></noscript>
 <div id="stage" aria-label="Illustrated map of Saddleworth. Drag to pan, scroll or pinch to zoom.">
   <svg id="basemap" xmlns="http://www.w3.org/2000/svg"></svg>
+  <div id="weather" aria-hidden="true">
+    <div class="wl r1"></div><div class="wl r2"></div><div class="wl r3"></div>
+    <div class="wl sv"></div><div class="wl s1"></div><div class="wl s2"></div>
+    <div class="wl fg"></div><div class="wl zap"></div>
+    <div class="wl sky">
+      <div class="scloud" style="left:4%;  --dur:36s; --amp:5vw;  width:270px"><svg viewBox="0 0 240 280">
+        <path class="cb" d="M20,90 Q8,62 38,52 Q44,26 76,30 Q92,8 122,16 Q152,6 168,32 Q198,28 206,56 Q230,64 220,88 Q214,104 188,102 L40,102 Q16,106 20,90 Z"/>
+        <path class="bolt" d="M124,100 L102,148 L120,144 L94,214 L142,138 L120,142 L142,100 Z"/></svg></div>
+      <div class="scloud" style="left:37%; --dur:47s; --amp:-6vw; width:330px; top:-1%"><svg viewBox="0 0 240 280">
+        <path class="cb" d="M22,92 Q6,64 36,54 Q40,24 74,28 Q90,6 124,14 Q156,4 170,30 Q202,26 208,54 Q232,62 222,86 Q216,104 186,102 L42,104 Q14,108 22,92 Z"/>
+        <path class="bolt" d="M118,102 L96,152 L114,148 L88,222 L138,142 L116,146 L136,102 Z"/></svg></div>
+      <div class="scloud" style="left:70%; --dur:41s; --amp:4vw;  width:290px; top:1%"><svg viewBox="0 0 240 280">
+        <path class="cb" d="M18,88 Q10,60 40,50 Q48,24 80,30 Q94,10 124,18 Q154,8 168,34 Q196,32 204,58 Q226,66 216,88 Q208,102 184,100 L38,100 Q14,102 18,88 Z"/>
+        <path class="bolt" d="M120,98 L100,144 L118,140 L92,208 L140,136 L118,140 L140,98 Z"/></svg></div>
+    </div>
+  </div>
   <div id="world">
     <div id="markers"></div>
   </div>

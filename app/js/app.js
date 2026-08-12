@@ -127,6 +127,8 @@
     basemap.classList.toggle('lz', view.s < fitS * 1.7);
     basemap.classList.toggle('hz', view.s > fitS * 3.2);
     basemap.classList.toggle('xz', view.s > fitS * 9);
+    // animals hold a sensible size once past the symbolic-zoom cutoff
+    basemap.style.setProperty('--fs', Math.max(0.12, Math.min(1, (fitS * 3.2) / view.s)).toFixed(3));
     syncZoomBar();
   }
   function applyView() {
@@ -665,6 +667,50 @@
     basemap.classList.toggle('blood', blood);
   }
   setInterval(updateDayNight, 60000);
+
+  // ================= live weather =================
+  // Real conditions over the valley (Open-Meteo, no key, 15-min refresh) drive
+  // rain / snow / storm / fog overlays. Preview: #rain #downpour #snow #storm #fog.
+  const weatherEl = $('weather');
+  let stormTimer = null;
+  function setWeather(eff) {
+    weatherEl.className = eff;
+    if (eff.includes('storm') && !stormTimer) {
+      const zap = weatherEl.querySelector('.zap');
+      const clouds = weatherEl.querySelectorAll('.scloud');
+      const bolt = () => {
+        zap.classList.remove('on'); void zap.offsetWidth; zap.classList.add('on');
+        const c = clouds[Math.floor(Math.random() * clouds.length)];
+        c.classList.remove('strike'); void c.offsetWidth; c.classList.add('strike');
+        stormTimer = setTimeout(bolt, 4000 + Math.random() * 11000);
+      };
+      stormTimer = setTimeout(bolt, 2000 + Math.random() * 5000);
+    } else if (!eff.includes('storm') && stormTimer) {
+      clearTimeout(stormTimer); stormTimer = null;
+      weatherEl.querySelector('.zap').classList.remove('on');
+    }
+  }
+  function effectFor(code) {
+    if ([95, 96, 99].includes(code)) return 'storm heavy';
+    if ((code >= 71 && code <= 77) || code === 85 || code === 86) return 'snow';
+    if ([65, 67, 82].includes(code)) return 'rain heavy';
+    if ((code >= 51 && code <= 64) || [66, 80, 81].includes(code)) return 'rain';
+    if (code === 45 || code === 48) return 'fog';
+    return '';
+  }
+  async function updateWeather() {
+    const preview = { '#rain': 61, '#downpour': 65, '#snow': 73, '#storm': 95, '#fog': 45 }[location.hash];
+    if (preview !== undefined) { setWeather(effectFor(preview)); return; }
+    try {
+      const r = await fetch('https://api.open-meteo.com/v1/forecast?latitude=53.55&longitude=-2.005' +
+        '&current=weather_code&timezone=Europe%2FLondon');
+      const j = await r.json();
+      setWeather(effectFor(j.current.weather_code));
+    } catch { /* the sky abides — never break the map over a weather fetch */ }
+  }
+  setInterval(updateWeather, 15 * 60 * 1000);
+  updateWeather();
+  addEventListener('hashchange', () => { updateDayNight(); updateWeather(); });
 
   // ================= community: live events, submissions, ratings =================
   async function loadCommunity() {

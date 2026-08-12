@@ -111,7 +111,7 @@
     },
     "swan": {
       "type": "Pub",
-      "blurb": "Eighteenth-century pub on Dobcross Square, all low beams and stone floors — a favourite of brass banders on Whit Friday.",
+      "blurb": "Eighteenth-century pub on Dobcross Square, all low beams and stone floors — known to locals as the Top House, and a favourite of brass banders on Whit Friday.",
       "tags": [
         "Historic square",
         "Real ale",
@@ -453,8 +453,8 @@
       "type": "Walk",
       "kind": "walk",
       "village": "Greenfield",
-      "lat": 53.5349,
-      "lng": -1.9697,
+      "lat": 53.53294,
+      "lng": -1.97125,
       "address": "Start: Dovestone car park, Bank Lane, Greenfield",
       "blurb": "The classic Saddleworth leg-stretcher: a flat, surfaced loop around the water with the gritstone edges towering over you. Pushchair and wheelchair friendly; herons guaranteed, ice cream van likely.",
       "tags": [
@@ -470,64 +470,128 @@
       },
       "route": [
         [
-          53.5349,
-          -1.9697
+          53.53294,
+          -1.97125
         ],
         [
-          53.5358,
-          -1.9702
+          53.53512,
+          -1.96936
         ],
         [
-          53.5369,
-          -1.9688
+          53.53522,
+          -1.9696
         ],
         [
-          53.5374,
-          -1.9689
+          53.53575,
+          -1.96936
         ],
         [
-          53.5356,
-          -1.9712
+          53.53606,
+          -1.96994
         ],
         [
-          53.5356,
-          -1.9714
+          53.53717,
+          -1.9684
         ],
         [
-          53.533,
-          -1.9766
+          53.5377,
+          -1.9685
         ],
         [
-          53.5318,
-          -1.9806
+          53.53767,
+          -1.969
         ],
         [
-          53.529,
+          53.53713,
+          -1.96918
+        ],
+        [
+          53.53508,
+          -1.97227
+        ],
+        [
+          53.53306,
+          -1.9767
+        ],
+        [
+          53.53205,
+          -1.98022
+        ],
+        [
+          53.53172,
+          -1.98042
+        ],
+        [
+          53.53179,
+          -1.98089
+        ],
+        [
+          53.52999,
+          -1.98023
+        ],
+        [
+          53.52858,
+          -1.9803
+        ],
+        [
+          53.52705,
+          -1.98111
+        ],
+        [
+          53.52676,
+          -1.98097
+        ],
+        [
+          53.52653,
           -1.98
         ],
         [
-          53.5272,
-          -1.9808
+          53.52606,
+          -1.97928
         ],
         [
-          53.5264,
-          -1.979
+          53.52584,
+          -1.97792
         ],
         [
-          53.5263,
-          -1.9748
+          53.52595,
+          -1.97478
         ],
         [
-          53.5267,
-          -1.9744
+          53.52639,
+          -1.97432
         ],
         [
-          53.5285,
-          -1.976
+          53.52696,
+          -1.97515
         ],
         [
-          53.5349,
-          -1.9697
+          53.5283,
+          -1.97602
+        ],
+        [
+          53.52893,
+          -1.97559
+        ],
+        [
+          53.53006,
+          -1.97391
+        ],
+        [
+          53.53045,
+          -1.97395
+        ],
+        [
+          53.53096,
+          -1.9731
+        ],
+        [
+          53.53176,
+          -1.97261
+        ],
+        [
+          53.53294,
+          -1.97125
         ]
       ]
     },
@@ -537,8 +601,8 @@
       "type": "Walk",
       "kind": "walk",
       "village": "Uppermill",
-      "lat": 53.5468,
-      "lng": -2.0066,
+      "lat": 53.54677,
+      "lng": -2.00666,
       "address": "Start: Uppermill village centre",
       "blurb": "Up through the lanes past St Chad's to the war memorial on Pots & Pans rock — the best view in the borough, from Winter Hill to Kinder on a clear day. Steep in places; earn your pint back at the Cross Keys.",
       "tags": [
@@ -554,36 +618,208 @@
       },
       "route": [
         [
-          53.5468,
-          -2.0066
+          53.54677,
+          -2.00666
         ],
         [
-          53.551,
-          -2
+          53.54629,
+          -2.00675
         ],
         [
-          53.5528,
-          -1.9958
+          53.54653,
+          -2.00743
         ],
         [
-          53.549,
-          -1.989
+          53.54717,
+          -2.00677
         ],
         [
-          53.5455,
-          -1.9868
+          53.54744,
+          -2.00775
         ],
         [
-          53.543,
-          -1.992
+          53.54807,
+          -2.00758
         ],
         [
-          53.544,
-          -2
+          53.54932,
+          -2.00798
         ],
         [
-          53.5468,
-          -2.0066
+          53.55201,
+          -2.00753
+        ],
+        [
+          53.55313,
+          -2.00801
+        ],
+        [
+          53.55377,
+          -2.00768
+        ],
+        [
+          53.55364,
+          -2.0059
+        ],
+        [
+          53.55478,
+          -2.001
+        ],
+        [
+          53.55489,
+          -1.99821
+        ],
+        [
+          53.55547,
+          -1.99558
+        ],
+        [
+          53.55491,
+          -1.99308
+        ],
+        [
+          53.55458,
+          -1.99011
+        ],
+        [
+          53.55417,
+          -1.99033
+        ],
+        [
+          53.55402,
+          -1.98989
+        ],
+        [
+          53.55295,
+          -1.98877
+        ],
+        [
+          53.55249,
+          -1.98905
+        ],
+        [
+          53.55211,
+          -1.9888
+        ],
+        [
+          53.5511,
+          -1.98603
+        ],
+        [
+          53.55117,
+          -1.98515
+        ],
+        [
+          53.55033,
+          -1.98546
+        ],
+        [
+          53.54909,
+          -1.98497
+        ],
+        [
+          53.54792,
+          -1.98548
+        ],
+        [
+          53.54743,
+          -1.98539
+        ],
+        [
+          53.54515,
+          -1.98654
+        ],
+        [
+          53.5439,
+          -1.98677
+        ],
+        [
+          53.54316,
+          -1.98682
+        ],
+        [
+          53.54269,
+          -1.98642
+        ],
+        [
+          53.54267,
+          -1.98607
+        ],
+        [
+          53.54254,
+          -1.98816
+        ],
+        [
+          53.54205,
+          -1.98975
+        ],
+        [
+          53.54219,
+          -1.99047
+        ],
+        [
+          53.54168,
+          -1.991
+        ],
+        [
+          53.5415,
+          -1.99154
+        ],
+        [
+          53.54187,
+          -1.99347
+        ],
+        [
+          53.5426,
+          -1.99449
+        ],
+        [
+          53.54356,
+          -1.99717
+        ],
+        [
+          53.54384,
+          -1.99909
+        ],
+        [
+          53.5436,
+          -2.00183
+        ],
+        [
+          53.54426,
+          -2.00237
+        ],
+        [
+          53.54446,
+          -2.00376
+        ],
+        [
+          53.54489,
+          -2.00482
+        ],
+        [
+          53.54459,
+          -2.00645
+        ],
+        [
+          53.54581,
+          -2.00735
+        ],
+        [
+          53.54608,
+          -2.0079
+        ],
+        [
+          53.54653,
+          -2.00743
+        ],
+        [
+          53.54629,
+          -2.00675
+        ],
+        [
+          53.54677,
+          -2.00666
         ]
       ]
     },
@@ -593,8 +829,8 @@
       "type": "Walk",
       "kind": "walk",
       "village": "Uppermill",
-      "lat": 53.548,
-      "lng": -2.0075,
+      "lat": 53.54659,
+      "lng": -2.00827,
       "address": "Start: Uppermill (or Delph — it works both ways)",
       "blurb": "The old branch-line railway path from Uppermill to Delph, named after the train that once pottered along it. Flat, traffic-free and pram-friendly, with Dobcross on a hill above you all the way.",
       "tags": [
@@ -604,34 +840,130 @@
       ],
       "links": {},
       "walk": {
-        "km": 3.5,
+        "km": 4.5,
         "time": "1 hr each way",
         "grade": "Easy"
       },
       "route": [
         [
-          53.548,
-          -2.0075
+          53.54659,
+          -2.00827
         ],
         [
-          53.552,
-          -2.011
+          53.54785,
+          -2.00769
         ],
         [
-          53.556,
-          -2.014
+          53.54909,
+          -2.00809
         ],
         [
-          53.56,
-          -2.017
+          53.55215,
+          -2.00764
         ],
         [
-          53.564,
-          -2.0185
+          53.55429,
+          -2.0088
         ],
         [
-          53.568,
-          -2.0195
+          53.55553,
+          -2.00882
+        ],
+        [
+          53.55428,
+          -2.00875
+        ],
+        [
+          53.55313,
+          -2.00801
+        ],
+        [
+          53.55271,
+          -2.01051
+        ],
+        [
+          53.55284,
+          -2.01109
+        ],
+        [
+          53.55272,
+          -2.01637
+        ],
+        [
+          53.55283,
+          -2.01771
+        ],
+        [
+          53.55385,
+          -2.02025
+        ],
+        [
+          53.55472,
+          -2.02115
+        ],
+        [
+          53.55631,
+          -2.02204
+        ],
+        [
+          53.55808,
+          -2.02454
+        ],
+        [
+          53.55889,
+          -2.02511
+        ],
+        [
+          53.56015,
+          -2.0253
+        ],
+        [
+          53.56151,
+          -2.0245
+        ],
+        [
+          53.56407,
+          -2.02017
+        ],
+        [
+          53.56468,
+          -2.01976
+        ],
+        [
+          53.5656,
+          -2.0198
+        ],
+        [
+          53.56697,
+          -2.0218
+        ],
+        [
+          53.56694,
+          -2.02205
+        ],
+        [
+          53.56816,
+          -2.02244
+        ],
+        [
+          53.56825,
+          -2.0236
+        ],
+        [
+          53.56892,
+          -2.02365
+        ],
+        [
+          53.57029,
+          -2.02196
+        ],
+        [
+          53.56918,
+          -2.01992
+        ],
+        [
+          53.5687,
+          -2.02042
         ]
       ]
     },
@@ -641,8 +973,8 @@
       "type": "Walk",
       "kind": "walk",
       "village": "Greenfield",
-      "lat": 53.534,
-      "lng": -1.993,
+      "lat": 53.53914,
+      "lng": -2.01212,
       "address": "Start: Well-i-Hole bridge, Greenfield (or any village on the way)",
       "blurb": "The Huddersfield Narrow Canal through the whole valley — locks, herons, narrowboats and three villages' worth of pubs and cafés, ending at the mouth of the Standedge Tunnel. Grandpa Greene's is conveniently at the two-thirds mark.",
       "tags": [
@@ -653,66 +985,90 @@
       ],
       "links": {},
       "walk": {
-        "km": 6.5,
+        "km": 4,
         "time": "2 hrs one-way",
         "grade": "Easy"
       },
       "route": [
         [
-          53.5399,
-          -2.0109
+          53.53914,
+          -2.01212
         ],
         [
-          53.5436,
+          53.53997,
+          -2.01088
+        ],
+        [
+          53.54145,
+          -2.01025
+        ],
+        [
+          53.54294,
+          -2.00913
+        ],
+        [
+          53.5442,
+          -2.00859
+        ],
+        [
+          53.5463,
+          -2.00837
+        ],
+        [
+          53.54785,
+          -2.00769
+        ],
+        [
+          53.54909,
+          -2.00809
+        ],
+        [
+          53.55229,
+          -2.00766
+        ],
+        [
+          53.55429,
           -2.0088
         ],
         [
-          53.5479,
-          -2.0077
+          53.55574,
+          -2.00875
         ],
         [
-          53.5491,
-          -2.0081
+          53.55686,
+          -2.00476
         ],
         [
-          53.5516,
-          -2.0077
+          53.55855,
+          -2.00097
         ],
         [
-          53.5544,
-          -2.0088
+          53.56022,
+          -1.99901
         ],
         [
-          53.5557,
-          -2.0087
+          53.56115,
+          -1.99831
         ],
         [
-          53.557,
-          -2.0044
+          53.56236,
+          -1.99768
         ],
         [
-          53.5586,
-          -2.001
+          53.56375,
+          -1.99775
         ],
         [
-          53.5606,
-          -1.9987
+          53.566,
+          -1.99613
         ],
         [
-          53.5618,
-          -1.998
+          53.56711,
+          -1.99369
         ],
         [
-          53.5637,
-          -1.9978
-        ],
-        [
-          53.5659,
-          -1.9962
-        ],
-        [
-          53.568,
-          -1.9924
+          53.5696,
+          -1.9893
         ]
       ]
     },
@@ -722,8 +1078,8 @@
       "type": "Walk",
       "kind": "walk",
       "village": "Diggle",
-      "lat": 53.5726,
-      "lng": -1.9976,
+      "lat": 53.5696,
+      "lng": -1.9893,
       "address": "Start: Standedge Tunnel portal, Diggle",
       "blurb": "Follow the path the boat horses took over the moor while their narrowboats were legged through the tunnel beneath your feet. Wild, windy and wonderful — turn back at the cutting or carry on to Marsden and get the train home through the hill.",
       "tags": [
@@ -733,30 +1089,102 @@
       ],
       "links": {},
       "walk": {
-        "km": 7,
+        "km": 4.5,
         "time": "2½ hrs return",
         "grade": "Hard"
       },
       "route": [
         [
-          53.5726,
-          -1.9976
+          53.5696,
+          -1.9893
+        ],
+        [
+          53.5703,
+          -1.98857
+        ],
+        [
+          53.57096,
+          -1.98681
+        ],
+        [
+          53.5716,
+          -1.98584
+        ],
+        [
+          53.57241,
+          -1.98502
+        ],
+        [
+          53.57275,
+          -1.98366
+        ],
+        [
+          53.57349,
+          -1.98221
+        ],
+        [
+          53.57404,
+          -1.98016
+        ],
+        [
+          53.57538,
+          -1.98033
         ],
         [
           53.576,
-          -1.993
+          -1.98004
         ],
         [
-          53.58,
-          -1.988
+          53.57722,
+          -1.9784
         ],
         [
-          53.583,
-          -1.98
+          53.57742,
+          -1.97767
         ],
         [
-          53.5815,
-          -1.972
+          53.57789,
+          -1.97771
+        ],
+        [
+          53.5782,
+          -1.97741
+        ],
+        [
+          53.57846,
+          -1.9763
+        ],
+        [
+          53.5796,
+          -1.97622
+        ],
+        [
+          53.58027,
+          -1.97534
+        ],
+        [
+          53.58128,
+          -1.97575
+        ],
+        [
+          53.5818,
+          -1.97427
+        ],
+        [
+          53.58171,
+          -1.97362
+        ],
+        [
+          53.58215,
+          -1.97291
+        ],
+        [
+          53.58277,
+          -1.97047
+        ],
+        [
+          53.58294,
+          -1.96888
         ]
       ]
     },
@@ -766,8 +1194,8 @@
       "type": "Walk",
       "kind": "walk",
       "village": "Delph",
-      "lat": 53.5685,
-      "lng": -2.0195,
+      "lat": 53.5687,
+      "lng": -2.02042,
       "address": "Start: Delph village centre",
       "blurb": "Out of Delph and up the Castleshaw valley to the Roman fort above the reservoirs - nineteen centuries of watching the pass over Standedge, and still the best picnic spot in the north of the parish.",
       "tags": [
@@ -777,54 +1205,258 @@
       ],
       "links": {},
       "walk": {
-        "km": 5.5,
+        "km": 7,
         "time": "2 hrs",
         "grade": "Moderate"
       },
       "route": [
         [
-          53.5685,
-          -2.0195
+          53.5687,
+          -2.02042
         ],
         [
-          53.5725,
-          -2.0165
+          53.56918,
+          -2.01992
         ],
         [
-          53.5765,
-          -2.0135
+          53.57029,
+          -2.02196
         ],
         [
-          53.5805,
-          -2.0115
+          53.57014,
+          -2.02157
         ],
         [
-          53.5829,
-          -2.0107
+          53.57052,
+          -2.0205
         ],
         [
-          53.586,
-          -2.006
+          53.57074,
+          -2.02067
         ],
         [
-          53.5871,
-          -2.0039
+          53.57097,
+          -2.02001
         ],
         [
-          53.5842,
-          -2.0048
+          53.57156,
+          -2.02029
         ],
         [
-          53.58,
-          -2.009
+          53.57176,
+          -2.01929
         ],
         [
-          53.576,
-          -2.013
+          53.57272,
+          -2.0198
         ],
         [
-          53.5685,
-          -2.0195
+          53.57293,
+          -2.01962
+        ],
+        [
+          53.57402,
+          -2.01743
+        ],
+        [
+          53.57613,
+          -2.01503
+        ],
+        [
+          53.57652,
+          -2.01508
+        ],
+        [
+          53.57808,
+          -2.01425
+        ],
+        [
+          53.57844,
+          -2.01378
+        ],
+        [
+          53.58058,
+          -2.01286
+        ],
+        [
+          53.58043,
+          -2.01258
+        ],
+        [
+          53.58053,
+          -2.01118
+        ],
+        [
+          53.58125,
+          -2.00768
+        ],
+        [
+          53.5811,
+          -2.00667
+        ],
+        [
+          53.58142,
+          -2.00665
+        ],
+        [
+          53.58256,
+          -2.00415
+        ],
+        [
+          53.58346,
+          -2.00489
+        ],
+        [
+          53.58418,
+          -2.00495
+        ],
+        [
+          53.58436,
+          -2.00854
+        ],
+        [
+          53.58368,
+          -2.00879
+        ],
+        [
+          53.58126,
+          -2.00817
+        ],
+        [
+          53.58076,
+          -2.01094
+        ],
+        [
+          53.58186,
+          -2.01321
+        ],
+        [
+          53.58264,
+          -2.01208
+        ],
+        [
+          53.58373,
+          -2.01213
+        ],
+        [
+          53.58424,
+          -2.01063
+        ],
+        [
+          53.58509,
+          -2.00936
+        ],
+        [
+          53.58529,
+          -2.00855
+        ],
+        [
+          53.58574,
+          -2.00808
+        ],
+        [
+          53.58436,
+          -2.00854
+        ],
+        [
+          53.58418,
+          -2.00495
+        ],
+        [
+          53.58346,
+          -2.00489
+        ],
+        [
+          53.58256,
+          -2.00415
+        ],
+        [
+          53.58142,
+          -2.00665
+        ],
+        [
+          53.5811,
+          -2.00667
+        ],
+        [
+          53.58125,
+          -2.00768
+        ],
+        [
+          53.58053,
+          -2.01118
+        ],
+        [
+          53.58043,
+          -2.01258
+        ],
+        [
+          53.58058,
+          -2.01286
+        ],
+        [
+          53.57844,
+          -2.01378
+        ],
+        [
+          53.57808,
+          -2.01425
+        ],
+        [
+          53.57652,
+          -2.01508
+        ],
+        [
+          53.57613,
+          -2.01503
+        ],
+        [
+          53.57402,
+          -2.01743
+        ],
+        [
+          53.57293,
+          -2.01962
+        ],
+        [
+          53.57272,
+          -2.0198
+        ],
+        [
+          53.57176,
+          -2.01929
+        ],
+        [
+          53.57156,
+          -2.02029
+        ],
+        [
+          53.57097,
+          -2.02001
+        ],
+        [
+          53.57074,
+          -2.02067
+        ],
+        [
+          53.57052,
+          -2.0205
+        ],
+        [
+          53.57014,
+          -2.02157
+        ],
+        [
+          53.57029,
+          -2.02196
+        ],
+        [
+          53.56918,
+          -2.01992
+        ],
+        [
+          53.5687,
+          -2.02042
         ]
       ]
     },
@@ -834,8 +1466,8 @@
       "type": "Walk",
       "kind": "walk",
       "village": "Greenfield",
-      "lat": 53.5325,
-      "lng": -1.97,
+      "lat": 53.527,
+      "lng": -1.98103,
       "address": "Start: Dovestone car park, Greenfield",
       "blurb": "The steady climb up the old tramway road into the Chew Valley, between crags to the highest-built reservoir of its day in England. A proper lungful of Pennine air; boggy at the top after rain.",
       "tags": [
@@ -851,24 +1483,76 @@
       },
       "route": [
         [
-          53.5325,
-          -1.97
+          53.527,
+          -1.98103
         ],
         [
-          53.5295,
-          -1.9645
+          53.52663,
+          -1.97975
         ],
         [
-          53.5268,
-          -1.959
+          53.52616,
+          -1.97921
         ],
         [
-          53.525,
-          -1.9535
+          53.52498,
+          -1.97195
         ],
         [
-          53.5151,
-          -1.9427
+          53.52365,
+          -1.97199
+        ],
+        [
+          53.52237,
+          -1.96952
+        ],
+        [
+          53.52219,
+          -1.96783
+        ],
+        [
+          53.52157,
+          -1.96675
+        ],
+        [
+          53.51834,
+          -1.9632
+        ],
+        [
+          53.51607,
+          -1.96317
+        ],
+        [
+          53.51505,
+          -1.96269
+        ],
+        [
+          53.51451,
+          -1.96181
+        ],
+        [
+          53.51381,
+          -1.9596
+        ],
+        [
+          53.51263,
+          -1.95749
+        ],
+        [
+          53.51209,
+          -1.95556
+        ],
+        [
+          53.51208,
+          -1.95423
+        ],
+        [
+          53.51359,
+          -1.9488
+        ],
+        [
+          53.51279,
+          -1.94786
         ]
       ]
     },
@@ -878,8 +1562,8 @@
       "type": "Walk",
       "kind": "walk",
       "village": "Uppermill",
-      "lat": 53.5468,
-      "lng": -2.0058,
+      "lat": 53.54659,
+      "lng": -2.00827,
       "address": "Start: Uppermill village centre",
       "blurb": "The gentle family one: canal towpath out to the visitor centre at Brownhill Bridge, back along the Tame through the park. Ducks to feed, trains to wave at, and a playground finish.",
       "tags": [
@@ -895,32 +1579,88 @@
       },
       "route": [
         [
-          53.5468,
-          -2.0058
+          53.54659,
+          -2.00827
         ],
         [
-          53.55,
-          -2.007
+          53.54785,
+          -2.00769
         ],
         [
-          53.554,
-          -2.009
+          53.54909,
+          -2.00809
         ],
         [
-          53.5555,
-          -2.0095
+          53.55215,
+          -2.00764
         ],
         [
-          53.553,
-          -2.0125
+          53.55429,
+          -2.0088
         ],
         [
-          53.5495,
-          -2.0105
+          53.55553,
+          -2.00882
         ],
         [
-          53.5468,
-          -2.0058
+          53.55376,
+          -2.01121
+        ],
+        [
+          53.55327,
+          -2.01076
+        ],
+        [
+          53.55303,
+          -2.01007
+        ],
+        [
+          53.55341,
+          -2.0087
+        ],
+        [
+          53.55334,
+          -2.00726
+        ],
+        [
+          53.55161,
+          -2.0066
+        ],
+        [
+          53.55125,
+          -2.00566
+        ],
+        [
+          53.55092,
+          -2.00559
+        ],
+        [
+          53.55017,
+          -2.00587
+        ],
+        [
+          53.54895,
+          -2.00776
+        ],
+        [
+          53.54773,
+          -2.00682
+        ],
+        [
+          53.54707,
+          -2.00588
+        ],
+        [
+          53.54658,
+          -2.00573
+        ],
+        [
+          53.54626,
+          -2.00617
+        ],
+        [
+          53.54659,
+          -2.00827
         ]
       ]
     },
@@ -932,8 +1672,8 @@
       "id": "sight-wharmton",
       "name": "Wharmton & the Mast",
       "village": "Grasscroft",
-      "lat": 53.5398,
-      "lng": -2.0072,
+      "lat": 53.54161,
+      "lng": -2.0206,
       "blurb": "The green whaleback hill that splits the valley in two, topped by the TV mast you can see from every village - the landmark that tells Saddleworth people they are nearly home.",
       "tags": [
         "Viewpoint",
@@ -948,8 +1688,8 @@
       "id": "sight-castleshaw-res",
       "name": "Castleshaw Reservoirs",
       "village": "Delph",
-      "lat": 53.585,
-      "lng": -2.0075,
+      "lat": 53.58369,
+      "lng": -2.0098,
       "blurb": "Two quiet reservoirs in a fold of the moors between Delph and Standedge, ringed by a gentle waterside path - herons, curlews, and a Roman fort on the shoulder above.",
       "tags": [
         "Waterside path",
@@ -965,8 +1705,8 @@
       "id": "sight-pots-pans",
       "name": "Pots & Pans Obelisk",
       "village": "Uppermill",
-      "lat": 53.5455,
-      "lng": -1.9868,
+      "lat": 53.54273,
+      "lng": -1.98611,
       "blurb": "The war memorial on its gritstone crag above Uppermill - the whole of Saddleworth at your feet, and the weathered rock basins that gave the hill its name.",
       "tags": [
         "Viewpoint",
@@ -982,8 +1722,8 @@
       "id": "sight-standedge",
       "name": "Standedge Tunnel Portal",
       "village": "Diggle",
-      "lat": 53.5726,
-      "lng": -1.9976,
+      "lat": 53.5696,
+      "lng": -1.9893,
       "blurb": "The Diggle mouth of the longest, highest, deepest canal tunnel in Britain - three and a quarter miles under the moor to Marsden, dug by hand over seventeen years.",
       "tags": [
         "Canal history",
@@ -998,8 +1738,8 @@
       "id": "sight-viaduct",
       "name": "Saddleworth Viaduct",
       "village": "Uppermill",
-      "lat": 53.5448,
-      "lng": -2.0032,
+      "lat": 53.55196,
+      "lng": -2.00837,
       "blurb": "Stone arches striding across the Tame since 1849, with the canal threading underneath - best admired from the towpath with an ice cream.",
       "tags": [
         "Photo spot",
@@ -1014,8 +1754,8 @@
       "id": "sight-alphin",
       "name": "Alphin Pike & the Indian’s Head",
       "village": "Greenfield",
-      "lat": 53.525,
-      "lng": -1.962,
+      "lat": 53.52201,
+      "lng": -1.99697,
       "blurb": "The dark gritstone edges brooding over Dovestone - Alphin Pike, Wimberry Rocks and the profile locals call the Indian’s Head. Proper moorland: go shod and watered.",
       "tags": [
         "Moorland",
@@ -1479,6 +2219,38 @@
         "website": "https://dobcrossvillagestore.com/"
       },
       "hours": "Mo-Fr 07:00-20:00; Sa-Su until 18:00"
+    },
+    {
+      "id": "top-house",
+      "name": "The Top House",
+      "type": "Pub",
+      "kind": "pub",
+      "village": "Springhead",
+      "lat": 53.53728,
+      "lng": -2.06889,
+      "address": "38 Co-operative Street, Springhead, OL4 5TB",
+      "blurb": "Springhead local up on Co-operative Street — pool table busy on league nights, with Top House A and B flying the flag in the Saddleworth Pool League.",
+      "tags": [
+        "Pool league",
+        "Village local"
+      ],
+      "links": {}
+    },
+    {
+      "id": "the-shawside",
+      "name": "The Shawside",
+      "type": "Pub",
+      "kind": "pub",
+      "village": "Shaw",
+      "lat": 53.57891,
+      "lng": -2.08468,
+      "address": "Grains Road, Shaw, OL2 8JB",
+      "blurb": "Clubhouse pub up Grains Road on the Shaw fringe — four Shawside sides (A, B, C and C2) rack up across its two tables in the Saddleworth Pool League.",
+      "tags": [
+        "Pool league",
+        "Two tables"
+      ],
+      "links": {}
     }
   ],
   "events": [

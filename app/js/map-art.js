@@ -341,9 +341,14 @@
     const pinesAt = [[53.533, -1.9695], [53.5345, -1.9675], [53.536, -1.9705], [53.5375, -1.966]];
     for (const [la, ln] of pinesAt) { const [x, y] = P(la, ln); s += pine(x + jit(8), y + jit(6)); }
 
+    s += `</g>`; // end glyph-layer (symbolic markers hide at street zoom)
+
     // ---- livestock, gently roaming ----
     // Each animal ambles around a small wobbly loop near home, pausing to
     // graze (held keyPoints), on its own clock — a slow, living hillside.
+    // Fauna live in their own layer so street zoom keeps them; app.js sets
+    // --fs so they shrink towards a constant screen size instead of vanishing.
+    s += `<g id="fauna-layer">`;
     function roam(x, y, art, radius, dur) {
       const path = blob(0, 0, radius, radius * 0.65, 6, 0.5, rnd() * 3);
       const begin = -(rnd() * dur).toFixed(1);
@@ -351,7 +356,7 @@
         <animateMotion dur="${dur.toFixed(0)}s" begin="${begin}s" repeatCount="indefinite"
           calcMode="linear" keyPoints="0;0.18;0.18;0.45;0.45;0.75;0.75;1"
           keyTimes="0;0.15;0.32;0.45;0.62;0.75;0.9;1" path="${path}"/>
-        ${art}</g></g>`;
+        <g class="fa">${art}</g></g></g>`;
     }
     const sheepArt = () => `<g transform="rotate(${r1(jit(20))})">
         <ellipse cx="0" cy="0" rx="5.5" ry="3.6" fill="#f6f2e6" stroke="${INK}" stroke-width="1.2"/>
@@ -440,10 +445,10 @@
       return `<g transform="translate(${r1(x)},${r1(y)})"><g>
         <animateMotion dur="${dur}s" begin="${begin}s" repeatCount="indefinite" calcMode="linear"
           keyPoints="0;0;1;1" keyTimes="0;0.78;0.97;1" path="${path}"/>
-        <g>${owlPerched}
+        <g class="fa">${owlPerched}
           <animate attributeName="opacity" values="1;1;0;0;1;1" keyTimes="0;0.77;0.79;0.96;0.98;1"
             dur="${dur}s" begin="${begin}s" repeatCount="indefinite"/></g>
-        <g opacity="0">${owlFlying}
+        <g class="fa" opacity="0">${owlFlying}
           <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.77;0.79;0.96;0.98;1"
             dur="${dur}s" begin="${begin}s" repeatCount="indefinite"/></g>
       </g></g>`;
@@ -453,7 +458,7 @@
       const [x, y] = P(la, ln);
       s += owl(x + jit(6), y + jit(4));
     }
-    s += `</g>`; // end glyph-layer
+    s += `</g>`; // end fauna-layer
 
     // ================= labels =================
     s += `<g id="label-layer">`;

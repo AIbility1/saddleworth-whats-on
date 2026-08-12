@@ -377,11 +377,13 @@ async function handleRate(body) {
 const POOL_BASE = 'https://www.saddleworthpoolleague.co.uk/api';
 const POOL_VENUES = {
   'Hare & Hounds': 'hare-and-hounds',
-  'Top House': 'swan',
+  'Top House': 'top-house',   // the Springhead pub on Co-operative Street, NOT the Swan's nickname
   'Oddfellows': 'oddfellows',
   'Northgate': 'northgate',
   'Weavers Arms': 'weavers-arms',
   'Bridge Inn': 'bridge-inn',
+  'Shawside A': 'the-shawside',   // two tables, one clubhouse on Grains Road
+  'Shawside B': 'the-shawside',
   // Springhead SSC plays out of the former Springhead Liberal Club building
   'Springhead SSC': 'springhead-liberal-club',
 };
