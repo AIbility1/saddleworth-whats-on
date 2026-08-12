@@ -127,6 +127,19 @@ Format: one section per sweep date; per item — verdict, key sources, recheck h
   published ("midweek after school, from ~4:40pm, Civic Hall"). Ask
   saddleworth@littlevoices.org.uk if it matters.
 
+### Pool league venue corrections (12 Aug, user-prompted)
+- **"Top House" ≠ the Swan Dobcross nickname.** League's Top House = the actual pub at
+  38 Co-operative Street, Springhead OL4 5TB (FSA, inspected Mar 2025; not in OSM —
+  customVenue). Swan's nickname noted on its card. Fixture mapping corrected.
+- **The Shawside**, Grains Road, Shaw OL2 8JB (FSA geocode) — hosts Shawside A/B/C/C2
+  on two tables; customVenue added, both league venue strings mapped.
+
+### Walks & sights (12 Aug, user-reported errors — all rebuilt from OSM)
+- All 8 walk routes now follow real geometry (canal/Tame/trackbed/Chew Road/Boat Lane/
+  Waterworks Rd/lanes) via scratch Dijkstra router; sights snapped to OSM truth —
+  biggest errors: Alphin Pike 2.3km, Wharmton mast 909m, viaduct 867m. Distances
+  re-measured. Method notes live in the session scripts; re-do the same way if OSM shifts.
+
 ### Scouts / Guides / youth bands / Boarshurst kids
 - **20th Oldham Scouts** — SEEDED from live scouts.org.uk finder (group 10016719):
   Tue term time, Beavers 18–19 / Cubs 19–20 / Scouts 20:15–21:15; no Squirrels.
