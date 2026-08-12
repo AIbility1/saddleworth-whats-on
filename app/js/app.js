@@ -1118,8 +1118,10 @@
     fetch('data/events.json').then((r) => r.json()),
     fetch('data/venues.json').then((r) => r.json()),
     fetch('data/basemap.json').then((r) => r.json()),
+    fetch('data/contours.json').then((r) => (r.ok ? r.json() : null)).catch(() => null),
   ])
-    .then(([data, vdata, geo]) => {
+    .then(([data, vdata, geo, cont]) => {
+      if (cont) geo.contours = cont.lines;
       // the baked OSM directory, dressed with the editorial overlay
       for (const v of vdata.venues) venues.set(v.id, { tags: [], links: {}, ...v });
       for (const [id, ex] of Object.entries(data.venueExtras || {})) {

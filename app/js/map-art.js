@@ -150,6 +150,18 @@
              fill="none" stroke="${INK}" stroke-width="1.6" stroke-linecap="round" opacity="0.38"/>`;
     }
 
+    // faint contour lines over the high ground only (baked from the real DEM
+    // by scripts/build-contours.js) — a whisper of relief, not an OS sheet
+    if (geo.contours) {
+      s += `<g id="contour-layer">`;
+      for (const c of geo.contours) {
+        const idx = c.ele % 100 === 0;
+        s += `<path d="${line(pts(c.pts), c.closed)}" fill="none" stroke="#847452"
+               stroke-width="${idx ? 1.25 : 0.9}" opacity="${idx ? 0.16 : 0.1}" stroke-linejoin="round"/>`;
+      }
+      s += `</g>`;
+    }
+
     // ================= real geometry (OSM) =================
     // parks & the golf course, quietly greener than the meadow
     for (const p of geo.parks) s += `<path d="${line(pts(p), true)}" fill="${COL.park}" opacity="0.85"/>`;
