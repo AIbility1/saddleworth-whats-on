@@ -16,7 +16,7 @@
   ];
 
   // ---- categories: 3 colour groups (validated palette), 6 glyphs ----
-  const GROUPS = { food: '#eb6834', ent: '#2a78d6', comm: '#1baf7a' };
+  const GROUPS = { food: '#eb6834', ent: '#2a78d6', comm: '#1baf7a', out: '#35784b' };
   const CATS = {
     offer:     { label: 'Offers & deals',        emoji: '🏷️', group: 'food' },
     food:      { label: 'Food & drink',          emoji: '🍺', group: 'food' },
@@ -24,6 +24,7 @@
     quiz:      { label: 'Quiz & comedy',         emoji: '❓', group: 'ent'  },
     market:    { label: 'Markets & fairs',       emoji: '🧺', group: 'comm' },
     community: { label: 'Festivals & community', emoji: '🎪', group: 'comm' },
+    active:    { label: 'Sport & fitness',       emoji: '🏃', group: 'out'  },
   };
   const KIND_EMOJI = { pub: '🍻', cafe: '☕', restaurant: '🍽️', takeaway: '🍟',
                        hall: '🎭', attraction: '🏛️', club: '🎺', sport: '🎾',

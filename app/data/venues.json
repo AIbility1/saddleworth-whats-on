@@ -39,10 +39,7 @@
    "village": "Austerlands",
    "lat": 53.54995,
    "lng": -2.07297,
-   "address": "499 Huddersfield Road, Austerlands, OL4 2JG",
-   "links": {
-    "website": "https://www.villagemanorbakery.co.uk/cafe"
-   }
+   "address": "499 Huddersfield Road, Austerlands, OL4 2JG"
   },
   {
    "id": "waterhead-sports-and-social-club",
@@ -76,6 +73,16 @@
    "hours": "Tu-Fr 09:00-15:00; Su 09:00-14:00"
   },
   {
+   "id": "delph-and-dobcross-crown-green-bowls-club",
+   "name": "Delph & Dobcross Crown Green Bowls Club",
+   "type": "Sports club",
+   "kind": "sport",
+   "village": "Delph",
+   "lat": 53.5664,
+   "lng": -2.01682,
+   "address": "Delph"
+  },
+  {
    "id": "delph-band-club",
    "name": "Delph Band Club",
    "type": "Pub",
@@ -98,6 +105,16 @@
    "lat": 53.5681,
    "lng": -2.02407,
    "address": "25 King Street, Delph"
+  },
+  {
+   "id": "fresca",
+   "name": "Fresca",
+   "type": "Restaurant · italian",
+   "kind": "restaurant",
+   "village": "Delph",
+   "lat": 53.56272,
+   "lng": -2.02129,
+   "address": "Delph"
   },
   {
    "id": "millgate-arts-centre",
@@ -150,7 +167,7 @@
    "village": "Delph",
    "lat": 53.56909,
    "lng": -2.0236,
-   "address": "Delph, OL3 5HX"
+   "address": "Delph"
   },
   {
    "id": "black-ladd",
@@ -173,6 +190,16 @@
    "address": "Denshaw"
   },
   {
+   "id": "friarmere-cricket-club",
+   "name": "Friarmere Cricket Club",
+   "type": "Sports club",
+   "kind": "sport",
+   "village": "Denshaw",
+   "lat": 53.57732,
+   "lng": -2.03756,
+   "address": "Denshaw"
+  },
+  {
    "id": "junction-inn",
    "name": "Junction Inn",
    "type": "Pub",
@@ -180,7 +207,7 @@
    "village": "Denshaw",
    "lat": 53.59231,
    "lng": -2.04019,
-   "address": "Denshaw, OL3 5SL"
+   "address": "Denshaw"
   },
   {
    "id": "little-owl-farm-shop",
@@ -320,16 +347,6 @@
    }
   },
   {
-   "id": "fresca",
-   "name": "Fresca",
-   "type": "Restaurant · italian",
-   "kind": "restaurant",
-   "village": "Dobcross",
-   "lat": 53.56272,
-   "lng": -2.02129,
-   "address": "Dobcross"
-  },
-  {
    "id": "limekiln-cafe",
    "name": "Limekiln Cafe",
    "type": "Café",
@@ -396,7 +413,6 @@
    "lat": 53.53534,
    "lng": -2.00483,
    "address": "134 Chew Valley Road, Friezland, OL3 7DD",
-   "hours": "Su 12:00-19:00; We,Th 17:00-20:00; Fr,Sa 12:00-20:00",
    "tags": [
     "Outdoor seating"
    ]
@@ -410,11 +426,26 @@
    "lat": 53.5325,
    "lng": -1.99928,
    "address": "180 Chew Valley Road, Friezland, OL3 7DD",
-   "hours": "Mo-Su 12:00-18:00+",
    "links": {
-    "website": "https://www.the-clarence.co.uk/",
-    "phone": "+441457 820200"
+    "website": "https://www.the-clarence.co.uk/"
    }
+  },
+  {
+   "id": "blackbird-and-wilde",
+   "name": "Blackbird and Wilde",
+   "type": "Café",
+   "kind": "cafe",
+   "village": "Grasscroft",
+   "lat": 53.53783,
+   "lng": -2.01043,
+   "address": "Grasscroft",
+   "hours": "Mo-We 08:00-16:00; Th-Fr 08:00-10:00; Sa-Su 09:00-10:00",
+   "links": {
+    "website": "https://www.blackbirdandwilde.co.uk/"
+   },
+   "tags": [
+    "Outdoor seating"
+   ]
   },
   {
    "id": "boarshurst-band-club",
@@ -437,6 +468,19 @@
    "address": "Grasscroft"
   },
   {
+   "id": "friezeland-riding-arena",
+   "name": "Friezeland Riding Arena",
+   "type": "Sports club",
+   "kind": "sport",
+   "village": "Grasscroft",
+   "lat": 53.53177,
+   "lng": -2.01858,
+   "address": "Grasscroft",
+   "links": {
+    "website": "https://odrc.co.uk/friezland-arena/"
+   }
+  },
+  {
    "id": "friezland-church-hall",
    "name": "Friezland Church Hall",
    "type": "Community hall",
@@ -444,6 +488,16 @@
    "village": "Grasscroft",
    "lat": 53.53597,
    "lng": -2.02236,
+   "address": "Grasscroft"
+  },
+  {
+   "id": "friezland-crown-green-bowls-club",
+   "name": "Friezland Crown Green Bowls Club",
+   "type": "Sports club",
+   "kind": "sport",
+   "village": "Grasscroft",
+   "lat": 53.53486,
+   "lng": -2.01158,
    "address": "Grasscroft"
   },
   {
@@ -475,6 +529,19 @@
    }
   },
   {
+   "id": "knox-fitness",
+   "name": "Knox Fitness",
+   "type": "Sports club",
+   "kind": "sport",
+   "village": "Grasscroft",
+   "lat": 53.53785,
+   "lng": -2.0104,
+   "address": "Grasscroft",
+   "links": {
+    "website": "https://www.knoxfitness.co.uk/"
+   }
+  },
+  {
    "id": "nonnas",
    "name": "Nonnas",
    "type": "Café",
@@ -482,8 +549,7 @@
    "village": "Grasscroft",
    "lat": 53.53673,
    "lng": -2.00885,
-   "address": "64 Chew Valley Road, Grasscroft",
-   "hours": "We-Fr 07:30-14:30; Sa 08:30-15:30; Su 07:30-14:00"
+   "address": "64 Chew Valley Road, Grasscroft"
   },
   {
    "id": "platform-13",
@@ -504,9 +570,6 @@
    "lat": 53.53851,
    "lng": -2.01397,
    "address": "11 Shaw Hall Bank Road, Grasscroft, OL3 7JZ",
-   "links": {
-    "website": "https://therailway-greenfield.co.uk/"
-   },
    "tags": [
     "Outdoor seating"
    ]
@@ -525,6 +588,16 @@
     "website": "https://www.saddleworthpizza.com/",
     "phone": "+44 1457820344"
    }
+  },
+  {
+   "id": "saddleworth-rangers-arlfc",
+   "name": "Saddleworth Rangers ARLFC",
+   "type": "Sports club",
+   "kind": "sport",
+   "village": "Grasscroft",
+   "lat": 53.5373,
+   "lng": -2.01535,
+   "address": "Grasscroft"
   },
   {
    "id": "tame-valley-tennis-and-squash-club",
@@ -646,6 +719,16 @@
    "village": "Grotton",
    "lat": 53.53734,
    "lng": -2.0601,
+   "address": "Grotton"
+  },
+  {
+   "id": "springhead-liberal-crown-green-bowls-club",
+   "name": "Springhead Liberal Crown Green Bowls Club",
+   "type": "Sports club",
+   "kind": "sport",
+   "village": "Grotton",
+   "lat": 53.53701,
+   "lng": -2.06002,
    "address": "Grotton"
   },
   {
@@ -913,6 +996,16 @@
    }
   },
   {
+   "id": "springhead-arlfc",
+   "name": "Springhead ARLFC",
+   "type": "Sports club",
+   "kind": "sport",
+   "village": "Springhead",
+   "lat": 53.54096,
+   "lng": -2.06713,
+   "address": "Springhead"
+  },
+  {
    "id": "springhead-community-centre",
    "name": "Springhead Community Centre",
    "type": "Community hall",
@@ -1002,8 +1095,7 @@
    "lng": -2.00677,
    "address": "42 High Street, Uppermill, OL3 6HA",
    "links": {
-    "website": "https://42high.co.uk/",
-    "phone": "+44 1457 371850"
+    "phone": "+44 1457 878725"
    }
   },
   {
@@ -1073,7 +1165,7 @@
    "village": "Uppermill",
    "lat": 53.54657,
    "lng": -2.00724,
-   "address": "28 High Street, Uppermill"
+   "address": "Uppermill"
   },
   {
    "id": "greenes-bistro-and-parlour",
@@ -1084,7 +1176,7 @@
    "lat": 53.5489,
    "lng": -2.00652,
    "address": "Wade Row, Uppermill, OL3 6BA",
-   "hours": "Sa,Su 09:00-17:00; Mo-Fr 09:30-16:30",
+   "hours": "Mo-Su 09:00-17:00",
    "links": {
     "website": "https://grandpagreenes.co.uk/bistro",
     "phone": "+441457872547"
@@ -1098,7 +1190,7 @@
    "village": "Uppermill",
    "lat": 53.54794,
    "lng": -2.00569,
-   "address": "68 High Street, Uppermill, OL3 6AW"
+   "address": "Uppermill"
   },
   {
    "id": "hei-hei",
@@ -1157,11 +1249,8 @@
    "village": "Uppermill",
    "lat": 53.54738,
    "lng": -2.00642,
-   "address": "High Street, Uppermill, OL3 6HA",
+   "address": "Uppermill",
    "hours": "Mo-Fr 07:30-17:00; Sa 09:00-17:00; Su 09:00-16:00",
-   "links": {
-    "website": "https://www.meetatourplace.com/"
-   },
    "tags": [
     "Outdoor seating"
    ]
@@ -1191,10 +1280,7 @@
    "village": "Uppermill",
    "lat": 53.54881,
    "lng": -2.01788,
-   "address": "Uppermill",
-   "links": {
-    "website": "https://www.saddleworthgolfclub.org.uk/"
-   }
+   "address": "Uppermill"
   },
   {
    "id": "saddleworth-museum",
@@ -1351,7 +1437,7 @@
    "village": "Uppermill",
    "lat": 53.54673,
    "lng": -2.00706,
-   "address": "High Street, Uppermill, OL3 6HR",
+   "address": "Uppermill",
    "hours": "We-Fr 12:00-23:00; Sa-Su 10:00-23:00",
    "links": {
     "website": "https://www.thewaggoninn.co.uk/"

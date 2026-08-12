@@ -19,7 +19,7 @@ const QUERY = `
 (
   nwr[amenity~"^(pub|bar|cafe|restaurant|fast_food|ice_cream|theatre|cinema|community_centre|arts_centre)$"][name];
   nwr[tourism~"^(museum|gallery|hotel|guest_house)$"][name];
-  nwr[leisure~"^(sports_centre|golf_course|marina|climbing)$"][name];
+  nwr[leisure~"^(sports_centre|golf_course|marina|climbing|fitness_centre|bowling_green|pitch|dance)$"][name];
   nwr[club][name];
 );
 out center tags;
@@ -75,8 +75,9 @@ const slug = (name) => name.toLowerCase()
 // Venues OSM still lists but which have closed for good (local knowledge) —
 // excluded from every bake. Slug per the slug() rules below.
 const CLOSED = new Set([
-  'bank',              // The Bank, Delph — gone
-  'royal-oak',         // The Royal Oak (Th'Heights), Delph — gone
+  'bank',                    // The Bank, Delph — gone
+  'royal-oak',               // The Royal Oak (Th'Heights), Delph — gone
+  'uppermill-cricket-club',  // duplicate OSM element of uppermill-cricket-and-bowling-club
 ]);
 
 // nearest anchor whose circle contains the point — null means "not Saddleworth"
