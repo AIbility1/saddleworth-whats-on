@@ -32,6 +32,19 @@
    "address": "503 Huddersfield Road, Austerlands, OL4 2JG"
   },
   {
+   "id": "village-manor-bakery",
+   "name": "Village Manor Bakery",
+   "type": "Bakery",
+   "kind": "shop",
+   "village": "Austerlands",
+   "lat": 53.54995,
+   "lng": -2.07285,
+   "address": "501 Huddersfield Road, Austerlands, OL4 2JG",
+   "links": {
+    "website": "https://www.villagemanorbakery.co.uk/"
+   }
+  },
+  {
    "id": "village-manor-bakery-eat-in",
    "name": "Village Manor Bakery Eat-In",
    "type": "Café",
@@ -39,7 +52,10 @@
    "village": "Austerlands",
    "lat": 53.54995,
    "lng": -2.07297,
-   "address": "499 Huddersfield Road, Austerlands, OL4 2JG"
+   "address": "499 Huddersfield Road, Austerlands, OL4 2JG",
+   "links": {
+    "website": "https://www.villagemanorbakery.co.uk/cafe"
+   }
   },
   {
    "id": "waterhead-sports-and-social-club",
@@ -167,7 +183,7 @@
    "village": "Delph",
    "lat": 53.56909,
    "lng": -2.0236,
-   "address": "Delph"
+   "address": "Delph, OL3 5HX"
   },
   {
    "id": "friarmere-cricket-club",
@@ -187,7 +203,7 @@
    "village": "Denshaw",
    "lat": 53.59231,
    "lng": -2.04019,
-   "address": "Denshaw"
+   "address": "Denshaw, OL3 5SL"
   },
   {
    "id": "little-owl-farm-shop",
@@ -385,6 +401,20 @@
    }
   },
   {
+   "id": "harrops",
+   "name": "Harrops",
+   "type": "Farm shop",
+   "kind": "shop",
+   "village": "Friezland",
+   "lat": 53.53553,
+   "lng": -2.00454,
+   "address": "135 Chew Valley Road, Friezland, OL3 7JN",
+   "hours": "Mo-Fr 08:00-17:00; Sa 08:00-14:00",
+   "tags": [
+    "Outdoor seating"
+   ]
+  },
+  {
    "id": "king-william-iv",
    "name": "King William IV",
    "type": "Pub",
@@ -393,6 +423,7 @@
    "lat": 53.53534,
    "lng": -2.00483,
    "address": "134 Chew Valley Road, Friezland, OL3 7DD",
+   "hours": "Su 12:00-19:00; We,Th 17:00-20:00; Fr,Sa 12:00-20:00",
    "tags": [
     "Outdoor seating"
    ]
@@ -406,26 +437,25 @@
    "lat": 53.5325,
    "lng": -1.99928,
    "address": "180 Chew Valley Road, Friezland, OL3 7DD",
+   "hours": "Mo-Su 12:00-18:00+",
    "links": {
-    "website": "https://www.the-clarence.co.uk/"
+    "website": "https://www.the-clarence.co.uk/",
+    "phone": "+441457 820200"
    }
   },
   {
-   "id": "blackbird-and-wilde",
-   "name": "Blackbird and Wilde",
-   "type": "Café",
-   "kind": "cafe",
-   "village": "Grasscroft",
-   "lat": 53.53783,
-   "lng": -2.01043,
-   "address": "Grasscroft",
-   "hours": "Mo-We 08:00-16:00; Th-Fr 08:00-10:00; Sa-Su 09:00-10:00",
+   "id": "old-cobblers",
+   "name": "The Old Cobblers",
+   "type": "Deli",
+   "kind": "shop",
+   "village": "Friezland",
+   "lat": 53.53556,
+   "lng": -2.00461,
+   "address": "Kinders Lane, Friezland, OL3 7BW",
+   "hours": "Mo 10:00-15:00; Tu-Th 10:00-17:00; Fr-Sa 10:00-18:00; Su 10:00-16:00",
    "links": {
-    "website": "https://www.blackbirdandwilde.co.uk/"
-   },
-   "tags": [
-    "Outdoor seating"
-   ]
+    "website": "https://www.theoldcobblers.co.uk/"
+   }
   },
   {
    "id": "boarshurst-band-club",
@@ -529,7 +559,8 @@
    "village": "Grasscroft",
    "lat": 53.53673,
    "lng": -2.00885,
-   "address": "64 Chew Valley Road, Grasscroft"
+   "address": "64 Chew Valley Road, Grasscroft",
+   "hours": "We-Fr 07:30-14:30; Sa 08:30-15:30; Su 07:30-14:00"
   },
   {
    "id": "platform-13",
@@ -550,6 +581,9 @@
    "lat": 53.53851,
    "lng": -2.01397,
    "address": "11 Shaw Hall Bank Road, Grasscroft, OL3 7JZ",
+   "links": {
+    "website": "https://therailway-greenfield.co.uk/"
+   },
    "tags": [
     "Outdoor seating"
    ]
@@ -719,7 +753,7 @@
    "village": "Lees",
    "lat": 53.54103,
    "lng": -2.09414,
-   "address": "31, Moorhey Street, Lees"
+   "address": "31 Moorhey Street, Lees, OL4 1JE"
   },
   {
    "id": "weavers-arms",
@@ -729,7 +763,7 @@
    "village": "Lees",
    "lat": 53.54727,
    "lng": -2.08891,
-   "address": "172, Huddersfield Road, Lees"
+   "address": "172 Huddersfield Road, Lees, OL4 2RD"
   },
   {
    "id": "parish-hall",
@@ -762,6 +796,7 @@
    "village": "Moorside",
    "lat": 53.56573,
    "lng": -2.08036,
+   "address": "Moorside",
    "links": {
     "website": "https://www.joseph-holt.com/pubs/northgate"
    }
@@ -1058,6 +1093,16 @@
    "address": "Springhead"
   },
   {
+   "id": "village-bakery",
+   "name": "The Village Bakery",
+   "type": "Bakery",
+   "kind": "shop",
+   "village": "Springhead",
+   "lat": 53.53744,
+   "lng": -2.07135,
+   "address": "Thomas Street, Springhead, OL4 5BT"
+  },
+  {
    "id": "village-pantry",
    "name": "The Village Pantry",
    "type": "Takeaway · sandwich",
@@ -1107,7 +1152,8 @@
    "lng": -2.00677,
    "address": "42 High Street, Uppermill, OL3 6HA",
    "links": {
-    "phone": "+44 1457 878725"
+    "website": "https://42high.co.uk/",
+    "phone": "+44 1457 371850"
    }
   },
   {
@@ -1177,7 +1223,7 @@
    "village": "Uppermill",
    "lat": 53.54657,
    "lng": -2.00724,
-   "address": "Uppermill"
+   "address": "28 High Street, Uppermill"
   },
   {
    "id": "greenes-bistro-and-parlour",
@@ -1188,7 +1234,7 @@
    "lat": 53.5489,
    "lng": -2.00652,
    "address": "Wade Row, Uppermill, OL3 6BA",
-   "hours": "Mo-Su 09:00-17:00",
+   "hours": "Sa,Su 09:00-17:00; Mo-Fr 09:30-16:30",
    "links": {
     "website": "https://grandpagreenes.co.uk/bistro",
     "phone": "+441457872547"
@@ -1202,7 +1248,7 @@
    "village": "Uppermill",
    "lat": 53.54794,
    "lng": -2.00569,
-   "address": "Uppermill"
+   "address": "68 High Street, Uppermill, OL3 6AW"
   },
   {
    "id": "hei-hei",
@@ -1215,6 +1261,19 @@
    "address": "26 High Street, Uppermill",
    "links": {
     "website": "https://www.heiheieaterie.co.uk/"
+   }
+  },
+  {
+   "id": "j-w-buckley-ltd",
+   "name": "J W Buckley Ltd",
+   "type": "Bakery",
+   "kind": "shop",
+   "village": "Uppermill",
+   "lat": 53.54899,
+   "lng": -2.00544,
+   "address": "89 High Street, Uppermill, OL3 6AP",
+   "links": {
+    "website": "https://www.jwbuckley.co.uk/"
    }
   },
   {
@@ -1261,8 +1320,11 @@
    "village": "Uppermill",
    "lat": 53.54738,
    "lng": -2.00642,
-   "address": "Uppermill",
+   "address": "High Street, Uppermill, OL3 6HA",
    "hours": "Mo-Fr 07:30-17:00; Sa 09:00-17:00; Su 09:00-16:00",
+   "links": {
+    "website": "https://www.meetatourplace.com/"
+   },
    "tags": [
     "Outdoor seating"
    ]
@@ -1292,7 +1354,10 @@
    "village": "Uppermill",
    "lat": 53.54881,
    "lng": -2.01788,
-   "address": "Uppermill"
+   "address": "Uppermill",
+   "links": {
+    "website": "https://www.saddleworthgolfclub.org.uk/"
+   }
   },
   {
    "id": "saddleworth-museum",
@@ -1449,7 +1514,7 @@
    "village": "Uppermill",
    "lat": 53.54673,
    "lng": -2.00706,
-   "address": "Uppermill",
+   "address": "High Street, Uppermill, OL3 6HR",
    "hours": "We-Fr 12:00-23:00; Sa-Su 10:00-23:00",
    "links": {
     "website": "https://www.thewaggoninn.co.uk/"
@@ -1458,6 +1523,19 @@
     "Food served",
     "Outdoor seating"
    ]
+  },
+  {
+   "id": "tyromancer",
+   "name": "Tyromancer",
+   "type": "Cheesemonger",
+   "kind": "shop",
+   "village": "Uppermill",
+   "lat": 53.54839,
+   "lng": -2.00542,
+   "address": "Uppermill",
+   "links": {
+    "website": "https://www.tyromancer.co.uk/"
+   }
   },
   {
    "id": "uppermill-civic-hall",

@@ -20,6 +20,7 @@ const QUERY = `
   nwr[amenity~"^(pub|bar|cafe|restaurant|fast_food|ice_cream|theatre|cinema|community_centre|arts_centre)$"][name];
   nwr[tourism~"^(museum|gallery|hotel|guest_house)$"][name];
   nwr[leisure~"^(sports_centre|golf_course|marina|climbing|fitness_centre|bowling_green|pitch|dance)$"][name];
+  nwr[shop~"^(bakery|deli|cheese|farm|confectionery)$"][name];
   nwr[club][name];
 );
 out center tags;
@@ -46,6 +47,7 @@ function kindOf(t) {
   if (a === 'cafe' || a === 'ice_cream') return 'cafe';
   if (a === 'restaurant') return 'restaurant';
   if (a === 'fast_food') return 'takeaway';
+  if (t.shop) return 'shop';   // bakery / deli / cheese / farm / confectionery
   if (a === 'theatre' || a === 'cinema' || a === 'community_centre' || a === 'arts_centre') return 'hall';
   if (t.tourism === 'hotel' || t.tourism === 'guest_house') return 'restaurant';
   if (t.tourism) return 'attraction';
@@ -59,6 +61,9 @@ function typeOf(t, kind) {
     cafe: t.amenity === 'ice_cream' ? 'Ice cream & café' : 'Café',
     restaurant: t.tourism ? 'Inn & rooms' : cuisine ? `Restaurant · ${cuisine}` : 'Restaurant',
     takeaway: cuisine ? `Takeaway · ${cuisine}` : 'Takeaway',
+    shop: t.shop === 'bakery' ? 'Bakery' : t.shop === 'deli' ? 'Deli'
+        : t.shop === 'cheese' ? 'Cheesemonger' : t.shop === 'farm' ? 'Farm shop'
+        : t.shop === 'confectionery' ? 'Sweet shop' : 'Food shop',
     hall: t.amenity === 'theatre' ? 'Theatre' : t.amenity === 'cinema' ? 'Cinema'
         : t.amenity === 'arts_centre' ? 'Arts centre' : 'Community hall',
     attraction: t.tourism === 'museum' ? 'Museum' : 'Gallery',

@@ -1,56 +1,63 @@
 # Outstanding research & maintenance — Saddleworth Live
 
-Paste the prompt below into a fresh session when ready. Everything feeds
-`app/data/events.json` (editorial layer, sourced) and deploys on push.
+**Read `RESEARCH-LOG.md` first** — it records what was already checked (with
+dates, sources and dead ends). Give research agents the "already checked" list
+so they don't re-crawl the same ground. Everything below is genuinely open as
+of 12 Aug 2026; recheck dates come from the log.
 
 ---
 
 **PROMPT:**
 
 Work on the Saddleworth Live map (repo `D:\GitHub\AIbility\saddleworth-whats-on`,
-live at saddleworthlive.co.uk — your memory has the project details). Run
-web-research agents for the outstanding items below, then seed verified
-findings into the editorial layer with source URLs (same pattern as the
-existing events), and deploy.
+live at saddleworthlive.co.uk — your memory has the project details). Read
+`RESEARCH-LOG.md`, exclude recently-checked sources from agent prompts, seed
+verified findings into `app/data/events.json` with source URLs, log the sweep,
+and deploy.
 
-**New categories to research:**
-1. **Fishing** — angling clubs with waters in/around Saddleworth (club names,
-   waters, day tickets, junior sections, match nights). Check Oldham &
-   district angling associations, any club fishing local lodges/reservoirs.
-2. **Dating / singles events** — speed dating or singles socials in or near
-   the villages (may be thin; don't force it).
+**Dates to confirm as they're announced** (all seeded TBC where a pattern exists):
+- Delph Party in the Park 2026 — recheck ~1 Sep (Wake Up Delph FB / ticketsource)
+- Uppermill Bonfire (seeded Sun 1 Nov TBC) — recheck late Sep/Oct (UCBC Facebook)
+- Santa Dash & Winter Wonderland (seeded Sat 5 Dec TBC) — recheck ~mid-Sep
+  (Saddleworth Round Table)
+- Village Christmas switch-ons (Delph/Dobcross/Greenfield/Diggle/Springhead) —
+  recheck mid-Nov (saddind.co.uk what's-on guide)
+- Grandpa Greene's reopening (closes 2 Sep; "Dec 2026" vs "2027" conflict) —
+  recheck ~Nov 2026, update card + hours
+- Dinnerstone under Muse Group — recheck ~Oct 2026 for name/date/hours
+- 2027 re-seeds when announced: GMCL cricket Saturdays (7 clubs + juniors),
+  Diggle Blues (June), Whit Friday (21 May 2027 seeded), Rushcart, Beer & Cider
+  Festival (1st Sat Jul), sailing programme, Diggle AC match nights (May–Sep)
 
-**Unpublished slots to pin down (phone/Facebook-level digging):**
-- Springhead Sports & Social Club — confirm location (Yell lists it; its pool
-  league team "Springhead SSC" is currently unmapped in POOL_VENUES)
-- 20th Oldham Scout Group (Uppermill Methodist) — per-section times
-- Girlguiding Saddleworth — Rainbows/Brownies/Guides unit nights per village
-- Saddleworth Rangers ARLFC — junior training nights (site was down)
-- Delph Tots (Methodist Hall) and Jelly Tots (Greenfield Methodist) — days
-- babyballet Greenfield satellite — day; Saddleworth School of Dance — venue/day
-- Delph Youth Band rehearsal nights; verify Dobcross Youth Band Tue/Fri times
-- Uppermill FC training slots; Saddleworth 3Ds session times
-- Oldham Active learn-to-swim day-by-day timetable at Saddleworth pool
-- Rock Choir Saddleworth — rehearsal night and venue
-- Play2 Diggle opening hours; Little Voices term-time lesson day
-- Saddleworth Golf Club junior sessions; UCBC junior cricket Friday times
-- Opening hours still missing or dated: Three Crowns (Scouthead), Hare &
-  Hounds, Swan Inn Delph (2023 CAMRA), Millgate physical hours
+**Phone/ask-level gaps (web is exhausted — see log before re-searching):**
+- Boarshurst Band Club kids activities — user believes something runs; get
+  specifics from them or the club (01457 875836 / boarshurstband.co.uk)
+- Girlguiding Saddleworth unit nights — register interest on girlguiding.org.uk
+  or ask on local FB; nothing is published
+- Delph Tots day/time — email nataliefinn@rocketmail.com
+- Saddleworth Angling Society — phone 01457 874922 / 07762 757026 before seeding
+  waters (site suspended, details are 2020–22 vintage)
+- Saddleworth Golf juniors — site /juniors/ 500s; ring 01457 873653
+- Little Voices weekly lesson day — saddleworth@littlevoices.org.uk
+- Saddleworth Rangers U8s–U18s training nights — site down; 01457 876077
+- Dobcross Youth Band exact start (18:00 vs 18:30) — bbe.org.uk page in a real
+  browser, or 07828 099296
+- UCBC junior Friday clock time — events@ucbc.club
+- Springhead SSC hours are Dec 2022 CAMRA vintage — refresh opportunistically
 
-**Dates to confirm as they're announced (currently marked TBC or expected):**
-- Delph Party in the Park 2026 (expect late Sept, Delph & Dobcross CC)
-- Saddleworth Oktoberfest 2026 (seeded as Sat 3 Oct TBC)
-- Uppermill bonfire 2026 (seeded as Sun 1 Nov TBC)
-- Santa Dash & Winter Wonderland (seeded as Sat 5 Dec TBC)
-- Other villages' Christmas switch-ons
-- Grandpa Greene's reopening (expected Dec 2026 — update card)
-- Dinnerstone reopening under the Muse group — update card, add hours
-- 2027 season re-seeds when announced: cricket GMCL Saturdays (7 clubs +
-  juniors + All Stars/Dynamos), Diggle Blues 2027, Beer & Cider Festival,
-  Rushcart 2027, Whit Friday 2027 details, sailing 2027 programme
-- Re-run `scripts/build-venues.js` and `scripts/build-basemap.js` for OSM
-  freshness (CLOSED/ALWAYS lists in build-venues.js carry local corrections)
+**Watchlist:**
+- Sapore Pizza (97 High St, Uppermill) — FSA "awaiting inspection", no web
+  presence; check ~Oct 2026 whether it actually opened
+- Bakestones (Delph business centre) — FSA-registered bakery, retail hours
+  unknown; verify walk-in trade before pinning
+- SSSS singles group — dormant-looking; check their Facebook before ever seeding
+
+**Maintenance:**
+- Re-run `scripts/build-venues.js` + `scripts/build-basemap.js` monthly-ish
+  (CLOSED/ALWAYS lists in build-venues.js carry local corrections; shop kinds
+  — bakery/deli/cheese/farm/confectionery — bake as kind `shop` since Aug 2026)
+- Pool-league season rollover happens automatically via /api/pool
 
 **Rules:** only sourced facts; mark expected dates "confirm nearer the time";
-closed venues go in the CLOSED list; the user's local knowledge overrides
-web sources.
+closed venues go in the CLOSED list; the user's local knowledge overrides web
+sources; log every sweep in RESEARCH-LOG.md.

@@ -27,7 +27,7 @@
     active:    { label: 'Sport & fitness',       emoji: '🏃', group: 'out'  },
     kids:      { label: 'Kids & family',         emoji: '🧒', group: 'comm' },
   };
-  const KIND_EMOJI = { pub: '🍻', cafe: '☕', restaurant: '🍽️', takeaway: '🍟',
+  const KIND_EMOJI = { pub: '🍻', cafe: '☕', restaurant: '🍽️', takeaway: '🍟', shop: '🥖',
                        hall: '🎭', attraction: '🏛️', club: '🎺', sport: '🎾',
                        walk: '🥾', sight: '⛰️', spot: '📍' };
   const WALK_C = '#35784b';
@@ -37,6 +37,7 @@
     pub:  { label: 'Pubs & bars',    emoji: '🍻', c: '#eb6834', kinds: ['pub'] },
     food: { label: 'Food',           emoji: '🍽️', c: '#2a78d6', kinds: ['restaurant', 'takeaway'] },
     cafe: { label: 'Cafés',          emoji: '☕', c: '#8d6748', kinds: ['cafe'] },
+    shop: { label: 'Food shops',     emoji: '🥖', c: '#c9891d', kinds: ['shop'] },
     comm: { label: 'Halls & clubs',  emoji: '🎭', c: '#1baf7a', kinds: ['hall', 'attraction', 'club', 'sport', 'spot'] },
     out:  { label: 'Walks & sights', emoji: '🥾', c: '#35784b', kinds: ['walk', 'sight'] },
   };
@@ -834,7 +835,7 @@
   function openAddBusiness(draft) {
     const b = draft || {};
     const KIND_OPTS = [['pub', '🍻 Pub or bar'], ['cafe', '☕ Café or ice cream'], ['restaurant', '🍽️ Restaurant'],
-      ['takeaway', '🍟 Takeaway'], ['hall', '🎭 Hall, theatre or venue'], ['attraction', '🏛️ Attraction'],
+      ['takeaway', '🍟 Takeaway'], ['shop', '🥖 Bakery, deli or food shop'], ['hall', '🎭 Hall, theatre or venue'], ['attraction', '🏛️ Attraction'],
       ['club', '🎺 Club'], ['sport', '🎾 Sports club']];
     const VILLAGES = ['Uppermill', 'Delph', 'Dobcross', 'Diggle', 'Greenfield', 'Grasscroft', 'Lydgate',
       'Scouthead', 'Denshaw', 'Friezland', 'Springhead', 'Grotton', 'Austerlands', 'Strinesdale'];
@@ -1024,7 +1025,7 @@
     const old = document.getElementById('ld-json');
     if (old) old.remove();
     const TYPES = { pub: 'BarOrPub', cafe: 'CafeOrCoffeeShop', restaurant: 'Restaurant',
-      takeaway: 'Restaurant', hall: 'CivicStructure', attraction: 'TouristAttraction',
+      takeaway: 'Restaurant', shop: 'Store', hall: 'CivicStructure', attraction: 'TouristAttraction',
       club: 'Organization', sport: 'SportsActivityLocation' };
     const blocks = [{
       '@context': 'https://schema.org', '@type': 'WebSite',
@@ -1078,6 +1079,7 @@
       for (const [id, ex] of Object.entries(data.venueExtras || {})) {
         const v = venues.get(id);
         if (!v) continue;
+        if (ex.name) v.name = ex.name;
         if (ex.type) v.type = ex.type;
         if (ex.blurb) v.blurb = ex.blurb;
         if (ex.menu) v.menu = ex.menu;

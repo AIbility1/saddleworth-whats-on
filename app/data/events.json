@@ -68,7 +68,7 @@
     },
     "uppermill-civic-hall": {
       "type": "Community hall",
-      "blurb": "The village's big room — markets, fairs, concerts and community events all year round.",
+      "blurb": "The village's big room — markets, fairs, concerts and community events all year round, plus term-time regulars from Saddleworth School of Dance to Little Voices drama and singing (midweek after school).",
       "tags": [
         "Markets",
         "Fairs",
@@ -100,12 +100,14 @@
     },
     "millgate-arts-centre": {
       "type": "Theatre",
-      "blurb": "Saddleworth's little theatre — home of the Saddleworth Players, plus comedy, music and film nights through the year.",
+      "blurb": "Saddleworth's little theatre — home of the Saddleworth Players, plus comedy, music and film nights through the year. Delph Library lives inside the building; the bar opens around show times and tickets are sold online or on 01457 876644.",
       "tags": [
         "Theatre",
         "Comedy",
-        "Film nights"
-      ]
+        "Film nights",
+        "Delph Library inside"
+      ],
+      "hours": "Library: Tu-Th 14:00-17:00; Fr-Sa 10:00-13:00 · bar open around shows"
     },
     "swan": {
       "type": "Pub",
@@ -129,7 +131,7 @@
     },
     "grandpa-greenes": {
       "type": "Ice cream & café",
-      "blurb": "Award-winning luxury ice cream served right on the canal towpath — deckchairs, ducks and sundaes with a view of the moors. Closing September 2026 for a complete rebuild of the canalside site; reopening December 2026.",
+      "blurb": "Award-winning luxury ice cream served right on the canal towpath — deckchairs, ducks and sundaes with a view of the moors. Closes 2 September 2026 for a complete rebuild in reclaimed Cheshire brick with oak trusses; reopening expected winter 2026/27 — confirm nearer the time.",
       "tags": [
         "Rebuilding late 2026",
         "Award-winning ice cream",
@@ -235,7 +237,8 @@
         "Sunset views",
         "Beer festivals",
         "Sunday dinner"
-      ]
+      ],
+      "hours": "Mo off; Tu-We 16:00-23:00; Th-Su 12:00-23:00"
     },
     "farrars-arms": {
       "type": "Pub",
@@ -281,9 +284,9 @@
       "hours": "Mo-Su from 12:00 (food last orders 19:30-20:30)"
     },
     "dinnerstone": {
-      "blurb": "Closed at the start of 2026 after twenty years, and taken over by the team behind Muse and the Farrars Arms — expected to reopen. Watch this space.",
+      "blurb": "Closed at the start of 2026 after twenty years. Acquisition by the Muse Group (Muse Bar & Eatery and the Farrars Arms) confirmed August 2026 — reopening date, name and hours still to be announced. Watch this space.",
       "tags": [
-        "Reopening under new ownership"
+        "Reopening under Muse Group"
       ]
     },
     "tame-valley-tennis-and-squash-club": {
@@ -308,13 +311,66 @@
         "Learn-to-swim programme",
         "25m pool",
         "Group classes"
-      ]
+      ],
+      "blurb": "The village pool — lane, public and family swims through the week (term and holiday timetables differ), Oldham Active's Rainbow learn-to-swim programme (book via the portal — lesson times aren't published), and home water of Saddleworth Sharks swimming club.",
+      "links": {
+        "website": "https://www.oldhamactive.co.uk/timetables/?venue_id=998"
+      }
     },
     "delph-band-club": {
-      "blurb": "Home of Delph Band and its thriving youth wing — Tooters, Training Band and Youth Band (contact via delphyouthband.com). Senior band rehearses Monday & Wednesday evenings.",
+      "blurb": "Home of Delph Band and its thriving youth wing — Tooters, Training Band and Youth Band rehearse Saturday mornings (contact via delphyouthband.com). Senior band rehearses Monday & Wednesday evenings.",
       "tags": [
         "Brass bands",
         "Youth bands"
+      ]
+    },
+    "springhead-liberal-club": {
+      "name": "Springhead Sports & Social Club",
+      "type": "Social club",
+      "blurb": "The old Springhead Liberal Club — 'the Libs' to locals, on this site since 1902 — now the Sports & Social Club at 136 Oldham Road, fielding Springhead SSC in the Saddleworth Pool League with the crown-green bowling club alongside. Oldham Fly Fishing Club — trout on Piethorne and Kitcliffe reservoirs — holds its meetings here.",
+      "tags": [
+        "Pool league",
+        "Crown green bowls",
+        "Est. 1891",
+        "Fly fishing club HQ"
+      ],
+      "links": {
+        "website": "https://www.facebook.com/springheadlibs"
+      }
+    },
+    "j-w-buckley-ltd": {
+      "name": "Buckleys",
+      "blurb": "J W Buckley's — family bakers on the High Street, baking pies, bread and sandwiches on site for the shop counter and the wholesale rounds alike.",
+      "tags": [
+        "Family bakers",
+        "Pies & pasties",
+        "Baked on site"
+      ],
+      "hours": "Mo-Sa 08:30-16:00; Su 09:30-16:00"
+    },
+    "tyromancer": {
+      "blurb": "Uppermill's new cheesemonger — a counter of British and continental cheeses with deli bits to match, opened on the High Street in 2026.",
+      "tags": [
+        "New for 2026",
+        "Cheese counter",
+        "Deli"
+      ],
+      "hours": "Mo-Tu off; We-Fr 10:00-17:00; Sa 09:00-17:00; Su 11:00-16:00"
+    },
+    "golden-house": {
+      "village": "Greenfield",
+      "type": "Takeaway · Chinese & chips",
+      "blurb": "Greenfield's chippy — Chinese dishes and fish-and-chips from the counter on Greenbridge Lane."
+    },
+    "saddleworth-pizza": {
+      "village": "Greenfield"
+    },
+    "saddleworth-rangers-arlfc": {
+      "village": "Greenfield",
+      "blurb": "Community rugby league at Shaw Hall Bank Road — Rangers Tots and junior teams from U7s to U18s through to the open-age first team. Club office 01457 876077 (11:00–14:00).",
+      "tags": [
+        "Junior rugby league",
+        "Tots sessions"
       ]
     }
   },
@@ -1170,7 +1226,8 @@
       "links": {
         "website": "https://www.playoldham.co.uk/",
         "phone": "01457 237260"
-      }
+      },
+      "hours": "Term: Mo-We 10:00-14:00; Th-Fr 10:00-17:30 · Hols: Mo-Fr 10:00-17:00 · Sa 10:00-16:45; Su 10:00-15:30 — call ahead"
     },
     {
       "id": "little-village-saddleworth",
@@ -1240,7 +1297,7 @@
       "lat": 53.53615,
       "lng": -2.00598,
       "address": "Chew Valley Road, Greenfield OL3 7JJ",
-      "blurb": "Chapel and hall on Chew Valley Road — home of the Jelly Tots baby & toddler group (days via their Facebook page).",
+      "blurb": "Chapel and hall on Chew Valley Road — home of the Jelly Tots baby & toddler group (Friday mornings in the lower hall).",
       "tags": [
         "Toddler group"
       ],
@@ -1295,6 +1352,133 @@
         "website": "https://evademartialarts.co.uk",
         "phone": "01457 833987"
       }
+    },
+    {
+      "id": "saddleworth-school",
+      "name": "Saddleworth School",
+      "type": "School & community venue",
+      "kind": "hall",
+      "village": "Diggle",
+      "lat": 53.56137,
+      "lng": -1.99945,
+      "address": "Huddersfield Road, Diggle, OL3 5NU",
+      "blurb": "The valley-bottom secondary school at Diggle — out of hours its hall and pitches host everything from Rock Choir rehearsals to junior football academies.",
+      "tags": [
+        "Community lets"
+      ],
+      "links": {}
+    },
+    {
+      "id": "tanners-dam",
+      "name": "Tanners Dam",
+      "type": "Fishing water",
+      "kind": "sport",
+      "village": "Greenfield",
+      "lat": 53.53129,
+      "lng": -1.99697,
+      "address": "Off Holmfirth Road, Greenfield, OL3 7NH",
+      "blurb": "Diggle Angling Club's water since 1952 — a mill lodge stocked with carp, tench, chub and ide (500lb of fresh carp went in, February 2026). Members only, no day tickets: seniors £55, under-16s £25, over-65s £45 — forms via diggleac.co.uk.",
+      "tags": [
+        "Members-only fishing",
+        "Junior membership £25",
+        "Carp & coarse"
+      ],
+      "links": {
+        "website": "http://www.diggleac.co.uk/"
+      }
+    },
+    {
+      "id": "nine-lives",
+      "name": "Nine Lives",
+      "type": "Café & sandwich shop",
+      "kind": "cafe",
+      "village": "Greenfield",
+      "lat": 53.5404,
+      "lng": -2.00833,
+      "address": "The Greenfield Centre, Wellington Road, Greenfield, OL3 7AQ",
+      "blurb": "Neighbourhood café and sandwich shop inside the Greenfield Centre on Wellington Road — breakfasts, butties and cakes, Tuesday to Sunday.",
+      "tags": [
+        "Sandwiches",
+        "Cakes"
+      ],
+      "links": {
+        "website": "https://www.ninelivesgreenfield.co.uk/"
+      },
+      "hours": "Mo off; Tu-Su 09:00-16:00"
+    },
+    {
+      "id": "hot-duck",
+      "name": "Hot Duck",
+      "type": "Restaurant · dim sum",
+      "kind": "restaurant",
+      "village": "Uppermill",
+      "lat": 53.54653,
+      "lng": -2.0074,
+      "address": "26a High Street, Uppermill, OL3 6HX",
+      "blurb": "Dim sum and Cantonese plates upstairs at 26a High Street, from the family behind Hei Hei below.",
+      "tags": [
+        "Dim sum",
+        "Evenings"
+      ],
+      "links": {
+        "website": "https://www.hotduck.co.uk/"
+      },
+      "hours": "Mo-Tu off; We-Sa from 17:00; Su 17:00-22:00"
+    },
+    {
+      "id": "bay-leaf",
+      "name": "Bay Leaf",
+      "type": "Restaurant · indian",
+      "kind": "restaurant",
+      "village": "Delph",
+      "lat": 53.56747,
+      "lng": -2.02365,
+      "address": "5 King Street, Delph, OL3 5DL",
+      "blurb": "Delph's Indian on King Street — curries a few doors from the Swan.",
+      "tags": [
+        "Indian",
+        "Takeaway available"
+      ],
+      "links": {}
+    },
+    {
+      "id": "tunnel-end-pies",
+      "name": "Tunnel End Pie Co",
+      "type": "Pie shop",
+      "kind": "shop",
+      "village": "Uppermill",
+      "lat": 53.54718,
+      "lng": -2.00702,
+      "address": "Unit 6, 45 High Street, Uppermill, OL3 6HS",
+      "blurb": "Award-winning pies baked behind the High Street — order ahead by phone or email (07415 526457) and collect weekday lunchtimes.",
+      "tags": [
+        "Award-winning pies",
+        "Pre-order collection"
+      ],
+      "links": {
+        "website": "https://tunnelendpies.co.uk/"
+      },
+      "hours": "Collection Mo-Fr 11:00-13:00 · pre-order"
+    },
+    {
+      "id": "dobcross-village-store",
+      "name": "Dobcross Village Store & Post Office",
+      "type": "Village store & deli",
+      "kind": "shop",
+      "village": "Dobcross",
+      "lat": 53.55508,
+      "lng": -2.01519,
+      "address": "18 Woods Lane, Dobcross, OL3 5AN",
+      "blurb": "The village store and post office on Woods Lane — takeaway coffee, a continental deli counter and the village noticeboard all in one.",
+      "tags": [
+        "Post office",
+        "Deli counter",
+        "Takeaway coffee"
+      ],
+      "links": {
+        "website": "https://dobcrossvillagestore.com/"
+      },
+      "hours": "Mo-Fr 07:00-20:00; Sa-Su until 18:00"
     }
   ],
   "events": [
@@ -1616,7 +1800,7 @@
       "category": "food",
       "start": "2026-10-03",
       "time": "12:00–16:00",
-      "description": "Steins, brezn and the Jäger Maestros oompah band in the Civic Hall. 2026 date expected early October — confirm nearer the time.",
+      "description": "Steins, brezn and oompah in the Civic Hall — the third annual Saddleworth Oktoberfest, confirmed for Saturday 3 October 2026. Tables of eight and single tickets via TicketTailor; earlier editions sold out well ahead.",
       "source": "https://www.theoldhamtimes.co.uk/news/26093812.saddleworth-oktoberfest-returning-uppermill-3rd-year/"
     },
     {
@@ -2660,12 +2844,12 @@
       "business": "dobcross-band-social-club",
       "title": "Dobcross Youth Band Night",
       "category": "kids",
-      "time": "From 18:00 (beginners first)",
+      "time": "Early evening · beginners first — confirm start",
       "recurrence": {
         "freq": "weekly",
         "day": "tue"
       },
-      "description": "Beginners, training band then youth band — a hundred young players aged 7–18, Tuesdays and Fridays. Instruments provided for beginners; confirm via their Facebook.",
+      "description": "Beginners, training band then youth band — dozens of young players aged 7+, Tuesdays and Fridays, instruments provided for starters. Sources differ on the start (18:00 or 18:30), so confirm via their Facebook or 07828 099296.",
       "source": "https://www.bbe.org.uk/band/dobcross-youth-band"
     },
     {
@@ -2673,12 +2857,12 @@
       "business": "dobcross-band-social-club",
       "title": "Dobcross Youth Band Night",
       "category": "kids",
-      "time": "From 18:00 (beginners first)",
+      "time": "Early evening · beginners first — confirm start",
       "recurrence": {
         "freq": "weekly",
         "day": "fri"
       },
-      "description": "The week’s second youth band night — beginners through to the full youth band.",
+      "description": "The week’s second youth band night — beginners through to the full youth band. Confirm start times with the band (07828 099296).",
       "source": "https://www.bbe.org.uk/band/dobcross-youth-band"
     },
     {
@@ -2795,6 +2979,203 @@
       "description": "A fortnight after the solar eclipse, the Earth’s shadow takes a deep bite out of the full moon in the small hours — most of the disc turning dusky copper as it sinks toward the western moors. Dove Stone’s dark skies are the best seat in the parish; no glasses needed for this one, just a flask.",
       "offer": "Free · bring a flask",
       "source": "https://en.wikipedia.org/wiki/August_2026_lunar_eclipse"
+    },
+    {
+      "id": "ucbc-junior-cricket",
+      "business": "uppermill-cricket-and-bowling-club",
+      "title": "Junior Cricket Training",
+      "category": "kids",
+      "time": "Friday evenings — times via the club",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "fri"
+      },
+      "description": "2026 junior section training at the home ground — U9s, U13s and a joint U17 side with Delph and Marsden CC. Matches: U9s on Sundays, U13s and U17s on Wednesdays. Contact events@ucbc.club.",
+      "source": "https://www.ucbc.club/junior-cricket"
+    },
+    {
+      "id": "uafc-walking-football",
+      "business": "saddleworth-pool-and-leisure-centre",
+      "title": "Walking Football (over-55s)",
+      "category": "active",
+      "time": "15:00–16:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "tue"
+      },
+      "description": "Uppermill AFC's over-55s walking football at Saddleworth Baths — gentle pace, proper football, new faces welcome.",
+      "source": "https://www.uppermillafc.co.uk/walking-football"
+    },
+    {
+      "id": "uafc-u9-training",
+      "business": "saddleworth-pool-and-leisure-centre",
+      "title": "Uppermill AFC U9s Training",
+      "category": "kids",
+      "time": "18:00–19:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "tue"
+      },
+      "description": "The club's youngest juniors on the leisure-centre 3G. Uppermill AFC runs 21 junior teams and training nights vary team by team — check uppermillafc.co.uk for yours.",
+      "source": "https://www.uppermillafc.co.uk/u7-s"
+    },
+    {
+      "id": "3ds-football-academy",
+      "business": "saddleworth-school",
+      "title": "3Ds Football Academy (ages 4–7)",
+      "category": "kids",
+      "time": "17:00–18:00 · term time",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "mon"
+      },
+      "description": "Saddleworth 3Ds' first-kicks academy for four-to-sevens, with thirty-plus junior teams to grow into. As listed on the club site — confirm with coach Mark Aston (07429 159854).",
+      "source": "https://saddleworth3ds.club/football-academy"
+    },
+    {
+      "id": "rock-choir-saddleworth",
+      "business": "saddleworth-school",
+      "title": "Rock Choir Saddleworth Rehearsal",
+      "category": "music",
+      "time": "20:00 · term time",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "tue"
+      },
+      "description": "The Saddleworth & Oldham Rock Choir rehearses weekly in term time — night and venue per the 2024 listing, so book a free taster via rockchoir.com to confirm before turning up.",
+      "source": "https://www.joinachoir.com/uk/england/greater-manchester/saddleworth-oldham-evening-rock-choir/"
+    },
+    {
+      "id": "diggle-ac-match-2026",
+      "business": "tanners-dam",
+      "title": "Diggle AC Match Night",
+      "category": "active",
+      "time": "Thursday evenings · May–September",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "thu",
+        "until": "2026-09-30"
+      },
+      "description": "Diggle Angling Club's evening matches on Tanners Dam, running early May to the end of September — results on the club's Matches Facebook page. Members only; junior membership £25.",
+      "source": "http://www.diggleac.co.uk/"
+    },
+    {
+      "id": "jelly-tots-greenfield",
+      "business": "greenfield-methodist",
+      "title": "Jelly Tots Baby & Toddler Group",
+      "category": "kids",
+      "time": "09:30–11:30",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "fri"
+      },
+      "offer": "£4 per family incl. breakfast",
+      "description": "Community-run parent-and-tots morning in the lower hall (right-side door) — toast and drinks included, open most school holidays too. Contact 07817 989997.",
+      "source": "https://www.facebook.com/greenfieldjellytots"
+    },
+    {
+      "id": "babyballet-greenfield-fri",
+      "business": "satellite-centre",
+      "title": "babyballet (6 months–6 years)",
+      "category": "kids",
+      "time": "Friday mornings — times via babyballet.co.uk",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "fri"
+      },
+      "description": "Tots, Tinies, Movers and Groovers classes at the Satellite Centre with Miss Sally — £5.50 a class, three-week intro trial £18. Book on babyballet.co.uk (Oldham & Saddleworth).",
+      "source": "https://babyballet.co.uk/babyballet-school/oldham/"
+    },
+    {
+      "id": "babyballet-greenfield-sat",
+      "business": "satellite-centre",
+      "title": "babyballet (6 months–6 years)",
+      "category": "kids",
+      "time": "Saturday mornings — times via babyballet.co.uk",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sat"
+      },
+      "description": "The weekend session of the Satellite Centre babyballet classes — Tots to Groovers, book via babyballet.co.uk (Oldham & Saddleworth).",
+      "source": "https://clubhubuk.co.uk/clubs/babyballet-dance-class-tinies-18-months-to-3-years-saddleworth/"
+    },
+    {
+      "id": "ssod-tuesday",
+      "business": "uppermill-civic-hall",
+      "title": "Saddleworth School of Dance — Tuesday Classes",
+      "category": "kids",
+      "time": "17:00–19:30 · term time",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "tue"
+      },
+      "description": "Strength & Flexibility (17:00, 6–16s), Acro skills, flips & tricks (17:30) and Contemporary (18:30, 7–18s) with the not-for-profit SSD CIC. Book via their ClassForKids page.",
+      "source": "https://saddleworth-school-of-dance.classforkids.io/"
+    },
+    {
+      "id": "ssod-wednesday",
+      "business": "uppermill-civic-hall",
+      "title": "Saddleworth School of Dance — Breakdance",
+      "category": "kids",
+      "time": "18:00–19:00 · term time",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "wed"
+      },
+      "description": "Breakdance for 7–16s at the Civic Hall — book via ClassForKids.",
+      "source": "https://saddleworth-school-of-dance.classforkids.io/"
+    },
+    {
+      "id": "ssod-thursday",
+      "business": "uppermill-civic-hall",
+      "title": "Saddleworth School of Dance — Thursday Classes",
+      "category": "kids",
+      "time": "17:00–20:45 · term time",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "thu"
+      },
+      "description": "Street Dance for 5/6s (17:00), Acro Dance 7–16s (17:30), then Street Dance for 7–10s (18:45) and 11–17s (19:45). Book via ClassForKids.",
+      "source": "https://saddleworth-school-of-dance.classforkids.io/"
+    },
+    {
+      "id": "scouts-20th-oldham",
+      "business": "uppermill-methodist",
+      "title": "20th Oldham Scout Group Night",
+      "category": "kids",
+      "time": "Beavers 18:00 · Cubs 19:00 · Scouts 20:15 · term time",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "tue"
+      },
+      "description": "Beavers from six, Cubs at seven and Scouts at quarter-past eight, every Tuesday in term time at the Methodist Centre. Times per the official Scouts group finder — the group’s own site lists slightly different hours, so double-check when joining.",
+      "source": "https://www.scouts.org.uk/groups/10016719?slug=20th-Oldham-Uppermill-Methodist"
+    },
+    {
+      "id": "rangers-tots-u7s",
+      "business": "saddleworth-rangers-arlfc",
+      "title": "Rangers Tots & U7s Training",
+      "category": "kids",
+      "time": "From 18:00 (Tots also Thursdays)",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "mon"
+      },
+      "description": "Rangers Tots (18:00–18:45) and Under-7s (18:00) on the main pitch at Shaw Hall Bank Road; junior teams run right up to U18s. Times per the club site as of October 2025 — the site was down when checked, so ring 01457 876077 (11:00–14:00) to confirm.",
+      "source": "http://web.archive.org/web/20251018063647/http://saddleworthrangers.co.uk/teams"
+    },
+    {
+      "id": "delph-youth-band-sat",
+      "business": "delph-band-club",
+      "title": "Delph Youth Band Rehearsals",
+      "category": "kids",
+      "time": "10:30–12:30",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sat"
+      },
+      "description": "Tooters (beginners), Training Band and Youth Band — Saturday mornings at the band club, with other times by arrangement. Instruments provided for starters; contact via delphyouthband.com.",
+      "source": "https://www.actiontogether.org.uk/community-activities/community-activity-directory/105510"
     }
   ]
 }
