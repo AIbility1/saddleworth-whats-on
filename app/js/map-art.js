@@ -409,8 +409,8 @@
       const [x, y] = P(la, ln);
       s += roam(x + jit(12), y + jit(8), grouseArt(), 8 + rnd() * 7, 70 + rnd() * 70);
     }
-    // owls in the pines, shuffling on their perches
-    const owlArt = () => `<g>
+    // owls in the pines: long perch, then a slow glide over the trees and back
+    const owlPerched = `<g>
         <path d="M-2.2,-3.2 L-3,-4.8 M2.2,-3.2 L3,-4.8" stroke="${INK}" stroke-width="1" stroke-linecap="round"/>
         <ellipse cx="0" cy="0" rx="3" ry="4" fill="#9b7a52" stroke="${INK}" stroke-width="1.1"/>
         <ellipse cx="0" cy="1" rx="1.8" ry="2.3" fill="#dccba9"/>
@@ -418,10 +418,35 @@
         <circle cx="1.15" cy="-1.7" r="1.05" fill="#fff" stroke="${INK}" stroke-width="0.6"/>
         <circle cx="-1.15" cy="-1.7" r="0.45" fill="#26211a"/>
         <circle cx="1.15" cy="-1.7" r="0.45" fill="#26211a"/></g>`;
+    const owlFlying = `<g>
+        <path d="M-1,0.4 Q-5,-4.4 -10,-3 Q-5.6,-0.8 -1,1.6z" fill="#9b7a52" stroke="${INK}" stroke-width="1" stroke-linejoin="round"/>
+        <path d="M1,0.4 Q5,-4.4 10,-3 Q5.6,-0.8 1,1.6z" fill="#9b7a52" stroke="${INK}" stroke-width="1" stroke-linejoin="round"/>
+        <ellipse cx="0" cy="0.6" rx="2.1" ry="2.8" fill="#dccba9" stroke="${INK}" stroke-width="1"/>
+        <circle cx="-0.8" cy="-0.6" r="0.7" fill="#fff" stroke="${INK}" stroke-width="0.5"/>
+        <circle cx="0.8" cy="-0.6" r="0.7" fill="#fff" stroke="${INK}" stroke-width="0.5"/>
+        <circle cx="-0.8" cy="-0.6" r="0.32" fill="#26211a"/>
+        <circle cx="0.8" cy="-0.6" r="0.32" fill="#26211a"/></g>`;
+    function owl(x, y) {
+      const r = 30 + rnd() * 25;
+      const path = blob(0, 0, r, r * 0.6, 6, 0.4, rnd() * 3);
+      const dur = (90 + rnd() * 60).toFixed(0);
+      const begin = -(rnd() * dur).toFixed(1);
+      // perched ~78% of the cycle, one smooth circuit of the wood, settle
+      return `<g transform="translate(${r1(x)},${r1(y)})"><g>
+        <animateMotion dur="${dur}s" begin="${begin}s" repeatCount="indefinite" calcMode="linear"
+          keyPoints="0;0;1;1" keyTimes="0;0.78;0.97;1" path="${path}"/>
+        <g>${owlPerched}
+          <animate attributeName="opacity" values="1;1;0;0;1;1" keyTimes="0;0.77;0.79;0.96;0.98;1"
+            dur="${dur}s" begin="${begin}s" repeatCount="indefinite"/></g>
+        <g opacity="0">${owlFlying}
+          <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.77;0.79;0.96;0.98;1"
+            dur="${dur}s" begin="${begin}s" repeatCount="indefinite"/></g>
+      </g></g>`;
+    }
     const roosts = [[53.5338, -1.9678], [53.5705, -1.9908], [53.5828, -2.0078]];
     for (const [la, ln] of roosts) {
       const [x, y] = P(la, ln);
-      s += roam(x + jit(6), y + jit(4), owlArt(), 3, 180 + rnd() * 80);
+      s += owl(x + jit(6), y + jit(4));
     }
     s += `</g>`; // end glyph-layer
 
