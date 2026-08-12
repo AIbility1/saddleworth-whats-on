@@ -336,17 +336,93 @@
     const pinesAt = [[53.533, -1.9695], [53.5345, -1.9675], [53.536, -1.9705], [53.5375, -1.966]];
     for (const [la, ln] of pinesAt) { const [x, y] = P(la, ln); s += pine(x + jit(8), y + jit(6)); }
 
-    function sheep(x, y) {
-      return `<g transform="translate(${r1(x)},${r1(y)}) rotate(${r1(jit(20))})">
+    // ---- livestock, gently roaming ----
+    // Each animal ambles around a small wobbly loop near home, pausing to
+    // graze (held keyPoints), on its own clock — a slow, living hillside.
+    function roam(x, y, art, radius, dur) {
+      const path = blob(0, 0, radius, radius * 0.65, 6, 0.5, rnd() * 3);
+      const begin = -(rnd() * dur).toFixed(1);
+      return `<g transform="translate(${r1(x)},${r1(y)})"><g>
+        <animateMotion dur="${dur.toFixed(0)}s" begin="${begin}s" repeatCount="indefinite"
+          calcMode="linear" keyPoints="0;0.18;0.18;0.45;0.45;0.75;0.75;1"
+          keyTimes="0;0.15;0.32;0.45;0.62;0.75;0.9;1" path="${path}"/>
+        ${art}</g></g>`;
+    }
+    const sheepArt = () => `<g transform="rotate(${r1(jit(20))})">
         <ellipse cx="0" cy="0" rx="5.5" ry="3.6" fill="#f6f2e6" stroke="${INK}" stroke-width="1.2"/>
         <circle cx="5.5" cy="-1.6" r="2" fill="#3a362c"/>
         <line x1="-2.5" y1="3" x2="-2.5" y2="5.4" stroke="${INK}" stroke-width="1.2"/>
         <line x1="2.5" y1="3" x2="2.5" y2="5.4" stroke="${INK}" stroke-width="1.2"/></g>`;
-    }
+    const cowArt = () => `<g transform="rotate(${r1(jit(14))})">
+        <line x1="-4.5" y1="3" x2="-4.5" y2="6.6" stroke="${INK}" stroke-width="1.3"/>
+        <line x1="-1.5" y1="3.4" x2="-1.5" y2="6.8" stroke="${INK}" stroke-width="1.3"/>
+        <line x1="1.8" y1="3.4" x2="1.8" y2="6.8" stroke="${INK}" stroke-width="1.3"/>
+        <line x1="4.6" y1="3" x2="4.6" y2="6.6" stroke="${INK}" stroke-width="1.3"/>
+        <path d="M-7,-0.5 Q-8.8,1 -8.2,3" fill="none" stroke="${INK}" stroke-width="1.1"/>
+        <ellipse cx="0" cy="0" rx="7" ry="4.2" fill="#f4f1e8" stroke="${INK}" stroke-width="1.2"/>
+        <ellipse cx="-2.4" cy="-1" rx="2.5" ry="1.7" fill="#3a362c"/>
+        <ellipse cx="2.9" cy="1.3" rx="2" ry="1.4" fill="#3a362c"/>
+        <circle cx="7.6" cy="-1.8" r="2.2" fill="#f4f1e8" stroke="${INK}" stroke-width="1.1"/>
+        <line x1="6.2" y1="-3.4" x2="5.4" y2="-4.4" stroke="${INK}" stroke-width="1.1"/></g>`;
+    const horseArt = () => `<g transform="rotate(${r1(jit(14))})">
+        <line x1="-4" y1="2.8" x2="-4.2" y2="8" stroke="${INK}" stroke-width="1.3"/>
+        <line x1="-1.6" y1="3.2" x2="-1.7" y2="8.2" stroke="${INK}" stroke-width="1.3"/>
+        <line x1="1.6" y1="3.2" x2="1.7" y2="8.2" stroke="${INK}" stroke-width="1.3"/>
+        <line x1="4" y1="2.8" x2="4.3" y2="8" stroke="${INK}" stroke-width="1.3"/>
+        <path d="M-6.2,-1 Q-8,1.5 -7,4.5" fill="none" stroke="#5c3a1e" stroke-width="1.6" stroke-linecap="round"/>
+        <ellipse cx="0" cy="0" rx="6.4" ry="3.3" fill="#8a5a33" stroke="${INK}" stroke-width="1.2"/>
+        <path d="M5.2,-1.8 Q8.2,-2.6 8.8,1.6" fill="none" stroke="#8a5a33" stroke-width="3"
+          stroke-linecap="round"/>
+        <path d="M5.2,-1.8 Q8.2,-2.6 8.8,1.6" fill="none" stroke="${INK}" stroke-width="0.9" opacity="0.6"/>
+        <circle cx="8.9" cy="2.4" r="1.7" fill="#8a5a33" stroke="${INK}" stroke-width="1"/></g>`;
     const flock = [[53.579, -1.963], [53.5825, -1.978], [53.5755, -2.052], [53.5975, -2.0195],
                    [53.5905, -2.008], [53.549, -1.9725], [53.5465, -1.9565], [53.556, -2.0655],
                    [53.568, -2.0685], [53.5285, -2.0955], [53.5165, -1.9885]];
-    for (const [la, ln] of flock) { const [x, y] = P(la, ln); s += sheep(x + jit(14), y + jit(10)); }
+    for (const [la, ln] of flock) {
+      const [x, y] = P(la, ln);
+      s += roam(x + jit(14), y + jit(10), sheepArt(), 13 + rnd() * 9, 110 + rnd() * 110);
+    }
+    // Friesians in the valley pastures…
+    const herd = [[53.531, -2.0075], [53.5305, -2.0058], [53.5722, -2.0128], [53.5715, -2.0108],
+                  [53.5408, -1.9846]];
+    for (const [la, ln] of herd) {
+      const [x, y] = P(la, ln);
+      s += roam(x + jit(10), y + jit(8), cowArt(), 10 + rnd() * 5, 150 + rnd() * 90);
+    }
+    // …and horses by the Friezland riding arena and up the Castleshaw valley
+    const stable = [[53.5338, -2.0044], [53.5332, -2.0028], [53.5788, -2.0175]];
+    for (const [la, ln] of stable) {
+      const [x, y] = P(la, ln);
+      s += roam(x + jit(10), y + jit(8), horseArt(), 12 + rnd() * 5, 130 + rnd() * 80);
+    }
+    // red grouse pottering about the heather tops
+    const grouseArt = () => `<g transform="rotate(${r1(jit(24))})">
+        <line x1="-1" y1="2.4" x2="-1" y2="3.6" stroke="${INK}" stroke-width="0.9"/>
+        <line x1="1" y1="2.4" x2="1" y2="3.6" stroke="${INK}" stroke-width="0.9"/>
+        <path d="M-3.4,-0.6 L-5.2,-1.8" stroke="${INK}" stroke-width="1.1" stroke-linecap="round"/>
+        <ellipse cx="0" cy="0" rx="3.6" ry="2.6" fill="#7a4a2e" stroke="${INK}" stroke-width="1"/>
+        <circle cx="3" cy="-1.7" r="1.5" fill="#7a4a2e" stroke="${INK}" stroke-width="0.9"/>
+        <path d="M2.3,-2.9 Q3,-3.7 3.8,-3" fill="none" stroke="#c9302b" stroke-width="1.1" stroke-linecap="round"/></g>`;
+    const moorBirds = [[53.59, -1.968], [53.5745, -1.9505], [53.5545, -1.9455],
+                       [53.5975, -2.0615], [53.552, -1.9375]];
+    for (const [la, ln] of moorBirds) {
+      const [x, y] = P(la, ln);
+      s += roam(x + jit(12), y + jit(8), grouseArt(), 8 + rnd() * 7, 70 + rnd() * 70);
+    }
+    // owls in the pines, shuffling on their perches
+    const owlArt = () => `<g>
+        <path d="M-2.2,-3.2 L-3,-4.8 M2.2,-3.2 L3,-4.8" stroke="${INK}" stroke-width="1" stroke-linecap="round"/>
+        <ellipse cx="0" cy="0" rx="3" ry="4" fill="#9b7a52" stroke="${INK}" stroke-width="1.1"/>
+        <ellipse cx="0" cy="1" rx="1.8" ry="2.3" fill="#dccba9"/>
+        <circle cx="-1.15" cy="-1.7" r="1.05" fill="#fff" stroke="${INK}" stroke-width="0.6"/>
+        <circle cx="1.15" cy="-1.7" r="1.05" fill="#fff" stroke="${INK}" stroke-width="0.6"/>
+        <circle cx="-1.15" cy="-1.7" r="0.45" fill="#26211a"/>
+        <circle cx="1.15" cy="-1.7" r="0.45" fill="#26211a"/></g>`;
+    const roosts = [[53.5338, -1.9678], [53.5705, -1.9908], [53.5828, -2.0078]];
+    for (const [la, ln] of roosts) {
+      const [x, y] = P(la, ln);
+      s += roam(x + jit(6), y + jit(4), owlArt(), 3, 180 + rnd() * 80);
+    }
     s += `</g>`; // end glyph-layer
 
     // ================= labels =================
