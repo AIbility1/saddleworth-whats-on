@@ -92,7 +92,12 @@
                  H / 2 + Math.sin(a) * (H / 2 - M) * (1 + jit(0.035))]);
     }
     const edgePath = smooth(edge, true);
-    s += `<defs><clipPath id="paper-clip"><path d="${edgePath}"/></clipPath></defs>`;
+    s += `<defs><clipPath id="paper-clip"><path d="${edgePath}"/></clipPath>
+      <radialGradient id="lamp-glow">
+        <stop offset="0" stop-color="#ffe49a" stop-opacity="0.95"/>
+        <stop offset="0.35" stop-color="#ffca55" stop-opacity="0.5"/>
+        <stop offset="1" stop-color="#ffca55" stop-opacity="0"/>
+      </radialGradient></defs>`;
     // painted shadow (a filter here would re-render on every zoom frame)
     s += `<path d="${edgePath}" transform="translate(0,11)" fill="rgba(70,58,25,0.13)"/>`;
     s += `<path d="${edgePath}" transform="translate(0,5)" fill="rgba(70,58,25,0.12)"/>`;
@@ -502,6 +507,19 @@
       </g>
     </g>`;
 
+    // ---- night falls (opacity driven by CSS via .dusk/.night/.eclipse) ----
+    s += `<rect id="night-veil" x="0" y="0" width="${W}" height="${H}" fill="#1b2340"
+           pointer-events="none"/>`;
+    // street lamps come on in the villages (sampled from real building clusters)
+    let lamps = '<g id="lamp-layer">';
+    for (let i = 0; i < geo.bld.length; i += 80) {
+      const q = pts(geo.bld[i]);
+      const cx2 = q.reduce((a, p) => a + p[0], 0) / q.length + jit(8);
+      const cy2 = q.reduce((a, p) => a + p[1], 0) / q.length + jit(6);
+      lamps += `<circle cx="${r1(cx2)}" cy="${r1(cy2)}" r="7" fill="url(#lamp-glow)"/>` +
+               `<circle cx="${r1(cx2)}" cy="${r1(cy2)}" r="0.9" fill="#fff8e0"/>`;
+    }
+    s += lamps + '</g>';
     s += `</g>`; // end paper clip
 
     // inked edge on top, then the marginalia on the "desk"
@@ -527,6 +545,24 @@
       <line x1="${126 - mile / 2}" y1="57" x2="${126 - mile / 2}" y2="67" stroke="${INK}" stroke-width="2"/>
       <line x1="${126 + mile / 2}" y1="57" x2="${126 + mile / 2}" y2="67" stroke="${INK}" stroke-width="2"/>
       <text x="126" y="76" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="10.5" fill="#6b654e">one mile, give or take</text></g>`;
+
+    // the night sky: stars over the tops and a moon with its craters —
+    // and, when the calendar demands it, an eclipsed sun
+    let stars = '<g id="stars">';
+    for (let i = 0; i < 26; i++) {
+      stars += `<circle cx="${r1(60 + rnd() * (W - 120))}" cy="${r1(50 + rnd() * (H * 0.55))}"
+        r="${r1(0.8 + rnd() * 1)}" fill="#fff"/>`;
+    }
+    s += stars + '</g>';
+    s += `<g id="moon" transform="translate(${W - 420}, 100)">
+      <circle r="20" fill="#f2ecd7" stroke="#c9c2a6" stroke-width="1"/>
+      <circle cx="-6" cy="-4" r="4" fill="#ddd5b8"/>
+      <circle cx="7" cy="5" r="2.8" fill="#ddd5b8"/>
+      <circle cx="2" cy="-9" r="1.8" fill="#ddd5b8"/></g>`;
+    s += `<g id="eclipse-sun" transform="translate(${W - 420}, 100)">
+      <circle r="26" fill="none" stroke="#ffd98a" stroke-width="6" opacity="0.25"/>
+      <circle r="21.5" fill="none" stroke="#ffe9b8" stroke-width="2.5" opacity="0.9"/>
+      <circle r="20" fill="#12121c"/></g>`;
 
     // clouds drifting over the tops
     function cloud(x, y, k, dur) {

@@ -422,6 +422,23 @@
     #zoomctl { display: none; }
   }
 
+  /* ---- day & night ---- */
+  #night-veil, #lamp-layer, #moon, #stars, #eclipse-sun { opacity: 0;
+      transition: opacity 4s ease; pointer-events: none; }
+  #basemap.dusk #night-veil { opacity: 0.22; }
+  #basemap.night #night-veil { opacity: 0.44; }
+  #basemap.eclipse #night-veil { opacity: 0.3; }
+  #basemap.dusk #lamp-layer, #basemap.eclipse #lamp-layer { opacity: 0.85; }
+  #basemap.night #lamp-layer { opacity: 1; }
+  #basemap.night #moon { opacity: 1; }
+  #basemap.night #stars { opacity: 0.9; }
+  #basemap.dusk #stars { opacity: 0.35; }
+  #basemap.eclipse #eclipse-sun { opacity: 1; }
+  #basemap.night .cloud, #basemap.eclipse .cloud { opacity: 0.12; }
+  #basemap.dusk .cloud { opacity: 0.25; }
+  #basemap.blood #moon circle:first-child { fill: #b5503a; stroke: #7e2f22; }
+  #basemap.blood #moon circle:not(:first-child) { fill: #8e3a2b; }
+
   /* ---- map art animation ---- */
   .cloud { animation: drift var(--dur, 160s) linear infinite; }
   @keyframes drift { from { transform: translateX(-260px); } to { transform: translateX(1900px); } }

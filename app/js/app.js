@@ -633,6 +633,40 @@
     $('side-mini').setAttribute('aria-label', min ? 'Expand panel' : 'Minimise panel');
   });
 
+  // ================= day & night over the valley =================
+  // Real sun times for Saddleworth (simple solar geometry, ±15 min is plenty)
+  function sunTimes(d) {
+    const lat = 53.55 * Math.PI / 180;
+    const N = Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 864e5);
+    const decl = (23.44 * Math.PI / 180) * Math.sin(2 * Math.PI * (284 + N) / 365);
+    const cosH = -Math.tan(lat) * Math.tan(decl);
+    const H = Math.acos(Math.min(1, Math.max(-1, cosH))) * 180 / Math.PI / 15;
+    const noonUTC = 12 - (-2.01 / 15);
+    const off = -d.getTimezoneOffset() / 60;
+    return { rise: (noonUTC - H + off) * 60, set: (noonUTC + H + off) * 60 };
+  }
+  function updateDayNight() {
+    const now = new Date();
+    const mins = now.getHours() * 60 + now.getMinutes();
+    const { rise, set } = sunTimes(now);
+    let mode = '';
+    if (mins < rise - 40 || mins > set + 40) mode = 'night';
+    else if (mins < rise + 20 || mins > set - 25) mode = 'dusk';
+    // 12 Aug 2026: the partial solar eclipse dims the valley, ~18:10–20:05
+    if (now.getFullYear() === 2026 && now.getMonth() === 7 && now.getDate() === 12 &&
+        mins >= 1090 && mins <= 1205) mode = 'eclipse';
+    if (location.hash === '#night') mode = 'night';       // preview hooks
+    if (location.hash === '#dusk') mode = 'dusk';
+    if (location.hash === '#eclipse') mode = 'eclipse';
+    for (const m of ['night', 'dusk', 'eclipse']) basemap.classList.toggle(m, mode === m);
+    // 28 Aug 2026, small hours: the partial lunar eclipse coppers the moon
+    const blood = (now.getFullYear() === 2026 && now.getMonth() === 7 && now.getDate() === 28 &&
+                   mins >= 180 && mins <= 390 && mode === 'night') || location.hash === '#bloodmoon';
+    if (location.hash === '#bloodmoon') basemap.classList.add('night');
+    basemap.classList.toggle('blood', blood);
+  }
+  setInterval(updateDayNight, 60000);
+
   // ================= community: live events, submissions, ratings =================
   async function loadCommunity() {
     try {
@@ -1092,6 +1126,7 @@
       view.x = (innerWidth + 360) / 2 - hx * view.s;
       view.y = innerHeight * 0.52 - hy * view.s;
       applyView();
+      updateDayNight();
       setWindow(0, 6);
     })
     .catch((err) => {

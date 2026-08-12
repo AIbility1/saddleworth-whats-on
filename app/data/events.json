@@ -2773,6 +2773,28 @@
       "offer": "£135 for the week",
       "description": "Singing, acting and a full performance by Friday — ages 5–15, running this week.",
       "source": "https://littlevoices.org.uk/locations/locations/saddlworth-holme-valley/"
+    },
+    {
+      "id": "solar-eclipse-2026",
+      "business": "sight-pots-pans",
+      "title": "Partial Solar Eclipse over Saddleworth",
+      "category": "community",
+      "start": "2026-08-12",
+      "time": "From ~18:10 · maximum ~19:10",
+      "description": "Tonight the moon takes a huge bite out of the sun, low in the western sky — around nine-tenths covered at maximum. The tops make a grand grandstand; Pots & Pans faces the right way. NEVER look at the sun without proper eclipse glasses — sunglasses are not enough.",
+      "offer": "Free — bring eclipse glasses",
+      "source": "https://en.wikipedia.org/wiki/Solar_eclipse_of_August_12,_2026"
+    },
+    {
+      "id": "lunar-eclipse-2026",
+      "business": "rspb-dove-stone",
+      "title": "Partial Lunar Eclipse — Copper Moon over Dove Stone",
+      "category": "community",
+      "start": "2026-08-28",
+      "time": "Early hours, before dawn",
+      "description": "A fortnight after the solar eclipse, the Earth’s shadow takes a deep bite out of the full moon in the small hours — most of the disc turning dusky copper as it sinks toward the western moors. Dove Stone’s dark skies are the best seat in the parish; no glasses needed for this one, just a flask.",
+      "offer": "Free · bring a flask",
+      "source": "https://en.wikipedia.org/wiki/August_2026_lunar_eclipse"
     }
   ]
 }
