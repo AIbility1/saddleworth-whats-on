@@ -72,7 +72,7 @@
   let lo = 0, hi = 30;         // window, days relative to today
   let activeKinds = new Set(Object.keys(KINDG));
   let activeCats = new Set(Object.keys(CATS));
-  let sunOnly = false;         // "a drink in the sun": only outdoor-table venues
+  let scenMode = null;         // a preset's extra opinion (see MODES) — e.g. sun/club/laughs
   let query = '';
   let selected = null;
 
@@ -325,8 +325,21 @@
     const t = `${inst.ev.title} ${inst.ev.description || ''} ${catWords} ${v.name} ${v.village} ${v.type || ''} ${(v.tags || []).join(' ')}`.toLowerCase();
     return t.includes(query);
   };
+  // the presets carry an opinion beyond raw categories: what counts as a
+  // sunny spot, a joinable session, or actual laughs (not just any DJ set)
+  const MODES = {
+    sun:    { desc: '☀️ outdoor tables', venue: (v) => sunnySpot(v) },
+    club:   { desc: '🤝 joinable sessions',
+              ev: (ev) => !!ev.recurrence && !ev.pool && !/^(cricket|pool):/i.test(ev.title) },
+    laughs: { desc: '😂 the fun stuff',
+              ev: (ev) => ev.category === 'ent' || /panto/i.test(ev.title) },
+  };
+  function modeOk(inst) {
+    const m = MODES[scenMode];
+    return !m || ((!m.venue || m.venue(inst.venue)) && (!m.ev || m.ev(inst.ev)));
+  }
   const visible = (inst) => activeKinds.has(kindGroup(inst.venue.kind)) &&
-    (!sunOnly || sunnySpot(inst.venue)) &&
+    modeOk(inst) &&
     evCats(inst.ev).some((c) => activeCats.has(c)) && matchText(inst);
 
   // ================= rendering =================
@@ -350,7 +363,9 @@
       if (!activeKinds.has(g)) continue;
       const insts = byVenue.get(v.id);
       const has = insts && insts.length;
-      if (sunOnly && !sunnySpot(v) && selected !== v.id) continue;
+      const m = MODES[scenMode];
+      if (m && m.venue && !m.venue(v) && selected !== v.id) continue;
+      if (m && m.ev && !has && selected !== v.id) continue;
       if (catFiltered && !has && selected !== v.id) continue;
       const [x, y] = project(v.lat, v.lng);
       const sel = selected === v.id ? ' sel' : '';
@@ -386,9 +401,9 @@
     }
     if (shown.length > LIST_CAP) lh += `<p id="more">…and ${shown.length - LIST_CAP} more — narrow the dates to see them all</p>`;
     const defaultState = activeKinds.size === Object.keys(KINDG).length &&
-                         activeCats.size === Object.keys(CATS).length && !query && !sunOnly;
+                         activeCats.size === Object.keys(CATS).length && !query && !scenMode;
     if (!shown.length) {
-      if (sunOnly) {
+      if (scenMode === 'sun') {
         // no events needed — with this one, the pins themselves are the answer
         const n = [...venues.values()].filter(sunnySpot).length;
         lh = `<p id="more">☀️ The map is showing all ${n} spots with outdoor tables —
@@ -429,7 +444,7 @@
       if (scen) desc = SCEN[scen].label;
       else {
         const parts = [];
-        if (sunOnly) parts.push('☀️ outdoor tables');
+        if (scenMode) parts.push(MODES[scenMode].desc);
         if (activeCats.size !== Object.keys(CATS).length) parts.push([...activeCats].map((c) => CATS[c].label).join(' + '));
         if (activeKinds.size !== Object.keys(KINDG).length) parts.push([...activeKinds].map((g) => KINDG[g].label).join(' + '));
         if (query) parts.push('“' + esc(query) + '”');
@@ -653,12 +668,14 @@
     `<button class="chip-clear" id="chips-clear" hidden title="Show all places">✕ clear</button>`;
   $('chips-clear').onclick = () => {
     activeKinds = new Set(Object.keys(KINDG));
+    scenMode = null;
     syncPressed();
     render();
   };
   $('chips').addEventListener('click', (e) => {
     const b = e.target.closest('.chip');
     if (!b) return;
+    scenMode = null;             // hand-picking chips leaves the preset's opinion behind
     const k = b.dataset.c;
     if (activeKinds.has(k) && activeKinds.size === Object.keys(KINDG).length) {
       activeKinds = new Set([k]);           // first click: focus just this one
@@ -675,12 +692,14 @@
     `<button class="chip-clear" id="cats-clear" hidden title="Show all kinds of event">✕ clear</button>`;
   $('cats-clear').onclick = () => {
     activeCats = new Set(Object.keys(CATS));
+    scenMode = null;
     syncPressed();
     render();
   };
   $('cat-chips').addEventListener('click', (e) => {
     const b = e.target.closest('.chip');
     if (!b) return;
+    scenMode = null;             // hand-picking chips leaves the preset's opinion behind
     const k = b.dataset.c;
     if (activeCats.has(k) && activeCats.size === Object.keys(CATS).length) {
       activeCats = new Set([k]);            // first click: focus just this one
@@ -704,12 +723,12 @@
     food:  { label: '🍔 Food & deals tonight',    cats: ['food', 'offer'], lo: 0, hi: 0 },
     music: { label: '🎵 Live music this weekend', cats: ['music'], lo: satOff, hi: dow === 0 ? 0 : satOff + 1 },
     quiz:  { label: '❓ Quiz nights this week',   cats: ['quiz'], lo: 0, hi: 6 },
-    laughs: { label: '😂 Something for laughs',   cats: ['ent'], lo: 0, hi: 6 },
+    laughs: { label: '😂 Something for laughs',   cats: ['ent'], mode: 'laughs', lo: 0, hi: 6 },
     kids:  { label: '🧒 For kids & families',     cats: ['kids'], lo: 0, hi: 6 },
     walk:  { label: '🥾 A walk today',            kinds: ['out'], lo: 0, hi: 0 },
-    club:  { label: '🤝 Join a new club',         cats: ['active'], lo: 0, hi: 6 },
+    club:  { label: '🤝 Join a new club',         cats: ['active'], mode: 'club', lo: 0, hi: 6 },
     // only offered while the sun is actually out — see syncSunChip()
-    sun:   { label: '☀️ A drink in the sun',      sun: true, lo: 0, hi: 0 },
+    sun:   { label: '☀️ A drink in the sun',      mode: 'sun', lo: 0, hi: 0 },
   };
   function syncPressed() {
     for (const c of $('chips').children) c.setAttribute('aria-pressed', activeKinds.has(c.dataset.c));
@@ -719,7 +738,7 @@
     if (query) return null;
     for (const [k, s] of Object.entries(SCEN)) {
       const kinds = s.kinds || Object.keys(KINDG), cats = s.cats || Object.keys(CATS);
-      if (lo === s.lo && hi === s.hi && !!s.sun === sunOnly &&
+      if (lo === s.lo && hi === s.hi && (s.mode || null) === scenMode &&
           activeKinds.size === kinds.length && kinds.every((x) => activeKinds.has(x)) &&
           activeCats.size === cats.length && cats.every((x) => activeCats.has(x))) return k;
     }
@@ -732,20 +751,20 @@
     if (!s || again) {
       activeKinds = new Set(Object.keys(KINDG));
       activeCats = new Set(Object.keys(CATS));
-      sunOnly = false;
+      scenMode = null;
       syncPressed();
       setWindow(0, 6);
       return;
     }
     activeKinds = new Set(s.kinds || Object.keys(KINDG));
     activeCats = new Set(s.cats || Object.keys(CATS));
-    sunOnly = !!s.sun;
+    scenMode = s.mode || null;
     syncPressed();
     setWindow(s.lo, s.hi);
   }
   const resetFilters = () => applyScenario(null);
   const scenHTML = Object.entries(SCEN).map(([k, s]) =>
-    `<button class="scen" data-s="${k}"${s.sun ? ' hidden' : ''}>${s.label}</button>`).join('');
+    `<button class="scen" data-s="${k}"${k === 'sun' ? ' hidden' : ''}>${s.label}</button>`).join('');
   for (const holder of [$('scen-side'), $('scen-float')]) {
     holder.innerHTML = scenHTML;
     holder.addEventListener('click', (e) => {
