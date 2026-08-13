@@ -44,6 +44,12 @@ and deploy.
 **Phone/ask-level gaps (web is exhausted — see log before re-searching):**
 - Darts nights — user confirmed Hare & Hounds Thursdays (seeded 13 Aug); which
   other pubs have boards/nights? Ask around or pub FB pages — not web-findable
+- Music/karaoke FB-only leads from 13 Aug sweep (see log): Granby Fri disco,
+  Grapes + Angel karaoke nights, Boarshurst Sunday lineups, Commie weekends,
+  Swan Dobcross under new operators, Bulls Head, one-off gig pages at
+  Waggon/Old Bell/Diggle Band Club — all need a logged-in FB look or a call
+- Con Club — confirm the Sat 15 Aug ladies'-night ran & any future party
+  nights; ideal first venue to verify + hand its code (user knows the club)
 - Boarshurst Band Club kids activities — user believes something runs; get
   specifics from them or the club (01457 875836 / boarshurstband.co.uk)
 - Girlguiding Saddleworth unit nights — register interest on girlguiding.org.uk

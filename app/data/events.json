@@ -2768,6 +2768,180 @@
       "source": "local knowledge"
     },
     {
+      "id": "weavers-karaoke-fri",
+      "business": "weavers-arms",
+      "title": "Friday DJ & Karaoke",
+      "category": "music",
+      "time": "From 19:30",
+      "recurrence": { "freq": "weekly", "day": "fri" },
+      "source": "https://www.weaversarmsoldham.co.uk/"
+    },
+    {
+      "id": "weavers-live-sat",
+      "business": "weavers-arms",
+      "title": "Saturday Live Band",
+      "category": "music",
+      "time": "From 21:30",
+      "recurrence": { "freq": "weekly", "day": "sat" },
+      "source": "https://www.weaversarmsoldham.co.uk/"
+    },
+    {
+      "id": "weavers-karaoke-sun",
+      "business": "weavers-arms",
+      "title": "Sunday DJ & Karaoke",
+      "category": "music",
+      "time": "From 19:30",
+      "recurrence": { "freq": "weekly", "day": "sun" },
+      "source": "https://www.weaversarmsoldham.co.uk/"
+    },
+    {
+      "id": "redlion-karaoke-fri",
+      "business": "red-lion",
+      "title": "Karaoke with DJ John",
+      "category": "music",
+      "time": "From 21:00",
+      "recurrence": { "freq": "weekly", "day": "fri" },
+      "source": "https://www.redlionoldham.co.uk/"
+    },
+    {
+      "id": "redlion-karaoke-sat",
+      "business": "red-lion",
+      "title": "Karaoke with DJ John",
+      "category": "music",
+      "time": "From 21:00",
+      "recurrence": { "freq": "weekly", "day": "sat" },
+      "source": "https://www.redlionoldham.co.uk/"
+    },
+    {
+      "id": "granby-karaoke-sun",
+      "business": "granby-arms",
+      "title": "Sunday Karaoke & Entertainment",
+      "category": "music",
+      "time": "Evening",
+      "recurrence": { "freq": "weekly", "day": "sun" },
+      "source": "https://camra.org.uk/pubs/granby-arms-uppermill-153152"
+    },
+    {
+      "id": "royalgeorge-comedy",
+      "business": "royal-george",
+      "title": "Off The Rails Comedy Club",
+      "category": "quiz",
+      "time": "Evening · ticketed",
+      "recurrence": { "freq": "monthly", "week": -1, "day": "sun" },
+      "description": "Stand-up night on the last Sunday of the month — tickets via the pub or Skiddle.",
+      "source": "https://royalgeorgesaddleworth.co.uk/"
+    },
+    {
+      "id": "dysarts-quiz-wed",
+      "business": "dysarts-arms",
+      "title": "Quiz Night",
+      "category": "quiz",
+      "time": "20:00",
+      "recurrence": { "freq": "weekly", "day": "wed" },
+      "source": "https://www.robinsonsbrewery.com/pubs/dysarts-arms-mossley/"
+    },
+    {
+      "id": "dysarts-quiz-thu",
+      "business": "dysarts-arms",
+      "title": "Quiz Night",
+      "category": "quiz",
+      "time": "20:00",
+      "recurrence": { "freq": "weekly", "day": "thu" },
+      "source": "https://www.robinsonsbrewery.com/pubs/dysarts-arms-mossley/"
+    },
+    {
+      "id": "clarence-quiz-sun",
+      "business": "clarence",
+      "title": "Sunday Quiz",
+      "category": "quiz",
+      "time": "Evening",
+      "recurrence": { "freq": "weekly", "day": "sun" },
+      "source": "https://camra.org.uk/pubs/clarence-greenfield-152531"
+    },
+    {
+      "id": "civic-beatles-2026",
+      "business": "uppermill-civic-hall",
+      "title": "Beatles Complete — Beatles Tribute",
+      "category": "music",
+      "start": "2026-08-21",
+      "time": "19:30",
+      "description": "Full-show Beatles tribute at the Civic Hall — tickets on TicketSource.",
+      "source": "https://www.beatlescomplete.com/tour-dates"
+    },
+    {
+      "id": "dobcross-rushcart-club-2026",
+      "business": "dobcross-band-social-club",
+      "title": "Rushcart Saturday at the Band Club",
+      "category": "community",
+      "start": "2026-08-22",
+      "time": "From 14:00 · morris dancing ~16:00",
+      "offer": "Free",
+      "description": "The club opens for Rushcart Saturday — morris sides dancing in the car park as the cart passes through Dobcross.",
+      "source": "https://www.dobcross.club/upcoming-events"
+    },
+    {
+      "id": "dobcross-showcase-brass-2026",
+      "business": "dobcross-band-social-club",
+      "title": "Showcase Brass — The Middleton Band",
+      "category": "music",
+      "start": "2026-08-30",
+      "time": "14:00–16:00",
+      "offer": "£6.50",
+      "description": "Hosted by Dobcross Silver Band.",
+      "source": "https://www.dobcross.club/upcoming-events"
+    },
+    {
+      "id": "civic-daftpunk-2026",
+      "business": "uppermill-civic-hall",
+      "title": "Chemical Dance vs Daft Punk — Tribute Night (18+)",
+      "category": "music",
+      "start": "2026-09-05",
+      "time": "18:30–23:45",
+      "description": "Tribute night with laser show — tickets on Skiddle.",
+      "source": "https://www.skiddle.com/whats-on/Oldham/Uppermill-Civic-Hall/Chemical-Dance-vs-Daft-Punk---The-Ultimate-Tribute-Experience/42415439/"
+    },
+    {
+      "id": "civic-ravebingo-2026",
+      "business": "uppermill-civic-hall",
+      "title": "Ultimate Rave Bingo (18+)",
+      "category": "music",
+      "categories": ["music", "quiz"],
+      "start": "2026-09-11",
+      "time": "19:00–23:00 · last entry 19:45",
+      "description": "DJs, bingo and daft prizes — tickets on Skiddle.",
+      "source": "https://www.skiddle.com/whats-on/Oldham/near/Uppermill/town-t39436/"
+    },
+    {
+      "id": "millgate-comedy-sep-2026",
+      "business": "millgate-arts-centre",
+      "title": "Delph Comedy Night",
+      "category": "quiz",
+      "start": "2026-09-05",
+      "time": "Evening",
+      "source": "https://millgateartscentre.co.uk/saddleworth-live/"
+    },
+    {
+      "id": "millgate-greatest-shows-2026",
+      "business": "millgate-arts-centre",
+      "title": "Saddleworth Musical Society — The Greatest Shows",
+      "category": "music",
+      "start": "2026-10-09",
+      "end": "2026-10-10",
+      "time": "19:30 · doors 18:45",
+      "offer": "£15 · children free",
+      "source": "http://www.saddleworthmusicalsociety.co.uk/WhatsOn.html"
+    },
+    {
+      "id": "millgate-osian-quartet-2026",
+      "business": "millgate-arts-centre",
+      "title": "Osian String Quartet — Concerts Society Season Opener",
+      "category": "music",
+      "start": "2026-10-23",
+      "time": "Doors from 19:00",
+      "offer": "~£20 on the door · 4-concert season £64",
+      "source": "https://millgateartscentre.co.uk/saddleworth-concerts-society/"
+    },
+    {
       "id": "conclub-karaoke-fri",
       "business": "uppermill-conservative-club",
       "title": "Friday Karaoke",

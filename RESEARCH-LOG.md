@@ -48,6 +48,46 @@ Format: one section per sweep date; per item — verdict, key sources, recheck h
 - 2-for-£15 cocktails Sun–Thu confirmed current (site); Brunch After Dark is last-Fri
   monthly £45 (our card was already right).
 
+### Live music / karaoke / gigs (1 agent, ~110 fetches — 10 regular nights + 8 dated events seeded)
+- **Seeded regular (venue's own site or fresh CAMRA):** Weavers Arms DJ+karaoke Fri
+  & Sun 19:30 + live band Sat 21:30; Red Lion (109 High St, Lees/Springhead)
+  karaoke Fri+Sat 21:00; Granby Sunday karaoke/entertainment (CAMRA 26/09/2025);
+  Royal George "Off The Rails" comedy last-Sun monthly; Dysarts quiz Wed+Thu 20:00
+  (Robinsons); Clarence Sunday quiz (CAMRA 16/12/2025). User-provided same day:
+  Con Club karaoke Fri+Sat, Hare & Hounds darts Thu.
+- **Seeded dated (Aug–Oct):** Beatles Complete @ Civic Hall Fri 21 Aug 19:30;
+  Rushcart Saturday @ Dobcross Band Club Sat 22 Aug; Showcase Brass (Middleton
+  Band) Sun 30 Aug £6.50; Chemical Dance vs Daft Punk 18+ @ Civic Sat 5 Sep;
+  Rave Bingo 18+ @ Civic Fri 11 Sep (repeat 19 Dec, unseeded); Delph Comedy Night
+  @ Millgate Sat 5 Sep; Musical Society "Greatest Shows" @ Millgate 9–10 Oct £15;
+  Osian String Quartet @ Millgate 23 Oct (~£20; 4-concert season £64).
+- **Stale — NOT seeded, needs venue/FB confirmation:** Granby Fri disco (undated
+  directory only), Grapes karaoke Fri/Sat + Sat live music (directory/Skiddle
+  blurbs; own site says only "weekends"), Angel Inn Fri/Sat karaoke (undated),
+  Red Lion 2nd-Fri live acts (undated). Royal George Sunday OPEN MIC is
+  CONFIRMED ENDED (openmicfinder, 2022) — never list; its Friday live music
+  claims are pre-2022.
+- **Discrepancy noted:** CAMRA (2023) has Hare & Hounds entertainment on SUNDAY,
+  no Sat disco — our Sat disco is user local knowledge, which wins; revisit only
+  if a punter reports otherwise.
+- **Nothing findable (don't re-crawl ~6 months):** Church Inn, Waggon (events page
+  empty), Cross Keys beyond Wed folk, Commie (CAMRA Aug 2025: no music), Old Bell
+  (Bellfest was 16 May), Bulls Head, White Lion, Swan Delph (quiz "Quiz the
+  Nation" Sun 19:45 indexed but source unclear — unseeded), Junction, Rams Head,
+  Printers, Kings Arms, Three Crowns, Old Original, Spinners, Bridge Inn, Milan
+  (whatpub: long-term closed), Navigation, Delph Band Club (Mon rehearsal only),
+  Diggle Band Club (events page "Coming Soon"), KW4, Wellington, Kingfisher
+  (Marston's boilerplate), Roebuck, Museum (workshops only).
+- **Dead/hijacked — add to do-not-crawl:** theswandobcross.com (spam blog),
+  dobcrossfolk.co.uk (DNS dead), boarshurstband.co.uk/whats-on (404 — their
+  calendar moved to Facebook). TicketSource event pages 403 plain fetchers.
+- **FB/IG-only leads:** Boarshurst Sunday guest-band lineup (FB BoarshurstBand);
+  Commie weekend music; Swan Dobcross new operators' music/folk nights (FB "The
+  Swan Inn Dobcross Village", created 2025); Bulls Head music/Bullfest; Kings
+  Arms Grains Bar; Rams Head IG; Junction FB/IG; Dysarts IG beyond quizzes;
+  Grapes Sat acts; Angel karaoke; Royal George Fri music; Kingfisher dates;
+  Waggon/Old Bell/Diggle Band Club one-off gig pages.
+
 ### Food & drink offers (2 agents, ~200 fetches — 20 offers seeded with sources)
 - **Seeded (all confirmed-current on venue's own site/menu unless noted):**
   Old Bell steak day Thu £39.95-for-two; Rams Head all-day Sunday roasts + weekend
