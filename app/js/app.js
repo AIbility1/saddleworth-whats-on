@@ -700,6 +700,7 @@
     food:  { label: '🍔 Food & deals tonight',    cats: ['food', 'offer'], lo: 0, hi: 0 },
     music: { label: '🎵 Live music this weekend', cats: ['music'], lo: satOff, hi: dow === 0 ? 0 : satOff + 1 },
     quiz:  { label: '❓ Quiz nights this week',   cats: ['quiz'], lo: 0, hi: 6 },
+    laughs: { label: '😂 Something for laughs',   cats: ['ent'], lo: 0, hi: 6 },
     kids:  { label: '🧒 For kids & families',     cats: ['kids'], lo: 0, hi: 6 },
     walk:  { label: '🥾 A walk today',            kinds: ['out'], lo: 0, hi: 0 },
     // only offered while the sun is actually out — see syncSunChip()

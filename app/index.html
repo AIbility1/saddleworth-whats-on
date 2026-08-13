@@ -461,10 +461,11 @@
     #side { display: none; }
     body.side-open #side { display: flex; top: 56px; max-height: calc(100dvh - 200px); }
     #venue { top: 56px; max-height: calc(100dvh - 200px); }
-    /* phones keep the +/- buttons (no slider), sat beside the time bar */
+    /* phones keep the +/- buttons (no slider), sat beside the time bar and
+       matching its height exactly */
     #z-bar { display: none; }
-    #zoomctl { bottom: 8px; right: 10px; }
-    #zoomctl button { width: 36px; height: 42px; }
+    #zoomctl { bottom: 8px; right: 10px; height: 114px; }
+    #zoomctl button { width: 36px; height: auto; flex: 1; }
     #timebar { right: 56px; }
     /* stack, bottom-up: date bar → credit → preset chips */
     #credit { bottom: 126px; }
