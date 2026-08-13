@@ -2768,6 +2768,42 @@
       "source": "local knowledge"
     },
     {
+      "id": "conclub-karaoke-fri",
+      "business": "uppermill-conservative-club",
+      "title": "Friday Karaoke",
+      "category": "music",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "fri"
+      },
+      "description": "Karaoke night in the Con Club function room.",
+      "source": "local knowledge"
+    },
+    {
+      "id": "conclub-karaoke-sat",
+      "business": "uppermill-conservative-club",
+      "title": "Saturday Karaoke",
+      "category": "music",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sat"
+      },
+      "description": "Karaoke night in the Con Club function room.",
+      "source": "local knowledge"
+    },
+    {
+      "id": "conclub-ladies-night-2026-08",
+      "business": "uppermill-conservative-club",
+      "title": "Ladies' Night — Male Entertainer",
+      "category": "music",
+      "start": "2026-08-15",
+      "time": "Evening",
+      "description": "One-off party night at the Con Club — details and tickets from the club; best to confirm before travelling.",
+      "source": "local knowledge"
+    },
+    {
       "id": "hare-darts",
       "business": "hare-and-hounds",
       "title": "Darts Night",
