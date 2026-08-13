@@ -1167,19 +1167,6 @@
    "address": "Uppermill"
   },
   {
-   "id": "cafe-muse",
-   "name": "Cafe Muse",
-   "type": "Pub",
-   "kind": "pub",
-   "village": "Uppermill",
-   "lat": 53.54682,
-   "lng": -2.00734,
-   "address": "23 High Street, Uppermill",
-   "tags": [
-    "Outdoor seating"
-   ]
-  },
-  {
    "id": "caffe-grande-abaco",
    "name": "Caffe Grande Abaco",
    "type": "Café",

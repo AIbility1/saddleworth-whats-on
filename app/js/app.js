@@ -35,13 +35,15 @@
   // and a coral badge appears when it has events in the chosen dates
   const KINDG = {
     pub:  { label: 'Pubs & bars',    emoji: '🍻', c: '#eb6834', kinds: ['pub'] },
-    food: { label: 'Food',           emoji: '🍽️', c: '#2a78d6', kinds: ['restaurant', 'takeaway'] },
+    food: { label: 'Restaurants & takeaways', emoji: '🍽️', c: '#2a78d6', kinds: ['restaurant', 'takeaway'] },
     cafe: { label: 'Cafés',          emoji: '☕', c: '#8d6748', kinds: ['cafe'] },
     shop: { label: 'Food shops',     emoji: '🥖', c: '#c9891d', kinds: ['shop'] },
     comm: { label: 'Halls & clubs',  emoji: '🎭', c: '#1baf7a', kinds: ['hall', 'attraction', 'club', 'sport', 'spot'] },
     out:  { label: 'Walks & sights', emoji: '🥾', c: '#35784b', kinds: ['walk', 'sight'] },
   };
   const kindGroup = (k) => Object.keys(KINDG).find((g) => KINDG[g].kinds.includes(k)) || 'comm';
+  // an event may sit in several categories (e.g. food + offer); first is primary
+  const evCats = (ev) => (ev.categories && ev.categories.length ? ev.categories : [ev.category]);
   const DOW = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 };
   const DAY = 86400000, LIST_CAP = 400;
 
@@ -309,11 +311,12 @@
   const matchText = (inst) => {
     if (!query) return true;
     const v = inst.venue;
-    const t = `${inst.ev.title} ${inst.ev.description || ''} ${v.name} ${v.village} ${v.type || ''} ${(v.tags || []).join(' ')}`.toLowerCase();
+    const catWords = evCats(inst.ev).map((c) => (CATS[c] || {}).label || '').join(' ');
+    const t = `${inst.ev.title} ${inst.ev.description || ''} ${catWords} ${v.name} ${v.village} ${v.type || ''} ${(v.tags || []).join(' ')}`.toLowerCase();
     return t.includes(query);
   };
   const visible = (inst) => activeKinds.has(kindGroup(inst.venue.kind)) &&
-    activeCats.has(inst.ev.category) && matchText(inst);
+    evCats(inst.ev).some((c) => activeCats.has(c)) && matchText(inst);
 
   // ================= rendering =================
   function render() {
@@ -327,12 +330,16 @@
       if (!byVenue.has(inst.venue.id)) byVenue.set(inst.venue.id, []);
       byVenue.get(inst.venue.id).push(inst);
     }
+    // with an event-type filter on, the map shows only the venues that answer it —
+    // no point showing the Methodist church when someone asked for food deals
+    const catFiltered = activeCats.size !== Object.keys(CATS).length;
     let mh = '';
     for (const v of venues.values()) {
       const g = kindGroup(v.kind);
       if (!activeKinds.has(g)) continue;
       const insts = byVenue.get(v.id);
       const has = insts && insts.length;
+      if (catFiltered && !has && selected !== v.id) continue;
       const [x, y] = project(v.lat, v.lng);
       const sel = selected === v.id ? ' sel' : '';
       const dim = query && !has &&
@@ -366,9 +373,57 @@
       n++;
     }
     if (shown.length > LIST_CAP) lh += `<p id="more">…and ${shown.length - LIST_CAP} more — narrow the dates to see them all</p>`;
-    if (!shown.length) lh = `<p id="more">Nothing listed for these dates yet. This map is community-run —
-      venue owners tap their pin and add events, offers and voucher codes, free.</p>`;
+    const defaultState = activeKinds.size === Object.keys(KINDG).length &&
+                         activeCats.size === Object.keys(CATS).length && !query;
+    if (!shown.length) {
+      if (!defaultState) {
+        // never blame the data when it's the filters — and never dead-end
+        const nxt = expand(addDays(t1, 1), addDays(t1, 14)).filter(visible)[0];
+        lh = `<p id="more">Nothing matches these filters for ${fmtShort(t0)} – ${fmtShort(t1)}.` +
+          (nxt ? `<br>Nearest: <b>${esc(nxt.ev.title)}</b> at ${esc(nxt.venue.name)} · ${fmtShort(nxt.date)}.<br>
+            <button class="linkish" data-jump="${dayDiff(nxt.date, today)}">Show it</button> · ` : '<br>') +
+          `<button class="linkish" data-clearf>✕ show everything</button></p>`;
+      } else {
+        lh = `<p id="more">Nothing listed for these dates yet. This map is community-run —
+          venue owners tap their pin and add events, offers and voucher codes, free.</p>`;
+      }
+    }
     listEl.innerHTML = lh;
+    const jb = listEl.querySelector('[data-jump]');
+    if (jb) jb.onclick = () => setWindow(lo, +jb.dataset.jump);
+    const cf = listEl.querySelector('[data-clearf]');
+    if (cf) cf.onclick = resetFilters;
+
+    // scenario chips light up whenever the state matches, however it was reached
+    const scen = scenActiveKey();
+    for (const el of document.querySelectorAll('.scen')) el.classList.toggle('on', el.dataset.s === scen);
+    // per-row ✕ clears on the filter chips themselves
+    $('chips-clear').hidden = activeKinds.size === Object.keys(KINDG).length;
+    $('cats-clear').hidden = activeCats.size === Object.keys(CATS).length;
+    // the "showing" banner: filter state must never be invisible
+    const showingEl = $('showing');
+    if (defaultState) {
+      showingEl.style.display = 'none';
+      showingEl.innerHTML = '';
+    } else {
+      let desc;
+      if (scen) desc = SCEN[scen].label;
+      else {
+        const parts = [];
+        if (activeCats.size !== Object.keys(CATS).length) parts.push([...activeCats].map((c) => CATS[c].label).join(' + '));
+        if (activeKinds.size !== Object.keys(KINDG).length) parts.push([...activeKinds].map((g) => KINDG[g].label).join(' + '));
+        if (query) parts.push('“' + esc(query) + '”');
+        desc = parts.join(' · ');
+        if (desc.length > 80) desc = 'your filters';
+      }
+      showingEl.style.display = '';
+      showingEl.innerHTML = `Showing: <b>${desc}</b><button title="Clear filters">✕ show everything</button>`;
+      showingEl.querySelector('button').onclick = resetFilters;
+    }
+    const pill = $('filter-pill');
+    pill.classList.toggle('vis', !defaultState);
+    pill.textContent = defaultState ? '' : (scen ? SCEN[scen].label : 'Filters on') + ' ✕';
+    pill.onclick = resetFilters;
 
     const nv = byVenue.size;
     $('count').textContent = `${shown.length} listing${shown.length === 1 ? '' : 's'} at ${nv} venue${nv === 1 ? '' : 's'} · ${fmtShort(t0)} – ${fmtShort(t1)}`;
@@ -411,6 +466,13 @@
     }
     if (v.blurb) hh += `<p class="blurb">${esc(v.blurb)}</p>`;
     if (v.tags && v.tags.length) hh += `<div class="meta">${v.tags.map((t) => `<span class="mchip">${esc(t)}</span>`).join('')}</div>`;
+    // outdoor-seating venues get today's daylight window (shade is the garden's own secret)
+    if (['pub', 'cafe', 'restaurant'].includes(v.kind) &&
+        (v.tags || []).some((t) => /beer garden|outdoor|terrace|garden/i.test(t))) {
+      const st = sunTimes(new Date());
+      const hm = (m) => `${Math.floor(m / 60)}:${String(Math.floor(m % 60)).padStart(2, '0')}`;
+      hh += `<p class="sun-note">☀️ Outdoor tables here — daylight over the valley till about ${hm(st.set)} today</p>`;
+    }
     if (v.address) hh += `<p class="addr">${esc(v.address)}</p>`;
     if (v.hours) {
       const DAYN = { Mo: 'Mon', Tu: 'Tue', We: 'Wed', Th: 'Thu', Fr: 'Fri', Sa: 'Sat', Su: 'Sun', PH: 'bank hols' };
@@ -449,7 +511,7 @@
         }
         hh += `<div class="vevt${past ? ' past' : ''}">
           <div class="d">${inst.ongoing ? 'ongoing' : fmtShort(inst.date)}${end}${inst.ev.recurrence ? ' · ' + (inst.ev.recurrence.freq === 'weekly' ? 'weekly' : 'monthly') : ''}</div>
-          <div class="t">${CATS[inst.ev.category].emoji} ${esc(inst.ev.title)}${inst.ev.demo ? '<span class="demo-tag">example</span>' : ''}</div>
+          <div class="t">${evCats(inst.ev).map((c) => (CATS[c] || {}).emoji || '').join('')} ${esc(inst.ev.title)}${inst.ev.demo ? '<span class="demo-tag">example</span>' : ''}</div>
           ${inst.ev.time ? `<div class="x">${esc(inst.ev.time)}</div>` : ''}
           ${inst.ev.description ? `<div class="x">${esc(inst.ev.description)}</div>` : ''}
           ${inst.ev.offer ? `<span class="offer">${esc(inst.ev.offer)}</span>` : ''}${inst.ev.voucher ? `<span class="vouch">🎟 ${esc(inst.ev.voucher)}</span>` : ''}
@@ -575,7 +637,13 @@
   // ================= filters =================
   $('chips').innerHTML = Object.entries(KINDG).map(([k, g]) =>
     `<button class="chip" style="--pc:${g.c}" data-c="${k}" aria-pressed="true">
-       <i></i>${g.emoji} ${g.label}</button>`).join('');
+       <i></i>${g.emoji} ${g.label}</button>`).join('') +
+    `<button class="chip-clear" id="chips-clear" hidden title="Show all places">✕ clear</button>`;
+  $('chips-clear').onclick = () => {
+    activeKinds = new Set(Object.keys(KINDG));
+    syncPressed();
+    render();
+  };
   $('chips').addEventListener('click', (e) => {
     const b = e.target.closest('.chip');
     if (!b) return;
@@ -591,7 +659,13 @@
   });
   $('cat-chips').innerHTML = Object.entries(CATS).map(([k, c]) =>
     `<button class="chip" style="--pc:${GROUPS[c.group]}" data-c="${k}" aria-pressed="true">
-       <i></i>${c.emoji} ${c.label}</button>`).join('');
+       <i></i>${c.emoji} ${c.label}</button>`).join('') +
+    `<button class="chip-clear" id="cats-clear" hidden title="Show all kinds of event">✕ clear</button>`;
+  $('cats-clear').onclick = () => {
+    activeCats = new Set(Object.keys(CATS));
+    syncPressed();
+    render();
+  };
   $('cat-chips').addEventListener('click', (e) => {
     const b = e.target.closest('.chip');
     if (!b) return;
@@ -611,6 +685,60 @@
     clearTimeout(qT);
     qT = setTimeout(() => { query = e.target.value.trim().toLowerCase(); render(); }, 120);
   });
+
+  // ---- one-tap scenarios: the user's question, answered in their own words.
+  // Each sets dates + category/place filters together (and clears the rest).
+  const SCEN = {
+    food:  { label: '🍔 Food & deals tonight',    cats: ['food', 'offer'], lo: 0, hi: 0 },
+    music: { label: '🎵 Live music this weekend', cats: ['music'], lo: satOff, hi: dow === 0 ? 0 : satOff + 1 },
+    quiz:  { label: '❓ Quiz nights this week',   cats: ['quiz'], lo: 0, hi: 6 },
+    kids:  { label: '🧒 For kids & families',     cats: ['kids'], lo: 0, hi: 6 },
+    walk:  { label: '🥾 A walk today',            kinds: ['out'], lo: 0, hi: 0 },
+  };
+  function syncPressed() {
+    for (const c of $('chips').children) c.setAttribute('aria-pressed', activeKinds.has(c.dataset.c));
+    for (const c of $('cat-chips').children) c.setAttribute('aria-pressed', activeCats.has(c.dataset.c));
+  }
+  function scenActiveKey() {
+    if (query) return null;
+    for (const [k, s] of Object.entries(SCEN)) {
+      const kinds = s.kinds || Object.keys(KINDG), cats = s.cats || Object.keys(CATS);
+      if (lo === s.lo && hi === s.hi &&
+          activeKinds.size === kinds.length && kinds.every((x) => activeKinds.has(x)) &&
+          activeCats.size === cats.length && cats.every((x) => activeCats.has(x))) return k;
+    }
+    return null;
+  }
+  function applyScenario(k) {
+    const s = SCEN[k];
+    const again = s && scenActiveKey() === k;   // tapping the active one turns it off
+    query = ''; $('q').value = '';
+    if (!s || again) {
+      activeKinds = new Set(Object.keys(KINDG));
+      activeCats = new Set(Object.keys(CATS));
+      syncPressed();
+      setWindow(0, 6);
+      return;
+    }
+    activeKinds = new Set(s.kinds || Object.keys(KINDG));
+    activeCats = new Set(s.cats || Object.keys(CATS));
+    syncPressed();
+    setWindow(s.lo, s.hi);
+    if (innerWidth <= 760) {          // the answer is the list — show it
+      document.body.classList.add('side-open');
+      $('side-toggle').setAttribute('aria-expanded', 'true');
+    }
+  }
+  const resetFilters = () => applyScenario(null);
+  const scenHTML = Object.entries(SCEN).map(([k, s]) =>
+    `<button class="scen" data-s="${k}">${s.label}</button>`).join('');
+  for (const holder of [$('scen-side'), $('scen-float')]) {
+    holder.innerHTML = scenHTML;
+    holder.addEventListener('click', (e) => {
+      const b = e.target.closest('.scen');
+      if (b) applyScenario(b.dataset.s);
+    });
+  }
 
   $('filter-btn').onclick = () => {
     const open = !$('filters').classList.toggle('collapsed');
@@ -784,8 +912,9 @@
            Listings go live straight away; you can edit or delete the ones added from this
            device. Fields marked * are required.</p>`}
       <label>What's happening? *</label><input id="f-title" maxlength="80" placeholder="e.g. Quiz Night, 2-for-1 Pizza, Live Music">
-      <label>Type *</label><select id="f-cat">${Object.entries(CATS).map(([k, c]) =>
-        `<option value="${k}">${c.emoji} ${c.label}</option>`).join('')}</select>
+      <label>Type * <span class="lab-soft">— tick all that fit, e.g. Food &amp; drink + Offers</span></label>
+      <div class="fcats" id="f-cats">${Object.entries(CATS).map(([k, c]) =>
+        `<button type="button" class="fcat" data-k="${k}" aria-pressed="false">${c.emoji} ${c.label}</button>`).join('')}</div>
       <label>When *</label><select id="f-when">
         <option value="once">A date (or a date range)</option>
         <option value="weekly">Every week</option>
@@ -813,6 +942,12 @@
       $('f-weekly').style.display = w === 'weekly' ? '' : 'none';
       $('f-monthly').style.display = w === 'monthly' ? '' : 'none';
     };
+    const catBtns = [...$('f-cats').querySelectorAll('.fcat')];
+    for (const b of catBtns) {
+      b.onclick = () => b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') !== 'true');
+    }
+    const pickedCats = () => catBtns.filter((b) => b.getAttribute('aria-pressed') === 'true').map((b) => b.dataset.k);
+    const setCats = (cats) => catBtns.forEach((b) => b.setAttribute('aria-pressed', String(cats.includes(b.dataset.k))));
     const vcode = () => {
       const el = document.getElementById('f-vcode');
       if (el && el.value.trim()) localStorage.setItem('code:' + v.id, el.value.trim());
@@ -837,7 +972,7 @@
         b.onclick = () => {
           const e2 = events.find((x) => x.id === b.dataset.edit);
           if (!e2) return;
-          $('f-id').value = e2.id; $('f-title').value = e2.title; $('f-cat').value = e2.category;
+          $('f-id').value = e2.id; $('f-title').value = e2.title; setCats(evCats(e2));
           $('f-time').value = e2.time || ''; $('f-desc').value = e2.description || '';
           $('f-offer').value = e2.offer || ''; $('f-voucher').value = e2.voucher || '';
           if (e2.recurrence && e2.recurrence.freq === 'weekly') {
@@ -856,10 +991,13 @@
 
     $('f-save').onclick = async () => {
       $('f-err').textContent = ''; $('f-ok').textContent = '';
+      const cats = pickedCats();
+      if (!cats.length) { $('f-err').textContent = 'Tick at least one type for the listing.'; return; }
       const w = $('f-when').value;
       const event = {
         id: $('f-id').value || undefined,
-        title: $('f-title').value, category: $('f-cat').value,
+        title: $('f-title').value, category: cats[0],
+        categories: cats.length > 1 ? cats : undefined,
         time: $('f-time').value, description: $('f-desc').value,
         offer: $('f-offer').value, voucher: $('f-voucher').value,
       };
@@ -872,6 +1010,7 @@
         refreshMine();
         $('f-id').value = ''; $('f-title').value = ''; $('f-desc').value = '';
         $('f-offer').value = ''; $('f-voucher').value = ''; $('f-time').value = '';
+        setCats([]);
         $('f-ok').textContent = 'Published — it\'s live on the map.';
       } catch (e2) { $('f-err').textContent = e2.message; }
     };
@@ -1154,6 +1293,11 @@
       loadCommunity().then(injectSchema);
       $('add-biz').onclick = (e) => { e.preventDefault(); openAddBusiness(); };
       $('add-walk').onclick = (e) => { e.preventDefault(); openAddSpot(); };
+      if (innerWidth > 760) {   // desktop has the room — show the filters up front
+        $('filters').classList.remove('collapsed');
+        $('filter-btn').classList.add('open');
+        $('filter-btn').setAttribute('aria-expanded', 'true');
+      }
       if (location.hash === '#admin') openAdmin();
       // dotted footpath trails for the walks, drawn onto the basemap
       let rh = '<g id="routes">';

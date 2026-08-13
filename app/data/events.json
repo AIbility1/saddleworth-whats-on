@@ -252,9 +252,16 @@
     },
     "muse": {
       "tags": [
-        "2-for-£15 cocktails Sun–Thu"
+        "2-for-£15 cocktails Sun–Thu",
+        "Outdoor seating"
       ],
-      "hours": "Mo off; Tu-Th 12:00-20:15; Fr-Sa 12:00-20:45; Su 12:00-18:45"
+      "hours": "Mo off; Tu-Th 12:00-22:30 (food till 20:15); Fr-Sa 12:00-01:00 (food till 20:45); Su 12:00-22:30 (food till 18:45)"
+    },
+    "saddleworth-hotel": {
+      "blurb": "The moor-road hotel above Diggle. Scarlotti's, its Italian restaurant, is currently residents and private bookings only — a public reopening is planned for 2026.",
+      "tags": [
+        "Restaurant: residents only for now"
+      ]
     },
     "granby-arms": {
       "hours": "Mo-Su 13:00-01:00"
@@ -381,8 +388,8 @@
       "type": "Pub & kitchen",
       "kind": "pub",
       "village": "Diggle",
-      "lat": 53.57,
-      "lng": -1.9967,
+      "lat": 53.56911,
+      "lng": -1.98948,
       "address": "Station Houses, Diggle, OL3 5JZ",
       "blurb": "Stone free-house in the fold of the hills by the Standedge Tunnel end — freshly refurbished and reopened in July 2026. The bar is pouring; the kitchen (and the pies) return soon.",
       "tags": [
@@ -399,8 +406,8 @@
       "type": "Nature reserve",
       "kind": "attraction",
       "village": "Greenfield",
-      "lat": 53.5328,
-      "lng": -1.9705,
+      "lat": 53.5276,
+      "lng": -1.9812,
       "address": "Bank Lane, Greenfield, OL3 7NE",
       "blurb": "Moorland, woods and open water under the gritstone edges — peregrines and mountain hares up top, family trails around the reservoir. Car park and accessible paths at the bottom.",
       "tags": [
@@ -419,8 +426,8 @@
       "type": "Visitor centre",
       "kind": "attraction",
       "village": "Dobcross",
-      "lat": 53.5555,
-      "lng": -2.0095,
+      "lat": 53.5541,
+      "lng": -2.0088,
       "address": "Wool Road, Dobcross, OL3 5PB",
       "blurb": "Little canalside visitor centre at Brownhill Bridge — wildlife displays, family activities and the starting point for gentle towpath wanders.",
       "tags": [
@@ -436,8 +443,8 @@
       "type": "Ancient site",
       "kind": "attraction",
       "village": "Delph",
-      "lat": 53.5842,
-      "lng": -2.0048,
+      "lat": 53.5835,
+      "lng": -2.00322,
       "address": "Waterworks Road, Castleshaw, Delph",
       "blurb": "Grass-covered earthworks of a Roman fort guarding the pass over Standedge since AD 79, above the Castleshaw reservoirs. Always open, forever quiet.",
       "tags": [
@@ -453,8 +460,8 @@
       "type": "Walk",
       "kind": "walk",
       "village": "Greenfield",
-      "lat": 53.53294,
-      "lng": -1.97125,
+      "lat": 53.52705,
+      "lng": -1.98111,
       "address": "Start: Dovestone car park, Bank Lane, Greenfield",
       "blurb": "The classic Saddleworth leg-stretcher: a flat, surfaced loop around the water with the gritstone edges towering over you. Pushchair and wheelchair friendly; herons guaranteed, ice cream van likely.",
       "tags": [
@@ -1954,8 +1961,8 @@
       "type": "Soft play centre",
       "kind": "attraction",
       "village": "Diggle",
-      "lat": 53.5652,
-      "lng": -2.003,
+      "lat": 53.56738,
+      "lng": -1.99507,
       "address": "Robinson Works, Warth Mill, Huddersfield Road, Diggle OL3 5PJ",
       "blurb": "Saddleworth’s own soft play — baby and toddler zone plus a big frame and ball court for the under-11s. No booking needed.",
       "tags": [
@@ -1995,8 +2002,8 @@
       "type": "Library",
       "kind": "hall",
       "village": "Uppermill",
-      "lat": 53.5462,
-      "lng": -2.0066,
+      "lat": 53.5481,
+      "lng": -2.00643,
       "address": "St Chad’s, High Street, Uppermill OL3 6AP",
       "blurb": "The village library — books, local history and free children’s sessions.",
       "tags": [
@@ -2064,8 +2071,8 @@
       "type": "School halls",
       "kind": "hall",
       "village": "Greenfield",
-      "lat": 53.5385,
-      "lng": -1.9958,
+      "lat": 53.53826,
+      "lng": -2.00794,
       "address": "Shaw Street, Greenfield OL3 7AA",
       "blurb": "Out of hours, home to the Saddleworth Ballet School’s Saturday timetable.",
       "tags": [
@@ -2099,8 +2106,8 @@
       "type": "School & community venue",
       "kind": "hall",
       "village": "Diggle",
-      "lat": 53.56137,
-      "lng": -1.99945,
+      "lat": 53.5617,
+      "lng": -2.0005,
       "address": "Huddersfield Road, Diggle, OL3 5NU",
       "blurb": "The valley-bottom secondary school at Diggle — out of hours its hall and pitches host everything from Rock Choir rehearsals to junior football academies.",
       "tags": [
@@ -2517,6 +2524,178 @@
       "time": "From 19:30",
       "description": "See the year out on the brow of the hill.",
       "source": "https://www.thewhitehart.co.uk/events/"
+    },
+    {
+      "id": "whitehart-set-menu-aug",
+      "business": "white-hart",
+      "title": "Set Menu — August Dining",
+      "category": "offer",
+      "categories": ["offer", "food"],
+      "time": "Lunch Wed–Sat 12:00–14:15 · Dinner Mon–Thu 17:00–20:00",
+      "start": "2026-08-01",
+      "end": "2026-08-31",
+      "offer": "2 courses £24.50 · 3 for £29.50",
+      "source": "https://www.thewhitehart.co.uk/event/may-dining-deals/"
+    },
+    {
+      "id": "whitehart-chippy-tea",
+      "business": "white-hart",
+      "title": "Friday Chippy Tea",
+      "category": "food",
+      "categories": ["food", "offer"],
+      "time": "17:00–18:30",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "fri"
+      },
+      "offer": "£19 per person",
+      "source": "https://www.thewhitehart.co.uk/event/may-dining-deals/"
+    },
+    {
+      "id": "navigation-classics-222",
+      "business": "navigation-inn",
+      "title": "Small Pub Classics — 2 for £22",
+      "category": "offer",
+      "categories": ["offer", "food"],
+      "time": "Tue–Fri (different list Sat)",
+      "start": "2026-08-13",
+      "end": "2027-08-31",
+      "offer": "£12.95 each · 2 for £22",
+      "description": "Fish & chips, scampi, gammon and more, Tuesday to Friday; a comfort-food list (suet pudding, fish pie, Irish stew) on Saturdays. Classic burgers also run at 2 for £25 any day.",
+      "source": "https://thenavigationdobcross.com/wp-content/uploads/2026/08/navi-menu-2026.pdf"
+    },
+    {
+      "id": "navigation-small-plates",
+      "business": "navigation-inn",
+      "title": "Light Bites — Small Plates",
+      "category": "offer",
+      "categories": ["offer", "food"],
+      "time": "Tue–Sat 12:00–16:00",
+      "start": "2026-08-13",
+      "end": "2027-08-31",
+      "offer": "£5 each · 3 for £12 · 4 for £15",
+      "source": "https://thenavigationdobcross.com/wp-content/uploads/2026/08/navi-menu-2026.pdf"
+    },
+    {
+      "id": "42high-early-bird",
+      "business": "42-high-st",
+      "title": "Early Bird Menu",
+      "category": "offer",
+      "categories": ["offer", "food"],
+      "time": "Fri & Sat 16:30–18:30",
+      "start": "2026-08-13",
+      "end": "2027-08-31",
+      "offer": "2 courses £19.90 · 3 for £24.90",
+      "description": "Includes a 10oz rump among the mains. Steak-collection night menu runs Fridays and Saturdays too.",
+      "source": "http://42high.co.uk/wp-content/uploads/2026/02/42-Day-Early-Bird-Menu.pdf"
+    },
+    {
+      "id": "abaco-small-plate-thu",
+      "business": "caffe-grande-abaco",
+      "title": "Small Plate Thursday",
+      "category": "food",
+      "categories": ["food", "offer"],
+      "time": "Evening · food till 20:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "thu"
+      },
+      "offer": "3 small plates £25",
+      "description": "Three small plates for £25 plus weekly special dishes — bookings essential.",
+      "source": "https://caffegrandeabaco.com/food-%26-wine"
+    },
+    {
+      "id": "abaco-241-pizza",
+      "business": "caffe-grande-abaco",
+      "title": "2-for-1 Pizzas",
+      "category": "offer",
+      "categories": ["offer", "food"],
+      "time": "Mon & Tue, all day",
+      "start": "2026-08-13",
+      "end": "2027-08-31",
+      "offer": "2-for-1 pizzas",
+      "description": "Bookings essential.",
+      "source": "https://caffegrandeabaco.com/food-%26-wine"
+    },
+    {
+      "id": "abaco-241-classics",
+      "business": "caffe-grande-abaco",
+      "title": "2-for-1 Abaco Classics",
+      "category": "offer",
+      "categories": ["offer", "food"],
+      "time": "All day",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "wed"
+      },
+      "offer": "2-for-1 mains",
+      "description": "Bookings essential.",
+      "source": "https://caffegrandeabaco.com/food-%26-wine"
+    },
+    {
+      "id": "abaco-fish-frites",
+      "business": "caffe-grande-abaco",
+      "title": "Fish, Frites & Prosecco Friday",
+      "category": "food",
+      "categories": ["food", "offer"],
+      "time": "Friday",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "fri"
+      },
+      "offer": "2 tempura haddocks, frites & a bottle of prosecco £50",
+      "source": "https://caffegrandeabaco.com/food-%26-wine"
+    },
+    {
+      "id": "kingfisher-40-off",
+      "business": "kingfisher",
+      "title": "40% Off Main Meals",
+      "category": "offer",
+      "categories": ["offer", "food"],
+      "time": "Kitchen hours",
+      "start": "2026-08-13",
+      "end": "2026-09-06",
+      "offer": "40% off mains — sign up online for the voucher",
+      "description": "Email voucher from their site, tables up to 8, runs until Sunday 6 September.",
+      "source": "https://www.kingfisherpubsaddleworth.co.uk/offers"
+    },
+    {
+      "id": "kingfisher-kids-1",
+      "business": "kingfisher",
+      "title": "Kids Eat for £1 (Summer Hols)",
+      "category": "offer",
+      "categories": ["offer", "kids"],
+      "time": "Mon–Fri, kitchen hours",
+      "start": "2026-08-13",
+      "end": "2026-08-28",
+      "offer": "Kids' main £1 with any adult main",
+      "source": "https://www.kingfisherpubsaddleworth.co.uk/kidsmealoffer"
+    },
+    {
+      "id": "kingfisher-moretti-fri",
+      "business": "kingfisher",
+      "title": "Moretti Friday",
+      "category": "offer",
+      "time": "16:00–19:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "fri"
+      },
+      "offer": "2 pints of Birra Moretti £7",
+      "source": "https://www.kingfisherpubsaddleworth.co.uk/moretti-friday"
+    },
+    {
+      "id": "waggon-summer-family",
+      "business": "waggon-inn",
+      "title": "Summer Holiday Family Offer",
+      "category": "offer",
+      "categories": ["offer", "food"],
+      "time": "Mon–Thu, school holidays",
+      "start": "2026-08-13",
+      "end": "2026-09-01",
+      "offer": "20% off the à la carte menu",
+      "description": "Advance bookings only.",
+      "source": "https://www.thewaggoninn.co.uk/"
     },
     {
       "id": "ucbc-bonfire-2026",
@@ -3082,14 +3261,200 @@
       "business": "old-original-inn",
       "title": "Tapas Night",
       "category": "offer",
+      "categories": ["offer", "food"],
       "time": "Evening",
       "recurrence": {
         "freq": "weekly",
         "day": "thu"
       },
-      "offer": "5 dishes £20",
-      "description": "Five tapas dishes for twenty quid (also Saturday afternoons) — worth confirming with the pub.",
-      "source": "https://www.useyourlocal.com/pubs/old-original-oldham-65775/"
+      "offer": "5 dishes £25",
+      "description": "Choose five tapas dishes for £25. Also runs Saturday afternoons, 1–5pm.",
+      "source": "https://www.theoldoriginal.co.uk/menu.pdf"
+    },
+    {
+      "id": "oldoriginal-fixed-price",
+      "business": "old-original-inn",
+      "title": "Fixed Price Menu",
+      "category": "offer",
+      "categories": ["offer", "food"],
+      "time": "Mon–Fri from 4pm · Sat & Sun 1–5pm",
+      "start": "2026-08-13",
+      "end": "2027-08-31",
+      "offer": "2 courses £17 · 3 for £20",
+      "description": "The Old Original's set menu, most of the week.",
+      "source": "https://www.theoldoriginal.co.uk/menu.pdf"
+    },
+    {
+      "id": "oldoriginal-curry-mon",
+      "business": "old-original-inn",
+      "title": "Monday Curry Night",
+      "category": "food",
+      "categories": ["food", "offer"],
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "mon"
+      },
+      "offer": "Homemade curry + rice & naan £10",
+      "source": "https://www.theoldoriginal.co.uk/menu.pdf"
+    },
+    {
+      "id": "oldoriginal-steak-fri",
+      "business": "old-original-inn",
+      "title": "Freebie Friday Steak Night",
+      "category": "food",
+      "categories": ["food", "offer"],
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "fri"
+      },
+      "offer": "Free special starter with any steak",
+      "source": "https://www.theoldoriginal.co.uk/menu.pdf"
+    },
+    {
+      "id": "oldbell-steak-day",
+      "business": "old-bell-inn",
+      "title": "Steak Day — Two Steaks & a Bottle of Wine",
+      "category": "offer",
+      "categories": ["offer", "food"],
+      "time": "Thursday, 12:00–20:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "thu"
+      },
+      "offer": "£39.95 for two",
+      "description": "Two 35-day-aged 10oz sirloins and a bottle of wine in the Old Bell's brasserie. Fillet and king-prawn upgrades available.",
+      "source": "https://www.theoldbellinn.co.uk/brasserie-restaurant/"
+    },
+    {
+      "id": "ramshead-sunday-roast",
+      "business": "rams-head-inn",
+      "title": "Sunday Roasts, All Day",
+      "category": "food",
+      "time": "12:00–19:30",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sun"
+      },
+      "offer": "Roasts £17.95–£18.95 · kids from £8.99",
+      "description": "Topside of beef, ham or turkey with all the trimmings, served right through till half seven.",
+      "source": "https://www.ramsheaddenshaw.co.uk/"
+    },
+    {
+      "id": "ramshead-breakfast",
+      "business": "rams-head-inn",
+      "title": "Weekend Breakfast",
+      "category": "food",
+      "time": "Sat & Sun 10:00–12:00",
+      "start": "2026-08-13",
+      "end": "2027-08-31",
+      "offer": "Full English £13.95 · kids £6.95",
+      "source": "https://www.ramsheaddenshaw.co.uk/"
+    },
+    {
+      "id": "kingsarms-set-menus",
+      "business": "kings-arms",
+      "title": "Set Menus — Light Lunch & Early Bird",
+      "category": "offer",
+      "categories": ["offer", "food"],
+      "time": "Lunch Tue–Sat 12–3 · Early bird Tue–Fri 5–6",
+      "start": "2026-08-13",
+      "end": "2027-08-31",
+      "offer": "2 courses from £17.50",
+      "description": "Lunch: main £12.50, 2 courses £17.50, 3 for £22.50. Early bird: main £13.50, 2 courses £18.50, 3 for £23.50. Under-12s eat from £8.",
+      "source": "https://kingsarmsoldham.co.uk/menus"
+    },
+    {
+      "id": "kingsarms-sunday-lunch",
+      "business": "kings-arms",
+      "title": "Sunday Lunch",
+      "category": "food",
+      "time": "12:00–18:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sun"
+      },
+      "offer": "1/2/3 courses £17.50/£22.50/£27.50",
+      "source": "https://kingsarmsoldham.co.uk/menus"
+    },
+    {
+      "id": "fresca-express-menu",
+      "business": "fresca",
+      "title": "Express Menu",
+      "category": "offer",
+      "categories": ["offer", "food"],
+      "time": "Thu–Sun",
+      "start": "2026-08-13",
+      "end": "2027-08-31",
+      "offer": "2 courses £27 · 3 for £31",
+      "description": "Fresca's fixed-price Italian menu (the restaurant opens Thursday to Sunday).",
+      "source": "https://www.frescarestaurant.com/s/Express-Menu-updated-2026.pdf"
+    },
+    {
+      "id": "fresca-sunday-roast",
+      "business": "fresca",
+      "title": "Sunday Roast Menu",
+      "category": "food",
+      "time": "12:00–20:00",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sun"
+      },
+      "offer": "1/2/3 courses £21/£26/£30",
+      "source": "https://www.frescarestaurant.com/s/sunday-roast-FINAL.pdf"
+    },
+    {
+      "id": "roebuck-sunday-lunch",
+      "business": "roebuck-inn",
+      "title": "Sunday Lunch",
+      "category": "food",
+      "time": "Sunday lunchtime",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "sun"
+      },
+      "offer": "1/2/3 courses £16/£22/£28",
+      "description": "The menu changes weekly — moorland views come as standard.",
+      "source": "https://the-roebuck-inn.co.uk/sunday-lunch-menu/"
+    },
+    {
+      "id": "grapes-kids-eat-1",
+      "business": "grapes",
+      "title": "Kids Eat for £1",
+      "category": "offer",
+      "categories": ["offer", "kids", "food"],
+      "time": "Mon–Thu, food hours",
+      "start": "2026-08-13",
+      "end": "2027-08-31",
+      "offer": "Kids' meal £1 with any adult main",
+      "source": "https://www.grapespuboldham.com/"
+    },
+    {
+      "id": "weavers-wine-wednesday",
+      "business": "weavers-arms",
+      "title": "Wine Wednesday",
+      "category": "offer",
+      "time": "All day",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "wed"
+      },
+      "offer": "Buy 2 large glasses — finish the bottle free",
+      "source": "https://www.weaversarmsoldham.co.uk/"
+    },
+    {
+      "id": "weavers-fizz-friday",
+      "business": "weavers-arms",
+      "title": "Fizz Friday",
+      "category": "offer",
+      "time": "All day",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "fri"
+      },
+      "offer": "£10 off champagne · £5 off prosecco",
+      "source": "https://www.weaversarmsoldham.co.uk/"
     },
     {
       "id": "runners-tue-summer",

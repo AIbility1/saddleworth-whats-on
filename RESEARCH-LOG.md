@@ -10,6 +10,84 @@ Format: one section per sweep date; per item — verdict, key sources, recheck h
 
 ---
 
+## 13 Aug 2026 sweep (user feedback round: locations, Muse hours, food offers; 2 web agents + OSM audit)
+
+### Venue coordinates (SETTLED — audited & fixed; method below)
+- **Every OSM-baked venue in Diggle matches live OSM exactly** — the bake is faithful;
+  when a baked pin looks wrong the error is in OSM itself, not our pipeline.
+- **9 hand-placed customVenues were wrong; all fixed** against OSM building footprints:
+  diggle-hotel (~480m off → 53.56911,-1.98948, by the Standedge portal — this was the
+  Diggle complaint), play2-diggle (Warth Mill → 53.56738,-1.99507), rspb-dove-stone
+  (pin was in the water → Bank Lane car park 53.5276,-1.9812), walk-dove-stone start
+  (→ same car park), castleshaw-roman-fort (→ Rigodunum archaeological_site
+  53.5835,-2.00322), uppermill-library (→ 53.5481,-2.00643), greenfield-primary-school
+  (~800m → 53.53826,-2.00794), brownhill-countryside-centre (→ 53.5541,-2.0088),
+  saddleworth-school (→ 53.5617,-2.0005).
+- **Verified correct — don't re-check:** St Chad's, St Mary's Greenfield, St Anne's
+  Lydgate, Holy Trinity Dobcross, Christ Church Denshaw, Heights Chapel, Wharmton,
+  Pots & Pans obelisk, viaduct, Alphin Pike, Standedge portal, Delph & Dobcross CC,
+  Kilngreen, all Diggle/Uppermill baked venues.
+- **No OSM reference exists** (positions from FSA/local knowledge, unverifiable by
+  map data): springhead-cricket-club, dobcross-band-social-club, tanners-dam,
+  little-village-saddleworth, nine-lives, hot-duck, bay-leaf, tunnel-end-pies,
+  evade-martial-arts, nurture-saddleworth, top-house, the-shawside.
+- **Method (repeatable):** Overpass `nwr["name"~"…"](bbox)` via curl (must send a
+  User-Agent; the API 406s without one), haversine-compare against our lat/lng,
+  eyeball anything >120m. New hand-placed venues: always pull coords from OSM/FSA
+  at entry time rather than eyeballing the illustrated map.
+
+### Muse Uppermill (SETTLED — the user was right)
+- **The website's times are KITCHEN times; the bar runs later.** Dish Cult
+  (dishcult.com/restaurant/musebareatery) + Google agree: bar Tu–Th & Su to ~22:30,
+  Fr–Sa to ~01:00; kitchen 20:15 / 20:45 / 18:45. Card now shows bar hours with
+  food times in brackets. Recheck: only if the venue says so.
+- **cafe-muse was a stale 2023 OSM duplicate** (building tag) of the current `muse`
+  node (updated Jun 2026) — added to CLOSED in build-venues.js, removed from bake.
+  Muse Annex kept (separate café, unconfirmed either way).
+- findmea.pub's "Muse steak night Monday" is STALE (Muse closes Mondays) — ignore it.
+- 2-for-£15 cocktails Sun–Thu confirmed current (site); Brunch After Dark is last-Fri
+  monthly £45 (our card was already right).
+
+### Food & drink offers (2 agents, ~200 fetches — 20 offers seeded with sources)
+- **Seeded (all confirmed-current on venue's own site/menu unless noted):**
+  Old Bell steak day Thu £39.95-for-two; Rams Head all-day Sunday roasts + weekend
+  breakfast; Old Original fixed-price menu, Monday curry £10, Freebie-Friday steak
+  starter, tapas updated to 5-for-£25 (was £20, now sourced from their own menu.pdf);
+  Kings Arms Grains Bar lunch/early-bird set menus + Sunday lunch; Fresca express
+  menu + Sunday roast; Roebuck Sunday lunch; Grapes kids-eat-£1 Mon–Thu; Weavers
+  Arms wine Wednesday + fizz Friday; White Hart Aug set menu (ends 31 Aug — their
+  /event/may-dining-deals/ URL rolls monthly, recheck monthly) + Friday chippy tea
+  £19; Navigation 2-for-£22 classics + small-plates 3-for-£12 (Aug 2026 menu PDF);
+  42 High St early bird Fri/Sat; Abaco small-plate Thursday 3-for-£25 (the user's
+  Abacco tip — confirmed) + 2-for-1 pizzas Mon/Tue + 2-for-1 classics Wed + fish,
+  frites & prosecco £50 Fri; Kingfisher 40%-off voucher (ends 6 Sep) + kids-£1
+  (ends 28 Aug) + Moretti Friday; Waggon 20% summer-hols family offer (ends 1 Sep).
+  Royal George & White Lion existing listings re-verified unchanged.
+- **No published offers — don't re-crawl for ~6 months:** Swan Delph, Junction Inn
+  (old domain thejunctioninndenshaw.com is HIJACKED by spam — never link it),
+  Printers Arms (menu on site dated Jun 2024 — stale), Three Crowns, Spinners Arms,
+  Chapter One, Lees Spice Lounge, Paach Baii (Just Eat only, shut Tue), Angel Inn,
+  Front House, Bridge Inn, Waterhead Tandoori, Sweet & Smooth, Village Manor,
+  Little Owl, Delph Band Club, Oddfellows (now members' club "The Oddies"),
+  Church Inn, Granby (Fri disco/Sun karaoke only), Hare & Hounds, Commie (site dead
+  since 2017), Albion Tap, Greene's Bistro, Diggle Lock, Gate Inn (own site
+  unreachable), Swan Dobcross (site unreachable), Railway Inn, Wellington, Dysarts.
+- **FB/phone-level gaps (web exhausted):** Bulls Head tapas (site SSL-broken, FB
+  "Tapas At The Bulls Head Delph" login-walled); Milan Bar seems rebranded "The Devi
+  Lounge" with a Fri–Sun bottomless lunch — confirm name+price on FB; Crumbles
+  afternoon teas (Tripadvisor only); Red Lion Lees (site says "food coming soon",
+  news page 2021 — contradicts directories); Kings Arms "weekly offers" teaser;
+  White Hart old 2-4-1 Mon/Tue (looks superseded by the set menu — confirm before
+  ever listing); Navigation Wednesday curry night; Waggon Moo-Monday pricing (their
+  Weekly Offers page currently empty); Saddleworth Hotel afternoon tea price.
+- **Venue status:** Scarlotti's (Saddleworth Hotel) residents/private-only, public
+  reopening "2026" — noted on card. Diggle Hotel kitchen still closed ("reopening
+  soon"). Dinnerstone already logged 12 Aug (Muse Group takeover).
+- **Lesson for hours generally: a restaurant site's times are often kitchen times.**
+  Check Google/Dish Cult for the bar close before trusting them.
+
+---
+
 ## 12 Aug 2026 sweep (8 agents, ~130 searches)
 
 ### Fishing (SETTLED — seeded)

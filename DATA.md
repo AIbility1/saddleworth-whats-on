@@ -103,6 +103,16 @@ Every event has a `category`, which controls the pin colour and glyph:
 | `market`    | 🧺 Markets & fairs       |
 | `community` | 🎪 Festivals & community |
 
+An event that genuinely sits in more than one bucket (Abaco's three-plates-£25
+Thursday is both food *and* an offer) may add a `categories` array — up to
+three, first one primary (it drives the pin colour/emoji; `category` must equal
+`categories[0]`). Filtering and search match on all of them, and the community
+add-event form offers the same thing as tick-chips:
+
+```jsonc
+"category": "food", "categories": ["food", "offer"]
+```
+
 **One-off** events use `start` (and optionally `end` for multi-day events or
 long-running offers — the app shows those under "Ongoing" once they've begun):
 

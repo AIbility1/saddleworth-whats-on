@@ -85,6 +85,7 @@ const CLOSED = new Set([
   'uppermill-cricket-club',  // duplicate OSM element of uppermill-cricket-and-bowling-club
   'black-ladd',              // shut (local knowledge)
   'clough-manor',            // shut (local knowledge)
+  'cafe-muse',               // stale OSM duplicate (2023 building tag) of muse, 23 High St
 ]);
 
 // Kept regardless of the village circles (fringe pubs that host Saddleworth

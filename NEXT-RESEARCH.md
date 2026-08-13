@@ -29,6 +29,18 @@ and deploy.
   Diggle Blues (June), Whit Friday (21 May 2027 seeded), Rushcart, Beer & Cider
   Festival (1st Sat Jul), sailing programme, Diggle AC match nights (May–Sep)
 
+**Offers upkeep (from 13 Aug sweep — see log for what's already covered):**
+- White Hart set menu: their /event/may-dining-deals/ page rolls monthly — recheck
+  at each month's start and update the seeded event's dates/prices
+- Kingfisher 40%-off (ends 6 Sep) and kids-£1 (ends 28 Aug) age out on their own;
+  check /offers for replacements when they do
+- Waggon Moo-Monday pricing + "Weekly Offers" page (currently empty) — phone or FB
+- Abaco promotions live in their menu PDF (April 2026 vintage) — recheck ~quarterly
+- FB-only leads to confirm before listing: Bulls Head tapas nights, Milan Bar/"Devi
+  Lounge" bottomless lunch, Crumbles afternoon tea, Red Lion Lees food
+- Hours rule of thumb: site times are often KITCHEN times — cross-check the bar
+  close on Google/Dish Cult before seeding (that was the Muse complaint)
+
 **Phone/ask-level gaps (web is exhausted — see log before re-searching):**
 - Boarshurst Band Club kids activities — user believes something runs; get
   specifics from them or the club (01457 875836 / boarshurstband.co.uk)

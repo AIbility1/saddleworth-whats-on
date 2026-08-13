@@ -133,8 +133,14 @@ function validateEvent(venueId, input) {
   const e = input || {};
   const title = str(e.title, 80);
   if (!title) return { error: 'A title is required.' };
-  if (!CATS.includes(e.category)) return { error: 'Pick a category.' };
-  const out = { venueId, title, category: e.category, source: 'venue' };
+  // a listing can sit in more than one category (e.g. food + offer);
+  // the first one is primary and drives the pin/emoji
+  let cats = Array.isArray(e.categories) ? e.categories.filter((c) => CATS.includes(c)) : [];
+  if (!cats.length && CATS.includes(e.category)) cats = [e.category];
+  cats = [...new Set(cats)].slice(0, 3);
+  if (!cats.length) return { error: 'Pick at least one category.' };
+  const out = { venueId, title, category: cats[0], source: 'venue' };
+  if (cats.length > 1) out.categories = cats;
   const time = str(e.time, 40); if (time) out.time = time;
   const description = str(e.description, 500); if (description) out.description = description;
   const offer = str(e.offer, 60); if (offer) out.offer = offer;
