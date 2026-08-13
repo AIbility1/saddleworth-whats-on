@@ -73,6 +73,8 @@ and deploy.
 - SSSS singles group — dormant-looking; check their Facebook before ever seeding
 
 **Maintenance:**
+- Run `node scripts/audit-events.js` after ANY events.json edit — proves every
+  event still resolves, categorises and renders (exits 1 on problems)
 - Re-run `scripts/build-venues.js` + `scripts/build-basemap.js` monthly-ish
   (CLOSED/ALWAYS lists in build-venues.js carry local corrections; shop kinds
   — bakery/deli/cheese/farm/confectionery — bake as kind `shop` since Aug 2026)
