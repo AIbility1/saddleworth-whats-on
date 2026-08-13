@@ -54,12 +54,34 @@ the API returns a polite 503 and the site runs on the editorial data alone.
    | `VENUE_CODE_SECRET` | a long random string — venue codes derive from it |
    | `ADMIN_CODE`        | your moderation password                          |
 
-4. Moderation: open the live site with `#admin` on the URL and enter
-   `ADMIN_CODE` — approve/remove business submissions, remove any community
-   event, and **verify a venue** (lock its listings to its code) when a
-   business gets in touch. Verifying shows the code to send them; you can also
-   print codes locally:
+4. Moderation lives in the **admin portal at `/admin`** — see the next section.
+   (The lightweight `#admin` overlay on the map still works with `ADMIN_CODE`
+   as a fallback.) Venue codes can also be printed locally:
    `VENUE_CODE_SECRET=<the same secret> node scripts/venue-codes.js <venue-id>`
+
+## 3b. The admin portal — /admin, signed in with GitHub
+
+`admin.html` is a full moderation console: a **community-events review queue**
+(newest first, NEW badges, edit categories/wording in place, remove anything
+dodgy), a **venue facts editor** (override hours, blurbs, tags, links on any
+venue — applied live, no code change or deploy), the **business submissions
+queue**, and **verify/un-verify** with codes.
+
+Access is GitHub sign-in via Static Web Apps' built-in auth — no passwords in
+our code. One-time setup per admin:
+
+1. Portal → your Static Web App → **Role management** → **Invite**.
+2. Provider **GitHub**, the person's GitHub username, role **`admin`**
+   (type it — it's a custom role), generate the link.
+3. Send them the invite link; they open it and sign in with GitHub. Done —
+   `/admin` now lets them in, and the API honours their identity
+   (SWA injects a tamper-proof `x-ms-client-principal` header).
+
+Notes: invitations are capped at 25 per app (plenty); revoking a role in Role
+management locks the person out immediately; `ADMIN_CODE` keeps working as the
+dev-server / break-glass fallback, and changing it in Environment variables
+rotates that path. Locally, `node scripts/dev-server.js` serves `/admin` with
+the code fallback (no GitHub auth offline).
 
 > Events are open — anyone can post, authors manage their own, `#admin` is the
 > backstop. Changing `VENUE_CODE_SECRET` later invalidates every venue code at

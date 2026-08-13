@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin — Saddleworth What's On</title>
+<style>
+  :root {
+    --paper: #f4f3ee; --surface: #ffffff; --surface-2: #f2f2f4; --surface-3: #e8e8ea;
+    --ink: #1d1d1f; --ink-soft: #48484d; --muted: #6e6e73;
+    --line: rgba(0,0,0,0.08); --hairline: rgba(0,0,0,0.06);
+    --accent: #c15f3c; --accent-press: #a84e30; --accent-soft: rgba(193,95,60,0.09);
+    --red: #d70015; --green: #248a3d;
+    --shadow-sm: 0 2px 10px rgba(0,0,0,0.10);
+    --r-lg: 18px; --r-md: 12px; --r-sm: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); padding: 18px 16px 60px;
+         font: 13.5px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI Variable Text",
+         "Segoe UI", system-ui, Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  header { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+  h1 { font-size: 21px; letter-spacing: -0.015em; }
+  h1 em { font-style: normal; color: var(--accent); }
+  #who { color: var(--muted); font-size: 12px; margin-left: auto; }
+  #who a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .sub { color: var(--muted); font-size: 12.5px; margin-bottom: 14px; }
+  .sub a { color: var(--accent); }
+  nav { position: sticky; top: 0; background: var(--paper); z-index: 5;
+        display: flex; gap: 6px; flex-wrap: wrap; padding: 8px 0 10px; }
+  nav a { border-radius: 999px; padding: 6px 13px; font-size: 12.5px; font-weight: 600;
+          background: var(--surface); color: var(--ink-soft); text-decoration: none;
+          border: 1px solid var(--hairline); box-shadow: var(--shadow-sm); }
+  nav a b { color: var(--accent); }
+  section { background: var(--surface); border: 1px solid var(--hairline);
+            border-radius: var(--r-lg); box-shadow: var(--shadow-sm);
+            padding: 16px 18px; margin-top: 16px; scroll-margin-top: 54px; }
+  h2 { font-size: 15px; margin-bottom: 2px; }
+  .hint { color: var(--muted); font-size: 12px; margin-bottom: 10px; line-height: 1.5; }
+  .row { border-top: 1px solid var(--line); padding: 10px 2px; }
+  .row:first-of-type { border-top: 0; }
+  .row .t { font-weight: 600; font-size: 13.5px; }
+  .row .t .new { display: inline-block; margin-left: 6px; background: var(--accent);
+                 color: #fff; border-radius: 5px; padding: 1px 6px; font-size: 10px;
+                 font-weight: 700; letter-spacing: 0.04em; vertical-align: 1px; }
+  .row .m { color: var(--muted); font-size: 12px; margin-top: 1px; }
+  .row .d { color: var(--ink-soft); font-size: 12.5px; margin-top: 3px; }
+  .row .offer { display: inline-block; background: var(--accent-soft); color: var(--accent);
+                border-radius: 6px; padding: 1px 7px; font-size: 11px; font-weight: 700; margin-top: 4px; }
+  .acts { margin-top: 6px; display: flex; gap: 6px; flex-wrap: wrap; }
+  button, .btn { border: 0; border-radius: 8px; background: var(--surface-2); color: var(--ink-soft);
+                 padding: 5px 12px; font: inherit; font-size: 12px; font-weight: 600; cursor: pointer; }
+  button:hover { background: var(--surface-3); color: var(--ink); }
+  button.p { background: var(--accent); color: #fff; }
+  button.p:hover { background: var(--accent-press); }
+  button.danger { color: var(--red); }
+  input, textarea, select { width: 100%; border: 0; border-radius: var(--r-sm);
+          padding: 8px 10px; font: inherit; font-size: 13px; background: var(--surface-2); }
+  input:focus, textarea:focus, select:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+  textarea { min-height: 56px; resize: vertical; }
+  label { display: block; font-size: 11px; font-weight: 600; color: var(--ink-soft); margin: 9px 0 3px; }
+  .grid2 { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 10px; }
+  .editbox { background: var(--surface-2); border-radius: var(--r-md); padding: 10px 12px; margin-top: 8px; }
+  .editbox input, .editbox textarea, .editbox select { background: var(--surface); }
+  .fcats { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 3px; }
+  .fcat { border-radius: 999px; padding: 4px 10px; font-size: 11.5px; }
+  .fcat[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent);
+        outline: 1.5px solid var(--accent); outline-offset: -1.5px; }
+  .msg { font-size: 12.5px; margin-top: 8px; min-height: 16px; }
+  .msg.err { color: var(--red); }
+  .msg.ok { color: var(--green); }
+  .pill { display: inline-block; background: var(--surface-2); border-radius: 999px;
+          padding: 2px 9px; font-size: 11px; color: var(--ink-soft); font-weight: 600; }
+  .pill.green { color: var(--green); }
+  #gate { max-width: 420px; margin: 60px auto; text-align: center; }
+  #gate .card { background: var(--surface); border-radius: var(--r-lg); border: 1px solid var(--hairline);
+                box-shadow: var(--shadow-sm); padding: 26px 24px; }
+  #gate h1 { margin-bottom: 6px; }
+  #gate p { color: var(--muted); font-size: 12.5px; margin-bottom: 14px; }
+  #gate .btn-gh { display: inline-block; background: #1d1d1f; color: #fff; border-radius: var(--r-md);
+                  padding: 10px 18px; font-weight: 600; text-decoration: none; font-size: 13.5px; }
+  #gate .or { margin: 14px 0 6px; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .filterbar { display: flex; gap: 8px; margin-bottom: 6px; }
+  .hidden { display: none !important; }
+  .vpick { max-height: 200px; overflow-y: auto; border-radius: var(--r-sm);
+           background: var(--surface-2); margin-top: 6px; }
+  .vpick button { display: block; width: 100%; text-align: left; border-radius: 0;
+                  background: none; padding: 6px 10px; font-weight: 500; }
+  .vpick button:hover { background: var(--surface-3); }
+  .ovrow small { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div id="gate" class="hidden">
+  <div class="card">
+    <h1>Saddleworth <em>Admin</em></h1>
+    <p>Moderation and venue management for saddleworthlive.co.uk.</p>
+    <a class="btn-gh" href="/.auth/login/github?post_login_redirect_uri=/admin">Sign in with GitHub</a>
+    <p class="or">or (dev / fallback)</p>
+    <input id="g-code" type="password" placeholder="Admin code" autocomplete="off" style="max-width:240px;margin:0 auto">
+    <div style="margin-top:10px"><button class="p" id="g-go">Enter</button></div>
+    <p class="msg err" id="g-err"></p>
+  </div>
+</div>
+
+<div class="wrap hidden" id="portal">
+  <header>
+    <h1>Saddleworth <em>Admin</em></h1>
+    <span id="who"></span>
+  </header>
+  <p class="sub">Community moderation &amp; venue management · <a href="/">back to the map</a></p>
+  <nav>
+    <a href="#events">📋 Community events <b id="n-events"></b></a>
+    <a href="#venues">🏠 Venue facts</a>
+    <a href="#subs">📮 Submissions <b id="n-subs"></b></a>
+    <a href="#verified">✓ Verified venues</a>
+  </nav>
+
+  <section id="events">
+    <h2>Community events</h2>
+    <p class="hint">Everything the community has added, newest first — the review queue.
+      Listings marked <span class="pill" style="background:var(--accent);color:#fff">NEW</span> arrived in the last 7 days.
+      Edit fixes titles, categories, tags and wording in place; Remove is the backstop for anything dodgy.</p>
+    <div class="filterbar"><input id="ev-q" type="search" placeholder="Filter by title, venue, category…"></div>
+    <div id="ev-list"></div>
+  </section>
+
+  <section id="venues">
+    <h2>Venue facts — hours, blurbs, tags</h2>
+    <p class="hint">Fix a venue's card without a code change: whatever you set here overrides the
+      built-in data the moment the map next loads. Leave a field empty to keep the site's own value;
+      "Clear override" puts everything back.</p>
+    <input id="v-q" type="search" placeholder="Find a venue by name, village or id…">
+    <div class="vpick hidden" id="v-pick"></div>
+    <div id="v-edit" class="hidden editbox"></div>
+    <div id="v-ovs" style="margin-top:12px"></div>
+  </section>
+
+  <section id="subs">
+    <h2>Business submissions</h2>
+    <p class="hint">"Add a missing business" entries wait here — nothing shows on the map until approved.
+      Approving reveals the contact email and the venue's code.</p>
+    <div id="sub-list"></div>
+  </section>
+
+  <section id="verified">
+    <h2>Verified venues</h2>
+    <p class="hint">Verifying locks a venue's listings to its code — hand the code to the landlord and
+      only they (and you) can change that venue's events.</p>
+    <div class="grid2" style="align-items:end">
+      <div><label>Venue id (e.g. church-inn)</label><input id="c-id" placeholder="venue-id"></div>
+      <div class="acts"><button class="p" id="c-verify">Verify &amp; get code</button>
+        <button id="c-unverify">Un-verify</button></div>
+    </div>
+    <p class="msg" id="c-msg"></p>
+    <div id="c-list" style="margin-top:6px"></div>
+  </section>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  const CATS = {
+    offer: '🏷️ Offers & deals', food: '🍺 Food & drink', music: '🎵 Live music',
+    quiz: '❓ Quiz nights', ent: '🎤 Entertainment', market: '🧺 Markets & fairs',
+    community: '🎪 Festivals & community', active: '🏃 Sport & fitness', kids: '🧒 Kids & family',
+  };
+  const emoji = (c) => (CATS[c] || '📍').split(' ')[0];
+
+  let adminCode = localStorage.getItem('swo-admin') || '';
+  let principal = null;
+  let cid = localStorage.getItem('swo-cid');
+  if (!cid) { cid = (crypto.randomUUID ? crypto.randomUUID() : 'admin' + Date.now()); localStorage.setItem('swo-cid', cid); }
+
+  let venueNames = new Map();   // id → {name, village}
+  let community = { events: [], venues: [], overrides: [], claimed: [] };
+  let editorial = null;         // data/events.json (extras context for the venue editor)
+
+  async function api(path, body) {
+    const opt = body === undefined ? {} : {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...(adminCode ? { 'x-venue-code': adminCode } : {}) },
+      body: JSON.stringify(body),
+    };
+    const r = await fetch('api/' + path, opt);
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(j.error || 'Server problem (' + r.status + ')');
+    return j;
+  }
+
+  const fmtWhen = (ev) => {
+    if (ev.recurrence) {
+      const D = { mon: 'Mondays', tue: 'Tuesdays', wed: 'Wednesdays', thu: 'Thursdays', fri: 'Fridays', sat: 'Saturdays', sun: 'Sundays' };
+      if (ev.recurrence.freq === 'weekly') return 'Weekly · ' + D[ev.recurrence.day] + (ev.recurrence.until ? ' until ' + ev.recurrence.until : '');
+      const W = { 1: '1st', 2: '2nd', 3: '3rd', 4: '4th', '-1': 'last' };
+      return 'Monthly · ' + W[ev.recurrence.week] + ' ' + D[ev.recurrence.day];
+    }
+    return ev.start + (ev.end && ev.end !== ev.start ? ' → ' + ev.end : '');
+  };
+  const fmtStamp = (iso) => iso ? new Date(iso).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) : '';
+  const vname = (id) => { const v = venueNames.get(id); return v ? v.name + ' · ' + v.village : id; };
+
+  // ---------- community events report ----------
+  function renderEvents() {
+    const q = ($('ev-q').value || '').trim().toLowerCase();
+    const week = Date.now() - 7 * 86400000;
+    const list = [...community.events].sort((a, b) => String(b.updated || '').localeCompare(String(a.updated || '')));
+    let n = 0, h = '';
+    for (const ev of list) {
+      const cats = (ev.categories && ev.categories.length ? ev.categories : [ev.category]);
+      const hay = (ev.title + ' ' + (ev.description || '') + ' ' + vname(ev.venueId) + ' ' + cats.join(' ')).toLowerCase();
+      if (q && !hay.includes(q)) continue;
+      n++;
+      const isNew = ev.updated && new Date(ev.updated).getTime() > week;
+      h += `<div class="row" data-ev="${esc(ev.id)}">
+        <div class="t">${cats.map(emoji).join('')} ${esc(ev.title)}${isNew ? '<span class="new">NEW</span>' : ''}</div>
+        <div class="m">${esc(vname(ev.venueId))} · ${esc(fmtWhen(ev))}${ev.time ? ' · ' + esc(ev.time) : ''}
+          · added by <code>${esc((ev.owner || '').slice(0, 6) || '?')}</code>${ev.updated ? ' · ' + esc(fmtStamp(ev.updated)) : ''}</div>
+        ${ev.description ? `<div class="d">${esc(ev.description)}</div>` : ''}
+        ${ev.offer ? `<span class="offer">${esc(ev.offer)}</span>` : ''}
+        ${ev.voucher ? `<span class="offer">🎟 ${esc(ev.voucher)}</span>` : ''}
+        <div class="acts"><button data-edit="${esc(ev.id)}">Edit</button>
+          <button class="danger" data-del="${esc(ev.id)}">Remove</button></div>
+        <div class="editbox hidden" data-form="${esc(ev.id)}"></div>
+      </div>`;
+    }
+    $('ev-list').innerHTML = h || '<p class="hint">No community events' + (q ? ' match that filter.' : ' yet — everything on the map is editorial.') + '</p>';
+    $('n-events').textContent = community.events.length ? '(' + community.events.length + ')' : '';
+    for (const b of $('ev-list').querySelectorAll('[data-del]')) {
+      b.onclick = async () => {
+        const ev = community.events.find((x) => x.id === b.dataset.del);
+        if (!ev || !confirm('Remove "' + ev.title + '" from the map?')) return;
+        try { await api('events/delete', { venueId: ev.venueId, id: ev.id, client: cid }); await loadCommunity(); renderEvents(); }
+        catch (e) { alert(e.message); }
+      };
+    }
+    for (const b of $('ev-list').querySelectorAll('[data-edit]')) b.onclick = () => openEdit(b.dataset.edit);
+  }
+
+  function openEdit(id) {
+    const ev = community.events.find((x) => x.id === id);
+    const box = document.querySelector('[data-form="' + CSS.escape(id) + '"]');
+    if (!ev || !box) return;
+    if (!box.classList.contains('hidden')) { box.classList.add('hidden'); return; }
+    const cats = (ev.categories && ev.categories.length ? ev.categories : [ev.category]);
+    box.innerHTML = `
+      <label>Title</label><input data-f="title" maxlength="80" value="${esc(ev.title)}">
+      <label>Categories — tick all that fit (first tick is the pin colour)</label>
+      <div class="fcats">${Object.entries(CATS).map(([k, l]) =>
+        `<button type="button" class="fcat" data-k="${k}" aria-pressed="${cats.includes(k)}">${l}</button>`).join('')}</div>
+      <div class="grid2">
+        <div><label>Time (as you'd say it)</label><input data-f="time" maxlength="40" value="${esc(ev.time || '')}"></div>
+        <div><label>Price / offer</label><input data-f="offer" maxlength="60" value="${esc(ev.offer || '')}"></div>
+      </div>
+      <label>Description</label><textarea data-f="description" maxlength="500">${esc(ev.description || '')}</textarea>
+      <div class="grid2">
+        <div><label>Voucher code</label><input data-f="voucher" maxlength="24" value="${esc(ev.voucher || '')}"></div>
+        <div><label>Schedule (fixed — remove &amp; re-add to change)</label>
+          <input value="${esc(fmtWhen(ev))}" disabled></div>
+      </div>
+      <div class="acts"><button class="p" data-save>Save changes</button></div>
+      <p class="msg" data-msg></p>`;
+    box.classList.remove('hidden');
+    for (const c of box.querySelectorAll('.fcat')) {
+      c.onclick = () => c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') !== 'true');
+    }
+    box.querySelector('[data-save]').onclick = async () => {
+      const msg = box.querySelector('[data-msg]');
+      const picked = [...box.querySelectorAll('.fcat[aria-pressed="true"]')].map((c) => c.dataset.k);
+      if (!picked.length) { msg.className = 'msg err'; msg.textContent = 'Tick at least one category.'; return; }
+      const val = (f) => box.querySelector('[data-f="' + f + '"]').value;
+      const event = {
+        id: ev.id, title: val('title'), category: picked[0],
+        categories: picked.length > 1 ? picked : undefined,
+        time: val('time'), description: val('description'),
+        offer: val('offer'), voucher: val('voucher'),
+      };
+      if (ev.recurrence) event.recurrence = ev.recurrence;
+      else { event.start = ev.start; event.end = ev.end; }
+      try {
+        await api('events/submit', { venueId: ev.venueId, client: cid, event });
+        msg.className = 'msg ok'; msg.textContent = 'Saved.';
+        await loadCommunity(); renderEvents();
+      } catch (e) { msg.className = 'msg err'; msg.textContent = e.message; }
+    };
+  }
+
+  // ---------- venue facts (overrides) ----------
+  const allVenues = () => [...venueNames.entries()].map(([id, v]) => ({ id, ...v }));
+  $('v-q').addEventListener('input', () => {
+    const q = $('v-q').value.trim().toLowerCase();
+    const pick = $('v-pick');
+    if (q.length < 2) { pick.classList.add('hidden'); return; }
+    const hits = allVenues().filter((v) => (v.name + ' ' + v.village + ' ' + v.id).toLowerCase().includes(q)).slice(0, 12);
+    pick.innerHTML = hits.map((v) => `<button data-v="${esc(v.id)}">${esc(v.name)} <small>· ${esc(v.village)} · ${esc(v.id)}</small></button>`).join('') ||
+      '<button disabled>Nothing matches</button>';
+    pick.classList.remove('hidden');
+    for (const b of pick.querySelectorAll('[data-v]')) b.onclick = () => { pick.classList.add('hidden'); openVenue(b.dataset.v); };
+  });
+
+  function effective(id) {
+    // what the card shows today: baked/custom + editorial extras (overrides shown separately)
+    const base = venueNames.get(id) || {};
+    const ex = (editorial && editorial.venueExtras && editorial.venueExtras[id]) || {};
+    return {
+      type: ex.type || base.type || '', blurb: ex.blurb || base.blurb || '',
+      hours: ex.hours || base.hours || '', tags: (ex.tags || base.tags || []),
+    };
+  }
+  function openVenue(id) {
+    const v = venueNames.get(id);
+    const ov = community.overrides.find((o) => o.id === id) || {};
+    const eff = effective(id);
+    const box = $('v-edit');
+    box.classList.remove('hidden');
+    box.innerHTML = `
+      <div class="t">${esc(v ? v.name : id)} <span class="pill">${esc(id)}</span>
+        ${community.claimed.includes(id) ? '<span class="pill green">✓ verified</span>' : ''}</div>
+      <div class="m" style="color:var(--muted);font-size:12px">Site currently shows —
+        ${eff.hours ? 'hours: “' + esc(eff.hours) + '” · ' : 'no hours · '}
+        ${eff.blurb ? 'blurb: “' + esc(eff.blurb.slice(0, 90)) + (eff.blurb.length > 90 ? '…' : '') + '”' : 'no blurb'}
+        ${eff.tags.length ? ' · tags: ' + esc(eff.tags.join(', ')) : ''}</div>
+      <label>Opening hours (e.g. <code>Mo off; Tu-Th 12:00-22:30 (food till 20:15); Fr-Sa 12:00-01:00</code>)</label>
+      <input data-o="hours" maxlength="160" value="${esc(ov.hours || '')}">
+      <label>Blurb (a sentence or two of character)</label>
+      <textarea data-o="blurb" maxlength="300">${esc(ov.blurb || '')}</textarea>
+      <div class="grid2">
+        <div><label>Type label (e.g. Pub &amp; kitchen)</label><input data-o="type" maxlength="40" value="${esc(ov.type || '')}"></div>
+        <div><label>Tags, comma-separated (max 8)</label><input data-o="tags" value="${esc((ov.tags || []).join(', '))}"></div>
+      </div>
+      <div class="grid2">
+        <div><label>Website</label><input data-o="website" maxlength="200" placeholder="https://…" value="${esc(ov.website || '')}"></div>
+        <div><label>Phone</label><input data-o="phone" maxlength="30" value="${esc(ov.phone || '')}"></div>
+      </div>
+      <div class="acts"><button class="p" data-vsave>Save override</button>
+        <button class="danger" data-vclear>Clear override</button></div>
+      <p class="msg" data-vmsg></p>`;
+    const val = (f) => box.querySelector('[data-o="' + f + '"]').value.trim();
+    const msg = box.querySelector('[data-vmsg]');
+    box.querySelector('[data-vsave]').onclick = async () => {
+      try {
+        await api('venues/override', { id, set: {
+          hours: val('hours'), blurb: val('blurb'), type: val('type'),
+          tags: val('tags') ? val('tags').split(',').map((t) => t.trim()).filter(Boolean) : [],
+          website: val('website'), phone: val('phone'),
+        } });
+        msg.className = 'msg ok'; msg.textContent = 'Saved — live on the next map load.';
+        await loadCommunity(); renderOverrides();
+      } catch (e) { msg.className = 'msg err'; msg.textContent = e.message; }
+    };
+    box.querySelector('[data-vclear]').onclick = async () => {
+      try {
+        await api('venues/override', { id, clear: true });
+        msg.className = 'msg ok'; msg.textContent = 'Override cleared — back to the built-in data.';
+        await loadCommunity(); renderOverrides(); openVenue(id);
+      } catch (e) { msg.className = 'msg err'; msg.textContent = e.message; }
+    };
+  }
+  function renderOverrides() {
+    const h = community.overrides.map((o) => `<div class="row ovrow">
+      <div class="t">${esc(vname(o.id))}</div>
+      <div class="m">${['hours', 'blurb', 'type', 'website', 'phone'].filter((f) => o[f]).map((f) => f + ': “' + esc(String(o[f]).slice(0, 60)) + '”').join(' · ')}
+        ${o.tags ? ' · tags: ' + esc(o.tags.join(', ')) : ''} <small>· ${esc(fmtStamp(o.updated))}</small></div>
+      <div class="acts"><button data-oedit="${esc(o.id)}">Edit</button></div></div>`).join('');
+    $('v-ovs').innerHTML = h ? '<h2 style="font-size:13px;margin-bottom:4px">Active overrides</h2>' + h : '';
+    for (const b of $('v-ovs').querySelectorAll('[data-oedit]')) b.onclick = () => openVenue(b.dataset.oedit);
+  }
+
+  // ---------- submissions + verify ----------
+  async function renderModeration() {
+    let r;
+    try { r = await api('moderate', { action: 'list' }); }
+    catch (e) { $('sub-list').innerHTML = '<p class="msg err">' + esc(e.message) + '</p>'; return; }
+    const rows = (r.venues || []).sort((a, b) => (a.status === 'pending' ? 0 : 1) - (b.status === 'pending' ? 0 : 1));
+    const pending = rows.filter((v) => v.status === 'pending').length;
+    $('n-subs').textContent = pending ? '(' + pending + ')' : '';
+    $('sub-list').innerHTML = rows.map((v) => `<div class="row">
+      <div class="t">${esc(v.name)} <span class="pill">${esc(v.kind)} · ${esc(v.village)}</span>
+        <span class="pill ${v.status === 'approved' ? 'green' : ''}">${esc(v.status)}</span></div>
+      ${v.blurb ? `<div class="d">${esc(v.blurb)}</div>` : ''}
+      <div class="m">${esc(v.email)} · code <code>${esc(v.code)}</code></div>
+      <div class="acts">${v.status === 'pending' ? `<button class="p" data-ap="${esc(v.id)}">Approve</button>` : ''}
+        <button class="danger" data-rj="${esc(v.id)}">Remove</button></div></div>`).join('') ||
+      '<p class="hint">No submissions.</p>';
+    for (const b of $('sub-list').querySelectorAll('[data-ap]')) {
+      b.onclick = async () => {
+        try { const res = await api('moderate', { action: 'approve', id: b.dataset.ap });
+          alert('Approved. Contact: ' + res.email + '\nVenue code (if you verify them): ' + res.code);
+          await loadCommunity(); renderModeration(); renderEvents(); } catch (e) { alert(e.message); }
+      };
+    }
+    for (const b of $('sub-list').querySelectorAll('[data-rj]')) {
+      b.onclick = async () => {
+        if (!confirm('Remove this submission/venue?')) return;
+        try { await api('moderate', { action: 'reject', id: b.dataset.rj }); await loadCommunity(); renderModeration(); }
+        catch (e) { alert(e.message); }
+      };
+    }
+  }
+  function renderClaimed() {
+    $('c-list').innerHTML = community.claimed.length
+      ? community.claimed.map((id) => `<span class="pill green" style="margin:2px 4px 2px 0">✓ ${esc(vname(id))}</span>`).join('')
+      : '<p class="hint">No venues verified yet.</p>';
+  }
+  $('c-verify').onclick = async () => {
+    const id = $('c-id').value.trim();
+    if (!id) return;
+    try { const r = await api('claim', { id });
+      $('c-msg').className = 'msg ok'; $('c-msg').textContent = 'Verified. Their code: ' + r.code;
+      await loadCommunity(); renderClaimed(); } catch (e) { $('c-msg').className = 'msg err'; $('c-msg').textContent = e.message; }
+  };
+  $('c-unverify').onclick = async () => {
+    const id = $('c-id').value.trim();
+    if (!id) return;
+    try { await api('claim', { id, action: 'unclaim' });
+      $('c-msg').className = 'msg ok'; $('c-msg').textContent = 'Un-verified.';
+      await loadCommunity(); renderClaimed(); } catch (e) { $('c-msg').className = 'msg err'; $('c-msg').textContent = e.message; }
+  };
+
+  // ---------- data + auth ----------
+  async function loadCommunity() {
+    const [ev, vn] = await Promise.all([api('events'), api('venues')]);
+    community.events = (ev.events || []).filter((e) => !e.pool);
+    community.venues = vn.venues || [];
+    community.overrides = vn.overrides || [];
+    community.claimed = vn.claimed || [];
+    for (const v of community.venues) venueNames.set(v.id, { name: v.name, village: v.village || '', type: v.type });
+    for (const e of community.events) {
+      if (e.spot && !venueNames.has(e.venueId)) venueNames.set(e.venueId, { name: e.spot.name, village: 'Saddleworth' });
+    }
+  }
+  async function loadStatic() {
+    const [vd, ed] = await Promise.all([
+      fetch('data/venues.json').then((r) => r.json()),
+      fetch('data/events.json').then((r) => r.json()),
+    ]);
+    editorial = ed;
+    for (const v of (Array.isArray(vd) ? vd : vd.venues)) venueNames.set(v.id, v);
+    for (const v of (ed.customVenues || [])) venueNames.set(v.id, v);
+  }
+
+  $('ev-q').addEventListener('input', renderEvents);
+
+  async function enter() {
+    $('gate').classList.add('hidden');
+    $('portal').classList.remove('hidden');
+    $('who').innerHTML = principal
+      ? '👤 ' + esc(principal.userDetails) + ' · <a href="/.auth/logout?post_logout_redirect_uri=/">sign out</a>'
+      : '🔑 admin code · <a href="#" id="who-out">forget code</a>';
+    const out = $('who-out');
+    if (out) out.onclick = (e) => { e.preventDefault(); localStorage.removeItem('swo-admin'); location.reload(); };
+    await Promise.all([loadStatic(), loadCommunity()]);
+    renderEvents(); renderOverrides(); renderClaimed(); renderModeration();
+  }
+
+  (async () => {
+    try {
+      const r = await fetch('/.auth/me');
+      if (r.ok) { const j = await r.json(); principal = j.clientPrincipal || null; }
+    } catch { }
+    if (principal && (principal.userRoles || []).includes('admin')) { enter(); return; }
+    if (adminCode) {
+      try { await api('moderate', { action: 'list' }); enter(); return; }
+      catch { localStorage.removeItem('swo-admin'); adminCode = ''; }
+    }
+    $('gate').classList.remove('hidden');
+    $('g-go').onclick = async () => {
+      adminCode = $('g-code').value.trim();
+      try {
+        await api('moderate', { action: 'list' });
+        localStorage.setItem('swo-admin', adminCode);
+        enter();
+      } catch (e) { $('g-err').textContent = 'That code was not accepted.'; }
+    };
+    $('g-code').addEventListener('keydown', (e) => { if (e.key === 'Enter') $('g-go').click(); });
+  })();
+})();
+</script>
+</body>
+</html>

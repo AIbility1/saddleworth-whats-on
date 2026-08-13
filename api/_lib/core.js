@@ -49,7 +49,18 @@ function codeOk(venueId, code) {
   const got = String(code).toUpperCase().replace(/[^A-Z0-9]/g, '');
   return safeEq(got, want);
 }
-const adminOk = (code) => !!code && safeEq(String(code), ADMIN);
+// Admin is EITHER the ADMIN_CODE header (dev & emergency fallback) OR a
+// Static Web Apps identity carrying the custom "admin" role. SWA strips any
+// client-sent x-ms-client-principal and injects its own, so the header is
+// trustworthy when the app runs behind SWA.
+const principalRoles = (principal) => {
+  try {
+    const p = JSON.parse(Buffer.from(String(principal || ''), 'base64').toString('utf8'));
+    return Array.isArray(p.userRoles) ? p.userRoles : [];
+  } catch { return []; }
+};
+const adminOk = (code, principal) =>
+  (!!code && safeEq(String(code), ADMIN)) || principalRoles(principal).includes('admin');
 const ownerHash = (client) =>
   crypto.createHash('sha256').update('owner:' + client).digest('hex').slice(0, 16);
 
@@ -78,7 +89,7 @@ class FileStore {
     return keep.length !== all.length;
   }
 }
-const colPk = (col) => (col === 'venues' || col === 'claims' ? 'id' : 'venueId');
+const colPk = (col) => (col === 'venues' || col === 'claims' || col === 'overrides' ? 'id' : 'venueId');
 
 class CosmosStore {
   constructor() {
@@ -225,7 +236,7 @@ async function handleVerify(body, code) {
 const isClaimed = async (store, venueId) =>
   (await store.list('claims')).some((c) => c.id === venueId);
 
-async function handleEventUpsert(body, code) {
+async function handleEventUpsert(body, code, principal) {
   let venueId = str(body && body.venueId, 80);
   const client = str(body && body.client, 64);
   // one-off walks & outdoor events: a "spot" pins the event to a point on the
@@ -249,7 +260,7 @@ async function handleEventUpsert(body, code) {
   if (!store) return noStore();
   // a claimed (verified) venue is locked to its code holder
   if (await isClaimed(store, venueId)) {
-    if (!codeOk(venueId, code) && !adminOk(code)) {
+    if (!codeOk(venueId, code) && !adminOk(code, principal)) {
       return json(401, { error: 'This venue manages its own listings — its code is needed.' });
     }
   }
@@ -259,7 +270,7 @@ async function handleEventUpsert(body, code) {
   const owner = ownerHash(client);
   if (body.event && body.event.id) {
     const existing = (await store.list('events')).find((e) => e.id === v.event.id);
-    if (existing && existing.owner !== owner && !adminOk(code) && !codeOk(venueId, code)) {
+    if (existing && existing.owner !== owner && !adminOk(code, principal) && !codeOk(venueId, code)) {
       return json(403, { error: 'Only the person who added a listing can change it.' });
     }
     v.event.owner = existing ? existing.owner : owner;
@@ -270,13 +281,13 @@ async function handleEventUpsert(body, code) {
   await store.upsert('events', v.event);
   return json(200, { ok: true, event: v.event });
 }
-async function handleEventDelete(body, code) {
+async function handleEventDelete(body, code, principal) {
   const venueId = str(body && body.venueId, 80);
   const client = str(body && body.client, 64);
   const id = str(body && body.id, 120);
   const store = getStore();
   if (!store) return noStore();
-  if (!adminOk(code) && !codeOk(venueId, code)) {
+  if (!adminOk(code, principal) && !codeOk(venueId, code)) {
     if (await isClaimed(store, venueId)) {
       return json(401, { error: 'This venue manages its own listings — its code is needed.' });
     }
@@ -293,8 +304,8 @@ async function handleEventDelete(body, code) {
 async function handleVenuesList() {
   const store = getStore();
   if (!store) return noStore();
-  const [venues, ratings, claims] = await Promise.all(
-    [store.list('venues'), store.list('ratings'), store.list('claims')]);
+  const [venues, ratings, claims, overrides] = await Promise.all(
+    [store.list('venues'), store.list('ratings'), store.list('claims'), store.list('overrides')]);
   const agg = {}, eAgg = {};
   for (const r of ratings) {
     const bucket = r.eventId
@@ -309,7 +320,39 @@ async function handleVenuesList() {
     ratings: roll(agg),
     eventRatings: roll(eAgg),
     claimed: claims.map((c) => c.id),
+    overrides,
   });
+}
+// admin-edited venue facts (hours, blurb, tags…) — sit on top of the baked +
+// editorial data at load time, so the admin portal can fix a venue card
+// without a code change and deploy
+async function handleVenueOverride(body, code, principal) {
+  if (!adminOk(code, principal)) return json(401, { error: 'Admins only.' });
+  const store = getStore();
+  if (!store) return noStore();
+  const id = str(body && body.id, 80);
+  if (!id) return json(400, { error: 'Which venue?' });
+  if (body && body.clear) {
+    await store.remove('overrides', id, id);
+    return json(200, { ok: true });
+  }
+  const s = (body && body.set) || {};
+  const out = { id };
+  const hours = str(s.hours, 160); if (hours) out.hours = hours;
+  const blurb = str(s.blurb, 300); if (blurb) out.blurb = blurb;
+  const type = str(s.type, 40); if (type) out.type = type;
+  const village = str(s.village, 30); if (village) out.village = village;
+  if (Array.isArray(s.tags)) {
+    const tags = s.tags.map((t) => str(t, 30)).filter(Boolean).slice(0, 8);
+    if (tags.length) out.tags = tags;
+  }
+  const website = str(s.website, 200);
+  if (/^https?:\/\/\S+$/.test(website)) out.website = website;
+  const phone = str(s.phone, 30); if (phone) out.phone = phone;
+  if (Object.keys(out).length === 1) return json(400, { error: 'Nothing to set — fill a field or use clear.' });
+  out.updated = new Date().toISOString();
+  await store.upsert('overrides', out);
+  return json(200, { ok: true, override: out });
 }
 async function handleVenueSubmit(body) {
   const store = getStore();
@@ -319,8 +362,8 @@ async function handleVenueSubmit(body) {
   await store.upsert('venues', v.venue);
   return json(200, { ok: true, id: v.venue.id });
 }
-async function handleModerate(body, code) {
-  if (!adminOk(code)) return json(401, { error: 'Wrong admin code.' });
+async function handleModerate(body, code, principal) {
+  if (!adminOk(code, principal)) return json(401, { error: 'Wrong admin code.' });
   const store = getStore();
   if (!store) return noStore();
   const action = str(body && body.action, 20);
@@ -346,8 +389,8 @@ async function handleModerate(body, code) {
 }
 // verify/lock a venue: once claimed, its listings need its code (any venue id,
 // baked or community). Returns the code to hand to the business.
-async function handleClaim(body, code) {
-  if (!adminOk(code)) return json(401, { error: 'Wrong admin code.' });
+async function handleClaim(body, code, principal) {
+  if (!adminOk(code, principal)) return json(401, { error: 'Wrong admin code.' });
   const store = getStore();
   if (!store) return noStore();
   const id = str(body && body.id, 120);
@@ -434,5 +477,5 @@ module.exports = {
   venueCode, codeOk,
   handleEventsList, handleVerify, handleEventUpsert, handleEventDelete,
   handleVenuesList, handleVenueSubmit, handleModerate, handleClaim, handleRate,
-  handlePool,
+  handleVenueOverride, handlePool,
 };

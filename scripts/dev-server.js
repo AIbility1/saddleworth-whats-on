@@ -10,7 +10,7 @@ const path = require('path');
 const core = require('../api/_lib/core');
 
 const ROOT = path.join(__dirname, '..', 'app');
-const PORT = 8130;
+const PORT = +process.env.PORT || 8130;
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8',
   '.css': 'text/css; charset=utf-8', '.json': 'application/json; charset=utf-8',
@@ -24,6 +24,7 @@ const ROUTES = {
   'POST /api/events/submit': (body, code) => core.handleEventUpsert(body, code),
   'POST /api/events/delete': (body, code) => core.handleEventDelete(body, code),
   'POST /api/venues/submit': (body) => core.handleVenueSubmit(body),
+  'POST /api/venues/override': (body, code) => core.handleVenueOverride(body, code),
   'POST /api/moderate': (body, code) => core.handleModerate(body, code),
   'POST /api/claim': (body, code) => core.handleClaim(body, code),
   'GET /api/pool': () => core.handlePool(),
@@ -56,6 +57,7 @@ http.createServer((req, res) => {
   // static files
   let p = decodeURIComponent(url.pathname);
   if (p === '/') p = '/index.html';
+  if (p === '/admin') p = '/admin.html';   // in production SWA does this rewrite (role-gated)
   const file = path.join(ROOT, p);
   if (!file.startsWith(ROOT) || p.startsWith('/.') || p.startsWith('/api/')) {
     res.writeHead(403); res.end(); return;

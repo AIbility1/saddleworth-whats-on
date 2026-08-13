@@ -917,6 +917,26 @@
       ratings = vn.ratings || {};
       eventRatings = vn.eventRatings || {};
       claimed = new Set(vn.claimed || []);
+      // admin overrides (set in /admin) sit on top of baked + editorial facts;
+      // restore any previously-applied override first so clears take effect
+      for (const v of venues.values()) {
+        if (v._ov) { Object.assign(v, v._ov); delete v._ov; }
+      }
+      for (const o of (vn.overrides || [])) {
+        const v = venues.get(o.id);
+        if (!v) continue;
+        v._ov = { type: v.type, blurb: v.blurb, hours: v.hours, tags: v.tags,
+                  links: v.links, village: v.village };
+        if (o.type) v.type = o.type;
+        if (o.blurb) v.blurb = o.blurb;
+        if (o.hours) v.hours = o.hours;
+        if (o.village) v.village = o.village;
+        if (o.tags) v.tags = o.tags;
+        if (o.website || o.phone) {
+          v.links = { ...v.links, ...(o.website ? { website: o.website } : {}),
+                      ...(o.phone ? { phone: o.phone } : {}) };
+        }
+      }
       for (const e of (ev.events || [])) {
         // community walks & outdoor events carry their own map spot
         if (e.spot && !venues.has(e.venueId)) {
@@ -1204,6 +1224,8 @@
   // ---- moderation (open the site with #admin) ----
   function openAdmin() {
     openForm(`<h2>Moderation</h2>
+      <p class="fsub">The full admin portal now lives at <a href="/admin">/admin</a>
+        (GitHub sign-in) — events review, venue facts, submissions. This overlay is the quick fallback.</p>
       <label>Admin code</label><input id="a-code" type="password" value="${esc(localStorage.getItem('swo-admin') || '')}">
       <button class="btn-p" id="a-load">Load submissions</button>
       <p class="err" id="a-err"></p><div class="mine" id="a-list"></div>`);
