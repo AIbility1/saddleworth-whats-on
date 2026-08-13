@@ -2768,6 +2768,19 @@
       "source": "local knowledge"
     },
     {
+      "id": "hare-darts",
+      "business": "hare-and-hounds",
+      "title": "Darts Night",
+      "category": "active",
+      "time": "Evening",
+      "recurrence": {
+        "freq": "weekly",
+        "day": "thu"
+      },
+      "description": "Thursday darts at the Hare & Hounds — boards up, all welcome.",
+      "source": "local knowledge"
+    },
+    {
       "id": "albion-dj",
       "business": "albion-tap",
       "title": "Friday DJ Night",

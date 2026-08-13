@@ -42,6 +42,8 @@ and deploy.
   close on Google/Dish Cult before seeding (that was the Muse complaint)
 
 **Phone/ask-level gaps (web is exhausted — see log before re-searching):**
+- Darts nights — user confirmed Hare & Hounds Thursdays (seeded 13 Aug); which
+  other pubs have boards/nights? Ask around or pub FB pages — not web-findable
 - Boarshurst Band Club kids activities — user believes something runs; get
   specifics from them or the club (01457 875836 / boarshurstband.co.uk)
 - Girlguiding Saddleworth unit nights — register interest on girlguiding.org.uk

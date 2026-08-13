@@ -408,9 +408,10 @@
   #credit { position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); z-index: 15;
             background: rgba(255, 255, 255, 0.92); border: 1px solid var(--hairline);
             box-shadow: var(--shadow-sm); border-radius: 999px; padding: 4px 14px;
-            font-size: 11px; font-weight: 500; color: var(--muted); white-space: nowrap; }
-  #credit a { color: var(--ink-soft); font-weight: 600; text-decoration: none; }
-  #credit a:hover { color: var(--accent); }
+            font-size: 11px; font-weight: 500; color: var(--ink); white-space: nowrap; }
+  #credit a { color: var(--ink); font-weight: 600; text-decoration: none; }
+  #credit a b { color: var(--accent); }
+  #credit a:hover { text-decoration: underline; }
   body.placing #credit { display: none; }
 
   /* ---- zoom control: buttons + a vertical zoom bar ---- */
@@ -465,12 +466,13 @@
     #zoomctl { bottom: 8px; right: 10px; }
     #zoomctl button { width: 36px; height: 42px; }
     #timebar { right: 56px; }
-    #credit { bottom: 182px; }
+    /* stack, bottom-up: date bar → credit → preset chips */
+    #credit { bottom: 126px; }
     /* the scenario shortcuts ride above the time bar, full width, with
        arrows so the overflow is obvious */
     #side .scen-row { display: none; }
     #scen-wrap { display: flex; align-items: center; gap: 3px; position: fixed;
-                 left: 6px; right: 6px; bottom: 136px; z-index: 16; }
+                 left: 6px; right: 6px; bottom: 154px; z-index: 16; }
     #scen-float { display: flex; gap: 6px; flex: 1; min-width: 0; overflow-x: auto;
                   scrollbar-width: none; padding: 2px; -webkit-overflow-scrolling: touch; }
     #scen-float::-webkit-scrollbar { display: none; }
@@ -673,7 +675,7 @@ offers venues publish themselves. It needs JavaScript to draw the map.</p></nosc
   <button id="z-out" aria-label="Zoom out">−</button>
 </div>
 
-<div id="credit">Designed by <a href="https://www.aibility.co.uk/" target="_blank" rel="noreferrer">AIbility</a></div>
+<div id="credit">Designed by <a href="https://www.aibility.co.uk/" target="_blank" rel="noreferrer"><b>AI</b>bility</a></div>
 
 <script src="js/map-art.js"></script>
 <script src="js/app.js"></script>
