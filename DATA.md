@@ -99,9 +99,12 @@ Every event has a `category`, which controls the pin colour and glyph:
 | `offer`     | 🏷️ Offers & deals        |
 | `food`      | 🍺 Food & drink          |
 | `music`     | 🎵 Live music            |
-| `quiz`      | ❓ Quiz & comedy          |
+| `quiz`      | ❓ Quiz nights            |
+| `ent`       | 🎤 Entertainment — karaoke, comedy, bingo & party nights |
 | `market`    | 🧺 Markets & fairs       |
 | `community` | 🎪 Festivals & community |
+| `active`    | 🏃 Sport & fitness       |
+| `kids`      | 🧒 Kids & family         |
 
 An event that genuinely sits in more than one bucket (Abaco's three-plates-£25
 Thursday is both food *and* an offer) may add a `categories` array — up to

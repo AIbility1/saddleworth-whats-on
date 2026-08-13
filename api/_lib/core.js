@@ -23,7 +23,7 @@ const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
-const CATS = ['offer', 'food', 'music', 'quiz', 'market', 'community', 'active', 'kids'];
+const CATS = ['offer', 'food', 'music', 'quiz', 'ent', 'market', 'community', 'active', 'kids'];
 const DOWS = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 const KINDS = ['pub', 'cafe', 'restaurant', 'takeaway', 'shop', 'hall', 'attraction', 'club', 'sport'];
 const SECRET = process.env.VENUE_CODE_SECRET || 'dev-secret-change-me';

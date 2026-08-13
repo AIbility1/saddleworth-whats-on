@@ -2331,7 +2331,7 @@
       "id": "millgate-comedy-2026-09",
       "business": "millgate-arts-centre",
       "title": "Delph Comedy Night",
-      "category": "quiz",
+      "category": "ent",
       "start": "2026-09-05",
       "time": "Evening",
       "description": "Stand-up at the Millgate.",
@@ -2771,7 +2771,7 @@
       "id": "weavers-karaoke-fri",
       "business": "weavers-arms",
       "title": "Friday DJ & Karaoke",
-      "category": "music",
+      "category": "ent",
       "time": "From 19:30",
       "recurrence": { "freq": "weekly", "day": "fri" },
       "source": "https://www.weaversarmsoldham.co.uk/"
@@ -2789,7 +2789,7 @@
       "id": "weavers-karaoke-sun",
       "business": "weavers-arms",
       "title": "Sunday DJ & Karaoke",
-      "category": "music",
+      "category": "ent",
       "time": "From 19:30",
       "recurrence": { "freq": "weekly", "day": "sun" },
       "source": "https://www.weaversarmsoldham.co.uk/"
@@ -2798,7 +2798,7 @@
       "id": "redlion-karaoke-fri",
       "business": "red-lion",
       "title": "Karaoke with DJ John",
-      "category": "music",
+      "category": "ent",
       "time": "From 21:00",
       "recurrence": { "freq": "weekly", "day": "fri" },
       "source": "https://www.redlionoldham.co.uk/"
@@ -2807,7 +2807,7 @@
       "id": "redlion-karaoke-sat",
       "business": "red-lion",
       "title": "Karaoke with DJ John",
-      "category": "music",
+      "category": "ent",
       "time": "From 21:00",
       "recurrence": { "freq": "weekly", "day": "sat" },
       "source": "https://www.redlionoldham.co.uk/"
@@ -2816,7 +2816,7 @@
       "id": "granby-karaoke-sun",
       "business": "granby-arms",
       "title": "Sunday Karaoke & Entertainment",
-      "category": "music",
+      "category": "ent",
       "time": "Evening",
       "recurrence": { "freq": "weekly", "day": "sun" },
       "source": "https://camra.org.uk/pubs/granby-arms-uppermill-153152"
@@ -2825,7 +2825,7 @@
       "id": "royalgeorge-comedy",
       "business": "royal-george",
       "title": "Off The Rails Comedy Club",
-      "category": "quiz",
+      "category": "ent",
       "time": "Evening · ticketed",
       "recurrence": { "freq": "monthly", "week": -1, "day": "sun" },
       "description": "Stand-up night on the last Sunday of the month — tickets via the pub or Skiddle.",
@@ -2904,21 +2904,12 @@
       "id": "civic-ravebingo-2026",
       "business": "uppermill-civic-hall",
       "title": "Ultimate Rave Bingo (18+)",
-      "category": "music",
-      "categories": ["music", "quiz"],
+      "category": "ent",
+      "categories": ["ent", "music"],
       "start": "2026-09-11",
       "time": "19:00–23:00 · last entry 19:45",
       "description": "DJs, bingo and daft prizes — tickets on Skiddle.",
       "source": "https://www.skiddle.com/whats-on/Oldham/near/Uppermill/town-t39436/"
-    },
-    {
-      "id": "millgate-comedy-sep-2026",
-      "business": "millgate-arts-centre",
-      "title": "Delph Comedy Night",
-      "category": "quiz",
-      "start": "2026-09-05",
-      "time": "Evening",
-      "source": "https://millgateartscentre.co.uk/saddleworth-live/"
     },
     {
       "id": "millgate-greatest-shows-2026",
@@ -2945,7 +2936,7 @@
       "id": "conclub-karaoke-fri",
       "business": "uppermill-conservative-club",
       "title": "Friday Karaoke",
-      "category": "music",
+      "category": "ent",
       "time": "Evening",
       "recurrence": {
         "freq": "weekly",
@@ -2958,7 +2949,7 @@
       "id": "conclub-karaoke-sat",
       "business": "uppermill-conservative-club",
       "title": "Saturday Karaoke",
-      "category": "music",
+      "category": "ent",
       "time": "Evening",
       "recurrence": {
         "freq": "weekly",
@@ -2971,7 +2962,7 @@
       "id": "conclub-ladies-night-2026-08",
       "business": "uppermill-conservative-club",
       "title": "Ladies' Night — Male Entertainer",
-      "category": "music",
+      "category": "ent",
       "start": "2026-08-15",
       "time": "Evening",
       "description": "One-off party night at the Con Club — details and tickets from the club; best to confirm before travelling.",
