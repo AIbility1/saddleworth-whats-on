@@ -751,6 +751,17 @@
       if (b) applyScenario(b.dataset.s);
     });
   }
+  // little arrows on the mobile chip row, so the overflow is discoverable
+  const scenF = $('scen-float'), scenL = $('scen-l'), scenR = $('scen-r');
+  function updScenArrows() {
+    scenL.disabled = scenF.scrollLeft <= 4;
+    scenR.disabled = scenF.scrollLeft >= scenF.scrollWidth - scenF.clientWidth - 4;
+  }
+  scenL.onclick = () => scenF.scrollBy({ left: -170, behavior: 'smooth' });
+  scenR.onclick = () => scenF.scrollBy({ left: 170, behavior: 'smooth' });
+  scenF.addEventListener('scroll', updScenArrows, { passive: true });
+  addEventListener('resize', updScenArrows);
+  updScenArrows();
 
   $('filter-btn').onclick = () => {
     const open = !$('filters').classList.toggle('collapsed');
@@ -865,6 +876,7 @@
   }
   function syncSunChip() {
     for (const el of document.querySelectorAll('.scen[data-s="sun"]')) el.hidden = !sunChipOn();
+    updScenArrows();             // the row's width just changed
   }
   setInterval(updateWeather, 15 * 60 * 1000);
   updateWeather();

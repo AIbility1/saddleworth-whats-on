@@ -154,7 +154,7 @@
                 color: var(--accent); cursor: pointer; }
   .chip-clear:hover { background: var(--accent); color: #fff; }
   .chip-clear[hidden] { display: none; }
-  #scen-float { display: none; }
+  #scen-wrap { display: none; }
   #filter-pill { display: none; }
 
   #showing { margin: 8px 14px 0; padding: 6px 10px; border-radius: var(--r-sm);
@@ -467,12 +467,19 @@
     #zoomctl button { width: 36px; height: 42px; }
     #timebar { right: 56px; }
     #credit { bottom: 182px; }
-    /* the scenario shortcuts ride above the time bar, full width */
+    /* the scenario shortcuts ride above the time bar, full width, with
+       arrows so the overflow is obvious */
     #side .scen-row { display: none; }
-    #scen-float { display: flex; gap: 6px; position: fixed; left: 10px; right: 10px;
-                  bottom: 136px; z-index: 16; overflow-x: auto; scrollbar-width: none;
-                  padding: 2px; -webkit-overflow-scrolling: touch; }
+    #scen-wrap { display: flex; align-items: center; gap: 3px; position: fixed;
+                 left: 6px; right: 6px; bottom: 136px; z-index: 16; }
+    #scen-float { display: flex; gap: 6px; flex: 1; min-width: 0; overflow-x: auto;
+                  scrollbar-width: none; padding: 2px; -webkit-overflow-scrolling: touch; }
     #scen-float::-webkit-scrollbar { display: none; }
+    .scr-btn { flex: 0 0 auto; width: 25px; height: 29px; border: 1px solid var(--hairline);
+               border-radius: 999px; background: var(--surface); box-shadow: var(--shadow-sm);
+               color: var(--ink-soft); font-size: 15px; font-weight: 700; line-height: 1;
+               cursor: pointer; padding: 0 0 2px; }
+    .scr-btn:disabled { opacity: 0.3; }
     #scen-float .scen { flex: 0 0 auto; background: var(--surface);
                         box-shadow: var(--shadow-sm); border: 1px solid var(--hairline); }
     #scen-float .scen.on { background: var(--accent); color: #fff; border-color: var(--accent); }
@@ -600,7 +607,11 @@ offers venues publish themselves. It needs JavaScript to draw the map.</p></nosc
 </div>
 
 <button id="side-toggle" aria-expanded="false">📋 <b>List&nbsp;&amp;&nbsp;filters</b></button>
-<div id="scen-float" role="group" aria-label="Quick shortcuts"></div>
+<div id="scen-wrap">
+  <button class="scr-btn" id="scen-l" aria-label="Scroll shortcuts left">‹</button>
+  <div id="scen-float" role="group" aria-label="Quick shortcuts"></div>
+  <button class="scr-btn" id="scen-r" aria-label="Scroll shortcuts right">›</button>
+</div>
 <button id="filter-pill" title="Clear filters"></button>
 
 <aside id="side" class="panel">
