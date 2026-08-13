@@ -44,6 +44,9 @@
   const kindGroup = (k) => Object.keys(KINDG).find((g) => KINDG[g].kinds.includes(k)) || 'comm';
   // an event may sit in several categories (e.g. food + offer); first is primary
   const evCats = (ev) => (ev.categories && ev.categories.length ? ev.categories : [ev.category]);
+  // "a drink in the sun": pubs/cafés/restaurants with somewhere to sit outside
+  const sunnySpot = (v) => ['pub', 'cafe', 'restaurant'].includes(v.kind) &&
+    (v.tags || []).some((t) => /beer garden|outdoor|terrace|garden/i.test(t));
   const DOW = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 };
   const DAY = 86400000, LIST_CAP = 400;
 
@@ -53,6 +56,7 @@
   const parseISO = (s) => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
   const dayDiff = (a, b) => Math.round((a - b) / DAY);
   const fmtShort = (d) => d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+  const fmtHM = (m) => `${Math.floor(m / 60)}:${String(Math.floor(m % 60)).padStart(2, '0')}`;
   const fmtFull = (d) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
   const fmtHead = (d) => {
     const base = d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
@@ -67,6 +71,7 @@
   let lo = 0, hi = 30;         // window, days relative to today
   let activeKinds = new Set(Object.keys(KINDG));
   let activeCats = new Set(Object.keys(CATS));
+  let sunOnly = false;         // "a drink in the sun": only outdoor-table venues
   let query = '';
   let selected = null;
 
@@ -316,6 +321,7 @@
     return t.includes(query);
   };
   const visible = (inst) => activeKinds.has(kindGroup(inst.venue.kind)) &&
+    (!sunOnly || sunnySpot(inst.venue)) &&
     evCats(inst.ev).some((c) => activeCats.has(c)) && matchText(inst);
 
   // ================= rendering =================
@@ -339,6 +345,7 @@
       if (!activeKinds.has(g)) continue;
       const insts = byVenue.get(v.id);
       const has = insts && insts.length;
+      if (sunOnly && !sunnySpot(v) && selected !== v.id) continue;
       if (catFiltered && !has && selected !== v.id) continue;
       const [x, y] = project(v.lat, v.lng);
       const sel = selected === v.id ? ' sel' : '';
@@ -374,9 +381,16 @@
     }
     if (shown.length > LIST_CAP) lh += `<p id="more">…and ${shown.length - LIST_CAP} more — narrow the dates to see them all</p>`;
     const defaultState = activeKinds.size === Object.keys(KINDG).length &&
-                         activeCats.size === Object.keys(CATS).length && !query;
+                         activeCats.size === Object.keys(CATS).length && !query && !sunOnly;
     if (!shown.length) {
-      if (!defaultState) {
+      if (sunOnly) {
+        // no events needed — with this one, the pins themselves are the answer
+        const n = [...venues.values()].filter(sunnySpot).length;
+        lh = `<p id="more">☀️ The map is showing all ${n} spots with outdoor tables —
+          daylight over the valley till about ${fmtHM(sunTimes(new Date()).set)}.
+          Tap a pin and pick your sun trap.<br>
+          <button class="linkish" data-clearf>✕ show everything</button></p>`;
+      } else if (!defaultState) {
         // never blame the data when it's the filters — and never dead-end
         const nxt = expand(addDays(t1, 1), addDays(t1, 14)).filter(visible)[0];
         lh = `<p id="more">Nothing matches these filters for ${fmtShort(t0)} – ${fmtShort(t1)}.` +
@@ -410,6 +424,7 @@
       if (scen) desc = SCEN[scen].label;
       else {
         const parts = [];
+        if (sunOnly) parts.push('☀️ outdoor tables');
         if (activeCats.size !== Object.keys(CATS).length) parts.push([...activeCats].map((c) => CATS[c].label).join(' + '));
         if (activeKinds.size !== Object.keys(KINDG).length) parts.push([...activeKinds].map((g) => KINDG[g].label).join(' + '));
         if (query) parts.push('“' + esc(query) + '”');
@@ -467,11 +482,8 @@
     if (v.blurb) hh += `<p class="blurb">${esc(v.blurb)}</p>`;
     if (v.tags && v.tags.length) hh += `<div class="meta">${v.tags.map((t) => `<span class="mchip">${esc(t)}</span>`).join('')}</div>`;
     // outdoor-seating venues get today's daylight window (shade is the garden's own secret)
-    if (['pub', 'cafe', 'restaurant'].includes(v.kind) &&
-        (v.tags || []).some((t) => /beer garden|outdoor|terrace|garden/i.test(t))) {
-      const st = sunTimes(new Date());
-      const hm = (m) => `${Math.floor(m / 60)}:${String(Math.floor(m % 60)).padStart(2, '0')}`;
-      hh += `<p class="sun-note">☀️ Outdoor tables here — daylight over the valley till about ${hm(st.set)} today</p>`;
+    if (sunnySpot(v)) {
+      hh += `<p class="sun-note">☀️ Outdoor tables here — daylight over the valley till about ${fmtHM(sunTimes(new Date()).set)} today</p>`;
     }
     if (v.address) hh += `<p class="addr">${esc(v.address)}</p>`;
     if (v.hours) {
@@ -694,6 +706,8 @@
     quiz:  { label: '❓ Quiz nights this week',   cats: ['quiz'], lo: 0, hi: 6 },
     kids:  { label: '🧒 For kids & families',     cats: ['kids'], lo: 0, hi: 6 },
     walk:  { label: '🥾 A walk today',            kinds: ['out'], lo: 0, hi: 0 },
+    // only offered while the sun is actually out — see syncSunChip()
+    sun:   { label: '☀️ A drink in the sun',      sun: true, lo: 0, hi: 0 },
   };
   function syncPressed() {
     for (const c of $('chips').children) c.setAttribute('aria-pressed', activeKinds.has(c.dataset.c));
@@ -703,7 +717,7 @@
     if (query) return null;
     for (const [k, s] of Object.entries(SCEN)) {
       const kinds = s.kinds || Object.keys(KINDG), cats = s.cats || Object.keys(CATS);
-      if (lo === s.lo && hi === s.hi &&
+      if (lo === s.lo && hi === s.hi && !!s.sun === sunOnly &&
           activeKinds.size === kinds.length && kinds.every((x) => activeKinds.has(x)) &&
           activeCats.size === cats.length && cats.every((x) => activeCats.has(x))) return k;
     }
@@ -716,12 +730,14 @@
     if (!s || again) {
       activeKinds = new Set(Object.keys(KINDG));
       activeCats = new Set(Object.keys(CATS));
+      sunOnly = false;
       syncPressed();
       setWindow(0, 6);
       return;
     }
     activeKinds = new Set(s.kinds || Object.keys(KINDG));
     activeCats = new Set(s.cats || Object.keys(CATS));
+    sunOnly = !!s.sun;
     syncPressed();
     setWindow(s.lo, s.hi);
     if (innerWidth <= 760) {          // the answer is the list — show it
@@ -731,7 +747,7 @@
   }
   const resetFilters = () => applyScenario(null);
   const scenHTML = Object.entries(SCEN).map(([k, s]) =>
-    `<button class="scen" data-s="${k}">${s.label}</button>`).join('');
+    `<button class="scen" data-s="${k}"${s.sun ? ' hidden' : ''}>${s.label}</button>`).join('');
   for (const holder of [$('scen-side'), $('scen-float')]) {
     holder.innerHTML = scenHTML;
     holder.addEventListener('click', (e) => {
@@ -793,6 +809,7 @@
                    mins >= 180 && mins <= 390 && mode === 'night') || location.hash === '#bloodmoon';
     if (location.hash === '#bloodmoon') basemap.classList.add('night');
     basemap.classList.toggle('blood', blood);
+    syncSunChip();               // the chip retires itself at dusk
   }
   setInterval(updateDayNight, 60000);
 
@@ -801,6 +818,7 @@
   // rain / snow / storm / fog overlays. Preview: #rain #downpour #snow #storm #fog.
   const weatherEl = $('weather');
   let stormTimer = null;
+  let wxCode = null;           // latest Open-Meteo weather code (null until first fetch)
   function setWeather(eff) {
     weatherEl.className = eff;
     if (eff.includes('storm') && !stormTimer) {
@@ -827,14 +845,30 @@
     return '';
   }
   async function updateWeather() {
-    const preview = { '#rain': 61, '#downpour': 65, '#snow': 73, '#storm': 95, '#fog': 45 }[location.hash];
-    if (preview !== undefined) { setWeather(effectFor(preview)); return; }
+    const preview = { '#rain': 61, '#downpour': 65, '#snow': 73, '#storm': 95, '#fog': 45, '#sun': 0 }[location.hash];
+    if (preview !== undefined) { wxCode = preview; setWeather(effectFor(preview)); syncSunChip(); return; }
     try {
       const r = await fetch('https://api.open-meteo.com/v1/forecast?latitude=53.55&longitude=-2.005' +
         '&current=weather_code&timezone=Europe%2FLondon');
       const j = await r.json();
-      setWeather(effectFor(j.current.weather_code));
+      wxCode = j.current.weather_code;
+      setWeather(effectFor(wxCode));
     } catch { /* the sky abides — never break the map over a weather fetch */ }
+    syncSunChip();
+  }
+  // "A drink in the sun" is only on offer while it's genuinely sunny out there:
+  // clear-ish sky (Open-Meteo code 0/1/2) and the sun up until ~45 min before set.
+  // #sun previews it regardless of the clock.
+  function sunChipOn() {
+    if (location.hash === '#sun') return true;
+    if (![0, 1, 2].includes(wxCode)) return false;
+    const now = new Date();
+    const mins = now.getHours() * 60 + now.getMinutes();
+    const { rise, set } = sunTimes(now);
+    return mins >= rise && mins <= set - 45;
+  }
+  function syncSunChip() {
+    for (const el of document.querySelectorAll('.scen[data-s="sun"]')) el.hidden = !sunChipOn();
   }
   setInterval(updateWeather, 15 * 60 * 1000);
   updateWeather();
