@@ -142,8 +142,12 @@
   function applyView() {
     const vw = innerWidth, vh = innerHeight;
     const ws = W * view.s, hs = H * view.s, pad = 70;
+    // phones: the bottom UI stack (chips + credit + time bar) covers ~190px,
+    // so allow the map's south edge to be dragged up above it
+    const padB = vw <= 760 ? 260 : pad;
     view.x = ws <= vw ? (vw - ws) / 2 : Math.min(pad, Math.max(vw - ws - pad, view.x));
-    view.y = hs <= vh ? (vh - hs) / 2 : Math.min(pad, Math.max(vh - hs - pad, view.y));
+    view.y = hs <= vh ? (vh - hs) / 2 - (vw <= 760 ? 70 : 0)
+                      : Math.min(pad, Math.max(vh - hs - padB, view.y));
     world.style.transform = `translate(${view.x}px, ${view.y}px) scale(${view.s})`;
     markersEl.style.setProperty('--inv', 1 / view.s);
     if (!committed) commitView();

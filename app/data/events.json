@@ -2362,6 +2362,7 @@
       "business": "millgate-arts-centre",
       "title": "The Pied Piper of Hamelin — panto season",
       "category": "community",
+      "categories": ["community", "ent", "kids"],
       "start": "2026-12-05",
       "time": "Runs from 5 December",
       "description": "The Millgate’s festive show. Oh yes it is.",
@@ -2382,6 +2383,7 @@
       "business": "millgate-arts-centre",
       "title": "Hay Fever",
       "category": "community",
+      "categories": ["community", "ent"],
       "start": "2027-04-17",
       "time": "Week commencing 17 Apr",
       "description": "Noël Coward’s comedy of appalling manners, by the Saddleworth Players.",
@@ -2759,6 +2761,7 @@
       "business": "hare-and-hounds",
       "title": "Saturday Night Disco",
       "category": "music",
+      "categories": ["music", "ent"],
       "time": "Evening",
       "recurrence": {
         "freq": "weekly",
@@ -2986,6 +2989,7 @@
       "business": "albion-tap",
       "title": "Friday DJ Night",
       "category": "music",
+      "categories": ["music", "ent"],
       "time": "Evening",
       "recurrence": {
         "freq": "weekly",
@@ -3108,6 +3112,7 @@
       "business": "muse",
       "title": "Sunday DJ",
       "category": "music",
+      "categories": ["music", "ent"],
       "time": "From 13:00",
       "recurrence": {
         "freq": "weekly",
@@ -3258,6 +3263,7 @@
       "business": "gate-inn",
       "title": "Saturday Live Entertainment",
       "category": "music",
+      "categories": ["music", "ent"],
       "time": "From 21:00",
       "recurrence": {
         "freq": "weekly",
