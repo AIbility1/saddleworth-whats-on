@@ -707,6 +707,7 @@
     laughs: { label: '😂 Something for laughs',   cats: ['ent'], lo: 0, hi: 6 },
     kids:  { label: '🧒 For kids & families',     cats: ['kids'], lo: 0, hi: 6 },
     walk:  { label: '🥾 A walk today',            kinds: ['out'], lo: 0, hi: 0 },
+    club:  { label: '🤝 Join a new club',         cats: ['active'], lo: 0, hi: 6 },
     // only offered while the sun is actually out — see syncSunChip()
     sun:   { label: '☀️ A drink in the sun',      sun: true, lo: 0, hi: 0 },
   };
