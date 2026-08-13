@@ -435,11 +435,6 @@
       showingEl.innerHTML = `Showing: <b>${desc}</b><button title="Clear filters">✕ show everything</button>`;
       showingEl.querySelector('button').onclick = resetFilters;
     }
-    const pill = $('filter-pill');
-    pill.classList.toggle('vis', !defaultState);
-    pill.textContent = defaultState ? '' : (scen ? SCEN[scen].label : 'Filters on') + ' ✕';
-    pill.onclick = resetFilters;
-
     const nv = byVenue.size;
     $('count').textContent = `${shown.length} listing${shown.length === 1 ? '' : 's'} at ${nv} venue${nv === 1 ? '' : 's'} · ${fmtShort(t0)} – ${fmtShort(t1)}`;
     syncFilterBtn();
