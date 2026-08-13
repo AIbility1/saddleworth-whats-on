@@ -740,10 +740,6 @@
     sunOnly = !!s.sun;
     syncPressed();
     setWindow(s.lo, s.hi);
-    if (innerWidth <= 760) {          // the answer is the list — show it
-      document.body.classList.add('side-open');
-      $('side-toggle').setAttribute('aria-expanded', 'true');
-    }
   }
   const resetFilters = () => applyScenario(null);
   const scenHTML = Object.entries(SCEN).map(([k, s]) =>

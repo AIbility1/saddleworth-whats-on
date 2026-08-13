@@ -461,14 +461,16 @@
     #side { display: none; }
     body.side-open #side { display: flex; top: 56px; max-height: calc(100dvh - 200px); }
     #venue { top: 56px; max-height: calc(100dvh - 200px); }
-    /* phones keep the +/- buttons (no slider), tucked above the time bar */
+    /* phones keep the +/- buttons (no slider), sat beside the time bar */
     #z-bar { display: none; }
-    #zoomctl { bottom: 140px; right: 10px; }
+    #zoomctl { bottom: 8px; right: 10px; }
+    #zoomctl button { width: 36px; height: 42px; }
+    #timebar { right: 56px; }
     #credit { bottom: 182px; }
-    /* the scenario shortcuts ride above the time bar, always on screen */
+    /* the scenario shortcuts ride above the time bar, full width */
     #side .scen-row { display: none; }
-    #scen-float { display: flex; gap: 6px; position: fixed; left: 10px; right: 56px;
-                  bottom: 140px; z-index: 16; overflow-x: auto; scrollbar-width: none;
+    #scen-float { display: flex; gap: 6px; position: fixed; left: 10px; right: 10px;
+                  bottom: 136px; z-index: 16; overflow-x: auto; scrollbar-width: none;
                   padding: 2px; -webkit-overflow-scrolling: touch; }
     #scen-float::-webkit-scrollbar { display: none; }
     #scen-float .scen { flex: 0 0 auto; background: var(--surface);
